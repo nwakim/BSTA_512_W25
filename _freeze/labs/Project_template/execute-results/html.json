@@ -1,0 +1,14 @@
+{
+  "hash": "e5df6d71c4da02ccfde79ebad73df113",
+  "result": {
+    "markdown": "---\ntitle: \"Project Template: Title here\"\nsubtitle: \"BSTA 512/612\"\nauthor: \"Your name here\"\ndescription: \"Due: Thursday March 21, 2024 at 11pm\"\ndate-modified: \"today\"\nformat: \n  html:\n    link-external-newwindow: true\n    toc: true\n    self-contained: true\n    execute:\n      echo: false\n      warning: false\n      message: false\neditor_options: \n  chunk_output_type: console\n---\n\n\n## Introduction\n\n\n::: {.cell}\n\n:::\n\n\n## Statistical Methods\n\n## Results\n\n## Discussion\n\n## Conclusion\n\n## References\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

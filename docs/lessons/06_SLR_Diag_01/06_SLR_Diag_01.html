@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Nicky Wakim">
+<meta name="dcterms.date" content="2023-01-29">
+
+<title>Linear Models - SLR: Model Evaluation and Diagnostics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-sm navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/bsta_512_hex.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Linear Models</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../schedule.html" rel="" target="">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../syllabus.html" rel="" target="">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../instructors.html" rel="" target="">
+ <span class="menu-text">Instructors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../homework.html" rel="" target="">
+ <span class="menu-text">Homework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../project.html" rel="" target="">
+ <span class="menu-text">Project</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a>
+  <ul class="collapse">
+  <li><a href="#lets-remind-ourselves-of-the-model-that-we-have-been-working-with" id="toc-lets-remind-ourselves-of-the-model-that-we-have-been-working-with" class="nav-link" data-scroll-target="#lets-remind-ourselves-of-the-model-that-we-have-been-working-with">Let’s remind ourselves of the model that we have been working with</a></li>
+  <li><a href="#our-residuals-will-help-us-a-lot-in-our-diagnostics" id="toc-our-residuals-will-help-us-a-lot-in-our-diagnostics" class="nav-link" data-scroll-target="#our-residuals-will-help-us-a-lot-in-our-diagnostics">Our residuals will help us a lot in our diagnostics!</a></li>
+  </ul></li>
+  <li><a href="#learning-objectives-1" id="toc-learning-objectives-1" class="nav-link" data-scroll-target="#learning-objectives-1">Learning Objectives</a>
+  <ul class="collapse">
+  <li><a href="#least-squares-model-assumptions-line" id="toc-least-squares-model-assumptions-line" class="nav-link" data-scroll-target="#least-squares-model-assumptions-line">Least-squares model assumptions: LINE</a></li>
+  <li><a href="#l-linearity" id="toc-l-linearity" class="nav-link" data-scroll-target="#l-linearity">L: Linearity</a></li>
+  <li><a href="#i-independence-of-observations" id="toc-i-independence-of-observations" class="nav-link" data-scroll-target="#i-independence-of-observations">I: Independence of observations</a></li>
+  <li><a href="#poll-everywhere-question-1" id="toc-poll-everywhere-question-1" class="nav-link" data-scroll-target="#poll-everywhere-question-1">Poll Everywhere Question 1</a></li>
+  <li><a href="#n-normality" id="toc-n-normality" class="nav-link" data-scroll-target="#n-normality">N: Normality</a></li>
+  <li><a href="#e-equality-of-variance-of-the-residuals" id="toc-e-equality-of-variance-of-the-residuals" class="nav-link" data-scroll-target="#e-equality-of-variance-of-the-residuals">E: Equality of variance of the residuals</a></li>
+  <li><a href="#summary-of-line-model-assumptions" id="toc-summary-of-line-model-assumptions" class="nav-link" data-scroll-target="#summary-of-line-model-assumptions">Summary of LINE model assumptions</a></li>
+  <li><a href="#how-do-we-determine-if-our-model-follows-the-line-assumptions" id="toc-how-do-we-determine-if-our-model-follows-the-line-assumptions" class="nav-link" data-scroll-target="#how-do-we-determine-if-our-model-follows-the-line-assumptions">How do we determine if our model follows the LINE assumptions?</a></li>
+  </ul></li>
+  <li><a href="#learning-objectives-2" id="toc-learning-objectives-2" class="nav-link" data-scroll-target="#learning-objectives-2">Learning Objectives</a>
+  <ul class="collapse">
+  <li><a href="#l-linearity-of-relationship-between-variables" id="toc-l-linearity-of-relationship-between-variables" class="nav-link" data-scroll-target="#l-linearity-of-relationship-between-variables">L: Linearity of relationship between variables</a></li>
+  <li><a href="#poll-everywhere-question-2" id="toc-poll-everywhere-question-2" class="nav-link" data-scroll-target="#poll-everywhere-question-2">Poll Everywhere Question 2</a></li>
+  <li><a href="#i-independence-of-the-residuals-y-values" id="toc-i-independence-of-the-residuals-y-values" class="nav-link" data-scroll-target="#i-independence-of-the-residuals-y-values">I: Independence of the residuals (<span class="math inline">\(Y\)</span> values)</a></li>
+  </ul></li>
+  <li><a href="#learning-objectives-3" id="toc-learning-objectives-3" class="nav-link" data-scroll-target="#learning-objectives-3">Learning Objectives</a>
+  <ul class="collapse">
+  <li><a href="#n-normality-of-the-residuals" id="toc-n-normality-of-the-residuals" class="nav-link" data-scroll-target="#n-normality-of-the-residuals">N: Normality of the residuals</a></li>
+  <li><a href="#n-extract-models-residuals-in-r" id="toc-n-extract-models-residuals-in-r" class="nav-link" data-scroll-target="#n-extract-models-residuals-in-r">N: Extract model’s residuals in R</a></li>
+  <li><a href="#n-check-normality-with-usual-distribution-plots" id="toc-n-check-normality-with-usual-distribution-plots" class="nav-link" data-scroll-target="#n-check-normality-with-usual-distribution-plots">N: Check normality with “usual” distribution plots</a></li>
+  <li><a href="#n-normal-qq-plots-qq-quantile-quantile" id="toc-n-normal-qq-plots-qq-quantile-quantile" class="nav-link" data-scroll-target="#n-normal-qq-plots-qq-quantile-quantile">N: Normal QQ plots (QQ = quantile-quantile)</a></li>
+  <li><a href="#n-examples-of-normal-qq-plots-from-n100-observations" id="toc-n-examples-of-normal-qq-plots-from-n100-observations" class="nav-link" data-scroll-target="#n-examples-of-normal-qq-plots-from-n100-observations">N: Examples of Normal QQ plots (from <span class="math inline">\(n=100\)</span> observations)</a></li>
+  <li><a href="#n-examples-of-normal-qq-plots-from-n10-observations" id="toc-n-examples-of-normal-qq-plots-from-n10-observations" class="nav-link" data-scroll-target="#n-examples-of-normal-qq-plots-from-n10-observations">N: Examples of Normal QQ plots (from <span class="math inline">\(n=10\)</span> observations)</a></li>
+  <li><a href="#n-examples-of-normal-qq-plots-from-n1000-observations" id="toc-n-examples-of-normal-qq-plots-from-n1000-observations" class="nav-link" data-scroll-target="#n-examples-of-normal-qq-plots-from-n1000-observations">N: Examples of Normal QQ plots (from <span class="math inline">\(n=1000\)</span> observations)</a></li>
+  <li><a href="#n-we-can-compare-the-qq-plots-model-vs.-theoretical" id="toc-n-we-can-compare-the-qq-plots-model-vs.-theoretical" class="nav-link" data-scroll-target="#n-we-can-compare-the-qq-plots-model-vs.-theoretical">N: We can compare the QQ plots: model vs.&nbsp;theoretical</a></li>
+  <li><a href="#n-shapiro-wilk-test-of-normality" id="toc-n-shapiro-wilk-test-of-normality" class="nav-link" data-scroll-target="#n-shapiro-wilk-test-of-normality">N: Shapiro-Wilk Test of Normality</a></li>
+  </ul></li>
+  <li><a href="#learning-objectives-4" id="toc-learning-objectives-4" class="nav-link" data-scroll-target="#learning-objectives-4">Learning Objectives</a>
+  <ul class="collapse">
+  <li><a href="#e-equality-of-variance-of-the-residuals-1" id="toc-e-equality-of-variance-of-the-residuals-1" class="nav-link" data-scroll-target="#e-equality-of-variance-of-the-residuals-1">E: Equality of variance of the residuals</a></li>
+  <li><a href="#e-creating-a-residual-plot" id="toc-e-creating-a-residual-plot" class="nav-link" data-scroll-target="#e-creating-a-residual-plot">E: Creating a residual plot</a></li>
+  <li><a href="#autoplot-can-be-a-helpful-tool" id="toc-autoplot-can-be-a-helpful-tool" class="nav-link" data-scroll-target="#autoplot-can-be-a-helpful-tool"><code>autoplot()</code> can be a helpful tool</a></li>
+  <li><a href="#summary-of-the-assumptions-and-their-diagnostic-tool" id="toc-summary-of-the-assumptions-and-their-diagnostic-tool" class="nav-link" data-scroll-target="#summary-of-the-assumptions-and-their-diagnostic-tool">Summary of the assumptions and their diagnostic tool</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="06_SLR_Diag_01.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">SLR: Model Evaluation and Diagnostics</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Week 4</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nicky Wakim </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 29, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="learning-objectives" class="level1">
+<h1>Learning Objectives</h1>
+<ol type="1">
+<li><p>Describe the model assumptions made in linear regression using ordinary least squares</p></li>
+<li><p>Determine if the relationship between our sampled X and Y is linear</p></li>
+<li><p>Use QQ plots to determine if our fitted model holds the normality assumption</p></li>
+<li><p>Use residual plots to determine if our fitted model holds the equality of variance assumption</p></li>
+</ol>
+<section id="lets-remind-ourselves-of-the-model-that-we-have-been-working-with" class="level2">
+<h2 class="anchored" data-anchor-id="lets-remind-ourselves-of-the-model-that-we-have-been-working-with">Let’s remind ourselves of the model that we have been working with</h2>
+<ul>
+<li><p>We have been looking at the association between life expectancy and female literacy rate</p></li>
+<li><p>We used OLS to find the coefficient estimates of our best-fit line</p></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:55%;">
+<p><span class="math display">\[Y = \beta_0 + \beta_1 X + \epsilon\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="vactsmpqzj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vactsmpqzj table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#vactsmpqzj thead, #vactsmpqzj tbody, #vactsmpqzj tfoot, #vactsmpqzj tr, #vactsmpqzj td, #vactsmpqzj th {
+  border-style: none;
+}
+
+#vactsmpqzj p {
+  margin: 0;
+  padding: 0;
+}
+
+#vactsmpqzj .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 40px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#vactsmpqzj .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#vactsmpqzj .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#vactsmpqzj .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#vactsmpqzj .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vactsmpqzj .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vactsmpqzj .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vactsmpqzj .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#vactsmpqzj .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#vactsmpqzj .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#vactsmpqzj .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#vactsmpqzj .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#vactsmpqzj .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#vactsmpqzj .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#vactsmpqzj .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vactsmpqzj .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#vactsmpqzj .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#vactsmpqzj .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#vactsmpqzj .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vactsmpqzj .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#vactsmpqzj .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#vactsmpqzj .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#vactsmpqzj .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vactsmpqzj .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#vactsmpqzj .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#vactsmpqzj .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vactsmpqzj .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vactsmpqzj .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#vactsmpqzj .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vactsmpqzj .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#vactsmpqzj .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vactsmpqzj .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vactsmpqzj .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vactsmpqzj .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vactsmpqzj .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vactsmpqzj .gt_left {
+  text-align: left;
+}
+
+#vactsmpqzj .gt_center {
+  text-align: center;
+}
+
+#vactsmpqzj .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#vactsmpqzj .gt_font_normal {
+  font-weight: normal;
+}
+
+#vactsmpqzj .gt_font_bold {
+  font-weight: bold;
+}
+
+#vactsmpqzj .gt_font_italic {
+  font-style: italic;
+}
+
+#vactsmpqzj .gt_super {
+  font-size: 65%;
+}
+
+#vactsmpqzj .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#vactsmpqzj .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#vactsmpqzj .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#vactsmpqzj .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#vactsmpqzj .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#vactsmpqzj .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#vactsmpqzj .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#vactsmpqzj .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#vactsmpqzj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="std.error">std.error</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="term" class="gt_row gt_left">(Intercept)</td>
+<td headers="estimate" class="gt_row gt_right">50.93</td>
+<td headers="std.error" class="gt_row gt_right">2.66</td>
+<td headers="statistic" class="gt_row gt_right">19.14</td>
+<td headers="p.value" class="gt_row gt_right">0.00</td></tr>
+    <tr><td headers="term" class="gt_row gt_left">female_literacy_rate_2011</td>
+<td headers="estimate" class="gt_row gt_right">0.23</td>
+<td headers="std.error" class="gt_row gt_right">0.03</td>
+<td headers="statistic" class="gt_row gt_right">7.38</td>
+<td headers="p.value" class="gt_row gt_right">0.00</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<span class="math display">\[\begin{aligned}
+\widehat{Y} &amp;= \widehat\beta_0 + \widehat\beta_1 \cdot X\\
+\widehat{\text{life expectancy}} &amp;= 50.9 + 0.232 \cdot \text{female literacy rate}
+\end{aligned}\]</span>
+</div><div class="column" style="width:2%;">
+
+</div><div class="column" style="width:43%;">
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 188 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): country
+dbl (2): life_expectancy_years_2011, female_literacy_rate_2011
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 108 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 108 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="06_SLR_Diag_01_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="our-residuals-will-help-us-a-lot-in-our-diagnostics" class="level2">
+<h2 class="anchored" data-anchor-id="our-residuals-will-help-us-a-lot-in-our-diagnostics">Our residuals will help us a lot in our diagnostics!</h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<ul>
+<li><p>The <strong>residuals</strong> <span class="math inline">\(\widehat\epsilon_i\)</span> are the vertical distances between</p>
+<ul>
+<li>the observed data <span class="math inline">\((X_i, Y_i)\)</span></li>
+<li>the fitted values (regression line) <span class="math inline">\(\widehat{Y}_i = \widehat\beta_0 + \widehat\beta_1 X_i\)</span></li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:65%;">
+<p><span class="math display">\[
+\widehat\epsilon_i =Y_i - \widehat{Y}_i \text{, &nbsp; for } i=1, 2, ..., n
+\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06_SLR_Diag_01_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="1056"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="learning-objectives-1" class="level1">
+<h1>Learning Objectives</h1>
+<div class="lob">
+<ol type="1">
+<li>Describe the model assumptions made in linear regression using ordinary least squares</li>
+</ol>
+</div>
+<ol start="2" type="1">
+<li><p>Determine if the relationship between our sampled X and Y is linear</p></li>
+<li><p>Use QQ plots to determine if our fitted model holds the normality assumption</p></li>
+<li><p>Use residual plots to determine if our fitted model holds the equality of variance assumption</p></li>
+</ol>
+<section id="least-squares-model-assumptions-line" class="level2">
+<h2 class="anchored" data-anchor-id="least-squares-model-assumptions-line">Least-squares model assumptions: LINE</h2>
+<p>&nbsp;</p>
+<p>These are the model assumptions made in ordinary least squares:</p>
+<p>&nbsp;</p>
+<div class="L">
+<p><strong>[L] Linearity</strong> of relationship between variables</p>
+</div>
+<div class="I">
+<p><strong>[I] Independence</strong> of the <span class="math inline">\(Y\)</span> values</p>
+</div>
+<div class="N">
+<p><strong>[N] Normality</strong> of the <span class="math inline">\(Y\)</span>’s given <span class="math inline">\(X\)</span> (residuals)</p>
+</div>
+<div class="E">
+<p><strong>[E] Equality</strong> of variance of the residuals (homoscedasticity)</p>
+</div>
+</section>
+<section id="l-linearity" class="level2">
+<h2 class="anchored" data-anchor-id="l-linearity">L: Linearity</h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<ul>
+<li>The relationship between the variables is linear (a straight line):
+<ul>
+<li>The mean value of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span>, <span class="math inline">\(\mu_{y|x}\)</span> or <span class="math inline">\(E[Y|X]\)</span>, is a straight-line function of <span class="math inline">\(X\)</span></li>
+</ul></li>
+</ul>
+<p><span class="math display">\[\mu_{y|x} = \beta_0 + \beta_1 \cdot X\]</span></p>
+</div><div class="column" style="width:65%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in geom_point(size = 3, se = FALSE): Ignoring unknown parameters: `se`</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 108 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 108 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 108 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06_SLR_Diag_01_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="1056"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="i-independence-of-observations" class="level2">
+<h2 class="anchored" data-anchor-id="i-independence-of-observations">I: Independence of observations</h2>
+<ul>
+<li><p>The <span class="math inline">\(Y\)</span>-values are statistically independent of one another</p></li>
+<li><p>Examples of when they are <em>not</em> independent, include</p>
+<ul>
+<li><p>repeated measures (such as baseline, 3 months, 6 months)</p></li>
+<li><p>data from clusters, such as different hospitals or families</p></li>
+</ul></li>
+<li><p>This condition is checked by reviewing the study <em>design</em> and not by inspecting the data</p></li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>How to analyze data using regression models when the <span class="math inline">\(Y\)</span>-values are not independent is covered in BSTA 519 (Longitudinal data)</li>
+</ul>
+</section>
+<section id="poll-everywhere-question-1" class="level2">
+<h2 class="anchored" data-anchor-id="poll-everywhere-question-1">Poll Everywhere Question 1</h2>
+</section>
+<section id="n-normality" class="level2">
+<h2 class="anchored" data-anchor-id="n-normality">N: Normality</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>For any fixed value of <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span> has normal distribution.
+<ul>
+<li>Note: This is not about <span class="math inline">\(Y\)</span> alone, but <span class="math inline">\(Y|X\)</span></li>
+</ul></li>
+<li>Equivalently, the measurement (random) errors <span class="math inline">\(\epsilon_i\)</span> ’s normally distributed
+<ul>
+<li>This is more often what we check</li>
+</ul></li>
+</ul>
+</div><div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06_SLR_Diag_01_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="1056"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="e-equality-of-variance-of-the-residuals" class="level2">
+<h2 class="anchored" data-anchor-id="e-equality-of-variance-of-the-residuals">E: Equality of variance of the residuals</h2>
+<ul>
+<li><p>The variance of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span> (<span class="math inline">\(\sigma_{Y|X}^2\)</span>), is the same for any <span class="math inline">\(X\)</span></p>
+<ul>
+<li>We use just <span class="math inline">\(\sigma^2\)</span> to denote the common variance</li>
+</ul></li>
+<li><p>This is also called <strong>homoscedasticity</strong></p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06_SLR_Diag_1/OLSassumptions-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="summary-of-line-model-assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-line-model-assumptions">Summary of LINE model assumptions</h2>
+<ul>
+<li><span class="math inline">\(Y\)</span> values are independent (check study design!)</li>
+</ul>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:10%;">
+
+</div><div class="column" style="width:40%;">
+<p>The distribution of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span> is</p>
+<ul>
+<li>normal</li>
+<li>with mean <span class="math inline">\(\mu_{y|x} = \beta_0 + \beta_1 \cdot X\)</span></li>
+<li>and common variance <span class="math inline">\(\sigma^2\)</span></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p>This means that the residuals are</p>
+<ul>
+<li>normal</li>
+<li>with mean = 0</li>
+<li>and common variance <span class="math inline">\(\sigma^2\)</span></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="how-do-we-determine-if-our-model-follows-the-line-assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-we-determine-if-our-model-follows-the-line-assumptions">How do we determine if our model follows the LINE assumptions?</h2>
+<div class="columns">
+<div class="column">
+<div class="definition">
+<div class="def-title">
+<p><strong>[L] Linearity</strong> of relationship between variables</p>
+</div>
+<div class="def-cont">
+<p>Check if there is a linear relationship between the mean response (Y) and the explanatory variable (X)</p>
+</div>
+</div>
+</div><div class="column">
+<div class="proof1">
+<div class="proof-title">
+<p><strong>[I] Independence</strong> of the <span class="math inline">\(Y\)</span> values</p>
+</div>
+<div class="proof-cont">
+<p>Check that the observations are independent</p>
+</div>
+</div>
+</div><div class="column">
+<div class="theorem">
+<div class="thm-title">
+<p><strong>[N] Normality</strong> of the <span class="math inline">\(Y\)</span>’s given <span class="math inline">\(X\)</span> (residuals)</p>
+</div>
+<div class="thm-cont">
+<p>Check that the responses (at each level X) are normally distributed</p>
+<ul>
+<li>Usually measured through the residuals</li>
+</ul>
+</div>
+</div>
+</div><div class="column">
+<div class="fact">
+<div class="fact-title">
+<p><strong>[E] Equality</strong> of variance of the residuals (homoscedasticity)</p>
+</div>
+<div class="fact-cont">
+<p>Check that the variance (or standard deviation) of the responses is equal for all levels of X</p>
+<ul>
+<li>Usually measured through the residuals</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="learning-objectives-2" class="level1">
+<h1>Learning Objectives</h1>
+<ol type="1">
+<li>Describe the model assumptions made in linear regression using ordinary least squares</li>
+</ol>
+<div class="lob">
+<ol start="2" type="1">
+<li>Determine if the relationship between our sampled X and Y is linear</li>
+</ol>
+</div>
+<ol start="3" type="1">
+<li><p>Use QQ plots to determine if our fitted model holds the normality assumption</p></li>
+<li><p>Use residual plots to determine if our fitted model holds the equality of variance assumption</p></li>
+</ol>
+<section id="l-linearity-of-relationship-between-variables" class="level2">
+<h2 class="anchored" data-anchor-id="l-linearity-of-relationship-between-variables">L: Linearity of relationship between variables</h2>
+<div class="columns">
+<div class="column" style="width:15%;">
+
+</div><div class="column" style="width:70%;">
+<div class="hl">
+<p>Is the association between the variables <strong>linear</strong>?</p>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Diagnostic tool:</strong> Scatterplot of <span class="math inline">\(X\)</span> vs.&nbsp;<span class="math inline">\(Y\)</span></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in geom_point(size = 3, se = FALSE): Ignoring unknown parameters: `se`</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 108 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 108 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 108 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06_SLR_Diag_01_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="poll-everywhere-question-2" class="level2">
+<h2 class="anchored" data-anchor-id="poll-everywhere-question-2">Poll Everywhere Question 2</h2>
+</section>
+<section id="i-independence-of-the-residuals-y-values" class="level2">
+<h2 class="anchored" data-anchor-id="i-independence-of-the-residuals-y-values">I: Independence of the residuals (<span class="math inline">\(Y\)</span> values)</h2>
+<ul>
+<li><strong>Are the data points independent of each other?</strong></li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li><strong>Diagnostic tool:</strong> reviewing the study <em>design</em> and not by inspecting the data</li>
+</ul>
+</section>
+</section>
+<section id="learning-objectives-3" class="level1">
+<h1>Learning Objectives</h1>
+<ol type="1">
+<li><p>Describe the model assumptions made in linear regression using ordinary least squares</p></li>
+<li><p>Determine if the relationship between our sampled X and Y is linear</p></li>
+</ol>
+<div class="lob">
+<ol start="3" type="1">
+<li>Use QQ plots to determine if our fitted model holds the normality assumption</li>
+</ol>
+</div>
+<ol start="4" type="1">
+<li>Use residual plots to determine if our fitted model holds the equality of variance assumption</li>
+</ol>
+<section id="n-normality-of-the-residuals" class="level2">
+<h2 class="anchored" data-anchor-id="n-normality-of-the-residuals">N: Normality of the residuals</h2>
+<ul>
+<li>We need to check if the errors/residuals (<span class="math inline">\(\epsilon_i\)</span>’s) are normally distributed</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li><p><strong>Diagnostic tools:</strong></p>
+<ul>
+<li><p>Distribution plots of residuals</p></li>
+<li><p>QQ plots of residuals</p></li>
+</ul></li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=okjYjClSjOg&amp;ab_channel=StatQuestwithJoshStarmer">Extra resource on how QQ plots are made</a></li>
+</ul>
+</section>
+<section id="n-extract-models-residuals-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="n-extract-models-residuals-in-r">N: Extract model’s residuals in R</h2>
+<ul>
+<li>First extract the residuals’ values from the model output using the <code>augment()</code> function from the <code>broom</code> package.</li>
+<li>Get a tibble with the orginal data, as well as the residuals and some other important values.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(life_expectancy_years_2011 <span class="sc">~</span> female_literacy_rate_2011, </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> gapm)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>aug1 <span class="ot">&lt;-</span> <span class="fu">augment</span>(model1) </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(aug1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 80
+Columns: 9
+$ .rownames                  &lt;chr&gt; "1", "2", "5", "6", "7", "8", "14", "22", "…
+$ life_expectancy_years_2011 &lt;dbl&gt; 56.7, 76.7, 60.9, 76.9, 76.0, 73.8, 71.0, 7…
+$ female_literacy_rate_2011  &lt;dbl&gt; 13.0, 95.7, 58.6, 99.4, 97.9, 99.5, 53.4, 9…
+$ .fitted                    &lt;dbl&gt; 53.94643, 73.14897, 64.53453, 74.00809, 73.…
+$ .resid                     &lt;dbl&gt; 2.7535654, 3.5510294, -3.6345319, 2.8919074…
+$ .hat                       &lt;dbl&gt; 0.13628996, 0.01768176, 0.02645854, 0.02077…
+$ .sigma                     &lt;dbl&gt; 6.172684, 6.168414, 6.167643, 6.172935, 6.1…
+$ .cooksd                    &lt;dbl&gt; 1.835891e-02, 3.062372e-03, 4.887448e-03, 2…
+$ .std.resid                 &lt;dbl&gt; 0.48238134, 0.58332052, -0.59972251, 0.4757…</code></pre>
+</div>
+</div>
+</section>
+<section id="n-check-normality-with-usual-distribution-plots" class="level2">
+<h2 class="anchored" data-anchor-id="n-check-normality-with-usual-distribution-plots">N: Check normality with “usual” distribution plots</h2>
+<p>Note that below I save each figure as an object, and then combine them together in one row of output using <code>grid.arrange()</code> from the <code>gridExtra</code> package</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>hist1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(aug1, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>density1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(aug1, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>box1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(aug1, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(hist1, density1, box1, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06_SLR_Diag_01_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="n-normal-qq-plots-qq-quantile-quantile" class="level2">
+<h2 class="anchored" data-anchor-id="n-normal-qq-plots-qq-quantile-quantile">N: Normal QQ plots (QQ = quantile-quantile)</h2>
+<ul>
+<li>It can be tricky to eyeball with a histogram or density plot whether the residuals are normal or not</li>
+<li>QQ plots are often used to help with this</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li><em>Vertical axis</em>: <strong>data quantiles</strong>
+<ul>
+<li>data points are sorted in order and</li>
+<li>assigned quantiles based on how many data points there are</li>
+</ul></li>
+<li><em>Horizontal axis</em>: <strong>theoretical quantiles</strong>
+<ul>
+<li>mean and standard deviation (SD) calculated from the data points</li>
+<li>theoretical quantiles are calculated for each point, assuming the data are modeled by a normal distribution with the mean and SD of the data</li>
+</ul></li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li><strong>Data are approximately normal if points fall on a line.</strong></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06_SLR_Diag_01_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="720"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="n-examples-of-normal-qq-plots-from-n100-observations" class="level2">
+<h2 class="anchored" data-anchor-id="n-examples-of-normal-qq-plots-from-n100-observations">N: Examples of Normal QQ plots (from <span class="math inline">\(n=100\)</span> observations)</h2>
+<div class="columns">
+<div class="column" style="width:8%;">
+
+</div><div class="column" style="width:22%;">
+<p>Normal</p>
+</div><div class="column" style="width:24%;">
+<p>Uniform</p>
+</div><div class="column" style="width:24%;">
+<p>T</p>
+</div><div class="column" style="width:22%;">
+<p>Skewed</p>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06_SLR_Diag_01_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="1920"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06_SLR_Diag_01_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="1920"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+</section>
+<section id="n-examples-of-normal-qq-plots-from-n10-observations" class="level2">
+<h2 class="anchored" data-anchor-id="n-examples-of-normal-qq-plots-from-n10-observations">N: Examples of Normal QQ plots (from <span class="math inline">\(n=10\)</span> observations)</h2>
+<div class="columns">
+<div class="column" style="width:8%;">
+
+</div><div class="column" style="width:22%;">
+<p>Normal</p>
+</div><div class="column" style="width:24%;">
+<p>Uniform</p>
+</div><div class="column" style="width:24%;">
+<p>T</p>
+</div><div class="column" style="width:22%;">
+<p>Skewed</p>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06_SLR_Diag_01_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="1920"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06_SLR_Diag_01_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="1920"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="n-examples-of-normal-qq-plots-from-n1000-observations" class="level2">
+<h2 class="anchored" data-anchor-id="n-examples-of-normal-qq-plots-from-n1000-observations">N: Examples of Normal QQ plots (from <span class="math inline">\(n=1000\)</span> observations)</h2>
+<div class="columns">
+<div class="column" style="width:8%;">
+
+</div><div class="column" style="width:22%;">
+<p>Normal</p>
+</div><div class="column" style="width:24%;">
+<p>Uniform</p>
+</div><div class="column" style="width:24%;">
+<p>T</p>
+</div><div class="column" style="width:22%;">
+<p>Skewed</p>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06_SLR_Diag_01_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="1920"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06_SLR_Diag_01_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="1920"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="n-we-can-compare-the-qq-plots-model-vs.-theoretical" class="level2">
+<h2 class="anchored" data-anchor-id="n-we-can-compare-the-qq-plots-model-vs.-theoretical">N: We can compare the QQ plots: model vs.&nbsp;theoretical</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Residuals from Life Expectancy vs.&nbsp;Female Literacy Rate Regression</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(aug1, </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(<span class="at">sample =</span> .resid)) <span class="sc">+</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06_SLR_Diag_01_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<ul>
+<li>Simulated QQ plot of Normal Residuals with <span class="math inline">\(n = 80\)</span></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>(<span class="fu">aes</span>(</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample =</span> <span class="fu">rnorm</span>(<span class="dv">80</span>))) <span class="sc">+</span> </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, </span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06_SLR_Diag_01_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="n-shapiro-wilk-test-of-normality" class="level2">
+<h2 class="anchored" data-anchor-id="n-shapiro-wilk-test-of-normality">N: Shapiro-Wilk Test of Normality</h2>
+<ul>
+<li><p>Goodness-of-fit test for the normal distribution: Is there evidence that our residuals are from a normal distribution?</p></li>
+<li><p>Hypothesis test:</p></li>
+</ul>
+<p><span class="math display">\[\begin{aligned}
+H_0 &amp; : \text{data are from a normally distributed population} \\
+H_1 &amp; : \text{data are NOT from a normally distributed population}
+\end{aligned}\]</span></p>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(aug1<span class="sc">$</span>.resid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  aug1$.resid
+W = 0.90575, p-value = 2.148e-05</code></pre>
+</div>
+</div>
+</div><div class="column">
+<div class="theorem">
+<div class="thm-title">
+<p>Conclusion</p>
+</div>
+<div class="thm-cont">
+<p>Reject the null. Data are not from a normal distribution.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="learning-objectives-4" class="level1">
+<h1>Learning Objectives</h1>
+<ol type="1">
+<li><p>Describe the model assumptions made in linear regression using ordinary least squares</p></li>
+<li><p>Determine if the relationship between our sampled X and Y is linear</p></li>
+<li><p>Use QQ plots to determine if our fitted model holds the normality assumption</p></li>
+</ol>
+<div class="lob">
+<ol start="4" type="1">
+<li>Use residual plots to determine if our fitted model holds the equality of variance assumption</li>
+</ol>
+</div>
+<section id="e-equality-of-variance-of-the-residuals-1" class="level2 nostretch">
+<h2 class="nostretch anchored" data-anchor-id="e-equality-of-variance-of-the-residuals-1">E: Equality of variance of the residuals</h2>
+<ul>
+<li>Homoscedasticity: How do we determine if the variance across X values is constant?</li>
+<li>Diagnostic tool: <strong>residual plot</strong></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06_SLR_Diag_1/resid-plots.png" class="img-fluid figure-img" width="1000"></p>
+</figure>
+</div>
+</section>
+<section id="e-creating-a-residual-plot" class="level2">
+<h2 class="anchored" data-anchor-id="e-creating-a-residual-plot">E: Creating a residual plot</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li><span class="math inline">\(x\)</span> = explanatory variable from regression model
+<ul>
+<li>(or the fitted values for a multiple regression)</li>
+</ul></li>
+<li><span class="math inline">\(y\)</span> = residuals from regression model</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(aug1, </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> female_literacy_rate_2011, </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> .resid)) <span class="sc">+</span> </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>( <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">0</span>,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"#FF8021"</span>) <span class="sc">+</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Residual plot"</span>) <span class="sc">+</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>), </span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06_SLR_Diag_01_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="autoplot-can-be-a-helpful-tool" class="level2">
+<h2 class="anchored" data-anchor-id="autoplot-can-be-a-helpful-tool"><code>autoplot()</code> can be a helpful tool</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(model1) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06_SLR_Diag_01_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="summary-of-the-assumptions-and-their-diagnostic-tool" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-the-assumptions-and-their-diagnostic-tool">Summary of the assumptions and their diagnostic tool</h2>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 43%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Assumption</th>
+<th style="text-align: left;">What needs to hold?</th>
+<th style="text-align: left;">Diagnostic tool</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><p>Linearity</p>
+<p><span class="math inline">\(\text{}\)</span></p></td>
+<td style="text-align: left;"><ul>
+<li>Relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is linear</li>
+</ul></td>
+<td style="text-align: left;"><ul>
+<li>Scatterplot of <span class="math inline">\(Y\)</span> vs.&nbsp;<span class="math inline">\(X\)</span></li>
+</ul>
+<p><span class="math inline">\(\text{}\)</span></p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>Independence</p>
+<p><span class="math inline">\(\text{}\)</span></p></td>
+<td style="text-align: left;"><ul>
+<li>Observations are independent from each other</li>
+</ul></td>
+<td style="text-align: left;"><ul>
+<li>Study design</li>
+</ul>
+<p><span class="math inline">\(\text{}\)</span></p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>Normality</p>
+<p><span class="math inline">\(\text{}\)</span></p></td>
+<td style="text-align: left;"><ul>
+<li>Residuals (and thus <span class="math inline">\(Y|X\)</span>) are normally distributed</li>
+</ul></td>
+<td style="text-align: left;"><ul>
+<li><p>QQ plot of residuals</p></li>
+<li><p>Distribution of residuals</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>Equality of variance</p>
+<p><span class="math inline">\(\text{}\)</span></p></td>
+<td style="text-align: left;"><ul>
+<li>Variance of residuals (and thus <span class="math inline">\(Y|X\)</span>) is same across <span class="math inline">\(X\)</span> values (homoscedasticity)</li>
+</ul></td>
+<td style="text-align: left;"><ul>
+<li>Residual plot</li>
+</ul>
+<p><span class="math inline">\(\text{}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

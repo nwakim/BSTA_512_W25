@@ -1,0 +1,102 @@
+---
+title: "Homework 0"
+subtitle: "BSTA 512/612"
+author: "Your name here - update this!!!!"
+description: "Due: Thursday January 9, 2024"
+date-modified: "today"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    embed-resources: true
+editor_options: 
+  chunk_output_type: console
+---
+
+::: callout-caution
+This homework is not ready to be worked on!! Nicky needs to update it.
+:::
+
+## Directions
+
+**This homework must be turned into Sakai. I want to make sure we are all familiar with the process of downloading a `.qmd`** file, editing it, and resubmitting an `.html` and `.qmd` file.
+
+Here are the instructions for downloading and submitting your homework:
+
+1.  Go to [this github site](https://github.com/nwakim/W2024_BSTA_512/blob/main/homework/HW0.qmd) to download the homework's `.qmd` file.
+
+2.  When you reach the site, it should look like this:![](HW0/HW0_github.png)
+
+3.  Click the "Download raw file" icon (![](HW0/download_icon.png){width="25"}) to download the `.qmd` file. This will likely download the file into your "Downloads" folder. It is up to you to move the file into the appropriate folder.
+
+4.  Please rename you homework as `Lastname_Firstinitial_HW0.qmd` . This will help organize the homeworks when the TAs grade them.
+
+5.  Please also add the following line under `subtitle: "BSTA 512/612"`: `author: First-name Last-name` with your first and last name so it is attached to the viewable document.
+
+6.  Edit the document with your explanations and code. If you are writing out an answer or calculating by hand, you can take a picture of your work and embed it within the `.qmd` file. The pictures will be viewable on the `.html` file.
+
+7.  Please upload your homework to this Sakai assignment. **Upload both your `.qmd` code file and the rendered `.html` file**.
+
+These instructions will not appear on every homework. You may come back to this page for reference.
+
+### Purpose
+
+This homework is meant to introduce yourself to me and your peers. In the first class, we will all briefly introduce ourselves, but we don't have enough time in-depth introductions. Thus, I'd like you to share some information with the class over Slack.
+
+### Grading
+
+Grading will be done as a check/no check for turning in your work. If you are stressed about time, please turn in whatever you have completed.
+
+## Questions
+
+### Question 1
+
+Please upload a picture of yourself [to Slack](https://join.slack.com/t/bsta512613w2024/shared_invite/zt-29g7biioz-XhPs~tj8xwL1GajEw9YlTg). Please follow the below steps to add a picture of yourself in Slack:
+
+1.  Go to the top right corner in Slack and click your profile picture.
+2.  Click "Profile."
+3.  In the picture of the clip art person, click "Upload Photo" in top right corner.
+4.  Upload a picture file of yourself.
+
+*Please include the picture you used below. This will make sure we are all able to insert a picture within Quarto. It will also make sure I can see the photo within the `.html` file.*
+
+### Question 2
+
+Provide a pronunciation of your name: Please follow the below steps to add an audio and written pronunciation of your name in Slack:
+
+1.  Go to the top right corner in Slack and click your profile picture.
+2.  Click "Profile."
+3.  To the right of your name, click "Edit."
+4.  Under "Name Recording," click "Record Audio Clip."
+5.  Please say your name once at a normal pace then once slowly. Please listen to my audio for an example.
+6.  You may also edit the written pronunciation of your name. This is optional. I realize that doing this is may require a lot of time researching phonetics.
+
+### Question 3
+
+Please complete the [following whenisgood poll](https://whenisgood.net/53kgg2b) so that we can schedule office hours. Please use a unique identifier (does not have to be your name), so that I can make sure each student can attend at least one office hour.
+
+### Question 4
+
+Completion of this question is optional. If you are comfortable sharing your pronouns, please edit your name in Slack to include them. For example, I have changed my name to be "Nicky Wakim (she/her)". If you prefer to not share your pronouns, then I will refer to you using they/them pronouns.
+
+### Question 5
+
+Please post an introduction in the `#random` channel on Slack. You ***do not need*** to include all of the below items, but your introduction ***may*** include information like:
+
+-   Preferred name
+-   Pronouns
+-   Are you new to Portland?
+-   Career interests
+-   Hobbies
+-   Family, children, and/or fur babies
+-   Favorite/recent adventures, restaurants, TV shows, books, podcasts, games, etc.
+-   Willingness to join a study group
+-   Motivation for taking the course
+-   Anticipated Winter trip/activity
+-   Any resolutions/vibes/outlooks that you are thinking about as we start the new calendar year/quarter
+
+Please feel free to get creative with what you share! You don't need to adhere to this list.
+
+### Question 6
+
+Completion of this question is only necessary if you have accommodations. If you have any learning accommodations, please email me about your needs. I should receive a direct email from the Office of Student Access, but it is important that we discuss how accommodations will translate to our class.

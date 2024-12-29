@@ -1,0 +1,85 @@
+---
+title: ""
+toc: false
+page-layout: full
+link-external-newwindow: true
+---
+
+::: {style="background-color: #213c96"}
+::: {style="color: #FFFFFF"}
+::: grid
+::: g-col-4
+![](images/bsta_512_hex.png){fig-align="center" width="337"}
+:::
+
+::: g-col-7
+# BSTA 512/612: Linear Models
+
+### Winter 2025
+
+ 
+
+Welcome to BSTA 512/612! In this course, we will focus on linear models, and build our understanding of regression analysis. We will build some theoretical understanding in order to interpret and apply regression models appropriately. We will learn how to build a regression model, interpret the model, and diagnose potential issues with our model.
+ 
+:::
+:::
+:::
+:::
+
+::: grid
+::: g-col-3
+### Instructor
+
+{{< iconify fluent person-24-filled size=24px >}} [Dr. Nicky Wakim](instructors.qmd)
+
+{{< iconify bi building-fill size=24px >}} Vanport 622A
+
+{{< iconify tabler mail-filled size=24px >}} [wakim\@ohsu.edu](mailto:wakim@ohsu.edu)
+:::
+
+::: g-col-3
+### Office Hours
+
+[OH with Nicky](https://ohsu.webex.com/meet/wakim)
+
+{{< iconify icon-park-solid time size=24px >}} Thursdays, 11:30am - 1pm
+
+[OH with Antara](https://pdx.zoom.us/j/84711194675)
+
+{{< iconify icon-park-solid time size=24px >}} Wednesdays, 4:30 - 6 pm
+
+[OH with Ariel](https://ohsu.webex.com/meet/weingara)
+
+{{< iconify icon-park-solid time size=24px >}} Tuesdays, 2:30 - 4 pm
+
+:::
+
+::: g-col-3
+### Course details
+
+{{< iconify fa6-solid calendar-days size=24px >}} Mondays, Wednesdays
+
+{{< iconify fa6-solid calendar size=24px >}} Jan 8 - March 20
+
+{{< iconify icon-park-solid time size=24px >}} 1:00 PM - 2:50 PM
+
+{{< iconify fa6-solid person-chalkboard size=24px >}} In-person
+:::
+
+::: g-col-3
+### Contacting me
+
+E-mail or Slack is the best way to get in contact with me. I will try to respond to all course-related e-mails within 24 hours Monday-Friday.
+:::
+:::
+
+------------------------------------------------------------------------
+
+::: grid
+::: g-col-9
+:::
+
+::: g-col-3
+[{{< iconify icomoon-free github size=24px >}} View the source on GitHub](https://github.com/nwakim/W2024_BSTA_512)
+:::
+:::

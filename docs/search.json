@@ -1193,8 +1193,8 @@
     "objectID": "lessons/01_Review/01_Review.html#what-did-we-learn-in-511",
     "href": "lessons/01_Review/01_Review.html#what-did-we-learn-in-511",
     "title": "Lesson 1: Review",
-    "section": "",
-    "text": "In 511, we talked about categorical and continuous outcomes (dependent variables)\n \nWe also talked about their relationship with 1-2 continuous or categorical exposure (independent variables or predictor)\n \nWe had many good ways to assess the relationship between an outcome and exposure:\n \n\n\n\n\n\n\n\n\n\n\nContinuous Outcome\nCategorical Outcome\n\n\nContinuous Exposure\nCorrelation, simple linear regression\n??\n\n\nCategorical Exposure\nt-tests, paired t-tests, 2 sample t-tests, ANOVA\nproportion t-test, Chi-squared goodness of fit test, Fisher’s Exact test, Chi-squared test of independence, etc."
+    "section": "What did we learn in 511?",
+    "text": "What did we learn in 511?\n\nIn 511, we talked about categorical and continuous outcomes (dependent variables)\n \nWe also talked about their relationship with 1-2 continuous or categorical exposure (independent variables or predictor)\n \nWe had many good ways to assess the relationship between an outcome and exposure:\n \n\n\n\n\n\n\n\n\n\n\nContinuous Outcome\nCategorical Outcome\n\n\nContinuous Exposure\nCorrelation, simple linear regression\n??\n\n\nCategorical Exposure\nt-tests, paired t-tests, 2 sample t-tests, ANOVA\nproportion t-test, Chi-squared goodness of fit test, Fisher’s Exact test, Chi-squared test of independence, etc."
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#what-did-we-learn-in-511-1",
@@ -1222,7 +1222,7 @@
     "href": "lessons/01_Review/01_Review.html#main-sections-of-the-course",
     "title": "Lesson 1: Review",
     "section": "Main sections of the course",
-    "text": "Main sections of the course\n\nReview\nIntro to SLR: estimation and testing\n\nModel fitting\n\nIntro to MLR: estimation and testing\n\nModel fitting\n\nDiving into our predictors: categorical variables, interactions between variable\n\nModel fitting\n\nKey ingredients: model evaluation, diagnostics, selection, and building\n\nModel evaluation and Model selection\n\n\n\nlibrary(ggplot2)"
+    "text": "Main sections of the course\n\nReview\nIntro to SLR: estimation and testing\n\nModel fitting\n\nIntro to MLR: estimation and testing\n\nModel fitting\n\nDiving into our predictors: categorical variables, interactions between variable\n\nModel fitting\n\nKey ingredients: model evaluation, diagnostics, selection, and building\n\nModel evaluation and Model selection"
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#main-sections-of-the-course-1",
@@ -1285,14 +1285,14 @@
     "href": "lessons/01_Review/01_Review.html#histogram-using-ggplot2",
     "title": "Lesson 1: Review",
     "section": "Histogram using ggplot2",
-    "text": "Histogram using ggplot2\nWe can make a basic graph for a continuous variable:\n\n\ndata(\"dds.discr\")\n\n\nggplot(data = dds.discr, \n       aes(x = age)) +\n  geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\n\n\n\nggplot() +\n  geom_histogram(data = dds.discr, \n       aes(x = age))\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\n\n\n\nSome more information on histograms using ggplot2"
+    "text": "Histogram using ggplot2\nWe can make a basic graph for a continuous variable:\n\n\n\nggplot(data = dds.discr, \n       aes(x = age)) +\n  geom_histogram()\n\n\n\n\n\n\n\n\n\n\nggplot() +\n  geom_histogram(data = dds.discr, \n       aes(x = age))\n\n\n\n\n\n\n\n\n\n\nSome more information on histograms using ggplot2"
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#spruced-up-histogram-using-ggplot2",
     "href": "lessons/01_Review/01_Review.html#spruced-up-histogram-using-ggplot2",
     "title": "Lesson 1: Review",
     "section": "Spruced up histogram using ggplot2",
-    "text": "Spruced up histogram using ggplot2\nWe can make a more formal, presentable graph:\n\nggplot(data = dds.discr, \n       aes(x = age)) +\n  geom_histogram() +\n  theme(text = element_text(size=20)) +\n  labs(x = \"Age\", \n       y = \"Count\", \n       title = \"Distribution of Age in Sample\")\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\n\nI would like you to turn in homework, labs, and project reports with graphs like these."
+    "text": "Spruced up histogram using ggplot2\nWe can make a more formal, presentable graph:\n\nggplot(data = dds.discr, \n       aes(x = age)) +\n  geom_histogram() +\n  theme(text = element_text(size=20)) +\n  labs(x = \"Age\", \n       y = \"Count\", \n       title = \"Distribution of Age in Sample\")\n\n\nI would like you to turn in homework, labs, and project reports with graphs like these."
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#other-basic-plots-from-ggplot2",
@@ -1411,7 +1411,7 @@
     "href": "lessons/01_Review/01_Review.html#example-one-sample-t-test",
     "title": "Lesson 1: Review",
     "section": "Example: one sample t-test",
-    "text": "Example: one sample t-test\n\nBodyTemps = read.csv(\"data/BodyTemperatures.csv\")\n\nggplot(data = BodyTemps, \n       aes(x = Temperature)) +\n  geom_histogram() +\n  theme(text = element_text(size=20)) +\n  labs(x = \"Temperature\", y = \"Count\", \n       title = \"Distribution of Body Temperature in Sample\") +\n  geom_vline(aes(xintercept = mean(BodyTemps$Temperature, na.rm = T)), \n             color = \"red\", linewidth = 2)\n\nWarning: Use of `BodyTemps$Temperature` is discouraged.\nℹ Use `Temperature` instead.\n\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`."
+    "text": "Example: one sample t-test\n\nBodyTemps = read.csv(\"data/BodyTemperatures.csv\")\n\nggplot(data = BodyTemps, \n       aes(x = Temperature)) +\n  geom_histogram() +\n  theme(text = element_text(size=20)) +\n  labs(x = \"Temperature\", y = \"Count\", \n       title = \"Distribution of Body Temperature in Sample\") +\n  geom_vline(aes(xintercept = mean(BodyTemps$Temperature, na.rm = T)), \n             color = \"red\", linewidth = 2)"
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#example-one-sample-t-test-using-p-value-approach",
@@ -1460,7 +1460,7 @@
     "href": "lessons/01_Review/01_Review.html#what-i-think-is-the-most-intuitive-way-to-look-at-it",
     "title": "Lesson 1: Review",
     "section": "What I think is the most intuitive way to look at it",
-    "text": "What I think is the most intuitive way to look at it"
+    "text": "What I think is the most intuitive way to look at it\n\n\n\nLesson 1: Review"
   },
   {
     "objectID": "lessons/00_Welcome/00_Welcome.html",
@@ -1473,8 +1473,8 @@
     "objectID": "lessons/00_Welcome/00_Welcome.html#nicky-wakim-sheher",
     "href": "lessons/00_Welcome/00_Welcome.html#nicky-wakim-sheher",
     "title": "Welcome to BSTA 512/612!",
-    "section": "",
-    "text": "Call me “Nicky,” “Dr. W,” “Professor Wakim,” or any combo!\n\nIf you are comfortable with it, I prefer Nicky\n\nAssistant Professor of Biostatistics\n \nOriginally from DC area (Virginia side!)\nTwo kitties\nVolleyball, biking, pickleball\nBut also sleeping, TV, and reading\nJust started taking a couple classes at PCC (French, ceramics, yoga)\nSlowly regrowing my plant collection after moving from Michigan\n\n\n\n\n Video"
+    "section": "Nicky Wakim (she/her)",
+    "text": "Nicky Wakim (she/her)\n\n\n\nCall me “Nicky,” “Dr. W,” “Professor Wakim,” or any combo!\n\nIf you are comfortable with it, I prefer Nicky\n\nAssistant Professor of Biostatistics\n \nOriginally from DC area (Virginia side!)\nTwo kitties\nVolleyball, biking, pickleball\nBut also sleeping, TV, and reading\nJust started taking a couple classes at PCC (French, ceramics, yoga)\nSlowly regrowing my plant collection after moving from Michigan\n\n\n\n\n Video"
   },
   {
     "objectID": "lessons/00_Welcome/00_Welcome.html#some-important-tasks",
@@ -1495,7 +1495,7 @@
     "href": "lessons/00_Welcome/00_Welcome.html#lets-go-through-the-syllabus",
     "title": "Welcome to BSTA 512/612!",
     "section": "Let’s go through the syllabus!",
-    "text": "Let’s go through the syllabus!\nSyllabus page"
+    "text": "Let’s go through the syllabus!\nSyllabus page\n\n\nWelcome"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR_key_info.html#key-dates",
@@ -2530,64 +2530,64 @@
     "objectID": "lessons/03_SLR/03_SLR.html#lets-start-with-an-example",
     "href": "lessons/03_SLR/03_SLR.html#lets-start-with-an-example",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
-    "section": "",
-    "text": "Rows: 188 Columns: 3\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (1): country\ndbl (2): life_expectancy_years_2011, female_literacy_rate_2011\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 108 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 108 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n \nAverage life expectancy vs. female literacy rate\n \n\nEach point on the plot is for a different country\n\n \n\n\\(X\\) = country’s adult female literacy rate\n\n \n\n\\(Y\\) = country’s average life expectancy (years)\n\n\n\n\n\\[\\widehat{\\text{life expectancy}} =  50.9 + 0.232\\cdot\\text{female literacy rate}\\]"
+    "section": "Let’s start with an example",
+    "text": "Let’s start with an example\n\n\n\n\n\n\n\n\n \nAverage life expectancy vs. female literacy rate\n \n\nEach point on the plot is for a different country\n\n \n\n\\(X\\) = country’s adult female literacy rate\n\n \n\n\\(Y\\) = country’s average life expectancy (years)\n\n\n\n\n\\[\\widehat{\\text{life expectancy}} =  50.9 + 0.232\\cdot\\text{female literacy rate}\\]"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#reference-how-did-i-code-that",
     "href": "lessons/03_SLR/03_SLR.html#reference-how-did-i-code-that",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
-    "section": "",
-    "text": "ggplot(gapm, aes(x = female_literacy_rate_2011,\n                 y = life_expectancy_years_2011)) +\n  geom_point(size = 4) +\n  geom_smooth(method = \"lm\", se = FALSE, size = 3, colour=\"#F14124\") +\n  labs(x = \"Female literacy rate (%)\", \n       y = \"Life expectancy (years)\",\n       title = \"Relationship between life expectancy and \\n the female literacy rate in 2011\") +\n    theme(axis.title = element_text(size = 30), \n        axis.text = element_text(size = 25), \n        title = element_text(size = 30))\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 108 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 108 rows containing missing values or values outside the scale range\n(`geom_point()`)."
+    "section": "Reference: How did I code that?",
+    "text": "Reference: How did I code that?\n\n\nggplot(gapm, aes(x = female_literacy_rate_2011,\n                 y = life_expectancy_years_2011)) +\n  geom_point(size = 4) +\n  geom_smooth(method = \"lm\", se = FALSE, size = 3, colour=\"#F14124\") +\n  labs(x = \"Female literacy rate (%)\", \n       y = \"Life expectancy (years)\",\n       title = \"Relationship between life expectancy and \\n the female literacy rate in 2011\") +\n    theme(axis.title = element_text(size = 30), \n        axis.text = element_text(size = 25), \n        title = element_text(size = 30))"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#dataset-description",
     "href": "lessons/03_SLR/03_SLR.html#dataset-description",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
-    "section": "",
-    "text": "Data files\n\nCleaned: lifeexp_femlit_2011.csv\nNeeds cleaning: lifeexp_femlit_water_2011.csv\n\nData were downloaded from Gapminder\n2011 is the most recent year with the most complete data\nLife expectancy = the average number of years a newborn child would live if current mortality patterns were to stay the same.\nAdult literacy rate is the percentage of people ages 15 and above who can, with understanding, read and write a short, simple statement on their everyday life."
+    "section": "Dataset description",
+    "text": "Dataset description\n\nData files\n\nCleaned: lifeexp_femlit_2011.csv\nNeeds cleaning: lifeexp_femlit_water_2011.csv\n\nData were downloaded from Gapminder\n2011 is the most recent year with the most complete data\nLife expectancy = the average number of years a newborn child would live if current mortality patterns were to stay the same.\nAdult literacy rate is the percentage of people ages 15 and above who can, with understanding, read and write a short, simple statement on their everyday life."
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#get-to-know-the-data-12",
     "href": "lessons/03_SLR/03_SLR.html#get-to-know-the-data-12",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
-    "section": "",
-    "text": "Load data\n\n\ngapm_original &lt;- read_csv(here::here(\"data\", \"lifeexp_femlit_water_2011.csv\"))\n\nRows: 194 Columns: 5\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (2): country, water_2011_quart\ndbl (3): life_expectancy_years_2011, female_literacy_rate_2011, water_basic_...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n\nGlimpse of the data\n\n\nglimpse(gapm_original)\n\nRows: 194\nColumns: 5\n$ country                    &lt;chr&gt; \"Afghanistan\", \"Albania\", \"Algeria\", \"Andor…\n$ life_expectancy_years_2011 &lt;dbl&gt; 56.7, 76.7, 76.7, 82.6, 60.9, 76.9, 76.0, 7…\n$ female_literacy_rate_2011  &lt;dbl&gt; 13.0, 95.7, NA, NA, 58.6, 99.4, 97.9, 99.5,…\n$ water_basic_source_2011    &lt;dbl&gt; 52.6, 88.1, 92.6, 100.0, 40.3, 97.0, 99.5, …\n$ water_2011_quart           &lt;chr&gt; \"Q1\", \"Q2\", \"Q2\", \"Q4\", \"Q1\", \"Q3\", \"Q4\", \"…\n\n\n\nNote the missing values for our variables of interest"
+    "section": "Get to know the data (1/2)",
+    "text": "Get to know the data (1/2)\n\nLoad data\n\n\ngapm_original &lt;- read_csv(here::here(\"data\", \"lifeexp_femlit_water_2011.csv\"))\n\n\nGlimpse of the data\n\n\nglimpse(gapm_original)\n\nRows: 194\nColumns: 5\n$ country                    &lt;chr&gt; \"Afghanistan\", \"Albania\", \"Algeria\", \"Andor…\n$ life_expectancy_years_2011 &lt;dbl&gt; 56.7, 76.7, 76.7, 82.6, 60.9, 76.9, 76.0, 7…\n$ female_literacy_rate_2011  &lt;dbl&gt; 13.0, 95.7, NA, NA, 58.6, 99.4, 97.9, 99.5,…\n$ water_basic_source_2011    &lt;dbl&gt; 52.6, 88.1, 92.6, 100.0, 40.3, 97.0, 99.5, …\n$ water_2011_quart           &lt;chr&gt; \"Q1\", \"Q2\", \"Q2\", \"Q4\", \"Q1\", \"Q3\", \"Q4\", \"…\n\n\n\nNote the missing values for our variables of interest"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#get-to-know-the-data-22",
     "href": "lessons/03_SLR/03_SLR.html#get-to-know-the-data-22",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
-    "section": "",
-    "text": "Get a sense of the summary statistics\n\n\ngapm_original %&gt;% \n  select(life_expectancy_years_2011, female_literacy_rate_2011) %&gt;% \n  summary()\n\n life_expectancy_years_2011 female_literacy_rate_2011\n Min.   :47.50              Min.   :13.00            \n 1st Qu.:64.30              1st Qu.:70.97            \n Median :72.70              Median :91.60            \n Mean   :70.66              Mean   :81.65            \n 3rd Qu.:76.90              3rd Qu.:98.03            \n Max.   :82.90              Max.   :99.80            \n NA's   :7                  NA's   :114"
+    "section": "Get to know the data (2/2)",
+    "text": "Get to know the data (2/2)\n\nGet a sense of the summary statistics\n\n\ngapm_original %&gt;% \n  select(life_expectancy_years_2011, female_literacy_rate_2011) %&gt;% \n  summary()\n\n life_expectancy_years_2011 female_literacy_rate_2011\n Min.   :47.50              Min.   :13.00            \n 1st Qu.:64.30              1st Qu.:70.97            \n Median :72.70              Median :91.60            \n Mean   :70.66              Mean   :81.65            \n 3rd Qu.:76.90              3rd Qu.:98.03            \n Max.   :82.90              Max.   :99.80            \n NA's   :7                  NA's   :114"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#remove-missing-values-12",
     "href": "lessons/03_SLR/03_SLR.html#remove-missing-values-12",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
-    "section": "",
-    "text": "Remove rows with missing data for life expectancy and female literacy rate\n\n\ngapm &lt;- gapm_original %&gt;% \n  drop_na(life_expectancy_years_2011, female_literacy_rate_2011)\n\nglimpse(gapm)\n\nRows: 80\nColumns: 5\n$ country                    &lt;chr&gt; \"Afghanistan\", \"Albania\", \"Angola\", \"Antigu…\n$ life_expectancy_years_2011 &lt;dbl&gt; 56.7, 76.7, 60.9, 76.9, 76.0, 73.8, 71.0, 7…\n$ female_literacy_rate_2011  &lt;dbl&gt; 13.0, 95.7, 58.6, 99.4, 97.9, 99.5, 53.4, 9…\n$ water_basic_source_2011    &lt;dbl&gt; 52.6, 88.1, 40.3, 97.0, 99.5, 97.8, 96.7, 9…\n$ water_2011_quart           &lt;chr&gt; \"Q1\", \"Q2\", \"Q1\", \"Q3\", \"Q4\", \"Q3\", \"Q3\", \"…\n\n\n\nNo missing values now for our variables of interest"
+    "section": "Remove missing values (1/2)",
+    "text": "Remove missing values (1/2)\n\nRemove rows with missing data for life expectancy and female literacy rate\n\n\ngapm &lt;- gapm_original %&gt;% \n  drop_na(life_expectancy_years_2011, female_literacy_rate_2011)\n\nglimpse(gapm)\n\nRows: 80\nColumns: 5\n$ country                    &lt;chr&gt; \"Afghanistan\", \"Albania\", \"Angola\", \"Antigu…\n$ life_expectancy_years_2011 &lt;dbl&gt; 56.7, 76.7, 60.9, 76.9, 76.0, 73.8, 71.0, 7…\n$ female_literacy_rate_2011  &lt;dbl&gt; 13.0, 95.7, 58.6, 99.4, 97.9, 99.5, 53.4, 9…\n$ water_basic_source_2011    &lt;dbl&gt; 52.6, 88.1, 40.3, 97.0, 99.5, 97.8, 96.7, 9…\n$ water_2011_quart           &lt;chr&gt; \"Q1\", \"Q2\", \"Q1\", \"Q3\", \"Q4\", \"Q3\", \"Q3\", \"…\n\n\n\nNo missing values now for our variables of interest"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#remove-missing-values-22",
     "href": "lessons/03_SLR/03_SLR.html#remove-missing-values-22",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
-    "section": "",
-    "text": "And no more missing values when we look only at our two variables of interest\n\n\ngapm %&gt;% select(life_expectancy_years_2011, female_literacy_rate_2011) %&gt;% \n  get_summary_stats()\n\n# A tibble: 2 × 13\n  variable        n   min   max median    q1    q3   iqr   mad  mean    sd    se\n  &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 life_expec…    80    48  81.8   72.4  65.9  75.8  9.95  6.30  69.9  7.95 0.889\n2 female_lit…    80    13  99.8   91.6  71.0  98.0 27.0  11.4   81.7 22.0  2.45 \n# ℹ 1 more variable: ci &lt;dbl&gt;\n\n\n\n\nNote\n\n\n\nRemoving the rows with missing data was not needed to run the regression model.\nI did this step since later we will be calculating the standard deviations of the explanatory and response variables for just the values included in the regression model. It’ll be easier to do this if we remove the missing values now."
+    "section": "Remove missing values (2/2)",
+    "text": "Remove missing values (2/2)\n\nAnd no more missing values when we look only at our two variables of interest\n\n\ngapm %&gt;% select(life_expectancy_years_2011, female_literacy_rate_2011) %&gt;% \n  get_summary_stats()\n\n# A tibble: 2 × 13\n  variable        n   min   max median    q1    q3   iqr   mad  mean    sd    se\n  &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 life_expec…    80    48  81.8   72.4  65.9  75.8  9.95  6.30  69.9  7.95 0.889\n2 female_lit…    80    13  99.8   91.6  71.0  98.0 27.0  11.4   81.7 22.0  2.45 \n# ℹ 1 more variable: ci &lt;dbl&gt;\n\n\n\n\nNote\n\n\n\nRemoving the rows with missing data was not needed to run the regression model.\nI did this step since later we will be calculating the standard deviations of the explanatory and response variables for just the values included in the regression model. It’ll be easier to do this if we remove the missing values now."
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#questions-we-can-ask-with-a-simple-linear-regression-model",
     "href": "lessons/03_SLR/03_SLR.html#questions-we-can-ask-with-a-simple-linear-regression-model",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "Questions we can ask with a simple linear regression model",
-    "text": "Questions we can ask with a simple linear regression model\n\n\n\n\nRows: 188 Columns: 3\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (1): country\ndbl (2): life_expectancy_years_2011, female_literacy_rate_2011\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 108 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 108 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\nHow do we…\n\ncalculate slope & intercept?\ninterpret slope & intercept?\ndo inference for slope & intercept?\n\nCI, p-value\n\ndo prediction with regression line?\n\nCI for prediction?\n\n\nDoes the model fit the data well?\n\nShould we be using a line to model the data?\n\nShould we add additional variables to the model?\n\nmultiple/multivariable regression\n\n\n\n\n\n\\[\\widehat{\\text{life expectancy}} =  50.9 + 0.232\\cdot\\text{female literacy rate}\\]"
+    "text": "Questions we can ask with a simple linear regression model\n\n\n\n\n\n\n\n\n\nHow do we…\n\ncalculate slope & intercept?\ninterpret slope & intercept?\ndo inference for slope & intercept?\n\nCI, p-value\n\ndo prediction with regression line?\n\nCI for prediction?\n\n\nDoes the model fit the data well?\n\nShould we be using a line to model the data?\n\nShould we add additional variables to the model?\n\nmultiple/multivariable regression\n\n\n\n\n\n\\[\\widehat{\\text{life expectancy}} =  50.9 + 0.232\\cdot\\text{female literacy rate}\\]"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#association-vs.-prediction",
     "href": "lessons/03_SLR/03_SLR.html#association-vs.-prediction",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "Association vs. prediction",
-    "text": "Association vs. prediction\n\n\n\n\nAssociation\n\n\n\nWhat is the association between countries’ life expectancy and female literacy rate?\nUse the slope of the line or correlation coefficient\n\n\n\n\n\n\nPrediction\n\n\n\nWhat is the expected average life expectancy for a country with a specified female literacy rate?    \n\n\n\n\n\n\\[\\widehat{\\text{life expectancy}} =  50.9 + 0.232\\cdot\\text{female literacy rate}\\]\n\n\nRows: 188 Columns: 3\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (1): country\ndbl (2): life_expectancy_years_2011, female_literacy_rate_2011\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 108 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 108 rows containing missing values or values outside the scale range\n(`geom_point()`)."
+    "text": "Association vs. prediction\n\n\n\n\nAssociation\n\n\n\nWhat is the association between countries’ life expectancy and female literacy rate?\nUse the slope of the line or correlation coefficient\n\n\n\n\n\n\nPrediction\n\n\n\nWhat is the expected average life expectancy for a country with a specified female literacy rate?    \n\n\n\n\n\n\\[\\widehat{\\text{life expectancy}} =  50.9 + 0.232\\cdot\\text{female literacy rate}\\]"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#three-types-of-study-design-there-are-more",
@@ -2615,21 +2615,21 @@
     "href": "lessons/03_SLR/03_SLR.html#simple-linear-regression-model",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "Simple Linear Regression Model",
-    "text": "Simple Linear Regression Model\nThe (population) regression model is denoted by:\n \n\n\\[Y =  \\beta_0 + \\beta_1X + \\epsilon\\]\n\n \n\n\n\nObservable sample data\n\n\\(Y\\) is our dependent variable\n\nAka outcome or response variable\n\n\\(X\\) is our independent variable\n\nAka predictor, regressor, exposure variable\n\n\n\n\n\nUnobservable population parameters\n\n\\(\\beta_0\\) and \\(\\beta_1\\) are unknown population parameters\n\\(\\epsilon\\) (epsilon) is the error about the line\n\nIt is assumed to be a random variable with a…\n\nNormal distribution with mean 0 and constant variance \\(\\sigma^2\\)\ni.e. \\(\\epsilon \\sim N(0, \\sigma^2)\\)"
+    "text": "Simple Linear Regression Model\nThe (population) regression model is denoted by:\n \n\n\\[Y =  \\beta_0 + \\beta_1X + \\epsilon\\]\n\n \n\n\nObservable sample data\n\n\\(Y\\) is our dependent variable\n\nAka outcome or response variable\n\n\\(X\\) is our independent variable\n\nAka predictor, regressor, exposure variable\n\n\n\nUnobservable population parameters\n\n\\(\\beta_0\\) and \\(\\beta_1\\) are unknown population parameters\n\\(\\epsilon\\) (epsilon) is the error about the line\n\nIt is assumed to be a random variable with a…\n\nNormal distribution with mean 0 and constant variance \\(\\sigma^2\\)\ni.e. \\(\\epsilon \\sim N(0, \\sigma^2)\\)"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#simple-linear-regression-model-another-way-to-view-components",
     "href": "lessons/03_SLR/03_SLR.html#simple-linear-regression-model-another-way-to-view-components",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "Simple Linear Regression Model (another way to view components)",
-    "text": "Simple Linear Regression Model (another way to view components)\nThe (population) regression model is denoted by:\n \n\n\\[Y =  \\beta_0 + \\beta_1X + \\epsilon\\]\n\n \n\nComponents\n\n\n\n\\(Y\\)\nresponse, outcome, dependent variable\n\n\n\\(\\beta_0\\)\nintercept\n\n\n\\(\\beta_1\\)\nslope\n\n\n\\(X\\)\npredictor, covariate, independent variable\n\n\n\\(\\epsilon\\)\nresiduals, error term"
+    "text": "Simple Linear Regression Model (another way to view components)\nThe (population) regression model is denoted by:\n \n\n\\[Y =  \\beta_0 + \\beta_1X + \\epsilon\\]\n\n \nComponents\n\n\n\n\\(Y\\)\nresponse, outcome, dependent variable\n\n\n\\(\\beta_0\\)\nintercept\n\n\n\\(\\beta_1\\)\nslope\n\n\n\\(X\\)\npredictor, covariate, independent variable\n\n\n\\(\\epsilon\\)\nresiduals, error term"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#if-the-population-parameters-are-unobservable-how-did-we-get-the-line-for-life-expectancy",
     "href": "lessons/03_SLR/03_SLR.html#if-the-population-parameters-are-unobservable-how-did-we-get-the-line-for-life-expectancy",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "If the population parameters are unobservable, how did we get the line for life expectancy?",
-    "text": "If the population parameters are unobservable, how did we get the line for life expectancy?\n\n\n \n\nNote: the population model is the true, underlying model that we are trying to estimate using our sample data\n\nOur goal in simple linear regression is to estimate \\(\\beta_0\\) and \\(\\beta_1\\)\n\n\n\n\n\nRows: 188 Columns: 3\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (1): country\ndbl (2): life_expectancy_years_2011, female_literacy_rate_2011\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 108 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 108 rows containing missing values or values outside the scale range\n(`geom_point()`)."
+    "text": "If the population parameters are unobservable, how did we get the line for life expectancy?\n\n\n \n\nNote: the population model is the true, underlying model that we are trying to estimate using our sample data\n\nOur goal in simple linear regression is to estimate \\(\\beta_0\\) and \\(\\beta_1\\)"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#poll-everywhere-question-3",
@@ -2650,14 +2650,14 @@
     "href": "lessons/03_SLR/03_SLR.html#regression-line-best-fit-line",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "Regression line = best-fit line",
-    "text": "Regression line = best-fit line\n\n\n\\[\\widehat{Y} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 X \\]\n\n\\(\\widehat{Y}\\) is the predicted outcome for a specific value of \\(X\\)\n\\(\\widehat{\\beta}_0\\) is the intercept of the best-fit line\n\\(\\widehat{\\beta}_1\\) is the slope of the best-fit line, i.e., the increase in \\(\\widehat{Y}\\) for every increase of one (unit increase) in \\(X\\)\n\nslope = rise over run\n\n\n\n\n\nRows: 188 Columns: 3\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (1): country\ndbl (2): life_expectancy_years_2011, female_literacy_rate_2011\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 108 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 108 rows containing missing values or values outside the scale range\n(`geom_point()`)."
+    "text": "Regression line = best-fit line\n\n\n\\[\\widehat{Y} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 X \\]\n\n\\(\\widehat{Y}\\) is the predicted outcome for a specific value of \\(X\\)\n\\(\\widehat{\\beta}_0\\) is the intercept of the best-fit line\n\\(\\widehat{\\beta}_1\\) is the slope of the best-fit line, i.e., the increase in \\(\\widehat{Y}\\) for every increase of one (unit increase) in \\(X\\)\n\nslope = rise over run"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#simple-linear-regression-model-1",
     "href": "lessons/03_SLR/03_SLR.html#simple-linear-regression-model-1",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "Simple Linear Regression Model",
-    "text": "Simple Linear Regression Model\n\n\n\nPopulation regression model\n\n\\[Y =  \\beta_0 + \\beta_1X + \\epsilon\\]\n\n \n\nComponents\n\n\n\n\\(Y\\)\nresponse, outcome, dependent variable\n\n\n\\(\\beta_0\\)\nintercept\n\n\n\\(\\beta_1\\)\nslope\n\n\n\\(X\\)\npredictor, covariate, independent variable\n\n\n\\(\\epsilon\\)\nresiduals, error term\n\n\n\n\n\n\n\nEstimated regression line\n\n\\[\\widehat{Y} =  \\widehat{\\beta}_0 + \\widehat{\\beta}_1X\\]\n\n \n\nComponents\n\n\n\n\n\n\n\n\\(\\widehat{Y}\\)\nestimated expected response given predictor \\(X\\)\n\n\n\\(\\widehat{\\beta}_0\\)\nestimated intercept\n\n\n\\(\\widehat{\\beta}_1\\)\nestimated slope\n\n\n\\(X\\)\npredictor, covariate, independent variable"
+    "text": "Simple Linear Regression Model\n\n\nPopulation regression model\n\n\\[Y =  \\beta_0 + \\beta_1X + \\epsilon\\]\n\n \nComponents\n\n\n\n\\(Y\\)\nresponse, outcome, dependent variable\n\n\n\\(\\beta_0\\)\nintercept\n\n\n\\(\\beta_1\\)\nslope\n\n\n\\(X\\)\npredictor, covariate, independent variable\n\n\n\\(\\epsilon\\)\nresiduals, error term\n\n\n\n\nEstimated regression line\n\n\\[\\widehat{Y} =  \\widehat{\\beta}_0 + \\widehat{\\beta}_1X\\]\n\n \nComponents\n\n\n\n\n\n\n\n\\(\\widehat{Y}\\)\nestimated expected response given predictor \\(X\\)\n\n\n\\(\\widehat{\\beta}_0\\)\nestimated intercept\n\n\n\\(\\widehat{\\beta}_1\\)\nestimated slope\n\n\n\\(X\\)\npredictor, covariate, independent variable"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#we-get-it-nicky-how-do-we-estimate-the-regression-line",
@@ -2769,7 +2769,7 @@
     "href": "lessons/03_SLR/03_SLR.html#substitute-widehatbeta_1-back-into-widehatbeta_0",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "7. Substitute \\(\\widehat\\beta_1\\) back into \\(\\widehat\\beta_0\\)",
-    "text": "7. Substitute \\(\\widehat\\beta_1\\) back into \\(\\widehat\\beta_0\\)\n\nFinal coefficient estimates for SLR\n\n\n\n\nCoefficient estimate for \\(\\widehat\\beta_1\\)\n\n\n\\[{\\widehat{\\beta}}_1 =\\frac{\\sum_{i=1}^{n}{X_i(Y_i-\\overline{Y})}}{\\sum_{i=1}^{n}{X_i(}X_i-\\overline{X})}\\]\n\n\n\n\n\nCoefficient estimate for \\(\\widehat\\beta_0\\)\n\n\n\\[\\begin{aligned}\n{\\widehat{\\beta}}_0 & =\\overline{Y}-{\\widehat{\\beta}}_1\\overline{X} \\\\\n{\\widehat{\\beta}}_0 & = \\overline{Y} - \\frac{\\sum_{i=1}^{n}{X_i(Y_i-\\overline{Y})}}{\\sum_{i=1}^{n}{X_i(}X_i-\\overline{X})} \\overline{X} \\\\\n\\end{aligned}\\]"
+    "text": "7. Substitute \\(\\widehat\\beta_1\\) back into \\(\\widehat\\beta_0\\)\nFinal coefficient estimates for SLR\n\n\n\n\nCoefficient estimate for \\(\\widehat\\beta_1\\)\n\n\n\\[{\\widehat{\\beta}}_1 =\\frac{\\sum_{i=1}^{n}{X_i(Y_i-\\overline{Y})}}{\\sum_{i=1}^{n}{X_i(}X_i-\\overline{X})}\\]\n\n\n\n\n\nCoefficient estimate for \\(\\widehat\\beta_0\\)\n\n\n\\[\\begin{aligned}\n{\\widehat{\\beta}}_0 & =\\overline{Y}-{\\widehat{\\beta}}_1\\overline{X} \\\\\n{\\widehat{\\beta}}_0 & = \\overline{Y} - \\frac{\\sum_{i=1}^{n}{X_i(Y_i-\\overline{Y})}}{\\sum_{i=1}^{n}{X_i(}X_i-\\overline{X})} \\overline{X} \\\\\n\\end{aligned}\\]"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#poll-everywhere-question-5",
@@ -2818,7 +2818,7 @@
     "href": "lessons/03_SLR/03_SLR.html#next-time",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "Next time",
-    "text": "Next time\n\nInference of our estimated coefficients\nInference of estimated expected \\(Y\\) given \\(X\\)\nPrediction\nHypothesis testing!"
+    "text": "Next time\n\nInference of our estimated coefficients\nInference of estimated expected \\(Y\\) given \\(X\\)\nPrediction\nHypothesis testing!\n\n\n\nLesson 3: SLR 1"
   },
   {
     "objectID": "lessons/00_Welcome/00_Welcome_key_info.html#key-dates",
@@ -4309,7 +4309,7 @@
     "href": "lessons/02_Data_Management/02_Data_Management.html#tidy-data1",
     "title": "Data Management with the tidyverse",
     "section": "Tidy data1",
-    "text": "Tidy data1\n\n\n\n\n\n\nEach variable must have its own column.\nEach observation must have its own row.\nEach value must have its own cell."
+    "text": "Tidy data1\n\n\n\n\n\n\nEach variable must have its own column.\nEach observation must have its own row.\nEach value must have its own cell.\n\nSource: R for Data Science. Grolemund and Wickham."
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#pipe-operator-magrittr",
@@ -4519,7 +4519,7 @@
     "href": "lessons/02_Data_Management/02_Data_Management.html#across-apply-a-function-across-multiple-columns",
     "title": "Data Management with the tidyverse",
     "section": "across(): apply a function across multiple columns",
-    "text": "across(): apply a function across multiple columns\n\nLike group_by(), this function is often paired with another transformation function\n\n\nI want all my integer values to have two significant figures.\n\n \n\ndds.discr6 = dds.discr2 %&gt;%\n  mutate(across(where(is.integer), signif, digits = 2))\n\nWarning: There was 1 warning in `mutate()`.\nℹ In argument: `across(where(is.integer), signif, digits = 2)`.\nCaused by warning:\n! The `...` argument of `across()` is deprecated as of dplyr 1.1.0.\nSupply arguments directly to `.fns` through an anonymous function instead.\n\n  # Previously\n  across(a:b, mean, na.rm = TRUE)\n\n  # Now\n  across(a:b, \\(x) mean(x, na.rm = TRUE))\n\nglimpse(dds.discr6)\n\nRows: 1,000\nColumns: 7\n$ id           &lt;dbl&gt; 10000, 10000, 10000, 11000, 11000, 11000, 11000, 11000, 1…\n$ age.cohort   &lt;fct&gt; 13-17, 22-50, 0-5, 18-21, 13-17, 13-17, 13-17, 13-17, 13-…\n$ age          &lt;dbl&gt; 17, 37, 3, 19, 13, 15, 13, 17, 14, 13, 13, 14, 15, 17, 20…\n$ SAB          &lt;fct&gt; Female, Male, Male, Female, Male, Female, Female, Male, F…\n$ expenditures &lt;dbl&gt; 2100, 42000, 1500, 6400, 4400, 4600, 3900, 3900, 5000, 29…\n$ R_E          &lt;fct&gt; White not Hispanic, White not Hispanic, Hispanic, Hispani…\n$ exp_to_age   &lt;dbl&gt; 124.2941, 1133.0811, 484.6667, 336.8421, 339.3846, 304.40…"
+    "text": "across(): apply a function across multiple columns\n\nLike group_by(), this function is often paired with another transformation function\n\n\nI want all my integer values to have two significant figures.\n\n \n\ndds.discr6 = dds.discr2 %&gt;%\n  mutate(across(where(is.integer), signif, digits = 2))\n\nglimpse(dds.discr6)\n\nRows: 1,000\nColumns: 7\n$ id           &lt;dbl&gt; 10000, 10000, 10000, 11000, 11000, 11000, 11000, 11000, 1…\n$ age.cohort   &lt;fct&gt; 13-17, 22-50, 0-5, 18-21, 13-17, 13-17, 13-17, 13-17, 13-…\n$ age          &lt;dbl&gt; 17, 37, 3, 19, 13, 15, 13, 17, 14, 13, 13, 14, 15, 17, 20…\n$ SAB          &lt;fct&gt; Female, Male, Male, Female, Male, Female, Female, Male, F…\n$ expenditures &lt;dbl&gt; 2100, 42000, 1500, 6400, 4400, 4600, 3900, 3900, 5000, 29…\n$ R_E          &lt;fct&gt; White not Hispanic, White not Hispanic, Hispanic, Hispani…\n$ exp_to_age   &lt;dbl&gt; 124.2941, 1133.0811, 484.6667, 336.8421, 339.3846, 304.40…"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#dplyr-resources",
@@ -4547,7 +4547,7 @@
     "href": "lessons/02_Data_Management/02_Data_Management.html#credit-to-mine-çetinkaya-rundel",
     "title": "Data Management with the tidyverse",
     "section": "Credit to Mine Çetinkaya-Rundel",
-    "text": "Credit to Mine Çetinkaya-Rundel\n\nThese notes were built from Mine’s notes\n\nMost pages and code were left as she made them\nI changed a few things to match our class\n\nPlease see her Github repository for the original notes"
+    "text": "Credit to Mine Çetinkaya-Rundel\n\nThese notes were built from Mine’s notes\n\nMost pages and code were left as she made them\nI changed a few things to match our class\n\nPlease see her Github repository for the original notes\n\n\n\nData Management"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#footnotes",
@@ -4807,5 +4807,12 @@
     "title": "SLR: More inference + Evaluation",
     "section": "Anscombe’s Quartet",
     "text": "Anscombe’s Quartet"
+  },
+  {
+    "objectID": "lessons/03_SLR/03_SLR.html#poll-everywhere-question-1",
+    "href": "lessons/03_SLR/03_SLR.html#poll-everywhere-question-1",
+    "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
+    "section": "Poll Everywhere Question 1",
+    "text": "Poll Everywhere Question 1"
   }
 ]

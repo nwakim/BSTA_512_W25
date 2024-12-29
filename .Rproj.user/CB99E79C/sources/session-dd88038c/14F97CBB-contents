@@ -1,0 +1,61 @@
+---
+title: "Project Central"
+date-modified: "today"
+categories: [""]
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+  pdf: default
+editor_options: 
+  chunk_output_type: console
+---
+
+```{css, echo=FALSE}
+.title{
+  font-size: 40px;
+  color: #213c96;
+  background-color: #fff;
+  padding: 0px;
+}
+```
+
+## Labs
+
+| Lab                                    | Due Date | Topics                                                            |
+|----------------------------------------|----------|-------------------------------------------------------------------|
+| [Lab 1](/labs/Lab_01.qmd)              | 1/18     | Exploring the question                                            |
+| [Lab 2](/labs/Lab_02.qmd)              | 2/8      | Exploring the data                                                |
+| [Lab 3](/labs/Lab_03_work.qmd)         | 3/3      | A little more data exploration + Fitting and interpreting a model |
+| [Lab 4](/labs/Lab_04_instructions.qmd) | 3/14     | Building a model                                                  |
+
+-   [Help with BMI variable](/labs/BMI_help.qmd)
+
+## Report
+
+[Report Instructions](/labs/Project_report_instructions.qmd)
+
+Due 3/21/2024 at 11pm
+
+```{r}
+#| echo: false
+g=3
+```
+
+### Reading and listening sources
+
+If you are interested in sources that discuss the social complexities of anti-fat bias, feel free to take a look at the following sources. **Please be aware that these resources will discuss anti-fat bias and related histories, including racism and sexism.**
+
+-   Article: [Implicit and explicit anti-fat bias: The role of weight-related attitudes and beliefs](./resources/Implicit_anti_fat.pdf)
+
+-   Podcast: [Anti-Fat Bias by Maintenance Phase](https://maintenancephase.buzzsprout.com/1411126/6524683-anti-fat-bias)
+
+-   Book: Fearing the Black Body: The Racial Origins of Fat Phobia
+
+    -   Multnomah County Library has unlimited loans for the audiobook
+
+-   Blog: [Dances with Fat](https://danceswithfat.org/)
+
+    -   You can subscribe to Ragen's weekly newsletter for free
+
+If you have additional sources that you would like to share, please send them to me!

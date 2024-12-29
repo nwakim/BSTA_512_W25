@@ -1,0 +1,68 @@
+schedule:
+  - unit: "Summarizing Data"
+    materials:
+      - href: homework/HW_1_F23_bsta511.qmd
+        title: "HW 0 due"
+        date: 10/3/24
+        calendar-color: "#F08897"
+        calendar-color2: "#FFFFFF"
+      - href: homework/HW_1_F23_bsta511.qmd
+        title: "HW 1 due"
+        date: 10/10/24
+        calendar-color: "#F08897"
+        calendar-color2: "#FFFFFF"
+      - title: "HW 2 due"
+        href: homework/HW_1_F23_bsta511.qmd
+        date: 10/17/24
+        calendar-color: "#F08897"
+        calendar-color2: "#FFFFFF"      
+      - title: "HW 3 due"
+        href: homework/HW_1_F23_bsta511.qmd
+        date: 10/19/24
+        calendar-color: "#F08897"
+        calendar-color2: "#FFFFFF" 
+      - title: "Virtual Class"
+        date: 10/23/24
+        calendar-color: "#006a4e"
+        calendar-color2: "#FFFFFF" 
+      - title: "HW 4 due"
+        href: homework/HW_1_F23_bsta511.qmd
+        date: 10/31/24
+        calendar-color: "#F08897"
+        calendar-color2: "#FFFFFF" 
+      - title: "Midterm"
+        date: 11/04/24        
+        calendar-color: "#F1CF58"
+        calendar-color2: "#FFFFFF" 
+      - title: "HW 5 due"
+        href: homework/HW_1_F23_bsta511.qmd
+        date: 11/9/24
+        calendar-color: "#F08897"
+        calendar-color2: "#FFFFFF" 
+      - title: "HW 6 due"
+        href: homework/HW_1_F23_bsta511.qmd
+        date: 11/21/24
+        calendar-color: "#F08897"
+        calendar-color2: "#FFFFFF" 
+      - title: "No Class"
+        date: 11/27/24
+        calendar-color: "#006a4e"
+        calendar-color2: "#FFFFFF" 
+      - title: "HW 7 due"
+        href: homework/HW_1_F23_bsta511.qmd
+        date: 12/5/24
+        calendar-color: "#F08897"
+        calendar-color2: "#FFFFFF" 
+      - title: "Final"
+        date: 12/9/24     
+        calendar-color: "#F1CF58"
+        calendar-color2: "#FFFFFF" 
+
+        
+auto-publish:
+  timezone: "America/Los_Angeles"
+  live-as-of: "Sys.time()"
+  notes-1-release: "Friday, 17:00" # for Tu/Weds notes
+  notes-2-release: "Friday, 17:00" # for Thu/Fri notes
+
+

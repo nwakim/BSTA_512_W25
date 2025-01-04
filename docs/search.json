@@ -32,7 +32,7 @@
     "href": "schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Week\nDate\nLes-son\nTopic\nKey Info\nSlides QMD\nSlides PDF\nSlides Notes\nExit tix\nRecord-ing\nMuddy Points\n\n\n\n\n1\n1/6\n0\nWelcome\n\n\n\n\n\n\n\n\n\n\n\n1\nReview\n\n\n\n\n\n\n\n\n\n\n1/8\n2\nData Management\n\n\n\n\n\n\n\n\n\n\n1/9\n\nHW 0 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n1/13\n3\nSimple Linear Regression\n\n\n\n\n\n\n\n\n\n\n1/15\n4\nSLR: Inference and Prediction\n\n\n\n\n\n\n\n\n\n\n1/16\n\nLab 1 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n1/20\n\nNo Class, MLKJ Day\n\n\n\n\n\n\n\n\n\n\n1/22\n5\nSLR: Evaluation\n\n\n\n\n\n\n\n\n\n\n1/23\n\nHW 1 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n1/27\n6\nSLR: Diagnostics, Part 1\n\n\n\n\n\n\n\n\n\n\n1/29\n7\nSLR: Diagnostics, Part 2\n\n\n\n\n\n\n\n\n\n\n1/30\n\nHW 2 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n2/3\n8\nMultiple Linear Regression\n\n\n\n\n\n\n\n\n\n\n2/5\n9\nMLR: Inference\n\n\n\n\n\n\n\n\n\n\n2/6\n\nLab 2 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n2/10\n10\nCategorical Covariates\n\n\n\n\n\n\n\n\n\n\n2/12\n\nCatch-up day\n\n\n\n\n\n\n\n\n\n\n2/13\n\nHW 3 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n2/17\n\nNo Class, President’s Day\n\n\n\n\n\n\n\n\n\n\n2/19\n11\nInteractions, Part 1\n\n\n\n\n\n\n\n\n\n\n2/20\n\nHW 4 due 11pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n2/24\n12\nInteractions, Part 2\n\n\n\n\n\n\n\n\n\n\n2/26\n13\nModel Selection\n\n\n\n\n\n\n\n\n\n\n2/27\n\nLab 3 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n3/3\n14\nPurposeful Selection\n\n\n\n\n\n\n\n\n\n\n3/5\n15\nMLR: Diagnostics\n\n\n\n\n\n\n\n\n\n\n3/6\n\nHW 5 due 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n3/10\n\nCatch-up day\n\n\n\n\n\n\n\n\n\n\n3/12\n\nCatch-up day\n\n\n\n\n\n\n\n\n\n\n3/13\n\nLab 4 due 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n3/17\n18\nProject Day!!\n\n\n\n\n\n\n\n\n\n\n3/17\n\nProject due 11pm"
+    "text": "Week\nDate\nLes-son\nTopic\nKey Info\nSlides QMD\nSlides PDF\nSlides Notes\nExit tix\nRecord-ing\nMuddy Points\n\n\n\n\n1\n1/6\n0\nWelcome\n\n\n\n\n\n\n\n\n\n\n\n1\nReview\n\n\n\n\n\n\n\n\n\n\n1/8\n2\nData Management\n\n\n\n\n\n\n\n\n\n\n1/9\n\nHW 0 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n1/13\n3\nSimple Linear Regression\n\n\n\n\n\n\n\n\n\n\n1/15\n4\nSLR: Inference and Prediction\n\n\n\n\n\n\n\n\n\n\n1/16\n\nLab 1 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n1/20\n\nNo Class, MLKJ Day\n\n\n\n\n\n\n\n\n\n\n1/22\n5\nSLR: Evaluation\n\n\n\n\n\n\n\n\n\n\n1/23\n\nHW 1 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n1/27\n6\nSLR: Diagnostics, Part 1\n\n\n\n\n\n\n\n\n\n\n1/29\n7\nSLR: Diagnostics, Part 2\n\n\n\n\n\n\n\n\n\n\n1/30\n\nHW 2 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n2/3\n8\nMultiple Linear Regression\n\n\n\n\n\n\n\n\n\n\n2/5\n9\nMLR: Inference\n\n\n\n\n\n\n\n\n\n\n2/6\n\nLab 2 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n2/10\n10\nCategorical Covariates\n\n\n\n\n\n\n\n\n\n\n2/12\n\nCatch-up day\n\n\n\n\n\n\n\n\n\n\n2/13\n\nHW 3 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n2/17\n\nNo Class, President’s Day\n\n\n\n\n\n\n\n\n\n\n2/19\n11\nInteractions, Part 1\n\n\n\n\n\n\n\n\n\n\n2/20\n\nHW 4 due 11pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n2/24\n12\nInteractions, Part 2\n\n\n\n\n\n\n\n\n\n\n2/26\n13\nModel Selection\n\n\n\n\n\n\n\n\n\n\n2/27\n\nLab 3 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n3/3\n14\nPurposeful Selection\n\n\n\n\n\n\n\n\n\n\n3/5\n15\nMLR: Diagnostics\n\n\n\n\n\n\n\n\n\n\n3/6\n\nHW 5 due 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n3/10\n\nCatch-up day\n\n\n\n\n\n\n\n\n\n\n3/12\n\nCatch-up day\n\n\n\n\n\n\n\n\n\n\n3/13\n\nLab 4 due 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n3/17\n\nProject Day!!\n\n\n\n\n\n\n\n\n\n\n3/17\n\nProject due 11pm"
   },
   {
     "objectID": "syllabus.html#description",
@@ -1215,7 +1215,7 @@
     "href": "lessons/01_Review/01_Review.html#process-of-regression-data-analysis",
     "title": "Lesson 1: Review",
     "section": "Process of regression data analysis",
-    "text": "Process of regression data analysis"
+    "text": "Process of regression data analysis\n\n  \n\n\n\n\nModel Selection\n\n\n\nBuilding a model\nSelecting variables\nPrediction vs interpretation\nComparing potential models\n\n\n\n\n\n\n\n\nModel Fitting\n\n\n\nFind best fit line\nUsing OLS in this class\nParameter estimation\nCategorical covariates\nInteractions\n\n\n\n\n\n\n\n\nModel Evaluation\n\n\n\nEvaluation of model fit\nTesting model assumptions\nResiduals\nTransformations\nInfluential points\nMulticollinearity\n\n\n\n\n\n\n\n\nModel Use (Inference)\n\n\n\n\n\nInference for coefficients\nHypothesis testing for coefficients\n\n\n\nInference for expected \\(Y\\) given \\(X\\)\nPrediction of new \\(Y\\) given \\(X\\)"
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#main-sections-of-the-course",
@@ -1474,21 +1474,21 @@
     "href": "lessons/00_Welcome/00_Welcome.html#nicky-wakim-sheher",
     "title": "Welcome to BSTA 512/612!",
     "section": "Nicky Wakim (she/her)",
-    "text": "Nicky Wakim (she/her)\n\n\n\nCall me “Nicky,” “Dr. W,” “Professor Wakim,” or any combo!\n\nIf you are comfortable with it, I prefer Nicky\n\nAssistant Professor of Biostatistics\n \nOriginally from DC area (Virginia side!)\nTwo kitties\nVolleyball, biking, pickleball\nBut also sleeping, TV, and reading\nJust started taking a couple classes at PCC (French, ceramics, yoga)\nSlowly regrowing my plant collection after moving from Michigan\n\n\n\n\n Video"
+    "text": "Nicky Wakim (she/her)\n\n\n\nCall me “Nicky,” “Dr. W,” “Professor Wakim,” or any combo!\n\nIf you are comfortable with it, I prefer Nicky\n\nAssistant Professor of Biostatistics\n \nOriginally from DC area (Virginia side!)\nTwo kitties\nVolleyball, biking, pickleball\nBut also sleeping, TV, and reading\nTaking ceramics at PCC\nI am currently moving!\n\n\n\n\n Video"
   },
   {
     "objectID": "lessons/00_Welcome/00_Welcome.html#some-important-tasks",
     "href": "lessons/00_Welcome/00_Welcome.html#some-important-tasks",
     "title": "Welcome to BSTA 512/612!",
     "section": "Some important tasks",
-    "text": "Some important tasks\n\nJoin the Slack page!\nStar the class website: https://nwakim.github.io/W2024_BSTA_512/\nComplete the WhenIsGood for office hours\nComplete Homework 0 by this Thursday at 11pm!\nHighly suggest that you make an appointment with a learning specialist through Student Academic Support Services!"
+    "text": "Some important tasks\n\nStar the class website: https://nwakim.github.io/BSTA_512_W25/\nComplete the WhenIsGood for office hours\nComplete Homework 0 by this Thursday at 11pm!\nHighly suggest that you make an appointment with a learning specialist through Student Academic Support Services!"
   },
   {
     "objectID": "lessons/00_Welcome/00_Welcome.html#lets-visit-the-website",
     "href": "lessons/00_Welcome/00_Welcome.html#lets-visit-the-website",
     "title": "Welcome to BSTA 512/612!",
     "section": "Let’s visit the website",
-    "text": "Let’s visit the website\n\nHomepage\n\nGitHub\n\nSyllabus\nSchedule\n\nWeeks, class info, quizzes, homeworks, projects\n\nSearch\n\n\n\nImportant Note\n\n\nThis is my first time teaching the course. I will work hard to answer your questions in class, but I will often need some time outside of class to make sure I give you the best answer possible! Also, many of the examples are not my own. I will work to improve examples, but if you have feedback or suggestions, I am happy to hear them!"
+    "text": "Let’s visit the website\n\nHomepage\n\nGitHub\n\nSyllabus\nSchedule\n\nWeeks, class info, quizzes, homeworks, projects\n\nSearch"
   },
   {
     "objectID": "lessons/00_Welcome/00_Welcome.html#lets-go-through-the-syllabus",

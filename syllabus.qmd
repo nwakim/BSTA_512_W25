@@ -228,10 +228,6 @@ No student has the same amount of time available to dedicate to homework. This c
 
 If you turn in the homework on time, the TAs will give you feedback (on one or more complete problems). **There is no penalty for turning in the homework late, but you will not get feedback on your work.** Please make sure to check the solutions or go to office hours to assess your work.
 
-### Lab grading
-
-Labs are a hybrid between formative and summative assignments.
-
 ### Viewing Grades in Sakai
 
 Points you receive for graded activities will be posted to the Sakai Gradebook. Click on the Gradebook link on the left navigation to view your points.
@@ -297,17 +293,7 @@ Every professor has different expectations when assigning certain work or provid
 |                         |                        |                                                                                                    |                                                                                                                        |
 |                         |                        | -   Search your issue on Stack Exchange/Stack Overflow                                             |                                                                                                                        |
 +-------------------------+------------------------+----------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| Quizzes                 | Summative              | -   Identify and achieve learning objectives in each lecture                                       | -   Review the solutions                                                                                               |
-|                         |                        |                                                                                                    |                                                                                                                        |
-|                         |                        | -   Understand why certain statistics tools are used for certain cases                             | -   Review your mistakes                                                                                               |
-|                         |                        |                                                                                                    |                                                                                                                        |
-|                         |                        | -   Practice testing yourself and others on concepts                                               | -   For solutions that involve writing sentences, check with me or a TA if your answer fits the solution               |
-|                         |                        |                                                                                                    |                                                                                                                        |
-|                         |                        | -   Come to Office Hours for help with specific problems or concepts                               | -   Go to Office Hours to ask about your solutions                                                                     |
-|                         |                        |                                                                                                    |                                                                                                                        |
-|                         |                        |                                                                                                    | -   Do not ask for a regrade unless you have viewed the solutions                                                      |
-+-------------------------+------------------------+----------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| Project Labs and Report | Formative and Summtive | -   Start the lab as early as possible                                                             | -   This will be graded at the end of the semester, so you will not have a chance to interact with my feedback as much |
+| Project Labs and Poster | Formative and Summtive | -   Start the lab as early as possible                                                             | -   This will be graded at the end of the semester, so you will not have a chance to interact with my feedback as much |
 |                         |                        |                                                                                                    |                                                                                                                        |
 |                         |                        | -   Work on R coding and check with classmates on work                                             | -   If you have questions about your grade, you may email me                                                           |
 |                         |                        |                                                                                                    |                                                                                                                        |
@@ -320,7 +306,7 @@ Every professor has different expectations when assigning certain work or provid
 |                         |                        | -   Complete the survey during the last 5 minutes of class or after class within 7 days            |                                                                                                                        |
 +-------------------------+------------------------+----------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 
-If you would like any other course resources explained in this format, please request it through the [Ongoing Course Feedback](https://forms.office.com/Pages/ResponsePage.aspx?id=V3lz4rj6fk2U9pvWr59xWFMopmPUjRtDiHLswhgacNhURDc2S1dGNTlTRVJVUFoyQUUzNFJMS0JXUi4u). 
+If you would like any other course resources explained in this format, please request it through the [Ongoing Course Feedback](https://forms.office.com/Pages/ResponsePage.aspx?id=V3lz4rj6fk2U9pvWr59xWFMopmPUjRtDiHLswhgacNhUNzREUDMyODZZSE83WURFSlo1M01YR05WTy4u). 
 
 ## Course Policies and Resources
 
@@ -332,11 +318,11 @@ I encourage you to make your best effort to submit all assignments on time, but 
 
 -   If you have extenuating circumstances that may jeopardize your ability to do work for several weeks, please contact me. We will come up with a plan to keep you on track in the course and prevent any delay in your education.
 
--   For homework, there is a due date posted, but you may turn in the assignment any time before the class ends. I will give you the check regardless of when you submit the assignment. **However, if you would like feedback on the homework, you must turn it in on time OR email me asking for feedback for your late homework.**
-
--   For non-homework assignments, including labs, I ask you to email me directly. You can explain your circumstances and may ask me for an extension, but I won't necessarily grant one.
+-   For homework, there is a due date posted, but you may turn in the assignment any time before the class ends. I will give you the check regardless of when you submit the assignment. **However, if you would like feedback on the homework, you must turn it in on time OR email me and the TAs asking for feedback for your late homework.**
 
 -   For labs, you will have ONE no-questions-asked, 3-day extension. Please use this wisely! You just need to send me a quick email saying "I am using my no-questions-asked extension for Lab \_\_."
+
+    -   Beyond the one no-questions-asked, 3-day extension, I ask you to email me directly. You can explain your circumstances and may ask me for an extension, but I won't necessarily grant one.
 
 -   If you have a emergency involving your self, family, pet, friend, classmate, or anything/one deemed important to you, please do not worry about immediately contacting me. We can work something out after your emergency. If I contact you during an emergency, it is only because I am worried, and you do NOT need to respond until you are able. 
 
@@ -346,7 +332,11 @@ If you think a question was incorrectly graded, first compare your answer to the
 
 ### Attendance Policy
 
-You are expected to attend class, participate in-class polls, and complete the exit ticket. For students who miss class or need a review, I will make video and audio recordings of lectures available. There are no guarantees against technical or other challenges for the recording availability or quality. For students who are unable to attend the class in-person and synchronously, **viewing the recording within 7 days** is acceptable. This is meant to keep you on track within the course and prevent a pile up of material. Make sure to complete the exit ticket to demonstrate attendance.
+You are expected to attend class, participate in-class polls, and complete the exit ticket. For students who miss class or need a review, I will make video and audio recordings of lectures available. There are no guarantees against technical or other challenges for the recording availability or quality.
+
+**You will need to attend at least 12 classes in person.** There are 19 classes total, so you are welcome to watch the recordings for up to 7 classes in lieu of in-person attendance. While I want attendance to be a flexible thing, I need to set certain requirements around in-person attendance to align with the school’s policy.
+
+This is meant to keep you on track within the course and prevent a pile up of material. Make sure to complete the exit ticket at the end of class to demonstrate attendance.
 
 ### Plagiarism and Attribution
 
@@ -420,24 +410,17 @@ Cheating and other forms of academic misconduct will not be tolerated in this co
 
 ## Course Communications
 
-**Sakai/Slack announcements\
-**For important/urgent matters, I will communicate with you using announcements via Sakai that will be delivered to your OHSU Email account as well as displayed in the Sakai course site Announcements section. I will copy these announcements in Slack if they do not involve changes to the schedule. Unfortunately, there are certain announcements that OHSU requires I initiate behind the firewall.
-
-**General course questions\
-**It is normal to have many questions about things that relate to the course, such as clarification about assignments, course materials, or assessments. Please post these on our Slack Workspace. Please use the channels that I created for questions. You are encouraged to give answers and help each other. I will monitor these threads, so I will endorse or correct responses as needed. Please give me 24 hours to respond to questions within Monday-Friday. Work-life balance is important for me as well, so I will try to respond as quickly as I can within my healthy limits. 
+**Sakai announcements\
+**For important/urgent matters, I will communicate with you using announcements via Sakai that will be delivered to your OHSU Email account as well as displayed in the Sakai course site Announcements section.
 
 **E-mail**\
-E-mail should be used only for messages that are private in nature. Please send private messages to my OHSU email address (wakim\@ohsu.edu). **Messages sent through Sakai Inbox will not be answered.** Do not send messages asking general information about the class; please post those on Slack instead.
+E-mail should be used only for messages that are private in nature. Please send private messages to my OHSU email address (wakim\@ohsu.edu). **Messages sent through Sakai Inbox will not be answered.**
 
 ## Further Student Resources
 
 ### SPH Writing Lab
 
 The School of Public Health Writing Support serves graduate students (master's and PhD) in SPH, offering help on all professional writing tasks, including class papers, dissertations, job application documents, personal statements, and grant applications, to name a few. Leslie Bienen, MFA, DVM offers one-on-one writing support and other workshops. Appointments are virtual for the time being. You can make an appointment by contacting [writingsupportsph\@pdx.edu](mailto:writingsupportsph@pdx.edu) or making an appointment through [Calendly](https://calendly.com/writingsupportsph/writing-meeting).
-
-### Grammarly Subscription
-
-The School of Public Health students have access to a subscription version of Grammarly. While Grammarly cannot improve the argument and flow of your work, it can help with spelling, grammar, and sentence structure. If you are interested in this tool, please add your name to this email [form](https://docs.google.com/forms/d/1IQWFsARrTJlasK2a5JTonR4ygr8MxqIzbh_bAxKmWWI/edit?ts=614ce07a) and they will get you added to the subscription. Be sure to use your PSU login credentials to access the form.
 
 ### Student Wellness
 

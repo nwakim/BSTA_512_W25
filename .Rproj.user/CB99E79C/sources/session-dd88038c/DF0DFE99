@@ -3,7 +3,7 @@
     "path": "~/Library/CloudStorage/OneDrive-OregonHealth&ScienceUniversity/Teaching/Classes/W25_BSTA_512_612/BSTA_512_W25_site/index.qmd",
     "project_path": "index.qmd",
     "type": "quarto_markdown",
-    "hash": "291404864",
+    "hash": "2958954108",
     "contents": "",
     "dirty": false,
     "created": 1735450741911.0,
@@ -12,8 +12,8 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "41,3",
-        "scrollLine": "27",
+        "cursorPosition": "45,123",
+        "scrollLine": "43",
         "rmdVisualMode": "false",
         "rmdVisualWrapConfigured": "true",
         "docOutlineVisible": "1",
@@ -21,11 +21,11 @@
         "rmdVisualModeLocation": "969:1498"
     },
     "folds": "",
-    "lastKnownWriteTime": 1735948292,
+    "lastKnownWriteTime": 1736046533,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1735948292664,
+    "last_content_update": 1736046533742,
     "read_only": false,
     "read_only_alternatives": []
 }

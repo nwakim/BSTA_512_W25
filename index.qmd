@@ -43,7 +43,7 @@ Welcome to BSTA 512/612! In this course, we will focus on linear models, and bui
 
 
 ::: {.g-col-4}
-[{{< iconify logos zoom-icon size=24px >}}](https://pdx.zoom.us/j/7842715376) Class Zoom link
+[{{< iconify mdi video size=34px >}}](https://echo360.org/section/1a08bcdf-51d3-46e9-8618-870cf0ef1282/public) Echo360 link
 :::
 
 :::

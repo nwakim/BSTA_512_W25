@@ -5017,5 +5017,26 @@
     "title": "Welcome to BSTA 512/612!",
     "section": "What we will cover: process for regression data analysis",
     "text": "What we will cover: process for regression data analysis\n\n  \n\n\n\n\nModel Selection\n\n\n\nBuilding a model\nSelecting variables\nPrediction vs interpretation\nComparing potential models\n\n\n\n\n\n\n\n\nModel Fitting\n\n\n\nFind best fit line\nUsing OLS in this class\nParameter estimation\nCategorical covariates\nInteractions\n\n\n\n\n\n\n\n\nModel Evaluation\n\n\n\nEvaluation of model fit\nTesting model assumptions\nResiduals\nTransformations\nInfluential points\nMulticollinearity\n\n\n\n\n\n\n\n\nModel Use (Inference)\n\n\n\n\n\nInference for coefficients\nHypothesis testing for coefficients\n\n\n\nInference for expected \\(Y\\) given \\(X\\)\nPrediction of new \\(Y\\) given \\(X\\)"
+  },
+  {
+    "objectID": "lessons/00_Welcome/00_Welcome.html#lets-visit-the-website-instructors",
+    "href": "lessons/00_Welcome/00_Welcome.html#lets-visit-the-website-instructors",
+    "title": "Welcome to BSTA 512/612!",
+    "section": "Let’s visit the website: Instructors",
+    "text": "Let’s visit the website: Instructors"
+  },
+  {
+    "objectID": "instructors.html#tutors",
+    "href": "instructors.html#tutors",
+    "title": "Instructors",
+    "section": "Tutors",
+    "text": "Tutors\nThe Academic Success Center has biostatistics/epidemiology tutors available. Unlike TAs, tutors are not closely associated with any particular course sections or professors, nor do they have any grading responsibilities. Consider meeting with a tutor when you feel stuck on a project, need help with R coding, want to review course concepts, or simply complete assignments in a social learning environment. There is no cost to use tutoring.\nYour tutors this year are Mickey McVeety (MPH Epi program) and Sofia Chapela Lara (PhD program). They are looking forward to working with you in a one-to-one or group setting, depending on your needs. Please schedule to meet with them at least 24 hours in advance. If you have questions about tutoring or need assistance with the schedule, contact one of the tutors or the Academic Success Center: mcveety@ohsu.edu, chapelal@ohsu.edu, learningsupport@ohsu.edu"
+  },
+  {
+    "objectID": "instructors.html#academic-success-center-tutors",
+    "href": "instructors.html#academic-success-center-tutors",
+    "title": "Instructors",
+    "section": "Academic Success Center Tutors",
+    "text": "Academic Success Center Tutors\nThe Academic Success Center has biostatistics/epidemiology tutors available. Unlike TAs, tutors are not closely associated with any particular course sections or professors, nor do they have any grading responsibilities. Consider meeting with a tutor when you feel stuck on a project, need help with R coding, want to review course concepts, or simply complete assignments in a social learning environment. There is no cost to use tutoring.\nYour tutors this year are Mickey McVeety (MPH Epi program) and Sofia Chapela Lara (PhD program). They are looking forward to working with you in a one-to-one or group setting, depending on your needs. Please schedule to meet with them at least 24 hours in advance. If you have questions about tutoring or need assistance with the schedule, contact one of the tutors or the Academic Success Center: mcveety@ohsu.edu, chapelal@ohsu.edu, learningsupport@ohsu.edu"
   }
 ]

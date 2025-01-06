@@ -13,6 +13,7 @@ format:
     width: 1955
     height: 1100
     footer: Welcome
+    html-math-method: mathjax
 ---
 
 ## Nicky Wakim (she/her)
@@ -63,21 +64,157 @@ format:
 
 -   Highly suggest that you make an appointment with a learning specialist through [Student Academic Support Services](https://sakai.ohsu.edu/portal/site/Student_Support)!
 
-## Let's visit the website 
+## Let's visit the website: Homepage
 
--   Homepage
+![[Homepage](https://nwakim.github.io/BSTA_512_W25/)](../img_slides/site_homepage1.png)
 
-    -   GitHub
+## Let's visit the website: Syllabus
 
--   Syllabus
+-   Course learning objectives
+-   Textbook: two online textbooks
+-   R: we will continue to use and learn this programming language
+-   Assessments and grade breakdowns
+-   Weekly assignments: homeworks and labs
+-   Feedback: in the form of exit tickets, ongoing feedback forms, midterm feedback, and final course
+-   How to succeed in this course: resources and assignments explained
+-   Late work policy / Attendance policy
+-   ChatGPT and other AI technology
+-   Course expectations: a few ways that I will show you respect and commitment to you as students
+    -   And a few ways I expect from you!
+-   Communicating with me: give me 24 hours to reply M-F
+    -   Online communication is not my strength!
 
--   Schedule
+## Let's visit the website: Schedule (1/2)
 
-    -   Weeks, class info, quizzes, homeworks, projects
+-   Weeks, class info, homeworks, labs
 
--   Search
+![](../img_slides/site_homepage2.png){fig-align="center"}
 
+## Let's visit the website: Schedule (2/2)
 
-## Let's go through the syllabus!
+|  |  |  |
+|:----------------------------|:-------------|:-----------------------------|
+| [[{{< iconify akar-icons info-fill size=80px >}}](lessons/01_Outcomes_Events_Sample/01_Outcomes_Events_Sample_key_info.qmd)]{style="color:#f8f5f0;"} | Key Info | I will post announcements and other important class related info here. For example, if I change a due date or discuss a common mistake in homework, I will put it here. |
+| [[{{< iconify ri slideshow-fill size=80px >}}](lessons/17_Negative_binomial_rv/17_Negative_binomial_rv.qmd)]{style="color:#f8f5f0;"} | Slides QMD | These are the basic slides that will open in your browser. |
+| [[{{< iconify bi file-earmark-pdf-fill size=80px >}}](lessons/01_Outcomes_Events_Sample/01_Outcomes_Events_Sample.pdf)]{style="color:#f8f5f0;"} | Slides PDF | These are the slides in pdf form for easy note taking. I'm not always the best at posting these before class, so make sure you know how to save your own copy of pdf slides! |
+| [[{{< iconify pepicons-pop pen-circle-filled size=80px >}}](lessons/01_Outcomes_Events_Sample/01_Outcomes_Events_Sample_notes.pdf)]{style="color:#f8f5f0;"} | Slides Notes | These are the annotated slides in pdf form. In class, I add my own notes to slides. After class, I will post them here. |
+| [[{{< iconify healthicons health-worker-form size=90px >}}](https://forms.office.com/Pages/ResponsePage.aspx?id=V3lz4rj6fk2U9pvWr59xWFMopmPUjRt)]{style="color:#f8f5f0;"} | Exit tix | These are links to that day's exit ticket. |
+| [[{{< iconify mdi video size=90px >}}](mothing)]{style="color:#f8f5f0;"} | Recording | I record our classes. This will be a link to the OneDrive folder containing this recording. |
+| [[{{< iconify pajamas question size=80px >}}](lessons/01_Outcomes_Events_Sample/01_Outcomes_Events_Sample_muddy_points.qmd)]{style="color:#f8f5f0;"} | Muddy Points | You will have a chance to ask questions about class in your exit tickets. If I notice a trend in confusion, I will add explanations to these "Muddy Points" |
 
-[Syllabus page](https://nwakim.github.io/BSTA_512_W25/syllabus.html)
+## Let's visit the website: Search
+
+## Let's visit the website: Homework
+
+## Let's visit the website: Project and labs
+
+## Structure for this course
+
+- We will use the foundation built in BSTA 511/611 or EPID 525
+
+ 
+
+-   We will be building towards models that can handle many variables!
+
+     
+
+    -   **Regression** is the building block for modeling multivariable relationships
+
+     
+
+-   In Linear Models we will *build, interpret, and evaluate* **linear regression models**
+
+## What we will cover: process for regression data analysis
+
+::: box
+![](../img_slides/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"} ![](../img_slides/arrow2.png){.absolute top="13.5%" right="28.4%" width="155"}![](../img_slides/arrow_back4.png){.absolute top="7.5%" right="30.5%" width="820"} ![](../img_slides/arrow_down.png){.absolute top="60.5%" right="48%" width="85"}
+
+::: columns
+::: {.column width="30%"}
+::: RAP1
+::: RAP1-title
+Model Selection
+:::
+
+::: RAP1-cont
+-   Building a model
+
+-   Selecting variables
+
+-   Prediction vs interpretation
+
+-   Comparing potential models
+:::
+:::
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="30%"}
+::: RAP2
+::: RAP2-title
+Model Fitting
+:::
+
+::: RAP2-cont
+-   Find best fit line
+
+-   Using OLS in this class
+
+-   Parameter estimation
+
+-   Categorical covariates
+
+-   Interactions
+:::
+:::
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="30%"}
+::: RAP3
+::: RAP3-title
+Model Evaluation
+:::
+
+::: RAP3-cont
+-   Evaluation of model fit
+-   Testing model assumptions
+-   Residuals
+-   Transformations
+-   Influential points
+-   Multicollinearity
+:::
+:::
+:::
+:::
+:::
+
+::: RAP4
+::: RAP4-title
+Model Use (Inference)
+:::
+
+::: RAP4-cont
+::: columns
+::: {.column width="50%"}
+-   Inference for coefficients
+-   Hypothesis testing for coefficients
+:::
+
+::: {.column width="50%"}
+-   Inference for expected $Y$ given $X$
+-   Prediction of new $Y$ given $X$
+:::
+:::
+:::
+:::
+
+## Let me know if you have questions
+
+Or if there's any contradicting information in the course site... I'm sure I made a mistake somewhere!!
+
+- For example: we do NOT have quizzes. If you see a mention of quizzes anywhere in the course, then I simply overlooked it and need to fix it!

@@ -1222,7 +1222,7 @@
     "href": "lessons/01_Review/01_Review.html#main-sections-of-the-course",
     "title": "Lesson 1: Review",
     "section": "Main sections of the course",
-    "text": "Main sections of the course\n\nReview\nIntro to SLR: estimation and testing\n\nModel fitting\n\nIntro to MLR: estimation and testing\n\nModel fitting\n\nDiving into our predictors: categorical variables, interactions between variable\n\nModel fitting\n\nKey ingredients: model evaluation, diagnostics, selection, and building\n\nModel evaluation and Model selection"
+    "text": "Main sections of the course\n\nReview\nSimple Linear Regression\n\nModel evaluation and Model use\n\nIntro to MLR: estimation and testing\n\nModel use\n\nDiving into our predictors: categorical variables, interactions between variable\n\nModel fitting\n\nKey ingredients: model evaluation, diagnostics, selection, and building\n\nModel evaluation and Model selection"
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#main-sections-of-the-course-1",
@@ -1236,7 +1236,7 @@
     "href": "lessons/01_Review/01_Review.html#before-we-begin",
     "title": "Lesson 1: Review",
     "section": "Before we begin",
-    "text": "Before we begin\n\nMeike has some really good online notes, code, and work on her BSTA 511 page"
+    "text": "Before we begin\n\nFeel free to visit my or Meike’s Introducation to Biostatistics\nMeike’s BSTA 511 page\nNicky’s BSTA 525 page"
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#learning-objectives",
@@ -1264,14 +1264,14 @@
     "href": "lessons/01_Review/01_Review.html#descriptive-statistics-continuous-variables",
     "title": "Lesson 1: Review",
     "section": "Descriptive Statistics: continuous variables",
-    "text": "Descriptive Statistics: continuous variables\n\n\nMeasures of central tendency\n\nSample mean\n\\[\n\\bar{x} = \\dfrac{x_1+x_2+...+x_n}{n}=\\dfrac{\\sum_{i=1}^nx_i}{n}\n\\]\nMedian\n\n\nMeasures of variability (or dispersion)\n\nSample variance\n\nAverage of the squared deviations from the sample mean\n\nSample standard deviation\n\\[\ns = \\sqrt{\\dfrac{(x_1-\\bar{x})^2+(x_2-\\bar{x})^2+...+(x_n-\\bar{x})^2}{n-1}}=\\sqrt{\\dfrac{\\sum_{i=1}^n(x_i-\\bar{x})^2}{n-1}}\n\\]\nIQR\n\nRange from 1st to 3rd quartile"
+    "text": "Descriptive Statistics: continuous variables\n\n\nMeasures of central tendency\n\nSample mean\n\\[\n\\overline{x} = \\dfrac{x_1+x_2+...+x_n}{n}=\\dfrac{\\sum_{i=1}^nx_i}{n}\n\\]\nMedian\n\n\nMeasures of variability (or dispersion)\n\nSample variance\n\nAverage of the squared deviations from the sample mean\n\nSample standard deviation\n\\[\n\\begin{aligned}\ns = & \\sqrt{\\dfrac{(x_1-\\overline{x})^2+(x_2-\\overline{x})^2+...+(x_n-\\overline{x})^2}{n-1}} \\\\\n= & \\sqrt{\\dfrac{\\sum_{i=1}^n(x_i-\\overline{x})^2}{n-1}}\n\\end{aligned}\n\\]\nIQR\n\nRange from 1st to 3rd quartile"
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#descriptive-statistics-continuous-variables-r-code",
     "href": "lessons/01_Review/01_Review.html#descriptive-statistics-continuous-variables-r-code",
     "title": "Lesson 1: Review",
     "section": "Descriptive Statistics: continuous variables (R code)",
-    "text": "Descriptive Statistics: continuous variables (R code)\n\n\nMeasures of central tendency\n\nSample mean\n\nmean( sample )\n\nMedian\n\nmedian( sample )\n\n\n\nMeasures of variability (or dispersion)\n\nSample variance\n\nvar( sample )\n\nSample standard deviation\n\nsd( sample )\n\nIQR\n\nIQR( sample )"
+    "text": "Descriptive Statistics: continuous variables (R code)\n\n\nMeasures of central tendency\n\nSample mean\n\nmean( sample )\n\nMedian\n\nmedian( sample )\n\n\n\nMeasures of variability (or dispersion)\n\nSample variance\n\nvar( sample )\n\nSample standard deviation\n\nsd( sample )\n\nIQR\n\nIQR( sample )\n\n\n\n\n\nOr all together!!\n\n\ndds.discr %&gt;% get_summary_stats(age)\n\n# A tibble: 1 × 13\n  variable     n   min   max median    q1    q3   iqr   mad  mean    sd    se\n  &lt;fct&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 age       1000     0    95     18    12    26    14  10.4  22.8  18.5 0.584\n# ℹ 1 more variable: ci &lt;dbl&gt;"
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#data-visualization",
@@ -1313,35 +1313,35 @@
     "href": "lessons/01_Review/01_Review.html#distributions-that-will-be-used-in-this-class",
     "title": "Lesson 1: Review",
     "section": "Distributions that will be used in this class",
-    "text": "Distributions that will be used in this class\n\nNormal distribution\nChi-square distribution\nt distribution\nF distribution"
+    "text": "Distributions that will be used in this class\n\nNormal distribution\nChi-square distribution\nStudent’s t distribution\nF distribution"
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#normal-distribution",
     "href": "lessons/01_Review/01_Review.html#normal-distribution",
     "title": "Lesson 1: Review",
     "section": "Normal Distribution",
-    "text": "Normal Distribution\n\n\n\nNotation: \\(Y\\sim N(\\mu,\\sigma^2)\\)\nArguably, the most important distribution in statistics\nIf we know \\(E(Y)=\\mu\\), \\(Var(Y)=\\sigma^2\\) then\n\n2/3 of \\(Y\\)’s distribution lies within 1 \\(\\sigma\\) of \\(\\mu\\)\n95% \\(\\ldots\\) \\(\\ldots\\) is within \\(\\mu\\pm 2\\sigma\\)\n\\(&gt;99\\)% \\(\\ldots\\) \\(\\ldots\\) lies within \\(\\mu\\pm 3\\sigma\\)\n\nLinear combinations of Normal’s are Normal\ne.g., \\((aY+b)\\sim \\mbox{N}(a\\mu+b,\\;a^2\\sigma^2)\\)\nStandard normal: \\(Z=\\frac{Y-\\mu}{\\sigma} \\sim \\mbox{N}(0,1)\\)"
+    "text": "Normal Distribution\n\n\n\nWhere did we see this?\n\nBasically everywhere! Think Central Limit Theorem\n\n\n \n\nNotation: \\(Y\\sim N(\\mu,\\sigma^2)\\)\nArguably the most important distribution in statistics\nIf we know \\(E(Y)=\\mu\\), \\(Var(Y)=\\sigma^2\\) then\n\n2/3 of \\(Y\\)’s distribution lies within 1 \\(\\sigma\\) of \\(\\mu\\)\n95% is within \\(\\mu\\pm 2\\sigma\\)\n\\(&gt;99\\)% lies within \\(\\mu\\pm 3\\sigma\\)\n\n\n \n\nLinear combinations of Normal’s are Normal\ne.g., \\((aY+b)\\sim \\mbox{N}(a\\mu+b,\\;a^2\\sigma^2)\\)\nStandard normal: \\(Z=\\frac{Y-\\mu}{\\sigma} \\sim \\mbox{N}(0,1)\\)"
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#chi-squared-distribution-models-sampling-variance",
     "href": "lessons/01_Review/01_Review.html#chi-squared-distribution-models-sampling-variance",
     "title": "Lesson 1: Review",
     "section": "Chi-squared distribution: models sampling variance",
-    "text": "Chi-squared distribution: models sampling variance\n\n\n\nNotation: \\(X \\sim \\chi^2_{df}\\) OR \\(X \\sim \\chi^2_{\\nu}\\)\n\nDegrees of freedom (df): \\(df=n-1\\)\n\\(X\\) takes on only positive values\n\nIf \\(Z_i\\sim \\mbox{N}(0,1)\\), then \\(Z_i^2\\sim \\chi^2_1\\)\n\nA standard normal distribution squared is the Chi squared distribution with df of 1.\n\n\n\n\nUsed in hypothesis testing and CI’s for variance or standard deviation\n\nSample variance (and SD) is random and thus can be modeled by a probability distribution: Chi-sqaured\n\nChi-squared distribution used to model the ratio of the sample variance \\(s^2\\) to population variance \\(\\sigma^2\\):\n\n\\(\\dfrac{(n-1)s^2}{\\sigma^2}\\sim \\chi^2_{n-1}\\)"
+    "text": "Chi-squared distribution: models sampling variance\n\n\n\nNotation: \\(X \\sim \\chi^2_{df}\\) OR \\(X \\sim \\chi^2_{\\nu}\\)\n\nDegrees of freedom (df): \\(df=n-1\\)\n\\(X\\) takes on only positive values\n\nIf \\(Z_i\\sim \\mbox{N}(0,1)\\), then \\(Z_i^2\\sim \\chi^2_1\\)\n\nA standard normal distribution squared is the Chi squared distribution with df of 1.\n\nUsed in hypothesis testing and CI’s for variance or standard deviation\n\nSample variance (and SD) is random and thus can be modeled by a probability distribution: Chi-sqaured\n\nChi-squared distribution used to model the ratio of the sample variance \\(s^2\\) to population variance \\(\\sigma^2\\):\n\n\\(\\dfrac{(n-1)s^2}{\\sigma^2}\\sim \\chi^2_{n-1}\\)"
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#students-t-distribution",
     "href": "lessons/01_Review/01_Review.html#students-t-distribution",
     "title": "Lesson 1: Review",
     "section": "Student’s t Distribution",
-    "text": "Student’s t Distribution\n\n\n\nNotation: \\(T \\sim t_{df}\\) OR \\(T \\sim t_{n-1}\\)\n\nDegrees of freedom (df): \\(df=n-1\\)\n\\(T = \\dfrac{\\bar{x} - \\mu_x}{\\dfrac{s}{\\sqrt{n}}}\\sim t_{n-1}\\)\n\nIn linear modeling, used for inference on individual regression parameters\n\nThink: our estimated coefficients (\\(\\hat{\\beta}\\))"
+    "text": "Student’s t Distribution\n\n\n\nWhere did we see this?\n\nInference of means: single sample, paired, two independent samples\n\n\n \n\nNotation: \\(T \\sim t_{df}\\) OR \\(T \\sim t_{n-1}\\)\n\nDegrees of freedom (df): \\(df=n-1\\)\n\\(T = \\dfrac{\\overline{x} - \\mu_x}{\\dfrac{s}{\\sqrt{n}}}\\sim t_{n-1}\\)\n\n\n \n\nIn linear modeling, used for inference on individual regression parameters\n\nThink: our estimated coefficients ( \\(\\hat{\\beta_{}}\\) )"
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#f-distribution",
     "href": "lessons/01_Review/01_Review.html#f-distribution",
     "title": "Lesson 1: Review",
     "section": "F-Distribution",
-    "text": "F-Distribution\n\n\n\nModel ratio of sample variances\n\nRatio of variances is important for hypothesis testing of regression models\n\nIf \\(X_1^2\\sim \\chi^2_{df1}\\) and \\(X_2^2\\sim \\chi^2_{df2}\\), where \\(X_1^2\\perp X_2^2\\), then:\n\n\\[\\dfrac{X_1^2/df1}{X_2^2/df2} \\sim F_{df1,df2}\\] - only takes on positive values\n\nImportant relationship with \\(t\\) distribution: \\(T^2 \\sim F_{1,\\nu}\\)\n\nThe square of a t-distribution with \\(df=\\nu\\)\nis an F-distribution with numerator df (\\(df_1 = 1\\)) and denominator df (\\(df_2 = \\nu\\))"
+    "text": "F-Distribution\n\n\n\nWhere did we see this?\n\nInference for 2+ means: ANOVA test\n\nModel ratio of sample variances (and is a ratio of Chi-squared RVs)\nIf \\(X_1^2\\sim \\chi^2_{df1}\\) and \\(X_2^2\\sim \\chi^2_{df2}\\), where \\(X_1^2\\perp X_2^2\\), then:\n\n\\[\\dfrac{X_1^2/df1}{X_2^2/df2} \\sim F_{df1,df2}\\]\n\nImportant relationship with \\(t\\) distribution: \\(T^2 \\sim F_{1,\\nu}\\)\n\nThe square of a t-distribution with \\(df=\\nu\\)\nis an F-distribution with numerator df (\\(df_1 = 1\\)) and denominator df (\\(df_2 = \\nu\\))"
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#f-distribution-1",
@@ -1369,21 +1369,21 @@
     "href": "lessons/01_Review/01_Review.html#confidence-interval-for-one-mean",
     "title": "Lesson 1: Review",
     "section": "Confidence interval for one mean",
-    "text": "Confidence interval for one mean\n\n\nThe confidence interval for population mean \\(\\mu\\):\n\\[\n\\bar{x} \\pm t^{*}\\dfrac{s}{\\sqrt{n}}\n\\]\n\nwhere \\(t^*\\) is the critical value for the 95% (or other percent) corresponding to the t-distribution and dependent on \\(df=n-1\\)\n\n\n\nWe can use R to find the critical t-value, \\(t^*\\)\n\n\nFor example the critical value for the 95% CI with \\(n=10\\) subjects is…\n\nqt(0.975, df=9)\n\n[1] 2.262157\n\n\n\nRecall, that as the \\(df\\) increases, the t-distribution converges towards the Normal distribution"
+    "text": "Confidence interval for one mean\n\n\nThe confidence interval for population mean \\(\\mu\\):\n\\[\n\\overline{x} \\pm t^{*}\\dfrac{s}{\\sqrt{n}}\n\\]\n\nwhere \\(t^*\\) is the critical value for the 95% (or other percent) corresponding to the t-distribution and dependent on \\(df=n-1\\)\n\n\n\nWe can use R to find the critical t-value, \\(t^*\\)\n\n\nFor example the critical value for the 95% CI with \\(n=10\\) subjects is…\n\nqt(0.975, df=9)\n\n[1] 2.262157\n\n\n\nRecall, that as the \\(df\\) increases, the t-distribution converges towards the Normal distribution"
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#confidence-interval-for-one-mean-1",
     "href": "lessons/01_Review/01_Review.html#confidence-interval-for-one-mean-1",
     "title": "Lesson 1: Review",
     "section": "Confidence interval for one mean",
-    "text": "Confidence interval for one mean\n\n\nThe confidence interval for population mean \\(\\mu\\):\n\\[\n\\bar{x} \\pm t^{*}\\dfrac{s}{\\sqrt{n}}\n\\]\n\nwhere \\(t^*\\) is the critical value for the 95% (or other percent) corresponding to the t-distribution and dependent on \\(df=n-1\\)\n\n\n\nWe can use R to find the critical t-value, \\(t^*\\)\n\n\nFor example the critical value for the 95% CI with \\(n=10\\) subjects is…\n\nqt(0.975, df=9)\n\n[1] 2.262157\n\n\n\nRecall, that as the \\(df\\) increases, the t-distribution converges towards the Normal distribution\n\n\n\n\nWe can also use t.test in R to calculate the confidence interval if we have a dataset.\n\nt.test(dds.discr$age)\n\n\n    One Sample t-test\n\ndata:  dds.discr$age\nt = 39.053, df = 999, p-value &lt; 2.2e-16\nalternative hypothesis: true mean is not equal to 0\n95 percent confidence interval:\n 21.65434 23.94566\nsample estimates:\nmean of x \n     22.8"
+    "text": "Confidence interval for one mean\n\n\nThe confidence interval for population mean \\(\\mu\\):\n\\[\n\\overline{x} \\pm t^{*}\\dfrac{s}{\\sqrt{n}}\n\\]\n\nwhere \\(t^*\\) is the critical value for the 95% (or other percent) corresponding to the t-distribution and dependent on \\(df=n-1\\)\n\n\n\nWe can use R to find the critical t-value, \\(t^*\\)\n\n\nFor example the critical value for the 95% CI with \\(n=10\\) subjects is…\n\nqt(0.975, df=9)\n\n[1] 2.262157\n\n\n\nRecall, that as the \\(df\\) increases, the t-distribution converges towards the Normal distribution\n\n\n\n\nWe can also use t.test in R to calculate the confidence interval if we have a dataset.\n\nt.test(dds.discr$age)\n\n\n    One Sample t-test\n\ndata:  dds.discr$age\nt = 39.053, df = 999, p-value &lt; 2.2e-16\nalternative hypothesis: true mean is not equal to 0\n95 percent confidence interval:\n 21.65434 23.94566\nsample estimates:\nmean of x \n     22.8"
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#confidence-interval-for-two-independent-means",
     "href": "lessons/01_Review/01_Review.html#confidence-interval-for-two-independent-means",
     "title": "Lesson 1: Review",
     "section": "Confidence interval for two independent means",
-    "text": "Confidence interval for two independent means\n\n\nThe confidence interval for difference in independent population means, \\(\\mu_1\\) and \\(\\mu_2\\):\n\\[\n\\bar{x}_1 - \\bar{x}_2 \\pm t^{*}\\sqrt{\\dfrac{s_1^2}{n_1} + \\dfrac{s_2^2}{n_2}}\n\\]\n\nwhere \\(t^*\\) is the critical value for the 95% (or other percent) corresponding to the t-distribution and dependent on \\(df=n_1 + n_2 -2\\)"
+    "text": "Confidence interval for two independent means\n\n\nThe confidence interval for difference in independent population means, \\(\\mu_1\\) and \\(\\mu_2\\):\n\\[\n\\overline{x}_1 - \\overline{x}_2 \\pm t^{*}\\sqrt{\\dfrac{s_1^2}{n_1} + \\dfrac{s_2^2}{n_2}}\n\\]\n\nwhere \\(t^*\\) is the critical value for the 95% (or other percent) corresponding to the t-distribution and dependent on \\(df=n_1 + n_2 -2\\)\n\n\n\n\n\n \n\nPlease check out my notes on this if you’d like: https://nwakim.github.io/F24_EPI_525/schedule.html\n\nIt’s under Lesson 13"
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#heres-a-decent-source-for-other-r-code-for-tests-in-511",
@@ -1418,14 +1418,14 @@
     "href": "lessons/01_Review/01_Review.html#example-one-sample-t-test-using-p-value-approach",
     "title": "Lesson 1: Review",
     "section": "Example: one sample t-test using p-value approach",
-    "text": "Example: one sample t-test using p-value approach\nWe want to see what the mean population body temperature is.\n\nState the null and alternative hypotheses:\n\n\n\n\n\n\n\n\\(H_0: \\mu = 98.6\\)\n\\(H_0\\): The population mean body temperature is 98.6 degrees F\n\n\n\\(H_A: \\mu \\neq 98.6\\)\n\\(H_A\\): The population mean body temperature is not 98.6 degrees F\n\n\n\nThe significance level is \\(\\alpha = 0.05\\)\nThe test statistic, \\(t_{\\bar{x}}\\) follows a student’s t-distribution with \\(df = n-1 = 129\\)\nThe test statistic is: \\(t_{\\bar{x}} = \\dfrac{\\bar{x}-\\mu_0}{\\dfrac{s}{\\sqrt{n}}}\\) and with the data: \\(t_{\\bar{x}} = \\dfrac{98.25-98.6}{\\dfrac{0.73}{\\sqrt{130}}} = -5.45\\)\nCalculate the p-value: \\(p-value = P(t \\leq -5.45) + P(t \\geq 5.45)\\)\n\n2*pt(-5.4548, df = 130-1, lower.tail=T)\n\n[1] 2.410889e-07\n\n\nConclusion: We reject the null hypothesis. There is sufficient evidence that the (population) mean body temperature after is different from 98.6 degree ( \\(p-value &lt; 0.001\\))."
+    "text": "Example: one sample t-test using p-value approach\nWe want to see what the mean population body temperature is.\n\nState the null and alternative hypotheses:\n\n\n\n\n\n\n\n\\(H_0: \\mu = 98.6\\)\n\\(H_0\\): The population mean body temperature is 98.6 degrees F\n\n\n\\(H_A: \\mu \\neq 98.6\\)\n\\(H_A\\): The population mean body temperature is not 98.6 degrees F\n\n\n\nThe significance level is \\(\\alpha = 0.05\\)\nThe test statistic, \\(t_{\\overline{x}}\\) follows a student’s t-distribution with \\(df = n-1 = 129\\)\nThe test statistic is: \\(t_{\\overline{x}} = \\dfrac{\\overline{x}-\\mu_0}{\\dfrac{s}{\\sqrt{n}}}\\) and with the data: \\(t_{\\overline{x}} = \\dfrac{98.25-98.6}{\\dfrac{0.73}{\\sqrt{130}}} = -5.45\\)\nCalculate the p-value: \\(p-value = P(t \\leq -5.45) + P(t \\geq 5.45)\\)\n\n2*pt(-5.4548, df = 130-1, lower.tail=T)\n\n[1] 2.410889e-07\n\n\nConclusion: We reject the null hypothesis. There is sufficient evidence that the (population) mean body temperature after is different from 98.6 degree ( \\(p-value &lt; 0.001\\))."
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#example-one-sample-t-test-using-critical-values-approach",
     "href": "lessons/01_Review/01_Review.html#example-one-sample-t-test-using-critical-values-approach",
     "title": "Lesson 1: Review",
     "section": "Example: one sample t-test using critical values approach",
-    "text": "Example: one sample t-test using critical values approach\nWe want to see what the mean population body temperature is.\n\nState the null and alternative hypotheses:\n\n\n\n\n\n\n\n\\(H_0: \\mu = 98.6\\)\n\\(H_0\\): The population mean body temperature is 98.6 degrees F\n\n\n\\(H_A: \\mu \\neq 98.6\\)\n\\(H_A\\): The population mean body temperature is not 98.6 degrees F\n\n\n\nThe significance level is \\(\\alpha = 0.05\\)\nThe test statistic, \\(t_{\\bar{x}}\\) follows a student’s t-distribution with \\(df = n-1 = 129\\)\nDecision rule (critical value): For \\(\\alpha=0.05\\) , \\(2*P(t \\geq t^*) = 0.05\\)\n\nqt(0.05/2, df = 130-1, lower.tail=F)\n\n[1] 1.978524\n\n\nThe test statistic is: \\(t_{\\bar{x}} = \\dfrac{\\bar{x}-\\mu_0}{\\dfrac{s}{\\sqrt{n}}}\\) and with the data: \\(t_{\\bar{x}} = \\dfrac{98.25-98.6}{\\dfrac{0.73}{\\sqrt{130}}} = -5.45\\)\nConclusion: We reject the null hypothesis. There is sufficient evidence that the (population) mean body temperature after is different from 98.6 degree ( 95% CI: \\(98.12, 98.38\\))."
+    "text": "Example: one sample t-test using critical values approach\nWe want to see what the mean population body temperature is.\n\nState the null and alternative hypotheses:\n\n\n\n\n\n\n\n\\(H_0: \\mu = 98.6\\)\n\\(H_0\\): The population mean body temperature is 98.6 degrees F\n\n\n\\(H_A: \\mu \\neq 98.6\\)\n\\(H_A\\): The population mean body temperature is not 98.6 degrees F\n\n\n\nThe significance level is \\(\\alpha = 0.05\\)\nThe test statistic, \\(t_{\\overline{x}}\\) follows a student’s t-distribution with \\(df = n-1 = 129\\)\nDecision rule (critical value): For \\(\\alpha=0.05\\) , \\(2*P(t \\geq t^*) = 0.05\\)\n\nqt(0.05/2, df = 130-1, lower.tail=F)\n\n[1] 1.978524\n\n\nThe test statistic is: \\(t_{\\overline{x}} = \\dfrac{\\overline{x}-\\mu_0}{\\dfrac{s}{\\sqrt{n}}}\\) and with the data: \\(t_{\\overline{x}} = \\dfrac{98.25-98.6}{\\dfrac{0.73}{\\sqrt{130}}} = -5.45\\)\nConclusion: We reject the null hypothesis. There is sufficient evidence that the (population) mean body temperature after is different from 98.6 degree ( 95% CI: \\(98.12, 98.38\\))."
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#how-did-we-get-the-95-ci",
@@ -1453,14 +1453,14 @@
     "href": "lessons/01_Review/01_Review.html#prabilities-of-outcomes",
     "title": "Lesson 1: Review",
     "section": "Prabilities of outcomes",
-    "text": "Prabilities of outcomes\n\nType 1 error is \\(\\alpha\\)\n\nThe probability that we falsly reject the null hypothesis (but the null is true!!)\n\nPower is \\(1-\\beta\\)\n\nThe probability of correctly rejecting the null hypothesis"
+    "text": "Prabilities of outcomes\n\nType 1 error is \\(\\alpha\\)\n\nThe probability that we falsely reject the null hypothesis (but the null is true!!)\n\nPower is \\(1-\\beta\\)\n\nThe probability of correctly rejecting the null hypothesis"
   },
   {
     "objectID": "lessons/01_Review/01_Review.html#what-i-think-is-the-most-intuitive-way-to-look-at-it",
     "href": "lessons/01_Review/01_Review.html#what-i-think-is-the-most-intuitive-way-to-look-at-it",
     "title": "Lesson 1: Review",
     "section": "What I think is the most intuitive way to look at it",
-    "text": "What I think is the most intuitive way to look at it\n\n\n\nLesson 1: Review"
+    "text": "What I think is the most intuitive way to look at it"
   },
   {
     "objectID": "lessons/00_Welcome/00_Welcome.html",
@@ -1495,7 +1495,7 @@
     "href": "lessons/00_Welcome/00_Welcome.html#lets-go-through-the-syllabus",
     "title": "Welcome to BSTA 512/612!",
     "section": "Let’s go through the syllabus!",
-    "text": "Let’s go through the syllabus!\nSyllabus page\n\n\nWelcome"
+    "text": "Let’s go through the syllabus!\nSyllabus page\n\nCourse Description\nClass assessments and breakdown\n\n\n\nWelcome"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR_key_info.html#key-dates",
@@ -2825,7 +2825,7 @@
     "href": "lessons/00_Welcome/00_Welcome_key_info.html#key-dates",
     "title": "Key Info and Announcements",
     "section": "Key Dates",
-    "text": "Key Dates"
+    "text": "Key Dates\n\nHomework 0 due this Thursday at 11pm\n\nLet me know if you have issues with this on Sakai"
   },
   {
     "objectID": "lessons/01_Review/01_Review_key_info.html#key-dates",
@@ -4870,5 +4870,152 @@
     "title": "Lesson 10: Categorical Covariates",
     "section": "Another way of thinking about SSY, SSR, and SSE",
     "text": "Another way of thinking about SSY, SSR, and SSE"
+  },
+  {
+    "objectID": "lessons/01_Review/01_Review.html#what-did-we-learn-in-511611-12",
+    "href": "lessons/01_Review/01_Review.html#what-did-we-learn-in-511611-12",
+    "title": "Lesson 1: Review",
+    "section": "What did we learn in 511/611? (1/2)",
+    "text": "What did we learn in 511/611? (1/2)\n\nIn 511, we talked about categorical and continuous outcomes (dependent variables)\n \nWe also talked about their relationship with 1-2 continuous or categorical exposure (independent variables or predictor)\n \nWe had many good ways to assess the relationship between an outcome and exposure:\n \n\n\n\n\n\n\n\n\n\n\nContinuous Outcome\nCategorical Outcome\n\n\nContinuous Exposure\nCorrelation, simple linear regression\n??\n\n\nCategorical Exposure\nt-tests, paired t-tests, 2 sample t-tests, ANOVA\nproportion t-test, Chi-squared goodness of fit test, Fisher’s Exact test, Chi-squared test of independence, etc."
+  },
+  {
+    "objectID": "lessons/01_Review/01_Review.html#what-did-we-learn-in-511611-22",
+    "href": "lessons/01_Review/01_Review.html#what-did-we-learn-in-511611-22",
+    "title": "Lesson 1: Review",
+    "section": "What did we learn in 511/611? (2/2)",
+    "text": "What did we learn in 511/611? (2/2)\n\nYou set up a really important foundation\n\nIncluding distributions, mathematical definitions, hypothesis testing, and more!\n\n \nTests and statistical approaches learned are incredibly helpful!\n \nWhile you had to learn a lot of different tests and approaches for each combination of categorical/continuous exposure with categorical/continuous outcome\n\nThose tests cannot handle more complicated data\n\n \nWhat happens when other variables influence the relationship between your exposure and outcome?\n\nDo we just ignore them?"
+  },
+  {
+    "objectID": "lessons/01_Review/01_Review.html#chi-squared-distribution",
+    "href": "lessons/01_Review/01_Review.html#chi-squared-distribution",
+    "title": "Lesson 1: Review",
+    "section": "Chi-squared distribution",
+    "text": "Chi-squared distribution\n\n\n\nWhere did we see this?\n\nHypothesis test if two categorical variables were independent\n\n\n \n\nNotation: \\(X \\sim \\chi^2_{df}\\) OR \\(X \\sim \\chi^2_{\\nu}\\)\n\nDegrees of freedom (df): \\(df=n-1\\)\n\\(X\\) takes on only positive values\n\n\n \n\nIf \\(Z_i\\sim \\mbox{N}(0,1)\\), then \\(Z_i^2\\sim \\chi^2_1\\)\n\nA standard normal distribution squared is the Chi squared distribution with df of 1."
+  },
+  {
+    "objectID": "lessons/01_Review/01_Review.html#reference-steps-in-a-hypothesis-test",
+    "href": "lessons/01_Review/01_Review.html#reference-steps-in-a-hypothesis-test",
+    "title": "Lesson 1: Review",
+    "section": "Reference: Steps in a Hypothesis Test",
+    "text": "Reference: Steps in a Hypothesis Test\n\nCheck the assumptions\n\nWhat sampling distribution are you using? What assumptions are required for it?\n\nSet the level of significance \\(\\alpha\\)\nSpecify the null ( \\(H_0\\) ) and alternative ( \\(H_A\\) ) hypotheses\n\nIn symbols and/or in words\nAlternative: one- or two-sided?\n\nCalculate the test statistic.\nCalculate the p-value based on the observed test statistic and its sampling distribution\nWrite a conclusion to the hypothesis test\n\nDo we reject or fail to reject \\(H_0\\)?\nWrite a conclusion in the context of the problem"
+  },
+  {
+    "objectID": "lessons/01_Review/01_Review.html#another-view-steps-in-a-hypothesis-test",
+    "href": "lessons/01_Review/01_Review.html#another-view-steps-in-a-hypothesis-test",
+    "title": "Lesson 1: Review",
+    "section": "Another view: Steps in a Hypothesis Test",
+    "text": "Another view: Steps in a Hypothesis Test"
+  },
+  {
+    "objectID": "lessons/01_Review/01_Review.html#reference-what-does-it-all-look-like-together",
+    "href": "lessons/01_Review/01_Review.html#reference-what-does-it-all-look-like-together",
+    "title": "Lesson 1: Review",
+    "section": "Reference: what does it all look like together?",
+    "text": "Reference: what does it all look like together?\n\n\nExample of hypothesis test based on the 1992 JAMA data\n\n\nIs there evidence to support that the population mean body temperature is different from 98.6°F?\n\n\n\n\n\nAssumptions: The individual observations are independent and the number of individuals in our sample is 130. Thus, we can use CLT to approximate the sampling distribution.\n\n4-5. Test statistic and p-value\n\n\nSet \\(\\alpha = 0.05\\)\n\n\n\nHypothesis:\n\\[\\begin{aligned}\nH_0 &: \\mu = 98.6\\\\\n\\text{vs. } H_A&: \\mu \\neq 98.6\n\\end{aligned}\\]\n\n\n\n\n\nCode\ntemps_ttest &lt;- t.test(x = BodyTemps$Temperature, mu = 98.6)\ntidy(temps_ttest) %&gt;% gt() %&gt;% tab_options(table.font.size = 36)\n\n\n\n\n\n\n  \n    \n      estimate\n      statistic\n      p.value\n      parameter\n      conf.low\n      conf.high\n      method\n      alternative\n    \n  \n  \n    98.24923\n-5.454823\n2.410632e-07\n129\n98.122\n98.37646\nOne Sample t-test\ntwo.sided\n  \n  \n  \n\n\n\n\n\nConclusion: We reject the null hypothesis. The average body temperature in the sample was 98.25°F (95% CI 98.12, 98.38°F), which is discernibly different from 98.6°F ( \\(p\\)-value &lt; 0.001)."
+  },
+  {
+    "objectID": "lessons/01_Review/01_Review.html#do-your-exit-ticket",
+    "href": "lessons/01_Review/01_Review.html#do-your-exit-ticket",
+    "title": "Lesson 1: Review",
+    "section": "Do your exit ticket!!",
+    "text": "Do your exit ticket!!\n\nDon’t forget to go online and fill it out!\n\nThis will count as your attendance\n\n\n \n\nI look forward to the quarter with you!\n\n\n\nLesson 1: Review"
+  },
+  {
+    "objectID": "lessons/00_Welcome/00_Welcome_key_info.html",
+    "href": "lessons/00_Welcome/00_Welcome_key_info.html",
+    "title": "Key Info and Announcements",
+    "section": "",
+    "text": "Hello! Welcome!\nLet’s take a second to check that Echo360 works\n\nBut please mute your computer first!!\n\nI’ll discuss more in the Welcome and Review lesson\nAny initial questions"
+  },
+  {
+    "objectID": "lessons/00_Welcome/00_Welcome_key_info.html#announcements",
+    "href": "lessons/00_Welcome/00_Welcome_key_info.html#announcements",
+    "title": "Key Info and Announcements",
+    "section": "",
+    "text": "Hello! Welcome!\nLet’s take a second to check that Echo360 works\n\nBut please mute your computer first!!\n\nI’ll discuss more in the Welcome and Review lesson\nAny initial questions"
+  },
+  {
+    "objectID": "lessons/00_Welcome/00_Welcome.html#lets-visit-the-website-homepage",
+    "href": "lessons/00_Welcome/00_Welcome.html#lets-visit-the-website-homepage",
+    "title": "Welcome to BSTA 512/612!",
+    "section": "Let’s visit the website: Homepage",
+    "text": "Let’s visit the website: Homepage\n\nHomepage"
+  },
+  {
+    "objectID": "lessons/00_Welcome/00_Welcome.html#lets-visit-the-website-syllabus",
+    "href": "lessons/00_Welcome/00_Welcome.html#lets-visit-the-website-syllabus",
+    "title": "Welcome to BSTA 512/612!",
+    "section": "Let’s visit the website: Syllabus",
+    "text": "Let’s visit the website: Syllabus\n\nCourse learning objectives\nTextbook: two online textbooks\nR: we will continue to use and learn this programming language\nAssessments and grade breakdowns\nWeekly assignments: homeworks and labs\nFeedback: in the form of exit tickets, ongoing feedback forms, midterm feedback, and final course\nHow to succeed in this course: resources and assignments explained\nLate work policy / Attendance policy\nChatGPT and other AI technology\nCourse expectations: a few ways that I will show you respect and commitment to you as students\n\nAnd a few ways I expect from you!\n\nCommunicating with me: give me 24 hours to reply M-F\n\nOnline communication is not my strength!"
+  },
+  {
+    "objectID": "lessons/00_Welcome/00_Welcome.html#lets-visit-the-website-schedule-12",
+    "href": "lessons/00_Welcome/00_Welcome.html#lets-visit-the-website-schedule-12",
+    "title": "Welcome to BSTA 512/612!",
+    "section": "Let’s visit the website: Schedule (1/2)",
+    "text": "Let’s visit the website: Schedule (1/2)\n\nWeeks, class info, homeworks, labs"
+  },
+  {
+    "objectID": "lessons/00_Welcome/00_Welcome.html#lets-visit-the-website-schedule-22",
+    "href": "lessons/00_Welcome/00_Welcome.html#lets-visit-the-website-schedule-22",
+    "title": "Welcome to BSTA 512/612!",
+    "section": "Let’s visit the website: Schedule (2/2)",
+    "text": "Let’s visit the website: Schedule (2/2)\n\n\n\n\nKey Info\nI will post announcements and other important class related info here. For example, if I change a due date or discuss a common mistake in homework, I will put it here.\n\n\n\nSlides QMD\nThese are the basic slides that will open in your browser.\n\n\n\nSlides PDF\nThese are the slides in pdf form for easy note taking. I’m not always the best at posting these before class, so make sure you know how to save your own copy of pdf slides!\n\n\n\nSlides Notes\nThese are the annotated slides in pdf form. In class, I add my own notes to slides. After class, I will post them here.\n\n\n\nExit tix\nThese are links to that day’s exit ticket.\n\n\n\nRecording\nI record our classes. This will be a link to the OneDrive folder containing this recording.\n\n\n\nMuddy Points\nYou will have a chance to ask questions about class in your exit tickets. If I notice a trend in confusion, I will add explanations to these “Muddy Points”"
+  },
+  {
+    "objectID": "lessons/00_Welcome/00_Welcome.html#lets-visit-the-website-search",
+    "href": "lessons/00_Welcome/00_Welcome.html#lets-visit-the-website-search",
+    "title": "Welcome to BSTA 512/612!",
+    "section": "Let’s visit the website: Search",
+    "text": "Let’s visit the website: Search"
+  },
+  {
+    "objectID": "lessons/00_Welcome/00_Welcome.html#lets-visit-the-website-homework",
+    "href": "lessons/00_Welcome/00_Welcome.html#lets-visit-the-website-homework",
+    "title": "Welcome to BSTA 512/612!",
+    "section": "Let’s visit the website: Homework",
+    "text": "Let’s visit the website: Homework"
+  },
+  {
+    "objectID": "lessons/00_Welcome/00_Welcome.html#decision-on-homework-due-dates",
+    "href": "lessons/00_Welcome/00_Welcome.html#decision-on-homework-due-dates",
+    "title": "Welcome to BSTA 512/612!",
+    "section": "Decision on Homework due dates",
+    "text": "Decision on Homework due dates\n\nI have some set due dates in the schedule\nPlease look at your other classes, your calendar, etc\nConsider what day of the week you would like to turn in your assignment, solutions, and video/meeting\nQuestion in HW 0 to cast your vote and share your opinion\nWe have homework every week\n\nHomework 8 is due on 11/26 (Wednesday before Thanksgiving break)\nYou will have the option of turning it in with Homework 9"
+  },
+  {
+    "objectID": "lessons/00_Welcome/00_Welcome.html#structure-for-this-course",
+    "href": "lessons/00_Welcome/00_Welcome.html#structure-for-this-course",
+    "title": "Welcome to BSTA 512/612!",
+    "section": "Structure for this course",
+    "text": "Structure for this course\n\nWe will use the foundation built in BSTA 511/611 or EPID 525\n\n \n\nWe will be building towards models that can handle many variables!\n \n\nRegression is the building block for modeling multivariable relationships\n\n \nIn Linear Models we will build, interpret, and evaluate linear regression models"
+  },
+  {
+    "objectID": "lessons/00_Welcome/00_Welcome.html#what-we-will-cover",
+    "href": "lessons/00_Welcome/00_Welcome.html#what-we-will-cover",
+    "title": "Welcome to BSTA 512/612!",
+    "section": "What we will cover",
+    "text": "What we will cover\n\n  \n\n\n\n\nModel Selection\n\n\n\nBuilding a model\nSelecting variables\nPrediction vs interpretation\nComparing potential models\n\n\n\n\n\n\n\n\nModel Fitting\n\n\n\nFind best fit line\nUsing OLS in this class\nParameter estimation\nCategorical covariates\nInteractions\n\n\n\n\n\n\n\n\nModel Evaluation\n\n\n\nEvaluation of model fit\nTesting model assumptions\nResiduals\nTransformations\nInfluential points\nMulticollinearity\n\n\n\n\n\n\n\n\nModel Use (Inference)\n\n\n\n\n\nInference for coefficients\nHypothesis testing for coefficients\n\n\n\nInference for expected \\(Y\\) given \\(X\\)\nPrediction of new \\(Y\\) given \\(X\\)"
+  },
+  {
+    "objectID": "lessons/00_Welcome/00_Welcome.html#let-me-know-if-you-have-questions",
+    "href": "lessons/00_Welcome/00_Welcome.html#let-me-know-if-you-have-questions",
+    "title": "Welcome to BSTA 512/612!",
+    "section": "Let me know if you have questions",
+    "text": "Let me know if you have questions\nOr if there’s any contradicting information in the course site… I’m sure I made a mistake somewhere!!\n\nFor example: we do NOT have quizzes. If you see a mention of quizzes anywhere in the course, then I simply overlooked it and need to fix it!\n\n\n\nWelcome"
+  },
+  {
+    "objectID": "lessons/00_Welcome/00_Welcome.html#lets-visit-the-website-project-and-labs",
+    "href": "lessons/00_Welcome/00_Welcome.html#lets-visit-the-website-project-and-labs",
+    "title": "Welcome to BSTA 512/612!",
+    "section": "Let’s visit the website: Project and labs",
+    "text": "Let’s visit the website: Project and labs"
+  },
+  {
+    "objectID": "lessons/00_Welcome/00_Welcome.html#what-we-will-cover-process-for-regression-data-analysis",
+    "href": "lessons/00_Welcome/00_Welcome.html#what-we-will-cover-process-for-regression-data-analysis",
+    "title": "Welcome to BSTA 512/612!",
+    "section": "What we will cover: process for regression data analysis",
+    "text": "What we will cover: process for regression data analysis\n\n  \n\n\n\n\nModel Selection\n\n\n\nBuilding a model\nSelecting variables\nPrediction vs interpretation\nComparing potential models\n\n\n\n\n\n\n\n\nModel Fitting\n\n\n\nFind best fit line\nUsing OLS in this class\nParameter estimation\nCategorical covariates\nInteractions\n\n\n\n\n\n\n\n\nModel Evaluation\n\n\n\nEvaluation of model fit\nTesting model assumptions\nResiduals\nTransformations\nInfluential points\nMulticollinearity\n\n\n\n\n\n\n\n\nModel Use (Inference)\n\n\n\n\n\nInference for coefficients\nHypothesis testing for coefficients\n\n\n\nInference for expected \\(Y\\) given \\(X\\)\nPrediction of new \\(Y\\) given \\(X\\)"
   }
 ]

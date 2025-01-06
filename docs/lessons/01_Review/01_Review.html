@@ -405,8 +405,8 @@ Nicky Wakim
 
   <p class="date">2025-01-06</p>
 </section>
-<section id="what-did-we-learn-in-511611" class="slide level2">
-<h2>What did we learn in 511/611?</h2>
+<section id="what-did-we-learn-in-511611-12" class="slide level2">
+<h2>What did we learn in 511/611? (1/2)</h2>
 <ul>
 <li><p>In 511, we talked about <em>categorical</em> and <em>continuous</em> outcomes (dependent variables)</p>
 <p>&nbsp;</p></li>
@@ -440,8 +440,8 @@ Nicky Wakim
 </tbody>
 </table>
 </section>
-<section id="what-did-we-learn-in-511" class="slide level2">
-<h2>What did we learn in 511?</h2>
+<section id="what-did-we-learn-in-511611-22" class="slide level2">
+<h2>What did we learn in 511/611? (2/2)</h2>
 <ul>
 <li><p>You set up a really <strong>important foundation</strong></p>
 <ul>
@@ -460,6 +460,13 @@ Nicky Wakim
 <li>Do we just ignore them?</li>
 </ul></li>
 </ul>
+<div class="cell">
+<style type="text/css">
+.reveal code {
+  max-height: 100% !important;
+}
+</style>
+</div>
 </section>
 <section id="what-will-we-learn-in-this-class" class="slide level2">
 <h2>What will we learn in this class?</h2>
@@ -470,7 +477,7 @@ Nicky Wakim
 <li><strong>Regression</strong> is the building block for modeling multivariable relationships</li>
 </ul>
 <p>&nbsp;</p></li>
-<li><p>In Linear Models we will <em>build, interpret, and evaluate</em> linear regression models</p></li>
+<li><p>In Linear Models we will <em>build, interpret, and evaluate</em> <strong>linear regression models</strong></p></li>
 </ul>
 </section>
 <section id="process-of-regression-data-analysis" class="slide level2">
@@ -555,13 +562,13 @@ Nicky Wakim
 <h2>Main sections of the course</h2>
 <ol type="1">
 <li><p>Review</p></li>
-<li><p>Intro to SLR: estimation and testing</p>
+<li><p>Simple Linear Regression</p>
 <ul>
-<li><span style="color:#34AC8B;">Model fitting</span></li>
+<li><span style="color:#A7EA52;">Model evaluation</span> and <span style="color:#4FADF3;">Model use</span></li>
 </ul></li>
 <li><p>Intro to MLR: estimation and testing</p>
 <ul>
-<li><span style="color:#34AC8B;">Model fitting</span></li>
+<li><span style="color:#4FADF3;">Model use</span></li>
 </ul></li>
 <li><p>Diving into our predictors: categorical variables, interactions between variable</p>
 <ul>
@@ -602,7 +609,9 @@ Nicky Wakim
 <section id="before-we-begin" class="slide level2">
 <h2>Before we begin</h2>
 <ul>
-<li>Meike has some really good online notes, code, and work on <a href="https://niederhausen.github.io/BSTA_511_F23/">her BSTA 511 page</a></li>
+<li><p>Feel free to visit my or Meike’s Introducation to Biostatistics</p></li>
+<li><p><a href="https://niederhausen.github.io/BSTA_511_F24/">Meike’s BSTA 511 page</a></p></li>
+<li><p><a href="https://nwakim.github.io/F24_EPI_525/">Nicky’s BSTA 525 page</a></p></li>
 </ul>
 </section>
 <section id="learning-objectives" class="slide level2">
@@ -628,11 +637,6 @@ Nicky Wakim
 <li><p>Use our previous tools in 511 to conduct a hypothesis test</p></li>
 <li><p>Define error rates and power</p></li>
 </ol>
-</section>
-<section>
-<section id="quick-basics" class="title-slide slide level1 center">
-<h1>Quick basics</h1>
-
 </section>
 <section id="some-basic-statistics-talk" class="slide level2">
 <h2>Some Basic Statistics “Talk”</h2>
@@ -661,7 +665,7 @@ Nicky Wakim
 <ul>
 <li><p>Sample mean</p>
 <p><span class="math display">\[
-\bar{x} = \dfrac{x_1+x_2+...+x_n}{n}=\dfrac{\sum_{i=1}^nx_i}{n}
+\overline{x} = \dfrac{x_1+x_2+...+x_n}{n}=\dfrac{\sum_{i=1}^nx_i}{n}
 \]</span></p></li>
 <li><p>Median</p></li>
 </ul>
@@ -674,7 +678,10 @@ Nicky Wakim
 </ul></li>
 <li><p>Sample standard deviation</p>
 <p><span class="math display">\[
-s = \sqrt{\dfrac{(x_1-\bar{x})^2+(x_2-\bar{x})^2+...+(x_n-\bar{x})^2}{n-1}}=\sqrt{\dfrac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}}
+\begin{aligned}
+s = &amp; \sqrt{\dfrac{(x_1-\overline{x})^2+(x_2-\overline{x})^2+...+(x_n-\overline{x})^2}{n-1}} \\
+= &amp; \sqrt{\dfrac{\sum_{i=1}^n(x_i-\overline{x})^2}{n-1}}
+\end{aligned}
 \]</span></p></li>
 <li><p>IQR</p>
 <ul>
@@ -717,6 +724,19 @@ s = \sqrt{\dfrac{(x_1-\bar{x})^2+(x_2-\bar{x})^2+...+(x_n-\bar{x})^2}{n-1}}=\sqr
 </ul>
 </div>
 </div>
+<ul>
+<li>Or all together!!</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>dds.discr <span class="sc">%&gt;%</span> <span class="fu">get_summary_stats</span>(age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 13
+  variable     n   min   max median    q1    q3   iqr   mad  mean    sd    se
+  &lt;fct&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 age       1000     0    95     18    12    26    14  10.4  22.8  18.5 0.584
+# ℹ 1 more variable: ci &lt;dbl&gt;</code></pre>
+</div>
+</div>
 </section>
 <section id="data-visualization" class="slide level2">
 <h2>Data visualization</h2>
@@ -725,7 +745,7 @@ s = \sqrt{\dfrac{(x_1-\bar{x})^2+(x_2-\bar{x})^2+...+(x_n-\bar{x})^2}{n-1}}=\sqr
 <li><p>We will load the package:</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="histogram-using-ggplot2" class="slide level2">
@@ -734,26 +754,26 @@ s = \sqrt{\dfrac{(x_1-\bar{x})^2+(x_2-\bar{x})^2+...+(x_n-\bar{x})^2}{n-1}}=\sqr
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dds.discr, </span>
-<span id="cb7-2"><a href="#cb7-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dds.discr, </span>
+<span id="cb9-2"><a href="#cb9-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="01_Review_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+<p><img data-src="01_Review_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">data =</span> dds.discr, </span>
-<span id="cb8-3"><a href="#cb8-3"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">data =</span> dds.discr, </span>
+<span id="cb10-3"><a href="#cb10-3"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="01_Review_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
+<p><img data-src="01_Review_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -766,16 +786,16 @@ s = \sqrt{\dfrac{(x_1-\bar{x})^2+(x_2-\bar{x})^2+...+(x_n-\bar{x})^2}{n-1}}=\sqr
 <h2>Spruced up histogram using <code>ggplot2</code></h2>
 <p>We can make a more formal, presentable graph:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dds.discr, </span>
-<span id="cb9-2"><a href="#cb9-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>)) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Age"</span>, </span>
-<span id="cb9-6"><a href="#cb9-6"></a>       <span class="at">y =</span> <span class="st">"Count"</span>, </span>
-<span id="cb9-7"><a href="#cb9-7"></a>       <span class="at">title =</span> <span class="st">"Distribution of Age in Sample"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dds.discr, </span>
+<span id="cb11-2"><a href="#cb11-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>)) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Age"</span>, </span>
+<span id="cb11-6"><a href="#cb11-6"></a>       <span class="at">y =</span> <span class="st">"Count"</span>, </span>
+<span id="cb11-7"><a href="#cb11-7"></a>       <span class="at">title =</span> <span class="st">"Distribution of Age in Sample"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="01_Review_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch quarto-figure-center"><p>I would like you to turn in homework, labs, and project reports with graphs like these.</p>
+<img data-src="01_Review_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch quarto-figure-center"><p>I would like you to turn in homework, labs, and project reports with graphs like these.</p>
 </section>
 <section id="other-basic-plots-from-ggplot2" class="slide level2">
 <h2>Other basic plots from <code>ggplot2</code></h2>
@@ -783,20 +803,20 @@ s = \sqrt{\dfrac{(x_1-\bar{x})^2+(x_2-\bar{x})^2+...+(x_n-\bar{x})^2}{n-1}}=\sqr
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dds.discr, </span>
-<span id="cb10-2"><a href="#cb10-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dds.discr, </span>
+<span id="cb12-2"><a href="#cb12-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="01_Review_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
+<p><img data-src="01_Review_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></p>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dds.discr, </span>
-<span id="cb11-2"><a href="#cb11-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dds.discr, </span>
+<span id="cb13-2"><a href="#cb13-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="01_Review_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
+<p><img data-src="01_Review_files/figure-revealjs/unnamed-chunk-16-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -817,18 +837,13 @@ s = \sqrt{\dfrac{(x_1-\bar{x})^2+(x_2-\bar{x})^2+...+(x_n-\bar{x})^2}{n-1}}=\sqr
 <li><p>Use our previous tools in 511 to conduct a hypothesis test</p></li>
 <li><p>Define error rates and power</p></li>
 </ol>
-</section></section>
-<section>
-<section id="important-distributions" class="title-slide slide level1 center">
-<h1>Important Distributions</h1>
-
 </section>
 <section id="distributions-that-will-be-used-in-this-class" class="slide level2">
 <h2>Distributions that will be used in this class</h2>
 <ul>
 <li><p>Normal distribution</p></li>
 <li><p>Chi-square distribution</p></li>
-<li><p>t distribution</p></li>
+<li><p>Student’s t distribution</p></li>
 <li><p>F distribution</p></li>
 </ul>
 </section>
@@ -837,14 +852,24 @@ s = \sqrt{\dfrac{(x_1-\bar{x})^2+(x_2-\bar{x})^2+...+(x_n-\bar{x})^2}{n-1}}=\sqr
 <div class="columns">
 <div class="column">
 <ul>
+<li><p>Where did we see this?</p>
+<ul>
+<li>Basically everywhere! Think Central Limit Theorem</li>
+</ul></li>
+</ul>
+<p>&nbsp;</p>
+<ul>
 <li><p>Notation: <span class="math inline">\(Y\sim N(\mu,\sigma^2)\)</span></p></li>
-<li><p>Arguably, the most important distribution in statistics</p></li>
+<li><p>Arguably the most important distribution in statistics</p></li>
 <li><p>If we know <span class="math inline">\(E(Y)=\mu\)</span>, <span class="math inline">\(Var(Y)=\sigma^2\)</span> then</p>
 <ul>
 <li><p>2/3 of <span class="math inline">\(Y\)</span>’s distribution lies within 1 <span class="math inline">\(\sigma\)</span> of <span class="math inline">\(\mu\)</span></p></li>
-<li><p>95% <span class="math inline">\(\ldots\)</span> <span class="math inline">\(\ldots\)</span> is within <span class="math inline">\(\mu\pm 2\sigma\)</span></p></li>
-<li><p><span class="math inline">\(&gt;99\)</span>% <span class="math inline">\(\ldots\)</span> <span class="math inline">\(\ldots\)</span> lies within <span class="math inline">\(\mu\pm 3\sigma\)</span></p></li>
+<li><p>95% is within <span class="math inline">\(\mu\pm 2\sigma\)</span></p></li>
+<li><p><span class="math inline">\(&gt;99\)</span>% lies within <span class="math inline">\(\mu\pm 3\sigma\)</span></p></li>
 </ul></li>
+</ul>
+<p>&nbsp;</p>
+<ul>
 <li><p>Linear combinations of Normal’s are Normal<br>
 e.g., <span class="math inline">\((aY+b)\sim \mbox{N}(a\mu+b,\;a^2\sigma^2)\)</span></p></li>
 <li><p>Standard normal: <span class="math inline">\(Z=\frac{Y-\mu}{\sigma} \sim \mbox{N}(0,1)\)</span></p></li>
@@ -854,30 +879,29 @@ e.g., <span class="math inline">\((aY+b)\sim \mbox{N}(a\mu+b,\;a^2\sigma^2)\)</s
 </div>
 </div>
 </section>
-<section id="chi-squared-distribution-models-sampling-variance" class="slide level2">
-<h2>Chi-squared distribution: <em>models sampling variance</em></h2>
+<section id="chi-squared-distribution" class="slide level2">
+<h2>Chi-squared distribution</h2>
 <div class="columns">
 <div class="column">
+<ul>
+<li><p>Where did we see this?</p>
+<ul>
+<li>Hypothesis test if two categorical variables were independent</li>
+</ul></li>
+</ul>
+<p>&nbsp;</p>
 <ul>
 <li><p>Notation: <span class="math inline">\(X \sim \chi^2_{df}\)</span> OR <span class="math inline">\(X \sim \chi^2_{\nu}\)</span></p>
 <ul>
 <li><p>Degrees of freedom (df): <span class="math inline">\(df=n-1\)</span></p></li>
 <li><p><span class="math inline">\(X\)</span> takes on only positive values</p></li>
 </ul></li>
+</ul>
+<p>&nbsp;</p>
+<ul>
 <li><p>If <span class="math inline">\(Z_i\sim \mbox{N}(0,1)\)</span>, then <span class="math inline">\(Z_i^2\sim \chi^2_1\)</span></p>
 <ul>
 <li>A standard normal distribution squared is the Chi squared distribution with df of 1.</li>
-</ul></li>
-</ul>
-<!-- -->
-<ul>
-<li>Used in hypothesis testing and CI’s <strong>for variance or standard deviation</strong>
-<ul>
-<li>Sample variance (and SD) is random and thus can be modeled by a probability distribution: Chi-sqaured</li>
-</ul></li>
-<li>Chi-squared distribution used to model the <strong>ratio of</strong> the <em>sample variance</em> <span class="math inline">\(s^2\)</span> to <em>population variance</em> <span class="math inline">\(\sigma^2\)</span>:
-<ul>
-<li><span class="math inline">\(\dfrac{(n-1)s^2}{\sigma^2}\sim \chi^2_{n-1}\)</span></li>
 </ul></li>
 </ul>
 </div><div class="column">
@@ -890,14 +914,24 @@ e.g., <span class="math inline">\((aY+b)\sim \mbox{N}(a\mu+b,\;a^2\sigma^2)\)</s
 <div class="columns">
 <div class="column">
 <ul>
+<li><p>Where did we see this?</p>
+<ul>
+<li>Inference of means: single sample, paired, two independent samples</li>
+</ul></li>
+</ul>
+<p>&nbsp;</p>
+<ul>
 <li><p>Notation: <span class="math inline">\(T \sim t_{df}\)</span> OR <span class="math inline">\(T \sim t_{n-1}\)</span></p>
 <ul>
 <li><p>Degrees of freedom (df): <span class="math inline">\(df=n-1\)</span></p></li>
-<li><p><span class="math inline">\(T = \dfrac{\bar{x} - \mu_x}{\dfrac{s}{\sqrt{n}}}\sim t_{n-1}\)</span></p></li>
+<li><p><span class="math inline">\(T = \dfrac{\overline{x} - \mu_x}{\dfrac{s}{\sqrt{n}}}\sim t_{n-1}\)</span></p></li>
 </ul></li>
+</ul>
+<p>&nbsp;</p>
+<ul>
 <li><p>In linear modeling, used for inference on individual regression parameters</p>
 <ul>
-<li>Think: our estimated coefficients (<span class="math inline">\(\hat{\beta}\)</span>)</li>
+<li>Think: our estimated coefficients ( <span class="math inline">\(\hat{\beta_{}}\)</span> )</li>
 </ul></li>
 </ul>
 </div><div class="column">
@@ -910,13 +944,14 @@ e.g., <span class="math inline">\((aY+b)\sim \mbox{N}(a\mu+b,\;a^2\sigma^2)\)</s
 <div class="columns">
 <div class="column">
 <ul>
-<li><p>Model ratio of sample variances</p>
+<li><p>Where did we see this?</p>
 <ul>
-<li>Ratio of variances is important for hypothesis testing of regression models</li>
+<li>Inference for 2+ means: ANOVA test</li>
 </ul></li>
+<li><p>Model ratio of sample variances (and is a ratio of Chi-squared RVs)</p></li>
 <li><p>If <span class="math inline">\(X_1^2\sim \chi^2_{df1}\)</span> and <span class="math inline">\(X_2^2\sim \chi^2_{df2}\)</span>, where <span class="math inline">\(X_1^2\perp X_2^2\)</span>, then:</p></li>
 </ul>
-<p><span class="math display">\[\dfrac{X_1^2/df1}{X_2^2/df2} \sim F_{df1,df2}\]</span> - only takes on positive values</p>
+<p><span class="math display">\[\dfrac{X_1^2/df1}{X_2^2/df2} \sim F_{df1,df2}\]</span></p>
 <ul>
 <li><p>Important relationship with <span class="math inline">\(t\)</span> distribution: <span class="math inline">\(T^2 \sim F_{1,\nu}\)</span></p>
 <ul>
@@ -926,39 +961,6 @@ e.g., <span class="math inline">\((aY+b)\sim \mbox{N}(a\mu+b,\;a^2\sigma^2)\)</s
 </ul>
 </div><div class="column">
 <p><img data-src="../img_slides/f_dist.png"></p>
-</div>
-</div>
-</section>
-<section id="f-distribution-1" class="slide level2">
-<h2>F-Distribution</h2>
-<div class="columns">
-<div class="column">
-<ul>
-<li><p>Model ratio of sample variances</p>
-<ul>
-<li>Ratio of variances is important for hypothesis testing of regression models</li>
-</ul></li>
-<li><p>If <span class="math inline">\(X_1^2\sim \chi^2_{df1}\)</span> and <span class="math inline">\(X_2^2\sim \chi^2_{df2}\)</span>, where <span class="math inline">\(X_1^2\perp X_2^2\)</span>, then:</p></li>
-</ul>
-<p><span class="math display">\[\dfrac{X_1^2/df1}{X_2^2/df2} \sim F_{df1,df2}\]</span> - only takes on positive values</p>
-<ul>
-<li><p>Important relationship with <span class="math inline">\(t\)</span> distribution: <span class="math inline">\(T^2 \sim F_{1,\nu}\)</span></p>
-<ul>
-<li><p>The square of a t-distribution with <span class="math inline">\(df=\nu\)</span></p></li>
-<li><p>is an F-distribution with numerator df (<span class="math inline">\(df_1 = 1\)</span>) and denominator df (<span class="math inline">\(df_2 = \nu\)</span>)</p></li>
-</ul></li>
-</ul>
-</div><div class="column">
-<p><img data-src="../img_slides/f_dist.png"></p>
-<div class="proposition">
-<div class="prop-title">
-<p>Is there a relationship between our chi-squared and F-distribution?</p>
-</div>
-<div class="prop-cont">
-<p>Recall, <span class="math inline">\(\dfrac{(n-1)s^2}{\sigma^2}\sim \chi^2_{n-1}\)</span>.</p>
-<p>The F-distribution for a ratio of variances between two models is: <span class="math inline">\(F = \dfrac{s_1^2\sigma^2_2}{s_2^2\sigma^2_1} \sim F_{n_1-1, n_2-1}\)</span></p>
-</div>
-</div>
 </div>
 </div>
 </section>
@@ -994,11 +996,6 @@ e.g., <span class="math inline">\((aY+b)\sim \mbox{N}(a\mu+b,\;a^2\sigma^2)\)</s
 <li><p>Use our previous tools in 511 to conduct a hypothesis test</p></li>
 <li><p>Define error rates and power</p></li>
 </ol>
-</section></section>
-<section>
-<section id="statistical-inference-estimation" class="title-slide slide level1 center">
-<h1>Statistical inference: Estimation</h1>
-
 </section>
 <section id="confidence-interval-for-one-mean" class="slide level2">
 <h2>Confidence interval for one mean</h2>
@@ -1006,40 +1003,7 @@ e.g., <span class="math inline">\((aY+b)\sim \mbox{N}(a\mu+b,\;a^2\sigma^2)\)</s
 <div class="column">
 <p>The confidence interval for population mean <span class="math inline">\(\mu\)</span>:</p>
 <p><span class="math display">\[
-\bar{x} \pm t^{*}\dfrac{s}{\sqrt{n}}
-\]</span></p>
-<ul>
-<li>where <span class="math inline">\(t^*\)</span> is the critical value for the 95% (or other percent) corresponding to the t-distribution and dependent on <span class="math inline">\(df=n-1\)</span></li>
-</ul>
-<div class="proposition">
-<div class="prop-title">
-<p>We can use <code>R</code> to find the critical t-value, <span class="math inline">\(t^*\)</span></p>
-</div>
-<div class="prop-cont">
-<p>For example the critical value for the 95% CI with <span class="math inline">\(n=10\)</span> subjects is…</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df=</span><span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.262157</code></pre>
-</div>
-</div>
-<ul>
-<li>Recall, that as the <span class="math inline">\(df\)</span> increases, the t-distribution converges towards the Normal distribution</li>
-</ul>
-</div>
-</div>
-</div><div class="column">
-
-</div>
-</div>
-</section>
-<section id="confidence-interval-for-one-mean-1" class="slide level2">
-<h2>Confidence interval for one mean</h2>
-<div class="columns">
-<div class="column">
-<p>The confidence interval for population mean <span class="math inline">\(\mu\)</span>:</p>
-<p><span class="math display">\[
-\bar{x} \pm t^{*}\dfrac{s}{\sqrt{n}}
+\overline{x} \pm t^{*}\dfrac{s}{\sqrt{n}}
 \]</span></p>
 <ul>
 <li>where <span class="math inline">\(t^*\)</span> is the critical value for the 95% (or other percent) corresponding to the t-distribution and dependent on <span class="math inline">\(df=n-1\)</span></li>
@@ -1062,9 +1026,42 @@ e.g., <span class="math inline">\((aY+b)\sim \mbox{N}(a\mu+b,\;a^2\sigma^2)\)</s
 </div>
 </div>
 </div><div class="column">
+
+</div>
+</div>
+</section>
+<section id="confidence-interval-for-one-mean-1" class="slide level2">
+<h2>Confidence interval for one mean</h2>
+<div class="columns">
+<div class="column">
+<p>The confidence interval for population mean <span class="math inline">\(\mu\)</span>:</p>
+<p><span class="math display">\[
+\overline{x} \pm t^{*}\dfrac{s}{\sqrt{n}}
+\]</span></p>
+<ul>
+<li>where <span class="math inline">\(t^*\)</span> is the critical value for the 95% (or other percent) corresponding to the t-distribution and dependent on <span class="math inline">\(df=n-1\)</span></li>
+</ul>
+<div class="proposition">
+<div class="prop-title">
+<p>We can use <code>R</code> to find the critical t-value, <span class="math inline">\(t^*\)</span></p>
+</div>
+<div class="prop-cont">
+<p>For example the critical value for the 95% CI with <span class="math inline">\(n=10\)</span> subjects is…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df=</span><span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.262157</code></pre>
+</div>
+</div>
+<ul>
+<li>Recall, that as the <span class="math inline">\(df\)</span> increases, the t-distribution converges towards the Normal distribution</li>
+</ul>
+</div>
+</div>
+</div><div class="column">
 <p>We can also use <code>t.test</code> in R to calculate the confidence interval if we have a dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">t.test</span>(dds.discr<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">t.test</span>(dds.discr<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -1088,7 +1085,7 @@ mean of x
 <div class="column">
 <p>The confidence interval for difference in independent population means, <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span>:</p>
 <p><span class="math display">\[
-\bar{x}_1 - \bar{x}_2 \pm t^{*}\sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}}
+\overline{x}_1 - \overline{x}_2 \pm t^{*}\sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}}
 \]</span></p>
 <ul>
 <li>where <span class="math inline">\(t^*\)</span> is the critical value for the 95% (or other percent) corresponding to the t-distribution and dependent on <span class="math inline">\(df=n_1 + n_2 -2\)</span></li>
@@ -1097,6 +1094,13 @@ mean of x
 
 </div>
 </div>
+<p>&nbsp;</p>
+<ul>
+<li>Please check out my notes on this if you’d like: <a href="https://nwakim.github.io/F24_EPI_525/schedule.html" class="uri">https://nwakim.github.io/F24_EPI_525/schedule.html</a>
+<ul>
+<li>It’s under Lesson 13</li>
+</ul></li>
+</ul>
 </section>
 <section id="heres-a-decent-source-for-other-r-code-for-tests-in-511" class="slide level2">
 <h2>Here’s a decent source for other R code for tests in 511</h2>
@@ -1117,98 +1121,567 @@ mean of x
 <ol start="5" type="1">
 <li>Define error rates and power</li>
 </ol>
-</section></section>
-<section>
-<section id="statistical-inference-hypothesis-testing" class="title-slide slide level1 center">
-<h1>Statistical inference: Hypothesis testing</h1>
-
 </section>
-<section id="steps-in-hypothesis-testing" class="slide level2">
-<h2>Steps in hypothesis testing</h2>
+<section id="reference-steps-in-a-hypothesis-test" class="slide level2">
+<h2>Reference: Steps in a Hypothesis Test</h2>
+<ol type="1">
+<li><p>Check the <span style="color:#4FADF3"><strong>assumptions</strong></span></p>
+<ul>
+<li>What sampling distribution are you using? What assumptions are required for it?</li>
+</ul></li>
+<li><p>Set the <span style="color:#4FADF3"><strong>level of significance</strong></span> <span class="math inline">\(\alpha\)</span></p></li>
+<li><p>Specify the <span style="color:#4FADF3"><strong>null</strong></span> ( <span class="math inline">\(H_0\)</span> ) and <span style="color:#4FADF3"><strong>alternative</strong></span> ( <span class="math inline">\(H_A\)</span> ) <span style="color:#4FADF3"><strong>hypotheses</strong></span></p>
+<ul>
+<li>In symbols and/or in words</li>
+<li>Alternative: one- or two-sided?</li>
+</ul></li>
+<li><p>Calculate the <span style="color:#4FADF3"><strong>test statistic</strong></span>.</p></li>
+<li><p>Calculate the <span style="color:#4FADF3"><strong>p-value</strong></span> based on the observed test statistic and its sampling distribution</p></li>
+<li><p>Write a <span style="color:#4FADF3"><strong>conclusion</strong></span> to the hypothesis test</p>
+<ul>
+<li>Do we reject or fail to reject <span class="math inline">\(H_0\)</span>?</li>
+<li>Write a conclusion in the context of the problem</li>
+</ul></li>
+</ol>
+</section>
+<section id="another-view-steps-in-a-hypothesis-test" class="slide level2">
+<h2>Another view: Steps in a Hypothesis Test</h2>
 
 <img data-src="../img_slides/hypothesis_test_steps.png" class="r-stretch quarto-figure-center"></section>
 <section id="example-one-sample-t-test" class="slide level2">
 <h2>Example: one sample t-test</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>BodyTemps <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"data/BodyTemperatures.csv"</span>)</span>
-<span id="cb18-2"><a href="#cb18-2"></a></span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="fu">ggplot</span>(<span class="at">data =</span> BodyTemps, </span>
-<span id="cb18-4"><a href="#cb18-4"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Temperature)) <span class="sc">+</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb18-6"><a href="#cb18-6"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>)) <span class="sc">+</span></span>
-<span id="cb18-7"><a href="#cb18-7"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Temperature"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, </span>
-<span id="cb18-8"><a href="#cb18-8"></a>       <span class="at">title =</span> <span class="st">"Distribution of Body Temperature in Sample"</span>) <span class="sc">+</span></span>
-<span id="cb18-9"><a href="#cb18-9"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(BodyTemps<span class="sc">$</span>Temperature, <span class="at">na.rm =</span> T)), </span>
-<span id="cb18-10"><a href="#cb18-10"></a>             <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>BodyTemps <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"data/BodyTemperatures.csv"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="fu">ggplot</span>(<span class="at">data =</span> BodyTemps, </span>
+<span id="cb20-4"><a href="#cb20-4"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Temperature)) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>)) <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Temperature"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, </span>
+<span id="cb20-8"><a href="#cb20-8"></a>       <span class="at">title =</span> <span class="st">"Distribution of Body Temperature in Sample"</span>) <span class="sc">+</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(BodyTemps<span class="sc">$</span>Temperature, <span class="at">na.rm =</span> T)), </span>
+<span id="cb20-10"><a href="#cb20-10"></a>             <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="01_Review_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="example-one-sample-t-test-using-p-value-approach" class="slide level2">
-<h2>Example: one sample t-test using <strong><em>p-value approach</em></strong></h2>
-<p>We want to see what the mean population body temperature is.</p>
-<ol start="2" type="1">
-<li><p>State the null and alternative hypotheses:</p>
-<table>
-<colgroup>
-<col style="width: 23%">
-<col style="width: 76%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(H_0: \mu = 98.6\)</span></td>
-<td><span class="math inline">\(H_0\)</span>: The population mean body temperature is 98.6 degrees F</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(H_A: \mu \neq 98.6\)</span></td>
-<td><span class="math inline">\(H_A\)</span>: The population mean body temperature is <strong>not</strong> 98.6 degrees F</td>
-</tr>
-</tbody>
-</table></li>
-<li><p>The significance level is <span class="math inline">\(\alpha = 0.05\)</span></p></li>
-<li><p>The test statistic, <span class="math inline">\(t_{\bar{x}}\)</span> follows a student’s t-distribution with <span class="math inline">\(df = n-1 = 129\)</span></p></li>
-<li><p>The test statistic is: <span class="math inline">\(t_{\bar{x}} = \dfrac{\bar{x}-\mu_0}{\dfrac{s}{\sqrt{n}}}\)</span> and with the data: <span class="math inline">\(t_{\bar{x}} = \dfrac{98.25-98.6}{\dfrac{0.73}{\sqrt{130}}} = -5.45\)</span></p></li>
-<li><p>Calculate the p-value: <span class="math inline">\(p-value = P(t \leq -5.45) + P(t \geq 5.45)\)</span></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="sc">-</span><span class="fl">5.4548</span>, <span class="at">df =</span> <span class="dv">130-1</span>, <span class="at">lower.tail=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.410889e-07</code></pre>
+<img data-src="01_Review_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="reference-what-does-it-all-look-like-together" class="slide level2">
+<h2>Reference: what does it all look like together?</h2>
+<div class="example">
+<div class="ex-title">
+<p>Example of hypothesis test based on the 1992 JAMA data</p>
 </div>
-</div></li>
-<li><p>Conclusion: We reject the null hypothesis. There is sufficient evidence that the (population) mean body temperature after is different from 98.6 degree ( <span class="math inline">\(p-value &lt; 0.001\)</span>).</p></li>
+<div class="ex-cont">
+<p>Is there evidence to support that the population mean body temperature is different from 98.6°F?</p>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ol type="1">
+<li><strong>Assumptions:</strong> The individual observations are independent and the number of individuals in our sample is 130. Thus, we can use CLT to approximate the sampling distribution.</li>
 </ol>
-</section>
-<section id="example-one-sample-t-test-using-critical-values-approach" class="slide level2">
-<h2>Example: one sample t-test using <em>critical values approach</em></h2>
-<p>We want to see what the mean population body temperature is.</p>
+<p>4-5. Test statistic and p-value</p>
+</div><div class="column" style="width:25%;">
 <ol start="2" type="1">
-<li><p>State the null and alternative hypotheses:</p>
-<table>
-<colgroup>
-<col style="width: 23%">
-<col style="width: 76%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(H_0: \mu = 98.6\)</span></td>
-<td><span class="math inline">\(H_0\)</span>: The population mean body temperature is 98.6 degrees F</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(H_A: \mu \neq 98.6\)</span></td>
-<td><span class="math inline">\(H_A\)</span>: The population mean body temperature is <strong>not</strong> 98.6 degrees F</td>
-</tr>
-</tbody>
-</table></li>
-<li><p>The significance level is <span class="math inline">\(\alpha = 0.05\)</span></p></li>
-<li><p>The test statistic, <span class="math inline">\(t_{\bar{x}}\)</span> follows a student’s t-distribution with <span class="math inline">\(df = n-1 = 129\)</span></p></li>
-<li><p>Decision rule (critical value): For <span class="math inline">\(\alpha=0.05\)</span> , <span class="math inline">\(2*P(t \geq t^*) = 0.05\)</span></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> <span class="dv">130-1</span>, <span class="at">lower.tail=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.978524</code></pre>
+<li>Set <span class="math inline">\(\alpha = 0.05\)</span></li>
+</ol>
+</div><div class="column" style="width:25%;">
+<ol start="3" type="1">
+<li><p><strong>Hypothesis:</strong></p>
+<span class="math display">\[\begin{aligned}
+H_0 &amp;: \mu = 98.6\\
+\text{vs. } H_A&amp;: \mu \neq 98.6
+\end{aligned}\]</span></li>
+</ol>
 </div>
-</div></li>
-<li><p>The test statistic is: <span class="math inline">\(t_{\bar{x}} = \dfrac{\bar{x}-\mu_0}{\dfrac{s}{\sqrt{n}}}\)</span> and with the data: <span class="math inline">\(t_{\bar{x}} = \dfrac{98.25-98.6}{\dfrac{0.73}{\sqrt{130}}} = -5.45\)</span></p></li>
-<li><p>Conclusion: We reject the null hypothesis. There is sufficient evidence that the (population) mean body temperature after is different from 98.6 degree ( 95% CI: <span class="math inline">\(98.12, 98.38\)</span>).</p></li>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>temps_ttest <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">x =</span> BodyTemps<span class="sc">$</span>Temperature, <span class="at">mu =</span> <span class="fl">98.6</span>)</span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">tidy</span>(temps_ttest) <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">36</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div id="mecfuynzio" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mecfuynzio table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#mecfuynzio thead, #mecfuynzio tbody, #mecfuynzio tfoot, #mecfuynzio tr, #mecfuynzio td, #mecfuynzio th {
+  border-style: none;
+}
+
+#mecfuynzio p {
+  margin: 0;
+  padding: 0;
+}
+
+#mecfuynzio .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 36px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#mecfuynzio .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#mecfuynzio .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#mecfuynzio .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#mecfuynzio .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mecfuynzio .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mecfuynzio .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mecfuynzio .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mecfuynzio .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mecfuynzio .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mecfuynzio .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mecfuynzio .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mecfuynzio .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#mecfuynzio .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#mecfuynzio .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mecfuynzio .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mecfuynzio .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mecfuynzio .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mecfuynzio .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mecfuynzio .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#mecfuynzio .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#mecfuynzio .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#mecfuynzio .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mecfuynzio .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#mecfuynzio .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#mecfuynzio .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mecfuynzio .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mecfuynzio .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mecfuynzio .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mecfuynzio .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mecfuynzio .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mecfuynzio .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mecfuynzio .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mecfuynzio .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mecfuynzio .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mecfuynzio .gt_left {
+  text-align: left;
+}
+
+#mecfuynzio .gt_center {
+  text-align: center;
+}
+
+#mecfuynzio .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mecfuynzio .gt_font_normal {
+  font-weight: normal;
+}
+
+#mecfuynzio .gt_font_bold {
+  font-weight: bold;
+}
+
+#mecfuynzio .gt_font_italic {
+  font-style: italic;
+}
+
+#mecfuynzio .gt_super {
+  font-size: 65%;
+}
+
+#mecfuynzio .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#mecfuynzio .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#mecfuynzio .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#mecfuynzio .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#mecfuynzio .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#mecfuynzio .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#mecfuynzio .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#mecfuynzio .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#mecfuynzio div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="parameter">parameter</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="method">method</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="alternative">alternative</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="estimate" class="gt_row gt_right">98.24923</td>
+<td headers="statistic" class="gt_row gt_right">-5.454823</td>
+<td headers="p.value" class="gt_row gt_right">2.410632e-07</td>
+<td headers="parameter" class="gt_row gt_right">129</td>
+<td headers="conf.low" class="gt_row gt_right">98.122</td>
+<td headers="conf.high" class="gt_row gt_right">98.37646</td>
+<td headers="method" class="gt_row gt_left">One Sample t-test</td>
+<td headers="alternative" class="gt_row gt_left">two.sided</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<ol start="6" type="1">
+<li><strong>Conclusion:</strong> We reject the null hypothesis. The average body temperature in the sample was 98.25°F (95% CI 98.12, 98.38°F), which is discernibly different from 98.6°F ( <span class="math inline">\(p\)</span>-value &lt; 0.001).</li>
 </ol>
 </section>
 <section id="how-did-we-get-the-95-ci" class="slide level2">
@@ -1217,11 +1690,11 @@ mean of x
 <li>The <code>t.test</code> function can help us answer this, and give us the needed information for both approaches.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>BodyTemps <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"data/BodyTemperatures.csv"</span>)</span>
-<span id="cb23-2"><a href="#cb23-2"></a></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="fu">t.test</span>(<span class="at">x =</span> BodyTemps<span class="sc">$</span>Temperature, </span>
-<span id="cb23-4"><a href="#cb23-4"></a>       <span class="co"># alternative = "two-sided", </span></span>
-<span id="cb23-5"><a href="#cb23-5"></a>       <span class="at">mu =</span> <span class="fl">98.6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>BodyTemps <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"data/BodyTemperatures.csv"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2"></a></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="fu">t.test</span>(<span class="at">x =</span> BodyTemps<span class="sc">$</span>Temperature, </span>
+<span id="cb22-4"><a href="#cb22-4"></a>       <span class="co"># alternative = "two-sided", </span></span>
+<span id="cb22-5"><a href="#cb22-5"></a>       <span class="at">mu =</span> <span class="fl">98.6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -1250,11 +1723,6 @@ mean of x
 <li>Define error rates and power</li>
 </ol>
 </div>
-</section></section>
-<section>
-<section id="error-rates-and-power" class="title-slide slide level1 center">
-<h1>Error Rates and Power</h1>
-
 </section>
 <section id="outcomes-of-our-hypothesis-test" class="slide level2">
 <h2>Outcomes of our hypothesis test</h2>
@@ -1265,7 +1733,7 @@ mean of x
 <ul>
 <li><p>Type 1 error is <span class="math inline">\(\alpha\)</span></p>
 <ul>
-<li>The probability that we falsly reject the null hypothesis (but the null is true!!)</li>
+<li>The probability that we falsely reject the null hypothesis (but the null is true!!)</li>
 </ul></li>
 <li><p>Power is <span class="math inline">\(1-\beta\)</span></p>
 <ul>
@@ -1277,11 +1745,24 @@ mean of x
 <section id="what-i-think-is-the-most-intuitive-way-to-look-at-it" class="slide level2">
 <h2>What I think is the most intuitive way to look at it</h2>
 
+<img data-src="../img_slides/type-i-and-type-ii-error.png" class="r-stretch quarto-figure-center"></section>
+<section id="do-your-exit-ticket" class="slide level2">
+<h2>Do your exit ticket!!</h2>
+<ul>
+<li><p>Don’t forget to go online and fill it out!</p>
+<ul>
+<li>This will count as your attendance</li>
+</ul></li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>I look forward to the quarter with you!</li>
+</ul>
 
-<img data-src="../img_slides/type-i-and-type-ii-error.png" class="r-stretch quarto-figure-center"><div class="footer footer-default">
+<div class="footer footer-default">
 <p>Lesson 1: Review</p>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 

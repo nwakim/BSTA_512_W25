@@ -18,7 +18,28 @@ format:
     highlight-style: ayu
 ---
 
-## What did we learn in 511/611?
+```{r}
+#| label: "setup" 
+#| include: false
+#| message: false
+#| warning: false
+
+library(tidyverse)    
+library(oibiostat)
+library(janitor)
+library(rstatix)
+library(knitr)
+library(gtsummary)
+library(moderndive)
+library(gt)
+library(broom) # NEW!!
+
+set.seed(456)
+
+data("dds.discr")
+```
+
+## What did we learn in 511/611? (1/2)
 
 -   In 511, we talked about *categorical* and *continuous* outcomes (dependent variables)
 
@@ -40,7 +61,7 @@ format:
 
 : {tbl-colwidths="\[15, 35,35\]"}
 
-## What did we learn in 511?
+## What did we learn in 511/611? (2/2)
 
 -   You set up a really **important foundation**
 
@@ -62,6 +83,12 @@ format:
 
     -   Do we just ignore them?
 
+```{css, echo=FALSE}
+.reveal code {
+  max-height: 100% !important;
+}
+```
+
 ## What will we learn in this class?
 
 -   We will be building towards models that can handle many variables!
@@ -72,7 +99,7 @@ format:
 
      
 
--   In Linear Models we will *build, interpret, and evaluate* linear regression models
+-   In Linear Models we will *build, interpret, and evaluate* **linear regression models**
 
 ## Process of regression data analysis
 
@@ -167,13 +194,13 @@ Model Use (Inference)
 
 1.  Review
 
-2.  Intro to SLR: estimation and testing
+2.  Simple Linear Regression
 
-    -   [Model fitting]{style="color:#34AC8B;"}
+    -   [Model evaluation]{style="color:#A7EA52;"} and [Model use]{style="color:#4FADF3;"}
 
 3.  Intro to MLR: estimation and testing
 
-    -   [Model fitting]{style="color:#34AC8B;"}
+    -   [Model use]{style="color:#4FADF3;"}
 
 4.  Diving into our predictors: categorical variables, interactions between variable
 
@@ -211,7 +238,11 @@ library(ggplot2)
 
 ## Before we begin
 
--   Meike has some really good online notes, code, and work on [her BSTA 511 page](https://niederhausen.github.io/BSTA_511_F23/)
+- Feel free to visit my or Meike's Introducation to Biostatistics
+
+-   [Meike's BSTA 511 page](https://niederhausen.github.io/BSTA_511_F24/)
+
+-   [Nicky's BSTA 525 page](https://nwakim.github.io/F24_EPI_525/)
 
 ## Learning Objectives
 
@@ -239,7 +270,6 @@ library(ggplot2)
 
 5.  Define error rates and power
 
-# Quick basics
 
 ## Some Basic Statistics "Talk"
 
@@ -271,7 +301,7 @@ library(ggplot2)
 -   Sample mean
 
     $$
-    \bar{x} = \dfrac{x_1+x_2+...+x_n}{n}=\dfrac{\sum_{i=1}^nx_i}{n}
+    \overline{x} = \dfrac{x_1+x_2+...+x_n}{n}=\dfrac{\sum_{i=1}^nx_i}{n}
     $$
 
 -   Median
@@ -287,7 +317,10 @@ library(ggplot2)
 -   Sample standard deviation
 
     $$
-    s = \sqrt{\dfrac{(x_1-\bar{x})^2+(x_2-\bar{x})^2+...+(x_n-\bar{x})^2}{n-1}}=\sqrt{\dfrac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}}
+    \begin{aligned}
+    s = & \sqrt{\dfrac{(x_1-\overline{x})^2+(x_2-\overline{x})^2+...+(x_n-\overline{x})^2}{n-1}} \\
+    = & \sqrt{\dfrac{\sum_{i=1}^n(x_i-\overline{x})^2}{n-1}}
+    \end{aligned}
     $$
 
 -   IQR
@@ -352,6 +385,13 @@ library(ggplot2)
     ```
 :::
 :::
+
+- Or all together!!
+
+```{r}
+#| echo: true
+dds.discr %>% get_summary_stats(age)
+```
 
 ## Data visualization
 
@@ -458,7 +498,6 @@ ggplot(data = dds.discr,
 
 5.  Define error rates and power
 
-# Important Distributions
 
 ## Distributions that will be used in this class
 
@@ -466,7 +505,7 @@ ggplot(data = dds.discr,
 
 -   Chi-square distribution
 
--   t distribution
+-   Student's t distribution
 
 -   F distribution
 
@@ -474,17 +513,26 @@ ggplot(data = dds.discr,
 
 ::: columns
 ::: column
+
+- Where did we see this? 
+
+    - Basically everywhere! Think Central Limit Theorem
+    
+ 
+    
 -   Notation: $Y\sim N(\mu,\sigma^2)$
 
--   Arguably, the most important distribution in statistics
+-   Arguably the most important distribution in statistics
 
 -   If we know $E(Y)=\mu$, $Var(Y)=\sigma^2$ then
 
     -   2/3 of $Y$'s distribution lies within 1 $\sigma$ of $\mu$
 
-    -   95% $\ldots$ $\ldots$ is within $\mu\pm 2\sigma$
+    -   95% is within $\mu\pm 2\sigma$
 
-    -   $>99$% $\ldots$ $\ldots$ lies within $\mu\pm 3\sigma$
+    -   $>99$% lies within $\mu\pm 3\sigma$
+
+ 
 
 -   Linear combinations of Normal's are Normal\
     e.g., $(aY+b)\sim \mbox{N}(a\mu+b,\;a^2\sigma^2)$
@@ -497,26 +545,28 @@ ggplot(data = dds.discr,
 :::
 :::
 
-## Chi-squared distribution: *models sampling variance*
+## Chi-squared distribution
 
 ::: columns
 ::: column
+- Where did we see this? 
+
+    - Hypothesis test if two categorical variables were independent
+
+ 
+
 -   Notation: $X \sim \chi^2_{df}$ OR $X \sim \chi^2_{\nu}$
 
     -   Degrees of freedom (df): $df=n-1$
 
     -   $X$ takes on only positive values
+    
+ 
 
 -   If $Z_i\sim \mbox{N}(0,1)$, then $Z_i^2\sim \chi^2_1$
 
     -   A standard normal distribution squared is the Chi squared distribution with df of 1.
 
-<!-- -->
-
--   Used in hypothesis testing and CI's **for variance or standard deviation**
-    -   Sample variance (and SD) is random and thus can be modeled by a probability distribution: Chi-sqaured
--   Chi-squared distribution used to model the **ratio of** the *sample variance* $s^2$ to *population variance* $\sigma^2$:
-    -   $\dfrac{(n-1)s^2}{\sigma^2}\sim \chi^2_{n-1}$
 :::
 
 ::: column
@@ -528,15 +578,24 @@ ggplot(data = dds.discr,
 
 ::: columns
 ::: column
+
+- Where did we see this? 
+
+    - Inference of means: single sample, paired, two independent samples
+
+ 
+    
 -   Notation: $T \sim t_{df}$ OR $T \sim t_{n-1}$
 
     -   Degrees of freedom (df): $df=n-1$
 
-    -   $T = \dfrac{\bar{x} - \mu_x}{\dfrac{s}{\sqrt{n}}}\sim t_{n-1}$
+    -   $T = \dfrac{\overline{x} - \mu_x}{\dfrac{s}{\sqrt{n}}}\sim t_{n-1}$
+
+ 
 
 -   In linear modeling, used for inference on individual regression parameters
 
-    -   Think: our estimated coefficients ($\hat{\beta}$)
+    -   Think: our estimated coefficients ( $\hat{\beta_{}}$ )
 :::
 
 ::: column
@@ -548,13 +607,16 @@ ggplot(data = dds.discr,
 
 ::: columns
 ::: column
--   Model ratio of sample variances
 
-    -   Ratio of variances is important for hypothesis testing of regression models
+- Where did we see this? 
+
+    - Inference for 2+ means: ANOVA test
+    
+-   Model ratio of sample variances (and is a ratio of Chi-squared RVs)
 
 -   If $X_1^2\sim \chi^2_{df1}$ and $X_2^2\sim \chi^2_{df2}$, where $X_1^2\perp X_2^2$, then:
 
-$$\dfrac{X_1^2/df1}{X_2^2/df2} \sim F_{df1,df2}$$ - only takes on positive values
+$$\dfrac{X_1^2/df1}{X_2^2/df2} \sim F_{df1,df2}$$ 
 
 -   Important relationship with $t$ distribution: $T^2 \sim F_{1,\nu}$
 
@@ -568,41 +630,6 @@ $$\dfrac{X_1^2/df1}{X_2^2/df2} \sim F_{df1,df2}$$ - only takes on positive value
 :::
 :::
 
-## F-Distribution
-
-::: columns
-::: column
--   Model ratio of sample variances
-
-    -   Ratio of variances is important for hypothesis testing of regression models
-
--   If $X_1^2\sim \chi^2_{df1}$ and $X_2^2\sim \chi^2_{df2}$, where $X_1^2\perp X_2^2$, then:
-
-$$\dfrac{X_1^2/df1}{X_2^2/df2} \sim F_{df1,df2}$$ - only takes on positive values
-
--   Important relationship with $t$ distribution: $T^2 \sim F_{1,\nu}$
-
-    -   The square of a t-distribution with $df=\nu$
-
-    -   is an F-distribution with numerator df ($df_1 = 1$) and denominator df ($df_2 = \nu$)
-:::
-
-::: column
-![](../img_slides/f_dist.png)
-
-::: proposition
-::: prop-title
-Is there a relationship between our chi-squared and F-distribution?
-:::
-
-::: prop-cont
-Recall, $\dfrac{(n-1)s^2}{\sigma^2}\sim \chi^2_{n-1}$.
-
-The F-distribution for a ratio of variances between two models is: $F = \dfrac{s_1^2\sigma^2_2}{s_2^2\sigma^2_1} \sim F_{n_1-1, n_2-1}$
-:::
-:::
-:::
-:::
 
 ## R code for probability distributions
 
@@ -632,7 +659,6 @@ The F-distribution for a ratio of variances between two models is: $F = \dfrac{s
 
 5.  Define error rates and power
 
-# Statistical inference: Estimation
 
 ## Confidence interval for one mean
 
@@ -641,7 +667,7 @@ The F-distribution for a ratio of variances between two models is: $F = \dfrac{s
 The confidence interval for population mean $\mu$:
 
 $$
-\bar{x} \pm t^{*}\dfrac{s}{\sqrt{n}}
+\overline{x} \pm t^{*}\dfrac{s}{\sqrt{n}}
 $$
 
 -   where $t^*$ is the critical value for the 95% (or other percent) corresponding to the t-distribution and dependent on $df=n-1$
@@ -676,7 +702,7 @@ qt(0.975, df=9)
 The confidence interval for population mean $\mu$:
 
 $$
-\bar{x} \pm t^{*}\dfrac{s}{\sqrt{n}}
+\overline{x} \pm t^{*}\dfrac{s}{\sqrt{n}}
 $$
 
 -   where $t^*$ is the critical value for the 95% (or other percent) corresponding to the t-distribution and dependent on $df=n-1$
@@ -718,7 +744,7 @@ t.test(dds.discr$age)
 The confidence interval for difference in independent population means, $\mu_1$ and $\mu_2$:
 
 $$
-\bar{x}_1 - \bar{x}_2 \pm t^{*}\sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}}
+\overline{x}_1 - \overline{x}_2 \pm t^{*}\sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}}
 $$
 
 -   where $t^*$ is the critical value for the 95% (or other percent) corresponding to the t-distribution and dependent on $df=n_1 + n_2 -2$
@@ -727,6 +753,11 @@ $$
 ::: column
 :::
 :::
+
+ 
+
+- Please check out my notes on this if you'd like: <https://nwakim.github.io/F24_EPI_525/schedule.html>
+  - It's under Lesson 13
 
 ## Here's a decent source for other R code for tests in 511
 
@@ -746,9 +777,30 @@ $$
 
 5.  Define error rates and power
 
-# Statistical inference: Hypothesis testing
 
-## Steps in hypothesis testing
+## Reference: Steps in a Hypothesis Test
+
+1.  Check the [**assumptions**]{style="color:#4FADF3"}
+
+    - What sampling distribution are you using? What assumptions are required for it?
+
+2.  Set the [**level of significance**]{style="color:#4FADF3"} $\alpha$
+
+3.  Specify the [**null**]{style="color:#4FADF3"} ( $H_0$ ) and [**alternative**]{style="color:#4FADF3"} ( $H_A$ ) [**hypotheses**]{style="color:#4FADF3"}
+
+    -  In symbols and/or in words
+    -  Alternative: one- or two-sided?
+
+4.  Calculate the [**test statistic**]{style="color:#4FADF3"}.
+
+5.  Calculate the [**p-value**]{style="color:#4FADF3"} based on the observed test statistic and its sampling distribution
+
+6.  Write a [**conclusion**]{style="color:#4FADF3"} to the hypothesis test
+
+    -  Do we reject or fail to reject $H_0$?
+    -  Write a conclusion in the context of the problem
+    
+## Another view: Steps in a Hypothesis Test
 
 ![](../img_slides/hypothesis_test_steps.png){fig-align="center"}
 
@@ -770,59 +822,50 @@ ggplot(data = BodyTemps,
              color = "red", linewidth = 2)
 ```
 
-## Example: one sample t-test using ***p-value approach***
+## Reference: what does it all look like together?
 
-We want to see what the mean population body temperature is.
+::::: example
+::: ex-title
+Example of hypothesis test based on the 1992 JAMA data
+:::
 
-2.  State the null and alternative hypotheses:
+::: ex-cont
+Is there evidence to support that the population mean body temperature is different from 98.6°F?
+:::
+:::::
 
-    |                      |                                                                       |
-    |----------------------|-----------------------------------------------------------------------|
-    | $H_0: \mu = 98.6$    | $H_0$: The population mean body temperature is 98.6 degrees F         |
-    | $H_A: \mu \neq 98.6$ | $H_A$: The population mean body temperature is **not** 98.6 degrees F |
+:::::: columns
+::: {.column width="50%"}
+1.  **Assumptions:** The individual observations are independent and the number of individuals in our sample is 130. Thus, we can use CLT to approximate the sampling distribution.
 
-3.  The significance level is $\alpha = 0.05$
+4-5. Test statistic and p-value
+:::
 
-4.  The test statistic, $t_{\bar{x}}$ follows a student's t-distribution with $df = n-1 = 129$
+::: {.column width="25%"}
+2.  Set $\alpha = 0.05$
+:::
 
-5.  The test statistic is: $t_{\bar{x}} = \dfrac{\bar{x}-\mu_0}{\dfrac{s}{\sqrt{n}}}$ and with the data: $t_{\bar{x}} = \dfrac{98.25-98.6}{\dfrac{0.73}{\sqrt{130}}} = -5.45$
+::: {.column width="25%"}
+3.  **Hypothesis:**
 
-6.  Calculate the p-value: $p-value = P(t \leq -5.45) + P(t \geq 5.45)$
+    \begin{aligned}
+    H_0 &: \mu = 98.6\\
+    \text{vs. } H_A&: \mu \neq 98.6
+    \end{aligned}
+:::
+::::::
 
-    ```{r}
-    #| echo: true
+```{r}
+#| echo: true
+#| code-fold: true
 
-    2*pt(-5.4548, df = 130-1, lower.tail=T)
-    ```
 
-7.  Conclusion: We reject the null hypothesis. There is sufficient evidence that the (population) mean body temperature after is different from 98.6 degree ( $p-value < 0.001$).
+temps_ttest <- t.test(x = BodyTemps$Temperature, mu = 98.6)
+tidy(temps_ttest) %>% gt() %>% tab_options(table.font.size = 36)
+```
 
-## Example: one sample t-test using *critical values approach*
 
-We want to see what the mean population body temperature is.
-
-2.  State the null and alternative hypotheses:
-
-    |                      |                                                                       |
-    |----------------------|-----------------------------------------------------------------------|
-    | $H_0: \mu = 98.6$    | $H_0$: The population mean body temperature is 98.6 degrees F         |
-    | $H_A: \mu \neq 98.6$ | $H_A$: The population mean body temperature is **not** 98.6 degrees F |
-
-3.  The significance level is $\alpha = 0.05$
-
-4.  The test statistic, $t_{\bar{x}}$ follows a student's t-distribution with $df = n-1 = 129$
-
-5.  Decision rule (critical value): For $\alpha=0.05$ , $2*P(t \geq t^*) = 0.05$
-
-    ```{r}
-    #| echo: true
-
-    qt(0.05/2, df = 130-1, lower.tail=F)
-    ```
-
-6.  The test statistic is: $t_{\bar{x}} = \dfrac{\bar{x}-\mu_0}{\dfrac{s}{\sqrt{n}}}$ and with the data: $t_{\bar{x}} = \dfrac{98.25-98.6}{\dfrac{0.73}{\sqrt{130}}} = -5.45$
-
-7.  Conclusion: We reject the null hypothesis. There is sufficient evidence that the (population) mean body temperature after is different from 98.6 degree ( 95% CI: $98.12, 98.38$).
+6.  **Conclusion:** We reject the null hypothesis. The average body temperature in the sample was 98.25°F (95% CI 98.12, 98.38°F), which is discernibly different from 98.6°F ( $p$-value \< 0.001).
 
 ## How did we get the 95% CI?
 
@@ -852,8 +895,6 @@ t.test(x = BodyTemps$Temperature,
 5.  Define error rates and power
 :::
 
-# Error Rates and Power
-
 ## Outcomes of our hypothesis test
 
 ![](../img_slides/Type_1_2_error.png){fig-align="center"}
@@ -862,7 +903,7 @@ t.test(x = BodyTemps$Temperature,
 
 -   Type 1 error is $\alpha$
 
-    -   The probability that we falsly reject the null hypothesis (but the null is true!!)
+    -   The probability that we falsely reject the null hypothesis (but the null is true!!)
 
 -   Power is $1-\beta$
 
@@ -873,3 +914,13 @@ t.test(x = BodyTemps$Temperature,
 ## What I think is the most intuitive way to look at it
 
 ![](../img_slides/type-i-and-type-ii-error.png){fig-align="center"}
+
+## Do your exit ticket!!
+
+- Don't forget to go online and fill it out!
+
+  - This will count as your attendance
+  
+ 
+  
+- I look forward to the quarter with you!

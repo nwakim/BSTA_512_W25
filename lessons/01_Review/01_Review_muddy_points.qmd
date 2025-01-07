@@ -9,3 +9,7 @@ editor_options:
   chunk_output_type: console
 ---
 
+### 1. F-distribution??
+
+### 2. Linear combination of Normal RVs are Normal
+

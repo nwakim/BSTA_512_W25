@@ -5038,5 +5038,12 @@
     "title": "Instructors",
     "section": "Academic Success Center Tutors",
     "text": "Academic Success Center Tutors\nThe Academic Success Center has biostatistics/epidemiology tutors available. Unlike TAs, tutors are not closely associated with any particular course sections or professors, nor do they have any grading responsibilities. Consider meeting with a tutor when you feel stuck on a project, need help with R coding, want to review course concepts, or simply complete assignments in a social learning environment. There is no cost to use tutoring.\nYour tutors this year are Mickey McVeety (MPH Epi program) and Sofia Chapela Lara (PhD program). They are looking forward to working with you in a one-to-one or group setting, depending on your needs. Please schedule to meet with them at least 24 hours in advance. If you have questions about tutoring or need assistance with the schedule, contact one of the tutors or the Academic Success Center: mcveety@ohsu.edu, chapelal@ohsu.edu, learningsupport@ohsu.edu"
+  },
+  {
+    "objectID": "lessons/01_Review/01_Review_muddy_points.html",
+    "href": "lessons/01_Review/01_Review_muddy_points.html",
+    "title": "Muddy Points",
+    "section": "",
+    "text": "1. F-distribution??\n\n\n2. Linear combination of Normal RVs are Normal"
   }
 ]

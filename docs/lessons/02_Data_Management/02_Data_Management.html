@@ -12,7 +12,7 @@
 
   <meta name="author" content="Nicky Wakim">
   <meta name="dcterms.date" content="2025-01-08">
-  <title>Linear Models - Lesson 2: Data Management with the tidyverse</title>
+  <title>Linear Models - Lesson 2: Data and File Management</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -395,7 +395,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-color="#213c96" class="quarto-title-block center">
-  <h1 class="title">Lesson 2: Data Management with the <code>tidyverse</code></h1>
+  <h1 class="title">Lesson 2: Data and File Management</h1>
   <p class="subtitle">Adapted from parts of Mine Çetinkaya-Rundel’s tidyverse course</p>
 
 <div class="quarto-title-authors">
@@ -408,10 +408,33 @@ Nicky Wakim
 
   <p class="date">2025-01-08</p>
 </section>
+<section>
+<section id="what-we-will-cover" class="title-slide slide level1 center">
+<h1>What we will cover</h1>
+<ol type="1">
+<li>Introduction to <code>tidyverse</code></li>
+<li><code>ggplot2</code> revisited</li>
+<li>Functions for data management</li>
+<li>Functions for data summarization</li>
+<li>Folder organization</li>
+<li><code>here</code> package and importing data</li>
+</ol>
+<p>&nbsp;</p>
+<ul>
+<li>Not covered: basic Quarto set up. Please see R recordings in OneDrive and my <a href="https://nwakim.github.io/F24_EPI_525/schedule.html">EPI 525 site</a> for videos and slides.</li>
+</ul>
+<div class="cell">
+<style type="text/css">
+.reveal code {
+  max-height: 100% !important;
+}
+</style>
+</div>
+</section>
 <section id="section" class="slide level2">
 <h2></h2>
 
-<img data-src="../img_slides/debugging.png" alt="A cartoon of a fuzzy round monster face showing 10 different emotions experienced during the process of debugging code. The progression goes from (1) “I got this” - looking determined and optimistic; (2) “Huh. Really thought that was it.” - looking a bit baffled; (3) “...” - looking up at the ceiling in thought; (4) “Fine. Restarting.” - looking a bit annoyed; (5) “OH WTF.” Looking very frazzled and frustrated; (6) “Zombie meltdown.” - looking like a full meltdown; (7) (blank) - sleeping; (8) “A NEW HOPE!” - a happy looking monster with a lightbulb above; (9) “insert awesome theme song” - looking determined and typing away; (10) “I love coding” - arms raised in victory with a big smile, with confetti falling." class="r-stretch quarto-figure-center"><p class="caption">Artwork by @allison_horst</p></section>
+<img data-src="../img_slides/debugging.png" alt="A cartoon of a fuzzy round monster face showing 10 different emotions experienced during the process of debugging code. The progression goes from (1) “I got this” - looking determined and optimistic; (2) “Huh. Really thought that was it.” - looking a bit baffled; (3) “...” - looking up at the ceiling in thought; (4) “Fine. Restarting.” - looking a bit annoyed; (5) “OH WTF.” Looking very frazzled and frustrated; (6) “Zombie meltdown.” - looking like a full meltdown; (7) (blank) - sleeping; (8) “A NEW HOPE!” - a happy looking monster with a lightbulb above; (9) “insert awesome theme song” - looking determined and typing away; (10) “I love coding” - arms raised in victory with a big smile, with confetti falling." class="r-stretch quarto-figure-center"><p class="caption">Artwork by @allison_horst</p></section></section>
 <section>
 <section id="introduction-to-the-tidyverse" class="title-slide slide level1 center">
 <h1>Introduction to the <code>tidyverse</code></h1>
@@ -450,7 +473,7 @@ Nicky Wakim
 <h2>Tidy data<sup>1</sup></h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="../img_slides/tidy-data-frame.png" width="669"></p>
+<p><img data-src="../img_slides/tidy-data-frame.png" width="1500"></p>
 </figure>
 </div>
 <ol type="1">
@@ -607,10 +630,7 @@ Nicky Wakim
 <span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="02_Data_Management_files/figure-revealjs/unnamed-chunk-7-1.png" style="width:100.0%" class="r-stretch"></section>
-<section id="poll-everywhere-question-1" class="slide level2">
-<h2>Poll Everywhere Question 1</h2>
-</section>
+<img data-src="02_Data_Management_files/figure-revealjs/unnamed-chunk-8-1.png" style="width:100.0%" class="r-stretch"></section>
 <section id="tidyverse-visualizing-even-more-variables" class="slide level2">
 <h2>Tidyverse: Visualizing even more variables</h2>
 <div class="cell" data-fig.asp="0.3">
@@ -621,7 +641,7 @@ Nicky Wakim
 <span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="02_Data_Management_files/figure-revealjs/unnamed-chunk-8-1.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="02_Data_Management_files/figure-revealjs/unnamed-chunk-9-1.png" style="width:100.0%" class="r-stretch"></section>
 <section id="base-r-visualizing-even-more-variables" class="slide level2">
 <h2>Base R: Visualizing even more variables</h2>
 <div class="cell" data-fig.asp="0.3">
@@ -636,7 +656,7 @@ Nicky Wakim
 <span id="cb9-9"><a href="#cb9-9"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"automatic"</span>, <span class="st">"manual"</span>), <span class="at">pch =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"blue"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="02_Data_Management_files/figure-revealjs/unnamed-chunk-9-1.png" style="width:100.0%" class="r-stretch"></section></section>
+<img data-src="02_Data_Management_files/figure-revealjs/unnamed-chunk-10-1.png" style="width:100.0%" class="r-stretch"></section></section>
 <section>
 <section id="functions-for-data-management" class="title-slide slide level1 center">
 <h1>Functions for data management</h1>
@@ -647,155 +667,7 @@ Nicky Wakim
 <p>&nbsp;</p>
 <p><strong>Data manipulation</strong></p>
 <ul>
-<li><p><code>pivot_longer()</code> and <code>pivot_wider()</code></p></li>
-<li><p><code>rename()</code></p></li>
-<li><p><code>mutate()</code></p></li>
-<li><p><code>filter()</code></p></li>
-<li><p><code>select()</code></p></li>
-</ul>
-<p><strong>Summarizing data</strong></p>
-<ul>
-<li><code>tbl_summary()</code></li>
-<li><code>group_by()</code></li>
-<li><code>summarize()</code></li>
-<li><code>across()</code></li>
-</ul>
-</section></section>
-<section>
-<section id="data-manipulation" class="title-slide slide level1 center">
-<h1>Data manipulation</h1>
-
-</section>
-<section id="example-for-pivot_longer-instructional-staff-employment-trends" class="slide level2">
-<h2>Example for <code>pivot_longer()</code>: Instructional staff employment trends</h2>
-<p>The American Association of University Professors (AAUP) is a nonprofit membership association of faculty and other academic professionals. <a href="https://www.aaup.org/sites/default/files/files/AAUP_Report_InstrStaff-75-11_apr2013.pdf">This report</a> by the AAUP shows trends in instructional staff employees between 1975 and 2011, and contains an image very similar to the one given below.</p>
-
-<img data-src="../img_slides/staff-employment.png" width="669" class="r-stretch quarto-figure-center"></section>
-<section id="data" class="slide level2">
-<h2>Data</h2>
-<p>Each row in this dataset represents a faculty type, and the columns are the years for which we have data. The values are percentage of hires of that type of faculty for each year.</p>
-<p>&nbsp; &nbsp;</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>(staff <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"./data/instructional-staff.csv"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 12
-  faculty_type    `1975` `1989` `1993` `1995` `1999` `2001` `2003` `2005` `2007`
-  &lt;chr&gt;            &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-1 Full-Time Tenu…   29     27.6   25     24.8   21.8   20.3   19.3   17.8   17.2
-2 Full-Time Tenu…   16.1   11.4   10.2    9.6    8.9    9.2    8.8    8.2    8  
-3 Full-Time Non-…   10.3   14.1   13.6   13.6   15.2   15.5   15     14.8   14.9
-4 Part-Time Facu…   24     30.4   33.1   33.2   35.5   36     37     39.3   40.5
-5 Graduate Stude…   20.5   16.5   18.1   18.8   18.7   19     20     19.9   19.5
-# ℹ 2 more variables: `2009` &lt;dbl&gt;, `2011` &lt;dbl&gt;</code></pre>
-</div>
-</div>
-</section>
-<section id="poll-everywhere-question-2" class="slide level2">
-<h2>Poll Everywhere Question 2</h2>
-</section>
-<section id="recreate-the-visualization" class="slide level2">
-<h2>Recreate the visualization</h2>
-<p>&nbsp;</p>
-<ul>
-<li>In order to recreate this visualization we need to first reshape the data:
-<ul>
-<li>one variable for faculty type</li>
-<li>one variable for year</li>
-</ul></li>
-</ul>
-<p>&nbsp;</p>
-<ul>
-<li>Convert the data from the wide format to long format
-<ul>
-<li><code>pivot_longer()</code></li>
-</ul></li>
-</ul>
-</section>
-<section id="section-2" class="slide level2">
-<h2></h2>
-
-<img data-src="../img_slides/pivot.gif" width="669" class="r-stretch quarto-figure-center"></section>
-<section id="pivot_-functions" class="slide level2">
-<h2><code>pivot_*()</code> functions</h2>
-
-<img data-src="../img_slides/img/tidyr-longer-wider.gif" class="r-stretch quarto-figure-center"></section>
-<section id="poll-everywhere-question-3" class="slide level2">
-<h2>Poll Everywhere Question 3</h2>
-</section>
-<section id="pivot-staff-data-and-mutate-percentage" class="slide level2">
-<h2>Pivot staff data and mutate percentage</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>(staff_long <span class="ot">&lt;-</span> staff <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb12-3"><a href="#cb12-3"></a>    <span class="at">cols =</span> <span class="sc">-</span>faculty_type,    <span class="co"># columns to pivot</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a>    <span class="at">names_to =</span> <span class="st">"year"</span>,       <span class="co"># name of new column for variable names</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a>    <span class="at">values_to =</span> <span class="st">"percentage"</span> <span class="co"># name of new column for values</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">mutate</span>(<span class="at">percentage =</span> <span class="fu">as.numeric</span>(percentage))</span>
-<span id="cb12-8"><a href="#cb12-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 55 × 3
-   faculty_type              year  percentage
-   &lt;chr&gt;                     &lt;chr&gt;      &lt;dbl&gt;
- 1 Full-Time Tenured Faculty 1975        29  
- 2 Full-Time Tenured Faculty 1989        27.6
- 3 Full-Time Tenured Faculty 1993        25  
- 4 Full-Time Tenured Faculty 1995        24.8
- 5 Full-Time Tenured Faculty 1999        21.8
- 6 Full-Time Tenured Faculty 2001        20.3
- 7 Full-Time Tenured Faculty 2003        19.3
- 8 Full-Time Tenured Faculty 2005        17.8
- 9 Full-Time Tenured Faculty 2007        17.2
-10 Full-Time Tenured Faculty 2009        16.8
-# ℹ 45 more rows</code></pre>
-</div>
-</div>
-</section>
-<section id="a-meh-plot-over-the-years" class="slide level2">
-<h2>A “meh” plot over the years</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">ggplot</span>(staff_long, <span class="fu">aes</span>(<span class="at">x =</span> percentage, <span class="at">y =</span> year, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="02_Data_Management_files/figure-revealjs/unnamed-chunk-11-1.png" width="1500" class="r-stretch"></section>
-<section id="more-improvement" class="slide level2 smaller">
-<h2>More improvement</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>staff_long <span class="sc">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">mutate</span>( </span>
-<span id="cb15-3"><a href="#cb15-3"></a>    <span class="at">part_time =</span> <span class="fu">if_else</span>(faculty_type <span class="sc">==</span> <span class="st">"Part-Time Faculty"</span>,</span>
-<span id="cb15-4"><a href="#cb15-4"></a>                        <span class="st">"Part-Time Faculty"</span>, <span class="st">"Other Faculty"</span>),</span>
-<span id="cb15-5"><a href="#cb15-5"></a>    <span class="at">year =</span> <span class="fu">as.numeric</span>(year)) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-6"><a href="#cb15-6"></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb15-7"><a href="#cb15-7"></a>    <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> percentage<span class="sc">/</span><span class="dv">100</span>, <span class="at">group =</span> faculty_type, <span class="at">color =</span> part_time)) <span class="sc">+</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb15-9"><a href="#cb15-9"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"gray"</span>, <span class="st">"red"</span>)) <span class="sc">+</span> </span>
-<span id="cb15-10"><a href="#cb15-10"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
-<span id="cb15-11"><a href="#cb15-11"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb15-12"><a href="#cb15-12"></a>  <span class="fu">labs</span>(</span>
-<span id="cb15-13"><a href="#cb15-13"></a>    <span class="at">title =</span> <span class="st">"Instructional staff employment trends"</span>,</span>
-<span id="cb15-14"><a href="#cb15-14"></a>    <span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Percentage"</span>, <span class="at">color =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb15-15"><a href="#cb15-15"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="02_Data_Management_files/figure-revealjs/staff-lines-22-1.png" width="1500"></p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="all-that-just-to-show-one-helpful-function" class="slide level2">
-<h2>All that just to show one helpful function</h2>
-<p>Now we can move onto the other functions mentioned:</p>
-<p>&nbsp;</p>
-<p><strong>Data manipulation</strong></p>
-<ul>
-<li><p><code>pivot_longer()</code> and <code>pivot_wider()</code></p></li>
+<li><p><code>pivot_longer()</code> and <code>pivot_wider()</code> (not covered today)</p></li>
 <li><p><code>rename()</code></p></li>
 <li><p><code>mutate()</code></p></li>
 <li><p><code>filter()</code></p></li>
@@ -816,13 +688,13 @@ Nicky Wakim
 <li>We will load the data (This is a special case! <code>dds.discr</code> is a built-in R dataset)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">data</span>(<span class="st">"dds.discr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">data</span>(<span class="st">"dds.discr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Now, let’s take a glimpse at the dataset:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">glimpse</span>(dds.discr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">glimpse</span>(dds.discr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 1,000
 Columns: 6
@@ -849,11 +721,11 @@ $ ethnicity    &lt;fct&gt; White not Hispanic, White not Hispanic, Hispanic, His
 </div>
 <p>&nbsp;</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>dds.discr1 <span class="ot">=</span> dds.discr <span class="sc">%&gt;%</span> </span>
-<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">rename</span>(<span class="at">SAB =</span> gender, </span>
-<span id="cb19-3"><a href="#cb19-3"></a>         <span class="at">R_E =</span> ethnicity)</span>
-<span id="cb19-4"><a href="#cb19-4"></a></span>
-<span id="cb19-5"><a href="#cb19-5"></a><span class="fu">glimpse</span>(dds.discr1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>dds.discr1 <span class="ot">=</span> dds.discr <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">rename</span>(<span class="at">SAB =</span> gender, </span>
+<span id="cb13-3"><a href="#cb13-3"></a>         <span class="at">R_E =</span> ethnicity)</span>
+<span id="cb13-4"><a href="#cb13-4"></a></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="fu">glimpse</span>(dds.discr1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 1,000
 Columns: 6
@@ -877,10 +749,10 @@ $ R_E          &lt;fct&gt; White not Hispanic, White not Hispanic, Hispanic, His
 </div>
 <p>&nbsp;</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>dds.discr2 <span class="ot">=</span> dds.discr1 <span class="sc">%&gt;%</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">mutate</span>(<span class="at">exp_to_age =</span> expenditures<span class="sc">/</span>age)</span>
-<span id="cb21-3"><a href="#cb21-3"></a></span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="fu">glimpse</span>(dds.discr2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>dds.discr2 <span class="ot">=</span> dds.discr1 <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">mutate</span>(<span class="at">exp_to_age =</span> expenditures<span class="sc">/</span>age)</span>
+<span id="cb15-3"><a href="#cb15-3"></a></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="fu">glimpse</span>(dds.discr2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 1,000
 Columns: 7
@@ -894,8 +766,34 @@ $ exp_to_age   &lt;dbl&gt; 124.2941, 1133.0811, 484.6667, 336.8421, 339.3846, 30
 </div>
 </div>
 </section>
-<section id="poll-everywhere-question-4" class="slide level2">
-<h2>Poll Everywhere Question 4</h2>
+<section id="mutate-other-examples" class="slide level2">
+<h2><code>mutate()</code>: other examples</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>dds.discr3 <span class="ot">=</span> dds.discr1 <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">mutate</span>(<span class="at">expend_20perc =</span> expenditures <span class="sc">*</span> <span class="fl">0.2</span>, </span>
+<span id="cb17-3"><a href="#cb17-3"></a>         <span class="at">expend_sq =</span> expenditures<span class="sc">^</span><span class="dv">2</span>, </span>
+<span id="cb17-4"><a href="#cb17-4"></a>         <span class="at">expend_over_5000 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb17-5"><a href="#cb17-5"></a>           expenditures <span class="sc">&gt;</span> <span class="dv">5000</span> <span class="sc">~</span> <span class="st">"Yes"</span>, </span>
+<span id="cb17-6"><a href="#cb17-6"></a>           expenditures <span class="sc">&lt;=</span> <span class="dv">5000</span> <span class="sc">~</span> <span class="st">"No"</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>         ), </span>
+<span id="cb17-8"><a href="#cb17-8"></a>         <span class="at">expend_log =</span> <span class="fu">log</span>(expenditures)</span>
+<span id="cb17-9"><a href="#cb17-9"></a>  )</span>
+<span id="cb17-10"><a href="#cb17-10"></a><span class="fu">glimpse</span>(dds.discr3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,000
+Columns: 10
+$ id               &lt;int&gt; 10210, 10409, 10486, 10538, 10568, 10690, 10711, 1077…
+$ age.cohort       &lt;fct&gt; 13-17, 22-50, 0-5, 18-21, 13-17, 13-17, 13-17, 13-17,…
+$ age              &lt;int&gt; 17, 37, 3, 19, 13, 15, 13, 17, 14, 13, 13, 14, 15, 17…
+$ SAB              &lt;fct&gt; Female, Male, Male, Female, Male, Female, Female, Mal…
+$ expenditures     &lt;int&gt; 2113, 41924, 1454, 6400, 4412, 4566, 3915, 3873, 5021…
+$ R_E              &lt;fct&gt; White not Hispanic, White not Hispanic, Hispanic, His…
+$ expend_20perc    &lt;dbl&gt; 422.6, 8384.8, 290.8, 1280.0, 882.4, 913.2, 783.0, 77…
+$ expend_sq        &lt;dbl&gt; 4464769, 1757621776, 2114116, 40960000, 19465744, 208…
+$ expend_over_5000 &lt;chr&gt; "No", "Yes", "No", "Yes", "No", "No", "No", "No", "Ye…
+$ expend_log       &lt;dbl&gt; 7.655864, 10.643614, 7.282074, 8.764053, 8.392083, 8.…</code></pre>
+</div>
+</div>
 </section>
 <section id="filter-keep-rows-that-match-a-condition" class="slide level2">
 <h2><code>filter()</code>: keep rows that match a condition</h2>
@@ -907,10 +805,10 @@ $ exp_to_age   &lt;dbl&gt; 124.2941, 1133.0811, 484.6667, 336.8421, 339.3846, 30
 </div>
 <p>&nbsp;</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>dds.discr3 <span class="ot">=</span> dds.discr2 <span class="sc">%&gt;%</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">&amp;</span> age <span class="sc">&lt;=</span> <span class="dv">60</span>)</span>
-<span id="cb23-3"><a href="#cb23-3"></a></span>
-<span id="cb23-4"><a href="#cb23-4"></a><span class="fu">glimpse</span>(dds.discr3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>dds.discr3 <span class="ot">=</span> dds.discr2 <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">&amp;</span> age <span class="sc">&lt;=</span> <span class="dv">60</span>)</span>
+<span id="cb19-3"><a href="#cb19-3"></a></span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="fu">glimpse</span>(dds.discr3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 23
 Columns: 7
@@ -934,10 +832,10 @@ $ exp_to_age   &lt;dbl&gt; 1064.0588, 961.7000, 860.9821, 781.2167, 724.3898, 75
 </div>
 <p>&nbsp;</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>dds.discr4 <span class="ot">=</span> dds.discr2 <span class="sc">%&gt;%</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">select</span>(age, expenditures)</span>
-<span id="cb25-3"><a href="#cb25-3"></a></span>
-<span id="cb25-4"><a href="#cb25-4"></a><span class="fu">glimpse</span>(dds.discr4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>dds.discr4 <span class="ot">=</span> dds.discr2 <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">select</span>(age, expenditures)</span>
+<span id="cb21-3"><a href="#cb21-3"></a></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="fu">glimpse</span>(dds.discr4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 1,000
 Columns: 2
@@ -959,8 +857,8 @@ $ expenditures &lt;int&gt; 2113, 41924, 1454, 6400, 4412, 4566, 3915, 3873, 5021
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">tbl_summary</span>(dds.discr2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">tbl_summary</span>(dds.discr2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
@@ -1492,13 +1390,13 @@ $ expenditures &lt;int&gt; 2113, 41924, 1454, 6400, 4412, 4566, 3915, 3873, 5021
 <div class="columns">
 <div class="column" style="width:70%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>dds.discr2 <span class="sc">%&gt;%</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>id, <span class="sc">-</span>age.cohort, <span class="sc">-</span>exp_to_age) <span class="sc">%&gt;%</span></span>
-<span id="cb28-3"><a href="#cb28-3"></a>  <span class="fu">tbl_summary</span>(<span class="at">label =</span> <span class="fu">c</span>(age <span class="sc">~</span> <span class="st">"Age"</span>, </span>
-<span id="cb28-4"><a href="#cb28-4"></a>                        R_E <span class="sc">~</span> <span class="st">"Race/Ethnicity"</span>, </span>
-<span id="cb28-5"><a href="#cb28-5"></a>                        SAB <span class="sc">~</span> <span class="st">"Sex Assigned at Birth"</span>, </span>
-<span id="cb28-6"><a href="#cb28-6"></a>                        expenditures <span class="sc">~</span> <span class="st">"Expenditures"</span>) ,</span>
-<span id="cb28-7"><a href="#cb28-7"></a>              <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"{mean} ({sd})"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>dds.discr2 <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>id, <span class="sc">-</span>age.cohort, <span class="sc">-</span>exp_to_age) <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a>  <span class="fu">tbl_summary</span>(<span class="at">label =</span> <span class="fu">c</span>(age <span class="sc">~</span> <span class="st">"Age"</span>, </span>
+<span id="cb24-4"><a href="#cb24-4"></a>                        R_E <span class="sc">~</span> <span class="st">"Race/Ethnicity"</span>, </span>
+<span id="cb24-5"><a href="#cb24-5"></a>                        SAB <span class="sc">~</span> <span class="st">"Sex Assigned at Birth"</span>, </span>
+<span id="cb24-6"><a href="#cb24-6"></a>                        expenditures <span class="sc">~</span> <span class="st">"Expenditures"</span>) ,</span>
+<span id="cb24-7"><a href="#cb24-7"></a>              <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"{mean} ({sd})"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:30%;">
 <div class="cell">
@@ -2014,9 +1912,9 @@ $ expenditures &lt;int&gt; 2113, 41924, 1454, 6400, 4412, 4566, 3915, 3873, 5021
 </div>
 <p>&nbsp;</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>dds.discr5 <span class="ot">=</span> dds.discr2 <span class="sc">%&gt;%</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">group_by</span>(SAB)</span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="fu">glimpse</span>(dds.discr5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>dds.discr5 <span class="ot">=</span> dds.discr2 <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">group_by</span>(SAB)</span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="fu">glimpse</span>(dds.discr5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 1,000
 Columns: 7
@@ -2047,11 +1945,11 @@ $ exp_to_age   &lt;dbl&gt; 124.2941, 1133.0811, 484.6667, 336.8421, 339.3846, 30
 <div class="column">
 <p>Over whole sample:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>dds.discr2 <span class="sc">%&gt;%</span> </span>
-<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb31-3"><a href="#cb31-3"></a>    <span class="at">ave =</span> <span class="fu">mean</span>(expenditures),</span>
-<span id="cb31-4"><a href="#cb31-4"></a>    <span class="at">SD =</span> <span class="fu">sd</span>(expenditures),</span>
-<span id="cb31-5"><a href="#cb31-5"></a>    <span class="at">med =</span> <span class="fu">median</span>(expenditures))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>dds.discr2 <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb27-3"><a href="#cb27-3"></a>    <span class="at">ave =</span> <span class="fu">mean</span>(expenditures),</span>
+<span id="cb27-4"><a href="#cb27-4"></a>    <span class="at">SD =</span> <span class="fu">sd</span>(expenditures),</span>
+<span id="cb27-5"><a href="#cb27-5"></a>    <span class="at">med =</span> <span class="fu">median</span>(expenditures))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
      ave     SD   med
@@ -2062,12 +1960,12 @@ $ exp_to_age   &lt;dbl&gt; 124.2941, 1133.0811, 484.6667, 336.8421, 339.3846, 30
 </div><div class="column">
 <p>Grouped by sex assigned at birth:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>dds.discr2 <span class="sc">%&gt;%</span> </span>
-<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">group_by</span>(SAB) <span class="sc">%&gt;%</span> </span>
-<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb33-4"><a href="#cb33-4"></a>    <span class="at">ave =</span> <span class="fu">mean</span>(expenditures),</span>
-<span id="cb33-5"><a href="#cb33-5"></a>    <span class="at">SD =</span> <span class="fu">sd</span>(expenditures),</span>
-<span id="cb33-6"><a href="#cb33-6"></a>    <span class="at">med =</span> <span class="fu">median</span>(expenditures))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>dds.discr2 <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">group_by</span>(SAB) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-3"><a href="#cb29-3"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb29-4"><a href="#cb29-4"></a>    <span class="at">ave =</span> <span class="fu">mean</span>(expenditures),</span>
+<span id="cb29-5"><a href="#cb29-5"></a>    <span class="at">SD =</span> <span class="fu">sd</span>(expenditures),</span>
+<span id="cb29-6"><a href="#cb29-6"></a>    <span class="at">med =</span> <span class="fu">median</span>(expenditures))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 4
   SAB       ave     SD   med
@@ -2089,10 +1987,10 @@ $ exp_to_age   &lt;dbl&gt; 124.2941, 1133.0811, 484.6667, 336.8421, 339.3846, 30
 </div>
 <p>&nbsp;</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>dds.discr6 <span class="ot">=</span> dds.discr2 <span class="sc">%&gt;%</span></span>
-<span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.integer), signif, <span class="at">digits =</span> <span class="dv">2</span>))</span>
-<span id="cb35-3"><a href="#cb35-3"></a></span>
-<span id="cb35-4"><a href="#cb35-4"></a><span class="fu">glimpse</span>(dds.discr6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>dds.discr6 <span class="ot">=</span> dds.discr2 <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.integer), signif, <span class="at">digits =</span> <span class="dv">2</span>))</span>
+<span id="cb31-3"><a href="#cb31-3"></a></span>
+<span id="cb31-4"><a href="#cb31-4"></a><span class="fu">glimpse</span>(dds.discr6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 1,000
 Columns: 7
@@ -2105,6 +2003,234 @@ $ R_E          &lt;fct&gt; White not Hispanic, White not Hispanic, Hispanic, His
 $ exp_to_age   &lt;dbl&gt; 124.2941, 1133.0811, 484.6667, 336.8421, 339.3846, 304.40…</code></pre>
 </div>
 </div>
+</section></section>
+<section>
+<section id="folder-organization" class="title-slide slide level1 center">
+<h1>Folder organization</h1>
+
+</section>
+<section id="folder-organization-1" class="slide level2">
+<h2>Folder organization</h2>
+<ul>
+<li><p>Make a folder for our class!</p>
+<ul>
+<li>I suggest naming it something like <code>BSTA_512_W25</code> to indicate the class and the term</li>
+</ul></li>
+<li><p>Make these folders in your computer (or in OneDrive if you prefer)</p>
+<ul>
+<li>Only make them in OneDrive <strong>if</strong> you have a desktop connection</li>
+</ul></li>
+</ul>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>For a project, I have the following folders</p>
+<ul>
+<li>Background</li>
+<li>Code</li>
+<li>Data_Raw</li>
+<li>Data_Processed</li>
+<li>Dissemination</li>
+<li>Reports</li>
+<li>Meetings</li>
+</ul></li>
+</ul>
+</div><div class="column">
+<ul>
+<li><p>For our class, I suggest making one folder for the course with the following folders in it:</p>
+<ul>
+<li>Data</li>
+<li>Homework</li>
+<li>Project (with above subfolders)</li>
+<li>Lessons</li>
+<li>And other folders if you want</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="aside-folder-and-file-naming" class="slide level2">
+<h2>Aside: folder and file naming</h2>
+<p>There are a few good practices for naming files and folders for easy tracking:</p>
+<ol type="1">
+<li>Keep the name short and relevant</li>
+<li>Use leading numbers to help organize sequential items
+<ul>
+<li>I can show you my lessons folders as an example</li>
+</ul></li>
+<li>Use dates in the format “YYYY-MM-DD” so that files are in chronological order</li>
+<li>You can label different versions if you would like to</li>
+<li>Use “_” to separate sections of the name
+<ul>
+<li>I also use this to separate words, but some people say you should use “-” to separate words</li>
+</ul></li>
+</ol>
+</section>
+<section id="creating-project-in-rstudio" class="slide level2">
+<h2>Creating project in RStudio</h2>
+<ul>
+<li><p>Way to designate a working directory: basically your home base when working in R</p>
+<ul>
+<li><p>We have to tell R exactly where we are in our folders and where to find other things</p></li>
+<li><p>A project makes it easier to tell R where we are</p></li>
+</ul></li>
+<li><p>Basic steps to create a project</p>
+<ul>
+<li><p>Go into RStudio</p></li>
+<li><p>Create new project for this class (under <code>File</code> or top right corner)</p>
+<ul>
+<li>I would chose “Existing Directory” since we have already set up our folders</li>
+<li>Make the new project in the <code>BSTA_512_W25</code> folder</li>
+</ul></li>
+</ul></li>
+<li><p>Once we have projects, we can open one and R will automatically know that its location is the start of our working directory</p></li>
+<li><p>Only make one project for now!!</p></li>
+</ul>
+</section>
+<section id="the-nice-thing-about-r-projects" class="slide level2">
+<h2>The nice thing about R projects</h2>
+<ul>
+<li>5 minute video explaining some of the nice features of R projects</li>
+</ul>
+<p><a href="https://rfortherestofus.com/2022/10/rstudio-projects" class="uri">https://rfortherestofus.com/2022/10/rstudio-projects</a></p>
+</section>
+<section id="reproducibility" class="slide level2">
+<h2>Reproducibility</h2>
+<ul>
+<li><p>Research data and code can reach the same results regardless of who is running the code</p>
+<ul>
+<li>This can also refer to future or past you!</li>
+</ul></li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>We want to set up our work so the entire folder can be moved around and work in its new location</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>Projects work well in combination with the <code>here</code> package</li>
+</ul>
+</section></section>
+<section>
+<section id="here-package-and-importing-data" class="title-slide slide level1 center">
+<h1><code>here</code> package and importing data</h1>
+
+</section>
+<section id="here-package" class="slide level2">
+<h2><code>here</code> package</h2>
+
+<img data-src="../img_slides/here_pkg.png" class="r-stretch quarto-figure-center"><p class="caption">Illustration by <a href="https://github.com/allisonhorst">Allison Horst</a></p></section>
+<section id="here-package-1" class="slide level2">
+<h2><code>here</code> package</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p><a href="http://jenrichmond.rbind.io/post/how-to-use-the-here-package/">Good source for the <code>here</code> package</a></p>
+<ul>
+<li>Just substitute <code>.Rmd</code> with <code>.qmd</code></li>
+</ul></li>
+<li><p>Basically, a <code>.qmd</code> file and <code>.R</code> file work differently</p>
+<ul>
+<li>We haven’t worked much with <code>.R</code> files</li>
+</ul></li>
+<li><p>For <code>.qmd</code> files, the automatic directory is the folder it is in</p>
+<ul>
+<li>But we want it to be the main project folder</li>
+</ul></li>
+<li><p><code>here</code> can help with that</p></li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li><strong>Very important for reproducibility!!</strong></li>
+</ul>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img_slides/paths.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="using-here-package" class="slide level2">
+<h2>Using <code>here</code> package</h2>
+<ul>
+<li><p>Within your console, type <code>here()</code> and enter</p>
+<ul>
+<li>Try this with <code>getwd()</code> as well</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb33-2"><a href="#cb33-2"></a><span class="fu">here</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "/Users/wakim/Library/CloudStorage/OneDrive-OregonHealth&amp;ScienceUniversity/Teaching/Classes/W25_BSTA_512_612/BSTA_512_W25_site"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "/Users/wakim/Library/CloudStorage/OneDrive-OregonHealth&amp;ScienceUniversity/Teaching/Classes/W25_BSTA_512_612/BSTA_512_W25_site"</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+<ul>
+<li><code>here</code> can be used whenever we need to access a file path in <strong>R code</strong>
+<ul>
+<li>Importing data</li>
+<li>Saving output</li>
+<li>Accessing files</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="importing-data" class="title-slide slide level1 center">
+<h1>Importing data</h1>
+
+</section>
+<section id="using-here-to-load-data" class="slide level2">
+<h2>Using <code>here()</code> to load data</h2>
+<ul>
+<li><p>The <code>here()</code> function will start at the working directory (where your <code>.Rproj</code> file is) and let you write out a file path for anything</p></li>
+<li><p>To load the dataset in our <code>.qmd</code> file, we will use:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb37-2"><a href="#cb37-2"></a>data <span class="ot">=</span> <span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">"./data/BodyTemperatures.xlsx"</span>))</span>
+<span id="cb37-3"><a href="#cb37-3"></a>data <span class="ot">=</span> <span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"BodyTemperatures.xlsx"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="common-functions-to-load-data" class="slide level2">
+<h2>Common functions to load data</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Data file type</th>
+<th>Package needed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>read_excel()</code></td>
+<td><code>.xls</code>, <code>.xlsx</code></td>
+<td><code>readxl</code></td>
+</tr>
+<tr class="even">
+<td><code>read.csv()</code></td>
+<td><code>.csv</code></td>
+<td>Built in</td>
+</tr>
+<tr class="odd">
+<td><code>load()</code></td>
+<td><code>.Rdata</code></td>
+<td>Built in</td>
+</tr>
+<tr class="even">
+<td><code>read_sas()</code></td>
+<td><code>.sas7bdat</code></td>
+<td><code>haven</code></td>
+</tr>
+</tbody>
+</table>
 </section></section>
 <section>
 <section id="resources" class="title-slide slide level1 center">

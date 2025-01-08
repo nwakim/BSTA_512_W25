@@ -9,5 +9,15 @@ editor_options:
 ---
 
 ## Announcements
+- I saw that we had some issues with getting into the OneDrive
+  - Let's see if [this link](https://ohsuitg-my.sharepoint.com/:f:/g/personal/wakim_ohsu_edu/EpUBcHEh3gxFpNbGHtayubkBdZntbHGDInmuvVlB9ErJ9g?e=KSKtVa) works
+  - I might need to manually add you all to the folder UGH
+
+- New to R? Check out [my old class site](https://nwakim.github.io/F24_EPI_525/schedule.html)
+  - Video recordings will be in Student folder
+
+- Anything else?
 
 ## Key Dates
+- Homework 0 due this Thursday at 11pm
+  - Let me know if you have issues with turning it in on Sakai

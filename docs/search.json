@@ -32,7 +32,7 @@
     "href": "schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Week\nDate\nLes-son\nTopic\nKey Info\nSlides QMD\nSlides PDF\nSlides Notes\nExit tix\nRecord-ing\nMuddy Points\n\n\n\n\n1\n1/6\n0\nWelcome\n\n\n\n\n\n\n\n\n\n\n\n1\nReview\n\n\n\n\n\n\n\n\n\n\n1/8\n2\nData Management\n\n\n\n\n\n\n\n\n\n\n1/9\n\nHW 0 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n1/13\n3\nSimple Linear Regression\n\n\n\n\n\n\n\n\n\n\n1/15\n4\nSLR: Inference and Prediction\n\n\n\n\n\n\n\n\n\n\n1/16\n\nLab 1 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n1/20\n\nNo Class, MLKJ Day\n\n\n\n\n\n\n\n\n\n\n1/22\n5\nSLR: Evaluation\n\n\n\n\n\n\n\n\n\n\n1/23\n\nHW 1 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n1/27\n6\nSLR: Diagnostics, Part 1\n\n\n\n\n\n\n\n\n\n\n1/29\n7\nSLR: Diagnostics, Part 2\n\n\n\n\n\n\n\n\n\n\n1/30\n\nHW 2 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n2/3\n8\nMultiple Linear Regression\n\n\n\n\n\n\n\n\n\n\n2/5\n9\nMLR: Inference\n\n\n\n\n\n\n\n\n\n\n2/6\n\nLab 2 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n2/10\n10\nCategorical Covariates\n\n\n\n\n\n\n\n\n\n\n2/12\n\nCatch-up day\n\n\n\n\n\n\n\n\n\n\n2/13\n\nHW 3 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n2/17\n\nNo Class, President’s Day\n\n\n\n\n\n\n\n\n\n\n2/19\n11\nInteractions, Part 1\n\n\n\n\n\n\n\n\n\n\n2/20\n\nHW 4 due 11pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n2/24\n12\nInteractions, Part 2\n\n\n\n\n\n\n\n\n\n\n2/26\n13\nModel Selection\n\n\n\n\n\n\n\n\n\n\n2/27\n\nLab 3 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n3/3\n14\nPurposeful Selection\n\n\n\n\n\n\n\n\n\n\n3/5\n15\nMLR: Diagnostics\n\n\n\n\n\n\n\n\n\n\n3/6\n\nHW 5 due 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n3/10\n\nCatch-up day\n\n\n\n\n\n\n\n\n\n\n3/12\n\nCatch-up day\n\n\n\n\n\n\n\n\n\n\n3/13\n\nLab 4 due 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n3/17\n\nProject Day!!\n\n\n\n\n\n\n\n\n\n\n3/17\n\nProject due 11pm"
+    "text": "Week\nDate\nLes-son\nTopic\nKey Info\nSlides QMD\nSlides PDF\nSlides Notes\nExit tix\nRecord-ing\nMuddy Points\n\n\n\n\n1\n1/6\n0\nWelcome\n\n\n\n\n\n\n\n\n\n\n\n1\nReview\n\n\n\n\n\n\n\n\n\n\n1/8\n2\nData and File Management\n\n\n\n\n\n\n\n\n\n\n1/9\n\nHW 0 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n1/13\n3\nSimple Linear Regression\n\n\n\n\n\n\n\n\n\n\n1/15\n4\nSLR: Inference and Prediction\n\n\n\n\n\n\n\n\n\n\n1/16\n\nLab 1 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n1/20\n\nNo Class, MLKJ Day\n\n\n\n\n\n\n\n\n\n\n1/22\n5\nSLR: Evaluation\n\n\n\n\n\n\n\n\n\n\n1/23\n\nHW 1 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n1/27\n6\nSLR: Diagnostics, Part 1\n\n\n\n\n\n\n\n\n\n\n1/29\n7\nSLR: Diagnostics, Part 2\n\n\n\n\n\n\n\n\n\n\n1/30\n\nHW 2 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n2/3\n8\nMultiple Linear Regression\n\n\n\n\n\n\n\n\n\n\n2/5\n9\nMLR: Inference\n\n\n\n\n\n\n\n\n\n\n2/6\n\nLab 2 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n2/10\n10\nCategorical Covariates\n\n\n\n\n\n\n\n\n\n\n2/12\n\nCatch-up day\n\n\n\n\n\n\n\n\n\n\n2/13\n\nHW 3 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n2/17\n\nNo Class, President’s Day\n\n\n\n\n\n\n\n\n\n\n2/19\n11\nInteractions, Part 1\n\n\n\n\n\n\n\n\n\n\n2/20\n\nHW 4 due 11pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n2/24\n12\nInteractions, Part 2\n\n\n\n\n\n\n\n\n\n\n2/26\n13\nModel Selection\n\n\n\n\n\n\n\n\n\n\n2/27\n\nLab 3 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n3/3\n14\nPurposeful Selection\n\n\n\n\n\n\n\n\n\n\n3/5\n15\nMLR: Diagnostics\n\n\n\n\n\n\n\n\n\n\n3/6\n\nHW 5 due 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n3/10\n\nCatch-up day\n\n\n\n\n\n\n\n\n\n\n3/12\n\nCatch-up day\n\n\n\n\n\n\n\n\n\n\n3/13\n\nLab 4 due 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n3/17\n\nProject Day!!\n\n\n\n\n\n\n\n\n\n\n3/17\n\nProject due 11pm"
   },
   {
     "objectID": "syllabus.html#description",
@@ -1992,21 +1992,21 @@
     "href": "labs/Lab_01.html",
     "title": "Lab 1",
     "section": "",
-    "text": "Caution\n\n\n\nThis lab is not ready to be worked on!! Nicky needs to update it."
+    "text": "This article will serve as a reference point for our project. The article is meant to introduce social scientists’ approaches to research and analyses. However, the article is not meant to be a basis for which we perform our analysis.\n\n\n\n\n\n\nWarning\n\n\n\nThis article discusses anti-fat bias. It uses words that may be triggering to larger-bodied people.\n\n\nPlease read sections 1 - 2, through 2.2 (“Procedures and measures”). Answer the following questions:\n\nIn your own words, what is anti-fat bias?\nWhat were the three social theoretical models that the paper discusses? Which do you personally think is the biggest contributor to anti-fat bias and why?\nFrom the following measures in section 2.2, select two and discuss why the named measure may or may not accurately represent the italicized statement taken from the IAT questionnaire. Feel free to answer this question after taking the IAT yourself.\n\nSelf-perception of weight\nThin/fat group identity\nControllability of weight\nAwareness of societal standards\nInternalization of societal standards\n\nFor example, for Self-perception of weight, the italicized statement is the following statement outlined in red:\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nThis podcast shares the experience of one of its hosts that involves anti-fat bias. This may be triggering if you have experienced this type of bias.\n\n\nThis is an optional listening for this lab, but I highly encourage you listen at some point this quarter. This is a really good way to see how research can be integrated into conversation and experience.\nIf you decide to listen, feel free to share a quote that most impacted you.\n\n\n\n\n\n\nVisit the Project Implicit site, and read about the test. What is your initial reaction to the test? What questions about the test do you have? Do you have any questions about the test’s validity? The point here is not to attempt to discredit the test itself, but see what specific questions the test can help us answer and what is outside the scope of our analysis. For example, are there any potential issues with the fact that people are self-selected to take the test? Does that mean our sample is representative of our population? Is it an issue that someone can take the test more than once?\nThis exercise will serve as a good starting point for the discussion section of our project report. The more effort you put in here and now, the more prepared you will be for the report.\n\n\n\nYou will spend 15 minutes taking the IAT. You can go to the Project Implicit website, register, and select a specific test to take. Once registered, you can click “Take a Test,” read the Preliminary Information, and then click “I wish to proceed” at the bottom. Then you can click the button “Weight IAT” to take this particular test.\nI will not check that you have completed this test, but it will help you understand the data you are analyzing.\n\n\n\n\nFor our project, we will examine the association betwen the IAT score and one other variable. From the above article, and the introduced variables in section 2.2, which association are you most interested in analyzing? Please write this in the form of a research question.\nWe will have a chance to adjust our research question once we have explored the data in Lab 2.\n\n\n\nBefore downloading the data, go back to Lesson 2 and follow the file setup for our project. This includes making an .Rproj file within the main folder. Make sure you are working with the project by using the here() function to display your working directory.\n\n\n\n\n\n\nTask\n\n\n\nDisplay your working directory using the here package and here() function.\n\n\n\n\n\nAt this point, you have done a lot of the work needed to write an introduction for your report. Write a brief description of anti-fat bias, IAT, your research question, and the context for the question. This description should be in complete sentences and written as a single paragraph.\nIn the next lab, we will work on a summary of the dataset (e.g. where are the data from, when were they collected, how many subjects, what are the variables, what are the exposure and outcomes variables of interest, etc.)."
   },
   {
     "objectID": "labs/Lab_01.html#directions",
     "href": "labs/Lab_01.html#directions",
     "title": "Lab 1",
-    "section": "Directions",
-    "text": "Directions\nPlease turn in your .html file on Sakai. Please let me know if you greatly prefer to submit a physical copy. We can work out another way for you to turn in the labs.\nYou can download the .qmd file for this lab here.\n\nPurpose\nThis lab will serve as an introduction to our quarter long project.\nThere will be no analysis in this lab. Instead, we are building our knowledge around the research question.\n\n\nGrading\nEach lab will have a slightly different grading rubric. Since this lab does not include coding nor analysis, this portion of the rubric is excluded."
+    "section": "1 Directions",
+    "text": "1 Directions\nPlease turn in your .html file on Sakai. Please let me know if you greatly prefer to submit a physical copy. We can work out another way for you to turn in the labs.\nYou can download the .qmd file for this lab here.\n\n1.1 Purpose\nThis lab will serve as an introduction to our quarter long project.\nThere will be no analysis in this lab. Instead, we are building our knowledge around the research question.\n\n\n1.2 Grading\nEach lab will have a slightly different grading rubric. Since this lab does not include coding nor analysis, this portion of the rubric is excluded."
   },
   {
     "objectID": "labs/Lab_01.html#lab-activities",
     "href": "labs/Lab_01.html#lab-activities",
     "title": "Lab 1",
-    "section": "Lab activities",
-    "text": "Lab activities\n\n1. Reading and listening activities\n\n1.1 Article: Implicit and explicit anti-fat bias: The role of weight-related attitudes and beliefs\nThis article will serve as a reference point for our project. The article is meant to introduce social scientists’ approaches to research and analyses. However, the article is not meant to be a basis for which we perform our analysis.\n\n\n\n\n\n\nWarning\n\n\n\nThis article discusses anti-fat bias. It uses words that may be triggering to larger-bodied people.\n\n\nPlease read sections 1 - 2, through 2.2 (“Procedures and measures”). Answer the following questions:\n\nIn your own words, what is anti-fat bias?\nWhat were the three social theoretical models that the paper discusses? Which do you personally think is the biggest contributor to anti-fat bias and why?\nFrom the following measures in section 2.2, select two and discuss why the named measure may or may not accurately represent the italicized statement taken from the IAT questionnaire. Feel free to answer this question after taking the IAT yourself.\n\nSelf-perception of weight\nThin/fat group identity\nControllability of weight\nAwareness of societal standards\nInternalization of societal standards\n\nFor example, for Self-perception of weight, the italicized statement is the following statement outlined in red:\n\n\n\n1.2 Podcast: Anti-Fat Bias by Maintenance Phase\n\n\n\n\n\n\nWarning\n\n\n\nThis podcast shares the experience of one of its hosts that involves anti-fat bias. This may be triggering if you have experienced this type of bias.\n\n\nThis is an optional listening for this lab, but I highly encourage you listen at some point this quarter. This is a really good way to see how research can be integrated into conversation and experience.\nIf you decide to listen, feel free to share a quote that most impacted you.\n\n\n\n2. Familiarizing ourselves with the Implicit Association Test (IAT)\n\n2.1 Learn more about the test\nVisit the Project Implicit site, and read about the test. What is your initial reaction to the test? What questions about the test do you have? Do you have any questions about the test’s validity? The point here is not to attempt to discredit the test itself, but see what specific questions the test can help us answer and what is outside the scope of our analysis. For example, are there any potential issues with the fact that people are self-selected to take the test? Does that mean our sample is representative of our population? Is it an issue that someone can take the test more than once?\nThis exercise will serve as a good starting point for the discussion section of our project report. The more effort you put in here and now, the more prepared you will be for the report.\n\n\n2.2 Take the test\nYou will spend 15 minutes taking the IAT. You can go to the Project Implicit website, register, and select a specific test to take. Once registered, you can click “Take a Test,” read the Preliminary Information, and then click “I wish to proceed” at the bottom. Then you can click the button “Weight IAT” to take this particular test.\nI will not check that you have completed this test, but it will help you understand the data you are analyzing.\n\n\n\n3. Get a sense of how you would like to analyze the data\nFor our project, we will examine the association betwen the IAT score and one other variable. From the above article, and the introduced variables in section 2.2, which association are you most interested in analyzing? Please write this in the form of a research question.\nWe will have a chance to adjust our research question once we have explored the data in Lab 2.\n\n\n4. Compile above work into an introduction\nAt this point, you have done a lot of the work needed to write an introduction for your report. Write a brief description of anti-fat bias, IAT, your research question, and the context for the question. This description should be in complete sentences and written as a single paragraph.\nIn the next lab, we will work on a summary of the dataset (e.g. where are the data from, when were they collected, how many subjects, what are the variables, what are the exposure and outcomes variables of interest, etc.)."
+    "section": "",
+    "text": "This article will serve as a reference point for our project. The article is meant to introduce social scientists’ approaches to research and analyses. However, the article is not meant to be a basis for which we perform our analysis.\n\n\n\n\n\n\nWarning\n\n\n\nThis article discusses anti-fat bias. It uses words that may be triggering to larger-bodied people.\n\n\nPlease read sections 1 - 2, through 2.2 (“Procedures and measures”). Answer the following questions:\n\nIn your own words, what is anti-fat bias?\nWhat were the three social theoretical models that the paper discusses? Which do you personally think is the biggest contributor to anti-fat bias and why?\nFrom the following measures in section 2.2, select two and discuss why the named measure may or may not accurately represent the italicized statement taken from the IAT questionnaire. Feel free to answer this question after taking the IAT yourself.\n\nSelf-perception of weight\nThin/fat group identity\nControllability of weight\nAwareness of societal standards\nInternalization of societal standards\n\nFor example, for Self-perception of weight, the italicized statement is the following statement outlined in red:\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nThis podcast shares the experience of one of its hosts that involves anti-fat bias. This may be triggering if you have experienced this type of bias.\n\n\nThis is an optional listening for this lab, but I highly encourage you listen at some point this quarter. This is a really good way to see how research can be integrated into conversation and experience.\nIf you decide to listen, feel free to share a quote that most impacted you.\n\n\n\n\n\n\nVisit the Project Implicit site, and read about the test. What is your initial reaction to the test? What questions about the test do you have? Do you have any questions about the test’s validity? The point here is not to attempt to discredit the test itself, but see what specific questions the test can help us answer and what is outside the scope of our analysis. For example, are there any potential issues with the fact that people are self-selected to take the test? Does that mean our sample is representative of our population? Is it an issue that someone can take the test more than once?\nThis exercise will serve as a good starting point for the discussion section of our project report. The more effort you put in here and now, the more prepared you will be for the report.\n\n\n\nYou will spend 15 minutes taking the IAT. You can go to the Project Implicit website, register, and select a specific test to take. Once registered, you can click “Take a Test,” read the Preliminary Information, and then click “I wish to proceed” at the bottom. Then you can click the button “Weight IAT” to take this particular test.\nI will not check that you have completed this test, but it will help you understand the data you are analyzing.\n\n\n\n\nFor our project, we will examine the association betwen the IAT score and one other variable. From the above article, and the introduced variables in section 2.2, which association are you most interested in analyzing? Please write this in the form of a research question.\nWe will have a chance to adjust our research question once we have explored the data in Lab 2.\n\n\n\nBefore downloading the data, go back to Lesson 2 and follow the file setup for our project. This includes making an .Rproj file within the main folder. Make sure you are working with the project by using the here() function to display your working directory.\n\n\n\n\n\n\nTask\n\n\n\nDisplay your working directory using the here package and here() function.\n\n\n\n\n\nAt this point, you have done a lot of the work needed to write an introduction for your report. Write a brief description of anti-fat bias, IAT, your research question, and the context for the question. This description should be in complete sentences and written as a single paragraph.\nIn the next lab, we will work on a summary of the dataset (e.g. where are the data from, when were they collected, how many subjects, what are the variables, what are the exposure and outcomes variables of interest, etc.)."
   },
   {
     "objectID": "labs/Lab_04_instructions.html",
@@ -2034,7 +2034,7 @@
     "href": "labs/Lab_04.html",
     "title": "Lab 4",
     "section": "",
-    "text": "Please turn in your .html file on Sakai. Please let me know if you greatly prefer to submit a physical copy.\nYou can download the .qmd file for this lab here.\n\n\n\n\n\n\nCaution\n\n\n\nThis is the instructions file. The link above will take you to the editing file where you can add your work and turn it in!! Please do not remove anything from the editing file!!\n\n\n\n\nThe main purpose of this lab is to perform model selection, identify one or more potential final models, and start our interpretation of our main relationship.\n\n\n\nThis lab is graded out of 12 points. Nicky will use the following rubric to assign grades.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4 points\n3 points\n2 points\n1 point\n0 points\n\n\n\n\nFormatting\nLab submitted on Sakai with .html file. Answers are written in complete sentences with no major grammatical nor spelling errors. With little editing, the answer can be incorporated into the project report.\nLab submitted on Sakai with .html file. Answers are written in complete sentences with grammatical or spelling errors. With editing, the answer can be incorporated into the project report.\nLab submitted on Sakai with .html file. Answers are written in complete sentences with major grammatical or spelling errors. With major editing, the answer can be incorporated into the project report.\nLab submitted on Sakai with .html file. Answers are bulletted or do not use complete sentences.\nLab not submitted on Sakai with .html file.\n\n\nCode/Work\nAll tasks are directly followed or answered. This includes all the needed code, in code chunks, with the requested output.\nAll tasks are directly followed or answered. This includes all the needed code, in code chunks, with the requested output. In a few tasks, the code syntax or output is not quite right.\nMost tasks are directly followed or answered. This includes all the needed code, in code chunks, with the requested output.\nSome tasks are directly followed or answered.This includes all the needed code, in code chunks, with the requested output. In a few tasks, the code syntax or output is not quite right.\nMore than a quarter of the tasks are not completed properly.\n\n\nReasoning*\nAnswers demonstrate understanding of research context and investigation of the data. Answers are thoughtful and can be easily integrated into the final report.\nAnswers demonstrate understanding of research context and investigation of the data. Answers are thoughtful, but lack the clarity needed to easily integrate into the final report.\nAnswers demonstrate some understanding of research context and investigation of the data. Answers are fairly thoughtful, but lack connection to the research.\nAnswers demonstrate some understanding of research context and investigation of the data. Answers seem rushed and with minimal thought.\nAnswers lack understanding of research context and investigation of the data. Answers seem rushed and without thought.\n\n\n\n*Applies to questions with reasoning"
+    "text": "Before starting this lab, you should go back to Lab 2, save a new .rda file that contains all the new variables from that Lab. Then you can load it here!\n\n\n\n\n\n\n\n\nTask\n\n\n\nPlease restate your research question below using the provided format. It’s repetitive, but it helps me contextualize my feedback as I look through your lab.\n\n\n\n\n\n\n\n\n\n\n\nTasks\n\n\n\n\nRun a simple linear regression model for each covariate against the IAT score (outcome).\nDisplay results from the test if each covariate explains enough variation of the outcome. This may be from three options in the instructions: summary()/anova() only, lapply(), or sapply()\n\nInterpretation of the results will be in the next step.\n\n\n\n\n\n\n\n\n\n\n\nTasks\n\n\n\n\nDecide which covariates will be included in the initial model and list them.\nRun the initial model and display the regression table.\n\nNo need to write out the model, but you may in addition to the list.\n\n\n\n\n\n\n\n\n\n\n\nTasks\n\n\n\nRemove variables from the initial model based on your common sense, change in coefficient, and/or p-values of the F-tests.\nYou do NOT need to show all your work here. You just need to include:\n\nA brief explanation of what variables were dropped and why (a sentence per variable), and\nAn example of your process with one variable is enough (including code that you ran)\n\n\n\n\n\n\n\n\n\n\n\n\nTasks\n\n\n\nNo tasks here! If you want to try out what I did above, you can!\n\n\n\n\n\n\n\n\n\n\n\nTasks\n\n\n\nUsing your discussion in Lab 3 and the results from the F-test on interactions:\n\nCreate a list of the interactions that you will include in your model.\nRun the preliminary final model that includes the main effects and interactions.\n\n\n\n\n\n\n\n\n\n\n\n\nTasks\n\n\n\nOptional: Create a table that displays some fo the model fit statistics to compare preliminary final models.\n\n\n\n\n\n\n\n\n\n\n\nTasks\n\n\n\nCreate a forest plot to visualize the coefficient estimates."
   },
   {
     "objectID": "labs/Lab_04.html#directions",
@@ -2047,8 +2047,8 @@
     "objectID": "labs/Lab_04.html#lab-activities",
     "href": "labs/Lab_04.html#lab-activities",
     "title": "Lab 4",
-    "section": "2 Lab activities",
-    "text": "2 Lab activities\nBefore starting this lab, you should go back to Lab 2, save a new .rda file that contains all the new variables from that Lab. Then you can load it here!\n\n2.1 Restate your research question\n\n\n\n\n\n\nTask\n\n\n\nPlease restate your research question below using the provided format. It’s repetitive, but it helps me contextualize my feedback as I look through your lab.\n\n\n\n\n2.2 Step 1: Simple linear regressions / analysis\n\n\n\n\n\n\nTasks\n\n\n\n\nRun a simple linear regression model for each covariate against the IAT score (outcome).\nDisplay results from the test if each covariate explains enough variation of the outcome. This may be from three options in the instructions: summary()/anova() only, lapply(), or sapply()\n\nInterpretation of the results will be in the next step.\n\n\n\n\n2.3 Step 2: Preliminary variable selection\n\n\n\n\n\n\nTasks\n\n\n\n\nDecide which covariates will be included in the initial model and list them.\nRun the initial model and display the regression table.\n\nNo need to write out the model, but you may in addition to the list.\n\n\n\n\n2.4 Step 3: Assess change in coefficient\n\n\n\n\n\n\nTasks\n\n\n\nRemove variables from the initial model based on your common sense, change in coefficient, and/or p-values of the F-tests.\nYou do NOT need to show all your work here. You just need to include:\n\nA brief explanation of what variables were dropped and why (a sentence per variable), and\nAn example of your process with one variable is enough (including code that you ran)\n\n\n\n\n\n2.5 Step 4: Assess scale for continuous variables\n\n\n\n\n\n\nTasks\n\n\n\nNo tasks here! If you want to try out what I did above, you can!\n\n\n\n\n2.6 Step 5: Check for interactions\n\n\n\n\n\n\nTasks\n\n\n\nUsing your discussion in Lab 3 and the results from the F-test on interactions:\n\nCreate a list of the interactions that you will include in your model.\nRun the preliminary final model that includes the main effects and interactions.\n\n\n\n\n\n2.7 Step 6: Assess model fit\n\n\n\n\n\n\nTasks\n\n\n\nOptional: Create a table that displays some fo the model fit statistics to compare preliminary final models.\n\n\n\n\n2.8 Create a forest plot of your coefficient estimates\n\n\n\n\n\n\nTasks\n\n\n\nCreate a forest plot to visualize the coefficient estimates."
+    "section": "",
+    "text": "Before starting this lab, you should go back to Lab 2, save a new .rda file that contains all the new variables from that Lab. Then you can load it here!\n\n\n\n\n\n\n\n\nTask\n\n\n\nPlease restate your research question below using the provided format. It’s repetitive, but it helps me contextualize my feedback as I look through your lab.\n\n\n\n\n\n\n\n\n\n\n\nTasks\n\n\n\n\nRun a simple linear regression model for each covariate against the IAT score (outcome).\nDisplay results from the test if each covariate explains enough variation of the outcome. This may be from three options in the instructions: summary()/anova() only, lapply(), or sapply()\n\nInterpretation of the results will be in the next step.\n\n\n\n\n\n\n\n\n\n\n\nTasks\n\n\n\n\nDecide which covariates will be included in the initial model and list them.\nRun the initial model and display the regression table.\n\nNo need to write out the model, but you may in addition to the list.\n\n\n\n\n\n\n\n\n\n\n\nTasks\n\n\n\nRemove variables from the initial model based on your common sense, change in coefficient, and/or p-values of the F-tests.\nYou do NOT need to show all your work here. You just need to include:\n\nA brief explanation of what variables were dropped and why (a sentence per variable), and\nAn example of your process with one variable is enough (including code that you ran)\n\n\n\n\n\n\n\n\n\n\n\n\nTasks\n\n\n\nNo tasks here! If you want to try out what I did above, you can!\n\n\n\n\n\n\n\n\n\n\n\nTasks\n\n\n\nUsing your discussion in Lab 3 and the results from the F-test on interactions:\n\nCreate a list of the interactions that you will include in your model.\nRun the preliminary final model that includes the main effects and interactions.\n\n\n\n\n\n\n\n\n\n\n\n\nTasks\n\n\n\nOptional: Create a table that displays some fo the model fit statistics to compare preliminary final models.\n\n\n\n\n\n\n\n\n\n\n\nTasks\n\n\n\nCreate a forest plot to visualize the coefficient estimates."
   },
   {
     "objectID": "labs/BMI_help.html",
@@ -4293,86 +4293,86 @@
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#section",
     "href": "lessons/02_Data_Management/02_Data_Management.html#section",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "",
     "text": "Artwork by @allison_horst"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#what-is-the-tidyverse",
     "href": "lessons/02_Data_Management/02_Data_Management.html#what-is-the-tidyverse",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "What is the tidyverse?",
     "text": "What is the tidyverse?\nThe tidyverse is a collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.\n\n\n\nggplot2 - data visualisation\ndplyr - data manipulation\ntidyr - tidy data\nreadr - read rectangular data\npurrr - functional programming\ntibble - modern data frames\nstringr - string manipulation\nforcats - factors\nand many more …"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#tidy-data1",
     "href": "lessons/02_Data_Management/02_Data_Management.html#tidy-data1",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "Tidy data1",
     "text": "Tidy data1\n\n\n\n\n\n\nEach variable must have its own column.\nEach observation must have its own row.\nEach value must have its own cell.\n\nSource: R for Data Science. Grolemund and Wickham."
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#pipe-operator-magrittr",
     "href": "lessons/02_Data_Management/02_Data_Management.html#pipe-operator-magrittr",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "Pipe operator (magrittr)",
     "text": "Pipe operator (magrittr)\n\nThe pipe operator (%&gt;%) allows us to step through sequential functions in the same way we follow if-then statements or steps from instructions\n\n \n\nI want to find my keys, then start my car, then drive to work, then park my car.\n\n \n\n\nNested\n\npark(drive(start_car(find(\"keys\")), \n           to = \"work\"))\n\n\nPiped\n\nfind(\"keys\") %&gt;%\n  start_car() %&gt;%\n  drive(to = \"work\") %&gt;%\n  park()"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#recoding-a-binary-variable-with-pipe-operator",
     "href": "lessons/02_Data_Management/02_Data_Management.html#recoding-a-binary-variable-with-pipe-operator",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "Recoding a binary variable with pipe operator",
     "text": "Recoding a binary variable with pipe operator\n \n\nLet’s say I want a variable transmission to show the category names that are assigned to numeric values in the code. I want 0 to be coded as automatic and 1 to be coded as manual.\n\n \n\n\nBase R:\n\nmtcars$transmission &lt;-\n  ifelse(\n    mtcars$am == 0,\n    \"automatic\",\n    \"manual\"\n  )\n\n\nTidyverse:\n\nmtcars &lt;- mtcars %&gt;%\n  mutate(\n    transmission = case_when(\n      am == 0 ~ \"automatic\",\n      am == 1 ~ \"manual\"\n    )\n  )\n\n \n\nmutate() creates new columns that are functions of existing variables"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#recoding-a-multi-level-variable",
     "href": "lessons/02_Data_Management/02_Data_Management.html#recoding-a-multi-level-variable",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "Recoding a multi-level variable",
     "text": "Recoding a multi-level variable\n \n\nLet’s say I want a variable gear to show the category names that are assigned to numeric values in the code. I want 3 to be coded as gear three, 4 to be coded as gear four, 5 to be coded as gear five.\n\n \n\n\nBase R:\n\nmtcars$gear_char &lt;-\n  ifelse(\n    mtcars$gear == 3,\n    \"three\",\n    ifelse(\n      mtcars$gear == 4,\n      \"four\",\n      \"five\"\n    )\n  )\n\n\nTidyverse:\n\nmtcars &lt;- mtcars %&gt;%\n  mutate(\n    gear_char = case_when(\n      gear == 3 ~ \"three\",\n      gear == 4 ~ \"four\",\n      gear == 5 ~ \"five\"\n    )\n  )"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#ggplot2-in-tidyverse",
     "href": "lessons/02_Data_Management/02_Data_Management.html#ggplot2-in-tidyverse",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "ggplot2 in tidyverse",
     "text": "ggplot2 in tidyverse\n\n\n\n\n\n\n\n\n\nWe talked about this in our review notes\n\nI want to revisit it: always helps to have more examples!\nThis example is closer to the multivariable work we’ll do in this class!\n\n\n \n\nggplot2 is tidyverse’s data visualization package\n\n \n\nThe gg in “ggplot2” stands for Grammar of Graphics\n\n \n\nIt is inspired by the book Grammar of Graphics by Leland Wilkinson"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#tidyverse-visualizing-multiple-variables",
     "href": "lessons/02_Data_Management/02_Data_Management.html#tidyverse-visualizing-multiple-variables",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "Tidyverse: Visualizing multiple variables",
     "text": "Tidyverse: Visualizing multiple variables\n \n\nggplot(\n  mtcars,\n  aes(x = disp, y = mpg, color = transmission)) +\n  geom_point()"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#poll-everywhere-question-1",
     "href": "lessons/02_Data_Management/02_Data_Management.html#poll-everywhere-question-1",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "Poll Everywhere Question 1",
     "text": "Poll Everywhere Question 1"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#tidyverse-visualizing-even-more-variables",
     "href": "lessons/02_Data_Management/02_Data_Management.html#tidyverse-visualizing-even-more-variables",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "Tidyverse: Visualizing even more variables",
     "text": "Tidyverse: Visualizing even more variables\n\nggplot(\n  mtcars,\n  aes(x = disp, y = mpg, color = transmission)) +\n  geom_point() +\n  facet_wrap(~ cyl)"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#base-r-visualizing-even-more-variables",
     "href": "lessons/02_Data_Management/02_Data_Management.html#base-r-visualizing-even-more-variables",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "Base R: Visualizing even more variables",
     "text": "Base R: Visualizing even more variables\n\nmtcars$trans_color &lt;- ifelse(mtcars$transmission == \"automatic\", \"green\", \"blue\")\nmtcars_cyl4 = mtcars[mtcars$cyl == 4, ]\nmtcars_cyl6 = mtcars[mtcars$cyl == 6, ]\nmtcars_cyl8 = mtcars[mtcars$cyl == 8, ]\npar(mfrow = c(1, 3), mar = c(2.5, 2.5, 2, 0), mgp = c(1.5, 0.5, 0))\nplot(mpg ~ disp, data = mtcars_cyl4, col = trans_color, main = \"Cyl 4\")\nplot(mpg ~ disp, data = mtcars_cyl6, col = trans_color, main = \"Cyl 6\")\nplot(mpg ~ disp, data = mtcars_cyl8, col = trans_color, main = \"Cyl 8\")\nlegend(\"topright\", legend = c(\"automatic\", \"manual\"), pch = 1, col = c(\"green\", \"blue\"))"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#important-functions-for-data-management",
     "href": "lessons/02_Data_Management/02_Data_Management.html#important-functions-for-data-management",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "Important functions for data management",
-    "text": "Important functions for data management\n \nData manipulation\n\npivot_longer() and pivot_wider()\nrename()\nmutate()\nfilter()\nselect()\n\nSummarizing data\n\ntbl_summary()\ngroup_by()\nsummarize()\nacross()"
+    "text": "Important functions for data management\n \nData manipulation\n\npivot_longer() and pivot_wider() (not covered today)\nrename()\nmutate()\nfilter()\nselect()\n\nSummarizing data\n\ntbl_summary()\ngroup_by()\nsummarize()\nacross()"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#example-for-pivot_longer-instructional-staff-employment-trends",
@@ -4447,105 +4447,105 @@
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#lets-look-back-at-the-dds.discr-dataset-that-i-briefly-used-last-class",
     "href": "lessons/02_Data_Management/02_Data_Management.html#lets-look-back-at-the-dds.discr-dataset-that-i-briefly-used-last-class",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "Let’s look back at the dds.discr dataset that I briefly used last class",
     "text": "Let’s look back at the dds.discr dataset that I briefly used last class\n   \n\nWe will load the data (This is a special case! dds.discr is a built-in R dataset)\n\n\ndata(\"dds.discr\")\n\n\nNow, let’s take a glimpse at the dataset:\n\n\nglimpse(dds.discr)\n\nRows: 1,000\nColumns: 6\n$ id           &lt;int&gt; 10210, 10409, 10486, 10538, 10568, 10690, 10711, 10778, 1…\n$ age.cohort   &lt;fct&gt; 13-17, 22-50, 0-5, 18-21, 13-17, 13-17, 13-17, 13-17, 13-…\n$ age          &lt;int&gt; 17, 37, 3, 19, 13, 15, 13, 17, 14, 13, 13, 14, 15, 17, 20…\n$ gender       &lt;fct&gt; Female, Male, Male, Female, Male, Female, Female, Male, F…\n$ expenditures &lt;int&gt; 2113, 41924, 1454, 6400, 4412, 4566, 3915, 3873, 5021, 28…\n$ ethnicity    &lt;fct&gt; White not Hispanic, White not Hispanic, Hispanic, Hispani…"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#rename-one-of-the-first-things-i-usually-do",
     "href": "lessons/02_Data_Management/02_Data_Management.html#rename-one-of-the-first-things-i-usually-do",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "rename(): one of the first things I usually do",
     "text": "rename(): one of the first things I usually do\n\nI notice that two variables have values that don’t necessarily match the variable name\n\nFemale and male are not genders\n“White not Hispanic” combines race and ethnicity into one category\n\n\n\nI want to rename gender to SAB (sex assigned at birth) and rename ethnicity to R_E (race and ethnicity)\n\n \n\ndds.discr1 = dds.discr %&gt;% \n  rename(SAB = gender, \n         R_E = ethnicity)\n\nglimpse(dds.discr1)\n\nRows: 1,000\nColumns: 6\n$ id           &lt;int&gt; 10210, 10409, 10486, 10538, 10568, 10690, 10711, 10778, 1…\n$ age.cohort   &lt;fct&gt; 13-17, 22-50, 0-5, 18-21, 13-17, 13-17, 13-17, 13-17, 13-…\n$ age          &lt;int&gt; 17, 37, 3, 19, 13, 15, 13, 17, 14, 13, 13, 14, 15, 17, 20…\n$ SAB          &lt;fct&gt; Female, Male, Male, Female, Male, Female, Female, Male, F…\n$ expenditures &lt;int&gt; 2113, 41924, 1454, 6400, 4412, 4566, 3915, 3873, 5021, 28…\n$ R_E          &lt;fct&gt; White not Hispanic, White not Hispanic, Hispanic, Hispani…"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#mutate-constructing-new-variables-from-what-you-have",
     "href": "lessons/02_Data_Management/02_Data_Management.html#mutate-constructing-new-variables-from-what-you-have",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "mutate(): constructing new variables from what you have",
     "text": "mutate(): constructing new variables from what you have\n\nWe’ve seen a couple examples for mutate() so far (mostly because its used so often!)\nWe haven’t seen an example where we make a new variable from two variables\n\n\nI want to make a variable that is the ratio of expenditures over age\n\n \n\ndds.discr2 = dds.discr1 %&gt;%\n  mutate(exp_to_age = expenditures/age)\n\nglimpse(dds.discr2)\n\nRows: 1,000\nColumns: 7\n$ id           &lt;int&gt; 10210, 10409, 10486, 10538, 10568, 10690, 10711, 10778, 1…\n$ age.cohort   &lt;fct&gt; 13-17, 22-50, 0-5, 18-21, 13-17, 13-17, 13-17, 13-17, 13-…\n$ age          &lt;int&gt; 17, 37, 3, 19, 13, 15, 13, 17, 14, 13, 13, 14, 15, 17, 20…\n$ SAB          &lt;fct&gt; Female, Male, Male, Female, Male, Female, Female, Male, F…\n$ expenditures &lt;int&gt; 2113, 41924, 1454, 6400, 4412, 4566, 3915, 3873, 5021, 28…\n$ R_E          &lt;fct&gt; White not Hispanic, White not Hispanic, Hispanic, Hispani…\n$ exp_to_age   &lt;dbl&gt; 124.2941, 1133.0811, 484.6667, 336.8421, 339.3846, 304.40…"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#poll-everywhere-question-4",
     "href": "lessons/02_Data_Management/02_Data_Management.html#poll-everywhere-question-4",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "Poll Everywhere Question 4",
     "text": "Poll Everywhere Question 4"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#filter-keep-rows-that-match-a-condition",
     "href": "lessons/02_Data_Management/02_Data_Management.html#filter-keep-rows-that-match-a-condition",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "filter(): keep rows that match a condition",
     "text": "filter(): keep rows that match a condition\n\nWhat if I want to subset the data frame? (keep certain rows of observations)\n\n\nI want to look at the data for people who between 50 and 60 years old\n\n \n\ndds.discr3 = dds.discr2 %&gt;%\n  filter(age &gt;= 50 & age &lt;= 60)\n\nglimpse(dds.discr3)\n\nRows: 23\nColumns: 7\n$ id           &lt;int&gt; 15970, 19412, 29506, 31658, 36123, 39287, 39672, 43455, 4…\n$ age.cohort   &lt;fct&gt; 51+, 51+, 51+, 51+, 51+, 51+, 51+, 51+, 51+, 51+, 51+, 51…\n$ age          &lt;int&gt; 51, 60, 56, 60, 59, 59, 54, 57, 52, 57, 55, 52, 59, 54, 5…\n$ SAB          &lt;fct&gt; Female, Female, Female, Female, Male, Female, Female, Mal…\n$ expenditures &lt;int&gt; 54267, 57702, 48215, 46873, 42739, 44734, 52833, 48363, 5…\n$ R_E          &lt;fct&gt; White not Hispanic, White not Hispanic, White not Hispani…\n$ exp_to_age   &lt;dbl&gt; 1064.0588, 961.7000, 860.9821, 781.2167, 724.3898, 758.20…"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#select-keep-or-drop-columns-using-their-names-and-types",
     "href": "lessons/02_Data_Management/02_Data_Management.html#select-keep-or-drop-columns-using-their-names-and-types",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "select(): keep or drop columns using their names and types",
     "text": "select(): keep or drop columns using their names and types\n\nWhat if I want to remove or keep certain variables?\n\n\nI want to only have age and expenditure in my data frame\n\n \n\ndds.discr4 = dds.discr2 %&gt;%\n  select(age, expenditures)\n\nglimpse(dds.discr4)\n\nRows: 1,000\nColumns: 2\n$ age          &lt;int&gt; 17, 37, 3, 19, 13, 15, 13, 17, 14, 13, 13, 14, 15, 17, 20…\n$ expenditures &lt;int&gt; 2113, 41924, 1454, 6400, 4412, 4566, 3915, 3873, 5021, 28…"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#tbl_summary-table-summary-12",
     "href": "lessons/02_Data_Management/02_Data_Management.html#tbl_summary-table-summary-12",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "tbl_summary() : table summary (1/2)",
     "text": "tbl_summary() : table summary (1/2)\n\nWhat if I want one of those fancy summary tables that are at the top of most research articles? (lovingly called “Table 1”)\n\n\n\n\nlibrary(gtsummary)\ntbl_summary(dds.discr2)\n\n\n\n\n\n\n\n\n  \n    \n      Characteristic\n      N = 1,0001\n    \n  \n  \n    id\n55,385 (31,759, 76,205)\n    age.cohort\n\n        0-5\n82 (8.2%)\n        6-12\n175 (18%)\n        13-17\n212 (21%)\n        18-21\n199 (20%)\n        22-50\n226 (23%)\n        51+\n106 (11%)\n    age\n18 (12, 26)\n    SAB\n\n        Female\n503 (50%)\n        Male\n497 (50%)\n    expenditures\n7,026 (2,898, 37,718)\n    R_E\n\n        American Indian\n4 (0.4%)\n        Asian\n129 (13%)\n        Black\n59 (5.9%)\n        Hispanic\n376 (38%)\n        Multi Race\n26 (2.6%)\n        Native Hawaiian\n3 (0.3%)\n        Other\n2 (0.2%)\n        White not Hispanic\n401 (40%)\n    exp_to_age\n462 (273, 938)\n  \n  \n  \n    \n      1 Median (Q1, Q3); n (%)"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#tbl_summary-table-summary-22",
     "href": "lessons/02_Data_Management/02_Data_Management.html#tbl_summary-table-summary-22",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "tbl_summary() : table summary (2/2)",
     "text": "tbl_summary() : table summary (2/2)\n\nLet’s make this more presentable\n\n \n\n\n\ndds.discr2 %&gt;%\n  select(-id, -age.cohort, -exp_to_age) %&gt;%\n  tbl_summary(label = c(age ~ \"Age\", \n                        R_E ~ \"Race/Ethnicity\", \n                        SAB ~ \"Sex Assigned at Birth\", \n                        expenditures ~ \"Expenditures\") ,\n              statistic = list(all_continuous() ~ \"{mean} ({sd})\"))\n\n\n\n\n\n\n\n\n  \n    \n      Characteristic\n      N = 1,0001\n    \n  \n  \n    Age\n23 (18)\n    Sex Assigned at Birth\n\n        Female\n503 (50%)\n        Male\n497 (50%)\n    Expenditures\n18,066 (19,543)\n    Race/Ethnicity\n\n        American Indian\n4 (0.4%)\n        Asian\n129 (13%)\n        Black\n59 (5.9%)\n        Hispanic\n376 (38%)\n        Multi Race\n26 (2.6%)\n        Native Hawaiian\n3 (0.3%)\n        Other\n2 (0.2%)\n        White not Hispanic\n401 (40%)\n  \n  \n  \n    \n      1 Mean (SD); n (%)"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#group_by-group-by-one-or-more-variables",
     "href": "lessons/02_Data_Management/02_Data_Management.html#group_by-group-by-one-or-more-variables",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "group_by(): group by one or more variables",
     "text": "group_by(): group by one or more variables\n\nWhat if I want to quickly look at group differences?\nIt will not change how the data look, but changes the actions of following functions\n\n\nI want to group my data by sex assigned at birth.\n\n \n\ndds.discr5 = dds.discr2 %&gt;%\n  group_by(SAB)\nglimpse(dds.discr5)\n\nRows: 1,000\nColumns: 7\nGroups: SAB [2]\n$ id           &lt;int&gt; 10210, 10409, 10486, 10538, 10568, 10690, 10711, 10778, 1…\n$ age.cohort   &lt;fct&gt; 13-17, 22-50, 0-5, 18-21, 13-17, 13-17, 13-17, 13-17, 13-…\n$ age          &lt;int&gt; 17, 37, 3, 19, 13, 15, 13, 17, 14, 13, 13, 14, 15, 17, 20…\n$ SAB          &lt;fct&gt; Female, Male, Male, Female, Male, Female, Female, Male, F…\n$ expenditures &lt;int&gt; 2113, 41924, 1454, 6400, 4412, 4566, 3915, 3873, 5021, 28…\n$ R_E          &lt;fct&gt; White not Hispanic, White not Hispanic, Hispanic, Hispani…\n$ exp_to_age   &lt;dbl&gt; 124.2941, 1133.0811, 484.6667, 336.8421, 339.3846, 304.40…\n\n\n\nLet’s see how the groups change something like the summarize() function in the next slide"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#summarize-summarize-your-data-or-grouped-data-into-one-row",
     "href": "lessons/02_Data_Management/02_Data_Management.html#summarize-summarize-your-data-or-grouped-data-into-one-row",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "summarize(): summarize your data or grouped data into one row",
     "text": "summarize(): summarize your data or grouped data into one row\n\nWhat if I want to calculate specific descriptive statistics for my variables?\nThis function is often best used with group_by()\nIf only presenting the summaries, functions like tbl_summary() is better\nsummarize() creates a new data frame, which means you can plot and manipulate the summarized data\n\n \n\n\nOver whole sample:\n\ndds.discr2 %&gt;% \n  summarize(\n    ave = mean(expenditures),\n    SD = sd(expenditures),\n    med = median(expenditures))\n\n# A tibble: 1 × 3\n     ave     SD   med\n   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 18066. 19543.  7026\n\n\n\nGrouped by sex assigned at birth:\n\ndds.discr2 %&gt;% \n  group_by(SAB) %&gt;% \n  summarize(\n    ave = mean(expenditures),\n    SD = sd(expenditures),\n    med = median(expenditures))\n\n# A tibble: 2 × 4\n  SAB       ave     SD   med\n  &lt;fct&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt;\n1 Female 18130. 20020.  6400\n2 Male   18001. 19068.  7219"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#across-apply-a-function-across-multiple-columns",
     "href": "lessons/02_Data_Management/02_Data_Management.html#across-apply-a-function-across-multiple-columns",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "across(): apply a function across multiple columns",
     "text": "across(): apply a function across multiple columns\n\nLike group_by(), this function is often paired with another transformation function\n\n\nI want all my integer values to have two significant figures.\n\n \n\ndds.discr6 = dds.discr2 %&gt;%\n  mutate(across(where(is.integer), signif, digits = 2))\n\nglimpse(dds.discr6)\n\nRows: 1,000\nColumns: 7\n$ id           &lt;dbl&gt; 10000, 10000, 10000, 11000, 11000, 11000, 11000, 11000, 1…\n$ age.cohort   &lt;fct&gt; 13-17, 22-50, 0-5, 18-21, 13-17, 13-17, 13-17, 13-17, 13-…\n$ age          &lt;dbl&gt; 17, 37, 3, 19, 13, 15, 13, 17, 14, 13, 13, 14, 15, 17, 20…\n$ SAB          &lt;fct&gt; Female, Male, Male, Female, Male, Female, Female, Male, F…\n$ expenditures &lt;dbl&gt; 2100, 42000, 1500, 6400, 4400, 4600, 3900, 3900, 5000, 29…\n$ R_E          &lt;fct&gt; White not Hispanic, White not Hispanic, Hispanic, Hispani…\n$ exp_to_age   &lt;dbl&gt; 124.2941, 1133.0811, 484.6667, 336.8421, 339.3846, 304.40…"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#dplyr-resources",
     "href": "lessons/02_Data_Management/02_Data_Management.html#dplyr-resources",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "dplyr resources",
     "text": "dplyr resources\n\nMore dpylr functions to reference!\n\nAdditional details and examples are available in the vignettes:\n\ncolumn-wise operations vignette\nrow-wise operations vignette\n\n \nand the dplyr 1.0.0 release blog posts:\n\nworking across columns\nworking within rows"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#r-programming-class-at-ohsu",
     "href": "lessons/02_Data_Management/02_Data_Management.html#r-programming-class-at-ohsu",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "R programming class at OHSU!",
     "text": "R programming class at OHSU!\nYou can check out Dr. Jessica Minnier’s R class page if you want more notes, videos, etc."
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#the-larger-tidy-ecosystem",
     "href": "lessons/02_Data_Management/02_Data_Management.html#the-larger-tidy-ecosystem",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "The larger tidy ecosystem",
     "text": "The larger tidy ecosystem\nJust to name a few…\n\njanitor\nkableExtra\npatchwork\ngghighlight\ntidybayes"
   },
   {
     "objectID": "lessons/02_Data_Management/02_Data_Management.html#credit-to-mine-çetinkaya-rundel",
     "href": "lessons/02_Data_Management/02_Data_Management.html#credit-to-mine-çetinkaya-rundel",
-    "title": "Lesson 2: Data Management with the tidyverse",
+    "title": "Lesson 2: Data and File Management",
     "section": "Credit to Mine Çetinkaya-Rundel",
     "text": "Credit to Mine Çetinkaya-Rundel\n\nThese notes were built from Mine’s notes\n\nMost pages and code were left as she made them\nI changed a few things to match our class\n\nPlease see her Github repository for the original notes\n\n\n\nLesson 2: Data Management"
   },
@@ -4561,7 +4561,7 @@
     "href": "lessons/02_Data_Management/02_Data_Management_key_info.html#key-dates",
     "title": "Key Info and Announcements",
     "section": "Key Dates",
-    "text": "Key Dates"
+    "text": "Key Dates\n\nHomework 0 due this Thursday at 11pm\n\nLet me know if you have issues with turning it in on Sakai"
   },
   {
     "objectID": "lessons/05_SLR_Eval/05_SLR_Eval_key_info.html#key-dates",
@@ -5129,5 +5129,131 @@
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "Process of regression data analysis",
     "text": "Process of regression data analysis\n\n  \n\n\n\n\nModel Selection\n\n\n\nBuilding a model\nSelecting variables\nPrediction vs interpretation\nComparing potential models\n\n\n\n\n\n\n\n\nModel Fitting\n\n\n\nFind best fit line\nUsing OLS in this class\nParameter estimation\nCategorical covariates\nInteractions\n\n\n\n\n\n\n\n\nModel Evaluation\n\n\n\nEvaluation of model fit\nTesting model assumptions\nResiduals\nTransformations\nInfluential points\nMulticollinearity\n\n\n\n\n\n\n\n\nModel Use (Inference)\n\n\n\n\n\nInference for coefficients\nHypothesis testing for coefficients\n\n\n\nInference for expected \\(Y\\) given \\(X\\)\nPrediction of new \\(Y\\) given \\(X\\)"
+  },
+  {
+    "objectID": "lessons/02_Data_Management/02_Data_Management.html#folder-organization-1",
+    "href": "lessons/02_Data_Management/02_Data_Management.html#folder-organization-1",
+    "title": "Lesson 2: Data and File Management",
+    "section": "Folder organization",
+    "text": "Folder organization\n\nMake a folder for our class!\n\nI suggest naming it something like BSTA_512_W25 to indicate the class and the term\n\nMake these folders in your computer (or in OneDrive if you prefer)\n\nOnly make them in OneDrive if you have a desktop connection\n\n\n\n\n\nFor a project, I have the following folders\n\nBackground\nCode\nData_Raw\nData_Processed\nDissemination\nReports\nMeetings\n\n\n\n\nFor our class, I suggest making one folder for the course with the following folders in it:\n\nData\nHomework\nProject (with above subfolders)\nLessons\nAnd other folders if you want"
+  },
+  {
+    "objectID": "lessons/02_Data_Management/02_Data_Management.html#aside-folder-and-file-naming",
+    "href": "lessons/02_Data_Management/02_Data_Management.html#aside-folder-and-file-naming",
+    "title": "Lesson 2: Data and File Management",
+    "section": "Aside: folder and file naming",
+    "text": "Aside: folder and file naming\nThere are a few good practices for naming files and folders for easy tracking:\n\nKeep the name short and relevant\nUse leading numbers to help organize sequential items\n\nI can show you my lessons folders as an example\n\nUse dates in the format “YYYY-MM-DD” so that files are in chronological order\nYou can label different versions if you would like to\nUse “_” to separate sections of the name\n\nI also use this to separate words, but some people say you should use “-” to separate words"
+  },
+  {
+    "objectID": "lessons/02_Data_Management/02_Data_Management.html#make-an-r-project",
+    "href": "lessons/02_Data_Management/02_Data_Management.html#make-an-r-project",
+    "title": "Lesson 2: Data and File Management",
+    "section": "Make an R project",
+    "text": "Make an R project\n\nI suggest you make an .Rproj file in the overall class folder (BSTA_512_W25)"
+  },
+  {
+    "objectID": "lessons/02_Data_Management/02_Data_Management.html#creating-project-in-rstudio",
+    "href": "lessons/02_Data_Management/02_Data_Management.html#creating-project-in-rstudio",
+    "title": "Lesson 2: Data and File Management",
+    "section": "Creating project in RStudio",
+    "text": "Creating project in RStudio\n\nWay to designate a working directory: basically your home base when working in R\n\nWe have to tell R exactly where we are in our folders and where to find other things\nA project makes it easier to tell R where we are\n\nBasic steps to create a project\n\nGo into RStudio\nCreate new project for this class (under File or top right corner)\n\nI would chose “Existing Directory” since we have already set up our folders\nMake the new project in the BSTA_512_W25 folder\n\n\nOnce we have projects, we can open one and R will automatically know that its location is the start of our working directory\nOnly make one project for now!!"
+  },
+  {
+    "objectID": "lessons/02_Data_Management/02_Data_Management.html#the-nice-thing-about-r-projects",
+    "href": "lessons/02_Data_Management/02_Data_Management.html#the-nice-thing-about-r-projects",
+    "title": "Lesson 2: Data and File Management",
+    "section": "The nice thing about R projects",
+    "text": "The nice thing about R projects\n\n5 minute video explaining some of the nice features of R projects\n\nhttps://rfortherestofus.com/2022/10/rstudio-projects"
+  },
+  {
+    "objectID": "lessons/02_Data_Management/02_Data_Management.html#reproducibility",
+    "href": "lessons/02_Data_Management/02_Data_Management.html#reproducibility",
+    "title": "Lesson 2: Data and File Management",
+    "section": "Reproducibility",
+    "text": "Reproducibility\n\nResearch data and code can reach the same results regardless of who is running the code\n\nThis can also refer to future or past you!\n\n\n \n\nWe want to set up our work so the entire folder can be moved around and work in its new location\n\n \n\nProjects work well in combination with the here package"
+  },
+  {
+    "objectID": "lessons/02_Data_Management/02_Data_Management.html#here-package",
+    "href": "lessons/02_Data_Management/02_Data_Management.html#here-package",
+    "title": "Lesson 2: Data and File Management",
+    "section": "here package",
+    "text": "here package\n\nIllustration by Allison Horst"
+  },
+  {
+    "objectID": "lessons/02_Data_Management/02_Data_Management.html#here-package-1",
+    "href": "lessons/02_Data_Management/02_Data_Management.html#here-package-1",
+    "title": "Lesson 2: Data and File Management",
+    "section": "here package",
+    "text": "here package\n\n\n\nGood source for the here package\n\nJust substitute .Rmd with .qmd\n\nBasically, a .qmd file and .R file work differently\n\nWe haven’t worked much with .R files\n\nFor .qmd files, the automatic directory is the folder it is in\n\nBut we want it to be the main project folder\n\nhere can help with that\n\n \n\nVery important for reproducibility!!"
+  },
+  {
+    "objectID": "lessons/02_Data_Management/02_Data_Management.html#using-here-package",
+    "href": "lessons/02_Data_Management/02_Data_Management.html#using-here-package",
+    "title": "Lesson 2: Data and File Management",
+    "section": "Using here package",
+    "text": "Using here package\n\nWithin your console, type here() and enter\n\nTry this with getwd() as well\n\n\n\nlibrary(here)\nhere()\n\n[1] \"/Users/wakim/Library/CloudStorage/OneDrive-OregonHealth&ScienceUniversity/Teaching/Classes/W25_BSTA_512_612/BSTA_512_W25_site\"\n\ngetwd()\n\n[1] \"/Users/wakim/Library/CloudStorage/OneDrive-OregonHealth&ScienceUniversity/Teaching/Classes/W25_BSTA_512_612/BSTA_512_W25_site\"\n\n\n \n\nhere can be used whenever we need to access a file path in R code\n\nImporting data\nSaving output\nAccessing files"
+  },
+  {
+    "objectID": "lessons/02_Data_Management/02_Data_Management.html#using-here-to-load-data",
+    "href": "lessons/02_Data_Management/02_Data_Management.html#using-here-to-load-data",
+    "title": "Lesson 2: Data and File Management",
+    "section": "Using here() to load data",
+    "text": "Using here() to load data\n\nThe here() function will start at the working directory (where your .Rproj file is) and let you write out a file path for anything\nTo load the dataset in our .qmd file, we will use:\n\n\nlibrary(readxl)\ndata = read_excel(here(\"./data/BodyTemperatures.xlsx\"))\ndata = read_excel(here(\"data\", \"BodyTemperatures.xlsx\"))"
+  },
+  {
+    "objectID": "lessons/02_Data_Management/02_Data_Management.html#common-functions-to-load-data",
+    "href": "lessons/02_Data_Management/02_Data_Management.html#common-functions-to-load-data",
+    "title": "Lesson 2: Data and File Management",
+    "section": "Common functions to load data",
+    "text": "Common functions to load data\n\n\n\nFunction\nData file type\nPackage needed\n\n\n\n\nread_excel()\n.xls, .xlsx\nreadxl\n\n\nread.csv()\n.csv\nBuilt in\n\n\nload()\n.Rdata\nBuilt in\n\n\nread_sas()\n.sas7bdat\nhaven"
+  },
+  {
+    "objectID": "labs/Lab_01_instructions.html",
+    "href": "labs/Lab_01_instructions.html",
+    "title": "Lab 1 Instructions",
+    "section": "",
+    "text": "Caution\n\n\n\nThis lab is not ready to be worked on!! Nicky needs to update it."
+  },
+  {
+    "objectID": "labs/Lab_01_instructions.html#directions",
+    "href": "labs/Lab_01_instructions.html#directions",
+    "title": "Lab 1 Instructions",
+    "section": "Directions",
+    "text": "Directions\nPlease turn in your .html file on Sakai. Please let me know if you greatly prefer to submit a physical copy. We can work out another way for you to turn in the labs.\nYou can download the .qmd file for this lab here.\n\nPurpose\nThis lab will serve as an introduction to our quarter long project.\nThere will be no analysis in this lab. Instead, we are building our knowledge around the research question.\n\n\nGrading\nEach lab will have a slightly different grading rubric. Since this lab does not include coding nor analysis, this portion of the rubric is excluded."
+  },
+  {
+    "objectID": "labs/Lab_01_instructions.html#lab-activities",
+    "href": "labs/Lab_01_instructions.html#lab-activities",
+    "title": "Lab 1 Instructions",
+    "section": "Lab activities",
+    "text": "Lab activities\n\n1. Reading and listening activities\n\n1.1 Article: Implicit and explicit anti-fat bias: The role of weight-related attitudes and beliefs\nThis article will serve as a reference point for our project. The article is meant to introduce social scientists’ approaches to research and analyses. However, the article is not meant to be a basis for which we perform our analysis.\n\n\n\n\n\n\nWarning\n\n\n\nThis article discusses anti-fat bias. It uses words that may be triggering to larger-bodied people.\n\n\nPlease read sections 1 - 2, through 2.2 (“Procedures and measures”). Answer the following questions:\n\nIn your own words, what is anti-fat bias?\nWhat were the three social theoretical models that the paper discusses? Which do you personally think is the biggest contributor to anti-fat bias and why?\nFrom the following measures in section 2.2, select two and discuss why the named measure may or may not accurately represent the italicized statement taken from the IAT questionnaire. Feel free to answer this question after taking the IAT yourself.\n\nSelf-perception of weight\nThin/fat group identity\nControllability of weight\nAwareness of societal standards\nInternalization of societal standards\n\nFor example, for Self-perception of weight, the italicized statement is the following statement outlined in red:\n\n\n\n1.2 Podcast: Anti-Fat Bias by Maintenance Phase\n\n\n\n\n\n\nWarning\n\n\n\nThis podcast shares the experience of one of its hosts that involves anti-fat bias. This may be triggering if you have experienced this type of bias.\n\n\nThis is an optional listening for this lab, but I highly encourage you listen at some point this quarter. This is a really good way to see how research can be integrated into conversation and experience.\nIf you decide to listen, feel free to share a quote that most impacted you.\n\n\n\n2. Familiarizing ourselves with the Implicit Association Test (IAT)\n\n2.1 Learn more about the test\nVisit the Project Implicit site, and read about the test. What is your initial reaction to the test? What questions about the test do you have? Do you have any questions about the test’s validity? The point here is not to attempt to discredit the test itself, but see what specific questions the test can help us answer and what is outside the scope of our analysis. For example, are there any potential issues with the fact that people are self-selected to take the test? Does that mean our sample is representative of our population? Is it an issue that someone can take the test more than once?\nThis exercise will serve as a good starting point for the discussion section of our project report. The more effort you put in here and now, the more prepared you will be for the report.\n\n\n2.2 Take the test\nYou will spend 15 minutes taking the IAT. You can go to the Project Implicit website, register, and select a specific test to take. Once registered, you can click “Take a Test,” read the Preliminary Information, and then click “I wish to proceed” at the bottom. Then you can click the button “Weight IAT” to take this particular test.\nI will not check that you have completed this test, but it will help you understand the data you are analyzing.\n\n\n\n3. Get a sense of how you would like to analyze the data\nFor our project, we will examine the association betwen the IAT score and one other variable. From the above article, and the introduced variables in section 2.2, which association are you most interested in analyzing? Please write this in the form of a research question.\nWe will have a chance to adjust our research question once we have explored the data in Lab 2.\n\n\n4. Organize your “Project” folder\nBefore downloading the data, go back to Lesson 2 and follow the file setup for our project. This includes making an .Rproj file within the main folder. Make sure you are working with the project by using the here() function to display your working directory.\n\n\n\n\n\n\nTask\n\n\n\nDisplay your working directory using the here package and here() function.\n\n\n\n\n5. Compile above work into an introduction\nAt this point, you have done a lot of the work needed to write an introduction for your report. Write a brief description of anti-fat bias, IAT, your research question, and the context for the question. This description should be in complete sentences and written as a single paragraph.\nIn the next lab, we will work on a summary of the dataset (e.g. where are the data from, when were they collected, how many subjects, what are the variables, what are the exposure and outcomes variables of interest, etc.)."
+  },
+  {
+    "objectID": "lessons/02_Data_Management/02_Data_Management.html#mutate-constructing-new-variables-from-what-you-have-1",
+    "href": "lessons/02_Data_Management/02_Data_Management.html#mutate-constructing-new-variables-from-what-you-have-1",
+    "title": "Lesson 2: Data and File Management",
+    "section": "mutate(): constructing new variables from what you have",
+    "text": "mutate(): constructing new variables from what you have\n\ndds.discr3 = dds.discr1 %&gt;%\n  mutate(exp_200 = expenditures - 200, \n         expend_20perc = expenditures * 0.2, \n         expend_sq = expenditures^2, \n         expend_over_5000 = case_when(\n           expenditures &gt; 5000 ~ \"Yes\", \n           expenditures &lt;= 5000 ~ \"No\"\n         )\n  )\nglimpse(dds.discr3)\n\nRows: 1,000\nColumns: 10\n$ id               &lt;int&gt; 10210, 10409, 10486, 10538, 10568, 10690, 10711, 1077…\n$ age.cohort       &lt;fct&gt; 13-17, 22-50, 0-5, 18-21, 13-17, 13-17, 13-17, 13-17,…\n$ age              &lt;int&gt; 17, 37, 3, 19, 13, 15, 13, 17, 14, 13, 13, 14, 15, 17…\n$ SAB              &lt;fct&gt; Female, Male, Male, Female, Male, Female, Female, Mal…\n$ expenditures     &lt;int&gt; 2113, 41924, 1454, 6400, 4412, 4566, 3915, 3873, 5021…\n$ R_E              &lt;fct&gt; White not Hispanic, White not Hispanic, Hispanic, His…\n$ exp_200          &lt;dbl&gt; 1913, 41724, 1254, 6200, 4212, 4366, 3715, 3673, 4821…\n$ expend_20perc    &lt;dbl&gt; 422.6, 8384.8, 290.8, 1280.0, 882.4, 913.2, 783.0, 77…\n$ expend_sq        &lt;dbl&gt; 4464769, 1757621776, 2114116, 40960000, 19465744, 208…\n$ expend_over_5000 &lt;chr&gt; \"No\", \"Yes\", \"No\", \"Yes\", \"No\", \"No\", \"No\", \"No\", \"Ye…"
+  },
+  {
+    "objectID": "lessons/02_Data_Management/02_Data_Management.html#mutate-other-examples",
+    "href": "lessons/02_Data_Management/02_Data_Management.html#mutate-other-examples",
+    "title": "Lesson 2: Data and File Management",
+    "section": "mutate(): other examples",
+    "text": "mutate(): other examples\n\ndds.discr3 = dds.discr1 %&gt;%\n  mutate(expend_20perc = expenditures * 0.2, \n         expend_sq = expenditures^2, \n         expend_over_5000 = case_when(\n           expenditures &gt; 5000 ~ \"Yes\", \n           expenditures &lt;= 5000 ~ \"No\"\n         ), \n         expend_log = log(expenditures)\n  )\nglimpse(dds.discr3)\n\nRows: 1,000\nColumns: 10\n$ id               &lt;int&gt; 10210, 10409, 10486, 10538, 10568, 10690, 10711, 1077…\n$ age.cohort       &lt;fct&gt; 13-17, 22-50, 0-5, 18-21, 13-17, 13-17, 13-17, 13-17,…\n$ age              &lt;int&gt; 17, 37, 3, 19, 13, 15, 13, 17, 14, 13, 13, 14, 15, 17…\n$ SAB              &lt;fct&gt; Female, Male, Male, Female, Male, Female, Female, Mal…\n$ expenditures     &lt;int&gt; 2113, 41924, 1454, 6400, 4412, 4566, 3915, 3873, 5021…\n$ R_E              &lt;fct&gt; White not Hispanic, White not Hispanic, Hispanic, His…\n$ expend_20perc    &lt;dbl&gt; 422.6, 8384.8, 290.8, 1280.0, 882.4, 913.2, 783.0, 77…\n$ expend_sq        &lt;dbl&gt; 4464769, 1757621776, 2114116, 40960000, 19465744, 208…\n$ expend_over_5000 &lt;chr&gt; \"No\", \"Yes\", \"No\", \"Yes\", \"No\", \"No\", \"No\", \"No\", \"Ye…\n$ expend_log       &lt;dbl&gt; 7.655864, 10.643614, 7.282074, 8.764053, 8.392083, 8.…"
+  },
+  {
+    "objectID": "lessons/02_Data_Management/02_Data_Management_key_info.html",
+    "href": "lessons/02_Data_Management/02_Data_Management_key_info.html",
+    "title": "Key Info and Announcements",
+    "section": "",
+    "text": "I saw that we had some issues with getting into the OneDrive\n\nLet’s see if this link works\nI might need to manually add you all to the folder UGH\n\nNew to R? Check out my old class site\n\nVideo recordings will be in Student folder\n\nAnything else?"
+  },
+  {
+    "objectID": "lessons/02_Data_Management/02_Data_Management_key_info.html#announcements",
+    "href": "lessons/02_Data_Management/02_Data_Management_key_info.html#announcements",
+    "title": "Key Info and Announcements",
+    "section": "",
+    "text": "I saw that we had some issues with getting into the OneDrive\n\nLet’s see if this link works\nI might need to manually add you all to the folder UGH\n\nNew to R? Check out my old class site\n\nVideo recordings will be in Student folder\n\nAnything else?"
   }
 ]

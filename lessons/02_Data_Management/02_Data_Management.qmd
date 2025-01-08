@@ -1,5 +1,5 @@
 ---
-title: "Lesson 2: Data Management with the `tidyverse`"
+title: "Lesson 2: Data and File Management"
 subtitle: "Adapted from parts of Mine Çetinkaya-Rundel's tidyverse course"
 author: "Nicky Wakim"
 title-slide-attributes:
@@ -48,6 +48,25 @@ library(jsonlite)
 library(here)
 ```
 
+# What we will cover
+
+1. Introduction to `tidyverse`
+2. `ggplot2` revisited
+2. Functions for data management
+3. Functions for data summarization
+4. Folder organization
+5. `here` package and importing data
+
+ 
+
+- Not covered: basic Quarto set up. Please see R recordings in OneDrive and my [EPI 525 site](https://nwakim.github.io/F24_EPI_525/schedule.html) for videos and slides.
+
+```{css, echo=FALSE}
+.reveal code {
+  max-height: 100% !important;
+}
+```
+
 ## 
 
 ![Artwork by \@allison_horst](../img_slides/debugging.png){fig-alt="A cartoon of a fuzzy round monster face showing 10 different emotions experienced during the process of debugging code. The progression goes from (1) “I got this” - looking determined and optimistic; (2) “Huh. Really thought that was it.” - looking a bit baffled; (3) “...” - looking up at the ceiling in thought; (4) “Fine. Restarting.” - looking a bit annoyed; (5) “OH WTF.” Looking very frazzled and frustrated; (6) “Zombie meltdown.” - looking like a full meltdown; (7) (blank) - sleeping; (8) “A NEW HOPE!” - a happy looking monster with a lightbulb above; (9) “insert awesome theme song” - looking determined and typing away; (10) “I love coding” - arms raised in victory with a big smile, with confetti falling."}
@@ -84,7 +103,7 @@ The **tidyverse** is a collection of R packages designed for data science. All p
 
 [^1]: Source: R for Data Science. Grolemund and Wickham.
 
-![](../img_slides/tidy-data-frame.png){fig-align="center" width="669"}
+![](../img_slides/tidy-data-frame.png){fig-align="center" width="1500"}
 
 
 1.  Each variable must have its own column.
@@ -257,8 +276,6 @@ ggplot(
   geom_point()
 ```
 
-## Poll Everywhere Question 1
-
 ## Tidyverse: Visualizing even more variables
 
 ```{r out.width = "100%", fig.asp = 0.3, fig.width = 8}
@@ -291,143 +308,7 @@ legend("topright", legend = c("automatic", "manual"), pch = 1, col = c("green", 
 
 **Data manipulation**
 
--   `pivot_longer()` and `pivot_wider()`
-
--   `rename()`
-
--   `mutate()`
-
--   `filter()`
-
--   `select()`
-
-**Summarizing data**
-
--   `tbl_summary()`
--   `group_by()`
--   `summarize()`
--   `across()`
-
-# Data manipulation
-
-## Example for `pivot_longer()`: Instructional staff employment trends
-
-The American Association of University Professors (AAUP) is a nonprofit membership association of faculty and other academic professionals. [This report](https://www.aaup.org/sites/default/files/files/AAUP_Report_InstrStaff-75-11_apr2013.pdf) by the AAUP shows trends in instructional staff employees between 1975 and 2011, and contains an image very similar to the one given below.
-
-![](../img_slides/staff-employment.png){fig-align="center" width="669"}
-
-## Data
-
-Each row in this dataset represents a faculty type, and the columns are the years for which we have data. The values are percentage of hires of that type of faculty for each year.
-
-   
-
-```{r load-data-staff, message=FALSE}
-(staff <- read_csv(here("./data/instructional-staff.csv")))
-```
-
-## Poll Everywhere Question 2
-
-## Recreate the visualization
-
- 
-
--   In order to recreate this visualization we need to first reshape the data:
-    -   one variable for faculty type
-    -   one variable for year
-
- 
-
--   Convert the data from the wide format to long format
-    -   `pivot_longer()`
-
-## 
-
-![](../img_slides/pivot.gif){fig-align="center" width="669"}
-
-
-## `pivot_*()` functions
-
-![](../img_slides/img/tidyr-longer-wider.gif){fig-align="center"}
-
-## Poll Everywhere Question 3
-
-## Pivot staff data and mutate percentage
-
-```{r}
-(staff_long <- staff %>%
-  pivot_longer(
-    cols = -faculty_type,    # columns to pivot
-    names_to = "year",       # name of new column for variable names
-    values_to = "percentage" # name of new column for values
-  ) %>%
-  mutate(percentage = as.numeric(percentage))
-)
-```
-
-## A "meh" plot over the years
-
-```{r fig.height=2}
-ggplot(staff_long, aes(x = percentage, y = year, fill = faculty_type)) +
-  geom_col()
-```
-
-## More improvement {.smaller}
-
-::: columns
-::: {.column width="50%"}
-```{r staff-lines-2, eval=FALSE}
-staff_long %>%
-  mutate( 
-    part_time = if_else(faculty_type == "Part-Time Faculty",
-                        "Part-Time Faculty", "Other Faculty"),
-    year = as.numeric(year)) %>% 
-  ggplot(
-    aes(x = year, y = percentage/100, group = faculty_type, color = part_time)) +
-  geom_line() +
-  scale_color_manual(values = c("gray", "red")) + 
-  scale_y_continuous(labels = label_percent(accuracy = 1)) + 
-  theme_minimal() +
-  labs(
-    title = "Instructional staff employment trends",
-    x = "Year", y = "Percentage", color = NULL) +
-  theme(legend.position = "bottom")
-```
-:::
-
-::: {.column width="50%"}
-```{r staff-lines-22, echo=FALSE}
-staff_long %>%
-  mutate( 
-    part_time = if_else(faculty_type == "Part-Time Faculty",
-                        "Part-Time Faculty", "Other Faculty"),
-    year = as.numeric(year)
-  ) %>% 
-  ggplot(
-    aes(x = year, y = percentage/100, group = faculty_type, color = part_time)
-  ) +
-  geom_line() +
-  scale_color_manual(values = c("gray", "red")) + 
-  scale_y_continuous(labels = label_percent(accuracy = 1)) + 
-  theme_minimal() +
-  labs(
-    title = "Instructional staff employment trends",
-    x = "Year", y = "Percentage", color = NULL
-  ) +
-  theme(legend.position = "bottom")
-```
-:::
-:::
-
-## All that just to show one helpful function
-
-Now we can move onto the other functions mentioned:
-
- 
-
-**Data manipulation**
-
--   `pivot_longer()` and `pivot_wider()`
+-   `pivot_longer()` and `pivot_wider()` (not covered today)
 
 -   `rename()`
 
@@ -501,7 +382,20 @@ dds.discr2 = dds.discr1 %>%
 glimpse(dds.discr2)
 ```
 
-## Poll Everywhere Question 4
+## `mutate()`: other examples
+
+```{r}
+dds.discr3 = dds.discr1 %>%
+  mutate(expend_20perc = expenditures * 0.2, 
+         expend_sq = expenditures^2, 
+         expend_over_5000 = case_when(
+           expenditures > 5000 ~ "Yes", 
+           expenditures <= 5000 ~ "No"
+         ), 
+         expend_log = log(expenditures)
+  )
+glimpse(dds.discr3)
+```
 
 ## `filter()`: keep rows that match a condition
 
@@ -670,6 +564,173 @@ dds.discr6 = dds.discr2 %>%
 
 glimpse(dds.discr6)
 ```
+
+# Folder organization
+
+## Folder organization
+
+-   Make a folder for our class!
+    -   I suggest naming it something like `BSTA_512_W25` to indicate the class and the term
+-   Make these folders in your computer (or in OneDrive if you prefer)
+
+    -   Only make them in OneDrive **if** you have a desktop connection
+
+::: columns
+::: column
+-   For a project, I have the following folders
+
+    -   Background
+    -   Code
+    -   Data_Raw
+    -   Data_Processed
+    -   Dissemination
+    -   Reports
+    -   Meetings
+:::
+
+::: column
+-   For our class, I suggest making one folder for the course with the following folders in it:
+
+    -   Data
+    -   Homework
+    -   Project (with above subfolders)
+    -   Lessons
+    -   And other folders if you want
+:::
+:::
+
+## Aside: folder and file naming
+
+There are a few good practices for naming files and folders for easy tracking:
+
+1. Keep the name short and relevant
+2. Use leading numbers to help organize sequential items
+    - I can show you my lessons folders as an example 
+3. Use dates in the format "YYYY-MM-DD" so that files are in chronological order
+4. You can label different versions if you would like to 
+5. Use "_" to separate sections of the name
+    - I also use this to separate words, but some people say you should use "-" to separate words
+    
+## Creating project in RStudio
+
+-   Way to designate a working directory: basically your home base when working in R
+
+    -   We have to tell R exactly where we are in our folders and where to find other things
+
+    -   A project makes it easier to tell R where we are
+
+-   Basic steps to create a project
+
+    -   Go into RStudio
+
+    -   Create new project for this class (under `File` or top right corner)
+        
+        - I would chose "Existing Directory" since we have already set up our folders
+        - Make the new project in the `BSTA_512_W25` folder
+
+-   Once we have projects, we can open one and R will automatically know that its location is the start of our working directory
+
+- Only make one project for now!! 
+
+## The nice thing about R projects
+
+- 5 minute video explaining some of the nice features of R projects
+
+<https://rfortherestofus.com/2022/10/rstudio-projects>
+
+
+## Reproducibility
+
+- Research data and code can reach the same results regardless of who is running the code
+
+  - This can also refer to future or past you!
+
+ 
+
+- We want to set up our work so the entire folder can be moved around and work in its new location
+
+ 
+
+- Projects work well in combination with the `here` package
+
+# `here` package and importing data
+
+## `here` package
+
+![Illustration by [Allison Horst](https://github.com/allisonhorst)](../img_slides/here_pkg.png)
+
+## `here` package
+
+::::: columns
+::: column
+-   [Good source for the `here` package](http://jenrichmond.rbind.io/post/how-to-use-the-here-package/)
+
+    -   Just substitute `.Rmd` with `.qmd`
+
+-   Basically, a `.qmd` file and `.R` file work differently
+
+    -   We haven't worked much with `.R` files
+
+-   For `.qmd` files, the automatic directory is the folder it is in
+
+    -   But we want it to be the main project folder
+
+-   `here` can help with that
+
+ 
+
+-   **Very important for reproducibility!!**
+:::
+
+::: column
+![](../img_slides/paths.png){fig-align="center"}
+:::
+:::::
+
+## Using `here` package
+
+-   Within your console, type `here()` and enter
+
+    -   Try this with `getwd()` as well
+
+```{r}
+library(here)
+here()
+getwd()
+```
+
+ 
+
+-   `here` can be used whenever we need to access a file path in **R code**
+    -   Importing data
+    -   Saving output
+    -   Accessing files
+
+# Importing data
+
+## Using `here()` to load data
+
+-   The `here()` function will start at the working directory (where your `.Rproj` file is) and let you write out a file path for anything
+
+-   To load the dataset in our `.qmd` file, we will use:
+
+```{r}
+#| eval: false
+library(readxl)
+data = read_excel(here("./data/BodyTemperatures.xlsx"))
+data = read_excel(here("data", "BodyTemperatures.xlsx"))
+```
+
+
+## Common functions to load data
+
+| Function       | Data file type  | Package needed |
+|----------------|-----------------|----------------|
+| `read_excel()` | `.xls`, `.xlsx` | `readxl`       |
+| `read.csv()`   | `.csv`          | Built in       |
+| `load()`       | `.Rdata`        | Built in       |
+| `read_sas()`   | `.sas7bdat`     | `haven`        |
+
 
 # Resources
 

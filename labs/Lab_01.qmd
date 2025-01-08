@@ -1,38 +1,18 @@
 ---
 title: "Lab 1"
+author: "Your name here!!"
 subtitle: "BSTA 512/612"
-description: "Due: Thursday January 16, 2025 at 11pm"
+description: "Due: January 16, 2025 at 11pm"
 date-modified: "today"
+categories: [""]
 format: 
   html:
     link-external-newwindow: true
     toc: true
     embed-resources: true
-    self-contained: true
-  pdf: default 
-editor_options: 
-  chunk_output_type: console
+    number-sections: true
+    number-depth: 4
 ---
-
-::: callout-caution
-This lab is not ready to be worked on!! Nicky needs to update it.
-:::
-
-## Directions
-
-Please turn in your `.html` file [on Sakai.](https://sakai.ohsu.edu/portal/site/BSTA-512-1-AB-W24/tool/961ec5ef-d7f9-4518-be16-25f7af3d6be4?panel=Main) Please let me know if you greatly prefer to submit a physical copy. We can work out another way for you to turn in the labs.
-
-[You can download the `.qmd` file for this lab here.](https://github.com/nwakim/W2024_BSTA_512/blob/main/labs/Lab_01.qmd)
-
-### Purpose
-
-This lab will serve as an introduction to our quarter long project.
-
-There will be no analysis in this lab. Instead, we are building our knowledge around the research question.
-
-### Grading
-
-Each lab will have a slightly different grading rubric. Since this lab does not include coding nor analysis, this portion of the rubric is excluded.
 
 ## Lab activities
 
@@ -96,7 +76,17 @@ For our project, we will examine the association betwen the IAT score and one ot
 
 *We will have a chance to adjust our research question once we have explored the data in Lab 2.*
 
-### 4. Compile above work into an introduction
+### 4. Organize your "Project" folder
+
+Before downloading the data, go back to Lesson 2 and follow the file setup for our project. This includes making an `.Rproj` file within the main folder. Make sure you are working with the project by using the `here()` function to display your working directory. 
+
+::: callout-important
+#### Task
+
+Display your working directory using the `here` package and `here()` function.
+:::
+
+### 5. Compile above work into an introduction
 
 At this point, you have done a lot of the work needed to write an introduction for your report. Write a brief description of anti-fat bias, IAT, your research question, and the context for the question. This description should be in complete sentences and written as a single paragraph.
 

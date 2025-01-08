@@ -3,19 +3,18 @@ title: "Lesson 11: Interactions"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
-date: "02/14/2024"
-categories: ["Week 6"]
+date: "02/19/2025"
 format: 
   revealjs:
-    theme: [default, simple_NW.scss]
+    theme: "../simple_NW.scss"
     chalkboard: true
     slide-number: true
     show-slide-number: all
     width: 1955
     height: 1100
-    footer: Interactions
-    html-math-method: mathjax
+    footer: "Lesson 11: Interactions 1"
     highlight-style: ayu
+    html-math-method: mathjax
 execute:
   freeze: auto  # re-render only when source changes
 ---
@@ -89,10 +88,10 @@ gapm_sub <- gapm %>% # called it gapm2_sub3 to be consistent with Day 7 notes
 5.  Interpret the interaction component of a model with **two continuous covariates**, and how the main variable's effect changes.
 6.  When there are only two covariates in the model, test whether one is a confounder or effect modifier.
 
-## Let's map that to our regression analysis process
+## Regression analysis process
 
 ::: box
-![](images/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"} ![](images/arrow2.png){.absolute top="13.5%" right="28.4%" width="155"}![](images/arrow_back4.png){.absolute top="7.5%" right="30.5%" width="820"} ![](images/arrow_down.png){.absolute top="60.5%" right="48%" width="85"}
+![](../img_slides/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"} ![](../img_slides/arrow2.png){.absolute top="13.5%" right="28.4%" width="155"}![](../img_slides/arrow_back4.png){.absolute top="7.5%" right="30.5%" width="820"} ![](../img_slides/arrow_down.png){.absolute top="60.5%" right="48%" width="85"}
 
 ::: columns
 ::: {.column width="30%"}
@@ -172,6 +171,7 @@ Model Use (Inference)
 
 ::: {.column width="50%"}
 -   Inference for expected $Y$ given $X$
+-   Prediction of new $Y$ given $X$
 :::
 :::
 :::
@@ -222,7 +222,7 @@ ggplot(gapm_sub, aes(x = FemaleLiteracyRate,
 :::
 
 ::: {.column width="80%"}
-![](11_Interactions/confounder.png){fig-align="center" width="1200"}
+![](../img_slides/confounder.png){fig-align="center" width="1200"}
 :::
 :::
 
@@ -288,9 +288,9 @@ mr1 <- lm(LifeExpectancyYrs ~ FemaleLiteracyRate + FoodSupplykcPPD,
 :::
 
 ::: column
-![](11_Interactions/int_example2.png){fig-align="center" width="497"}
+![](../img_slides/int_example2.png){fig-align="center" width="497"}
 
-![](11_Interactions/int_example.png){fig-align="center" width="474"}
+![](../img_slides/int_example.png){fig-align="center" width="474"}
 :::
 :::
 
@@ -333,7 +333,7 @@ mr1 <- lm(LifeExpectancyYrs ~ FemaleLiteracyRate + FoodSupplykcPPD,
 :::
 
 ::: column
-![](11_Interactions/poll_ev_1.png){fig-align="center"}
+![](../img_slides/poll_ev_1.png){fig-align="center"}
 :::
 :::
 

@@ -50,13 +50,13 @@ library(here)
 
 ## 
 
-![Artwork by \@allison_horst](02_Data_Management/debugging.png){fig-alt="A cartoon of a fuzzy round monster face showing 10 different emotions experienced during the process of debugging code. The progression goes from (1) “I got this” - looking determined and optimistic; (2) “Huh. Really thought that was it.” - looking a bit baffled; (3) “...” - looking up at the ceiling in thought; (4) “Fine. Restarting.” - looking a bit annoyed; (5) “OH WTF.” Looking very frazzled and frustrated; (6) “Zombie meltdown.” - looking like a full meltdown; (7) (blank) - sleeping; (8) “A NEW HOPE!” - a happy looking monster with a lightbulb above; (9) “insert awesome theme song” - looking determined and typing away; (10) “I love coding” - arms raised in victory with a big smile, with confetti falling."}
+![Artwork by \@allison_horst](../img_slides/debugging.png){fig-alt="A cartoon of a fuzzy round monster face showing 10 different emotions experienced during the process of debugging code. The progression goes from (1) “I got this” - looking determined and optimistic; (2) “Huh. Really thought that was it.” - looking a bit baffled; (3) “...” - looking up at the ceiling in thought; (4) “Fine. Restarting.” - looking a bit annoyed; (5) “OH WTF.” Looking very frazzled and frustrated; (6) “Zombie meltdown.” - looking like a full meltdown; (7) (blank) - sleeping; (8) “A NEW HOPE!” - a happy looking monster with a lightbulb above; (9) “insert awesome theme song” - looking determined and typing away; (10) “I love coding” - arms raised in victory with a big smile, with confetti falling."}
 
 # Introduction to the `tidyverse`
 
 ## 
 
-![](02_Data_Management/spiderverse.jpeg){fig-align="center"}
+![](../img_slides/spiderverse.jpeg){fig-align="center"}
 
 ## What is the tidyverse?
 
@@ -76,7 +76,7 @@ The **tidyverse** is a collection of R packages designed for data science. All p
 :::
 
 ::: {.column width="55%"}
-![](02_Data_Management/tidyverse.png){fig-align="center" width="669"}
+![](../img_slides/tidyverse.png){fig-align="center" width="669"}
 :::
 :::
 
@@ -348,7 +348,7 @@ Each row in this dataset represents a faculty type, and the columns are the year
 
 ## `pivot_*()` functions
 
-![](02_Data_Management/img/tidyr-longer-wider.gif){fig-align="center"}
+![](../img_slides/img/tidyr-longer-wider.gif){fig-align="center"}
 
 ## Poll Everywhere Question 3
 

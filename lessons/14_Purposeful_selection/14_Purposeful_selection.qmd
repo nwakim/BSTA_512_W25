@@ -1,9 +1,9 @@
 ---
-title: "Lesson 13: Purposeful model selection"
+title: "Lesson 14: Purposeful model selection"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
-date: "03/4/2024"
+date: "03/03/2025"
 format: 
   revealjs:
     theme: "../simple_NW.scss"
@@ -12,9 +12,9 @@ format:
     show-slide-number: all
     width: 1955
     height: 1100
-    footer: Purposeful Selection
-    html-math-method: mathjax
+    footer: "Lesson 14: Purposeful Selection"
     highlight-style: ayu
+    html-math-method: mathjax
 execute:
   freeze: auto  # re-render only when source changes
 ---
@@ -115,7 +115,7 @@ gapm2 = gapm %>% select(-Longitude, -Latitude, -eight_regions, -six_regions, -ge
 ## Regression analysis process
 
 ::: box
-![](images/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"} ![](images/arrow2.png){.absolute top="13.5%" right="28.4%" width="155"}![](images/arrow_back4.png){.absolute top="7.5%" right="30.5%" width="820"} ![](images/arrow_down.png){.absolute top="60.5%" right="48%" width="85"}
+![](../img_slides/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"} ![](../img_slides/arrow2.png){.absolute top="13.5%" right="28.4%" width="155"}![](../img_slides/arrow_back4.png){.absolute top="7.5%" right="30.5%" width="820"} ![](../img_slides/arrow_down.png){.absolute top="60.5%" right="48%" width="85"}
 
 ::: columns
 ::: {.column width="30%"}

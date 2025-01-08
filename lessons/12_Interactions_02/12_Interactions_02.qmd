@@ -1,21 +1,20 @@
 ---
-title: "Lesson 11: Interactions Continued"
+title: "Lesson 12: Interactions, Part 2"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
-date: "02/26/2024"
-categories: ["Week 8"]
+date: "02/24/2025"
 format: 
   revealjs:
-    theme: [default, simple_NW.scss]
+    theme: "../simple_NW.scss"
     chalkboard: true
     slide-number: true
     show-slide-number: all
     width: 1955
     height: 1100
-    footer: Interactions 2
-    html-math-method: mathjax
+    footer: "Lesson 12: Interactions 2"
     highlight-style: ayu
+    html-math-method: mathjax
 execute:
   freeze: auto  # re-render only when source changes
 ---

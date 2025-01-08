@@ -415,6 +415,91 @@ Nicky Wakim
 <li><p>Solve the optimal coefficient estimates for simple linear regression using OLS</p></li>
 <li><p>Apply OLS in R for simple linear regression of real data</p></li>
 </ol>
+<div class="cell">
+<style type="text/css">
+.reveal code {
+  max-height: 100% !important;
+}
+</style>
+</div>
+</section>
+<section id="process-of-regression-data-analysis" class="slide level2">
+<h2>Process of regression data analysis</h2>
+<div class="box">
+<p><img data-src="../img_slides/arrow2.png" class="absolute" style="top: 13.5%; right: 62.1%; width: 155px; "> <img data-src="../img_slides/arrow2.png" class="absolute" style="top: 13.5%; right: 28.4%; width: 155px; "><img data-src="../img_slides/arrow_back4.png" class="absolute" style="top: 7.5%; right: 30.5%; width: 820px; "> <img data-src="../img_slides/arrow_down.png" class="absolute" style="top: 60.5%; right: 48%; width: 85px; "></p>
+<div class="columns">
+<div class="column" style="width:30%;">
+<div class="RAP1">
+<div class="RAP1-title">
+<p>Model Selection</p>
+</div>
+<div class="RAP1-cont">
+<ul>
+<li><p>Building a model</p></li>
+<li><p>Selecting variables</p></li>
+<li><p>Prediction vs interpretation</p></li>
+<li><p>Comparing potential models</p></li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:4%;">
+
+</div><div class="column" style="width:30%;">
+<div class="RAP2">
+<div class="RAP2-title">
+<p>Model Fitting</p>
+</div>
+<div class="RAP2-cont">
+<ul>
+<li><p>Find best fit line</p></li>
+<li><p>Using OLS in this class</p></li>
+<li><p>Parameter estimation</p></li>
+<li><p>Categorical covariates</p></li>
+<li><p>Interactions</p></li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:4%;">
+
+</div><div class="column" style="width:30%;">
+<div class="RAP3">
+<div class="RAP3-title">
+<p>Model Evaluation</p>
+</div>
+<div class="RAP3-cont">
+<ul>
+<li>Evaluation of model fit</li>
+<li>Testing model assumptions</li>
+<li>Residuals</li>
+<li>Transformations</li>
+<li>Influential points</li>
+<li>Multicollinearity</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="RAP4">
+<div class="RAP4-title">
+<p>Model Use (Inference)</p>
+</div>
+<div class="RAP4-cont">
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Inference for coefficients</li>
+<li>Hypothesis testing for coefficients</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Inference for expected <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span></li>
+<li>Prediction of new <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="lets-start-with-an-example" class="slide level2">
 <h2>Let’s start with an example</h2>
@@ -422,7 +507,7 @@ Nicky Wakim
 <div class="column" style="width:55%;">
 <div class="cell">
 <div class="cell-output-display">
-<p><img data-src="03_SLR_files/figure-revealjs/unnamed-chunk-2-1.png" width="1056"></p>
+<p><img data-src="03_SLR_files/figure-revealjs/unnamed-chunk-3-1.png" width="1056"></p>
 </div>
 </div>
 </div><div class="column" style="width:45%;">
@@ -463,7 +548,7 @@ Nicky Wakim
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="03_SLR_files/figure-revealjs/unnamed-chunk-3-1.png" width="960"></p>
+<p><img data-src="03_SLR_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -608,7 +693,7 @@ $ water_2011_quart           &lt;chr&gt; "Q1", "Q2", "Q1", "Q3", "Q4", "Q3", "Q3
 <div class="column" style="width:50%;">
 <div class="cell">
 <div class="cell-output-display">
-<p><img data-src="03_SLR_files/figure-revealjs/unnamed-chunk-9-1.png" width="1056"></p>
+<p><img data-src="03_SLR_files/figure-revealjs/unnamed-chunk-10-1.png" width="1056"></p>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -671,7 +756,7 @@ $ water_2011_quart           &lt;chr&gt; "Q1", "Q2", "Q1", "Q3", "Q4", "Q3", "Q3
 </div>
 <p><span class="math display">\[\widehat{\text{life expectancy}} =  50.9 + 0.232\cdot\text{female literacy rate}\]</span></p>
 
-<img data-src="03_SLR_files/figure-revealjs/unnamed-chunk-10-1.png" width="1152" class="r-stretch quarto-figure-center"></section>
+<img data-src="03_SLR_files/figure-revealjs/unnamed-chunk-11-1.png" width="1152" class="r-stretch quarto-figure-center"></section>
 <section id="three-types-of-study-design-there-are-more" class="slide level2">
 <h2>Three types of study design (there are more)</h2>
 <div class="columns">
@@ -884,7 +969,7 @@ $ water_2011_quart           &lt;chr&gt; "Q1", "Q2", "Q1", "Q3", "Q4", "Q3", "Q3
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="03_SLR_files/figure-revealjs/unnamed-chunk-11-1.png" width="1056"></p>
+<p><img data-src="03_SLR_files/figure-revealjs/unnamed-chunk-12-1.png" width="1056"></p>
 </figure>
 </div>
 </div>
@@ -918,7 +1003,7 @@ $ water_2011_quart           &lt;chr&gt; "Q1", "Q2", "Q1", "Q3", "Q4", "Q3", "Q3
 </div><div class="column" style="width:50%;">
 <div class="cell">
 <div class="cell-output-display">
-<p><img data-src="03_SLR_files/figure-revealjs/unnamed-chunk-12-1.png" width="1056"></p>
+<p><img data-src="03_SLR_files/figure-revealjs/unnamed-chunk-13-1.png" width="1056"></p>
 </div>
 </div>
 </div>
@@ -1035,7 +1120,7 @@ $ water_2011_quart           &lt;chr&gt; "Q1", "Q2", "Q1", "Q3", "Q4", "Q3", "Q3
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="03_SLR_01/OLSassumptions-1.png"></p>
+<p><img data-src="../img_slides/OLSassumptions-1.png"></p>
 </figure>
 </div>
 </div>
@@ -1134,7 +1219,7 @@ Y &amp; = \widehat{Y} + \widehat\epsilon \\
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="03_SLR_files/figure-revealjs/unnamed-chunk-13-1.png" width="1056"></p>
+<p><img data-src="03_SLR_files/figure-revealjs/unnamed-chunk-14-1.png" width="1056"></p>
 </figure>
 </div>
 </div>
@@ -1170,7 +1255,7 @@ Y &amp; = \widehat{Y} + \widehat\epsilon \\
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="03_SLR_files/figure-revealjs/unnamed-chunk-14-1.png" width="1056"></p>
+<p><img data-src="03_SLR_files/figure-revealjs/unnamed-chunk-15-1.png" width="1056"></p>
 </figure>
 </div>
 </div>
@@ -1428,7 +1513,7 @@ SSE = \displaystyle\sum^n_{i=1} (Y_i - \widehat{\beta}_0-\widehat{\beta}_1X_i)^2
 <section id="do-i-need-to-do-all-that-work-every-time" class="slide level2">
 <h2>Do I need to do all that work every time??</h2>
 
-<img data-src="03_SLR_01/hoopla.jpeg" class="r-stretch quarto-figure-center"></section>
+<img data-src="../img_slides/hoopla.jpeg" class="r-stretch quarto-figure-center"></section>
 <section id="regression-in-r-lm" class="slide level2">
 <h2>Regression in R: <code>lm()</code></h2>
 <ul>
@@ -1468,8 +1553,7 @@ Multiple R-squared:  0.4109,    Adjusted R-squared:  0.4034
 F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
 </div>
 </div>
-
-<img data-src="03_SLR_01/summary.png" class="r-stretch quarto-figure-center"></section>
+</section>
 <section id="regression-in-r-lm-tidy" class="slide level2">
 <h2>Regression in R: <code>lm()</code> + <code>tidy()</code></h2>
 <p>&nbsp;</p>
@@ -1479,23 +1563,23 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
 <span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="azoltgimws" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#azoltgimws table {
+<div id="naytngwrny" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#naytngwrny table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#azoltgimws thead, #azoltgimws tbody, #azoltgimws tfoot, #azoltgimws tr, #azoltgimws td, #azoltgimws th {
+#naytngwrny thead, #naytngwrny tbody, #naytngwrny tfoot, #naytngwrny tr, #naytngwrny td, #naytngwrny th {
   border-style: none;
 }
 
-#azoltgimws p {
+#naytngwrny p {
   margin: 0;
   padding: 0;
 }
 
-#azoltgimws .gt_table {
+#naytngwrny .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1521,12 +1605,12 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#azoltgimws .gt_caption {
+#naytngwrny .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#azoltgimws .gt_title {
+#naytngwrny .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1538,7 +1622,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-bottom-width: 0;
 }
 
-#azoltgimws .gt_subtitle {
+#naytngwrny .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1550,7 +1634,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-top-width: 0;
 }
 
-#azoltgimws .gt_heading {
+#naytngwrny .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1562,13 +1646,13 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#azoltgimws .gt_bottom_border {
+#naytngwrny .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#azoltgimws .gt_col_headings {
+#naytngwrny .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1583,7 +1667,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#azoltgimws .gt_col_heading {
+#naytngwrny .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1603,7 +1687,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   overflow-x: hidden;
 }
 
-#azoltgimws .gt_column_spanner_outer {
+#naytngwrny .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1615,15 +1699,15 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 4px;
 }
 
-#azoltgimws .gt_column_spanner_outer:first-child {
+#naytngwrny .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#azoltgimws .gt_column_spanner_outer:last-child {
+#naytngwrny .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#azoltgimws .gt_column_spanner {
+#naytngwrny .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1635,11 +1719,11 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   width: 100%;
 }
 
-#azoltgimws .gt_spanner_row {
+#naytngwrny .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#azoltgimws .gt_group_heading {
+#naytngwrny .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1665,7 +1749,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   text-align: left;
 }
 
-#azoltgimws .gt_empty_group_heading {
+#naytngwrny .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1680,15 +1764,15 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   vertical-align: middle;
 }
 
-#azoltgimws .gt_from_md > :first-child {
+#naytngwrny .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#azoltgimws .gt_from_md > :last-child {
+#naytngwrny .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#azoltgimws .gt_row {
+#naytngwrny .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1707,7 +1791,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   overflow-x: hidden;
 }
 
-#azoltgimws .gt_stub {
+#naytngwrny .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1720,7 +1804,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#azoltgimws .gt_stub_row_group {
+#naytngwrny .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1734,15 +1818,15 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   vertical-align: top;
 }
 
-#azoltgimws .gt_row_group_first td {
+#naytngwrny .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#azoltgimws .gt_row_group_first th {
+#naytngwrny .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#azoltgimws .gt_summary_row {
+#naytngwrny .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1752,16 +1836,16 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#azoltgimws .gt_first_summary_row {
+#naytngwrny .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#azoltgimws .gt_first_summary_row.thick {
+#naytngwrny .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#azoltgimws .gt_last_summary_row {
+#naytngwrny .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1771,7 +1855,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#azoltgimws .gt_grand_summary_row {
+#naytngwrny .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1781,7 +1865,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#azoltgimws .gt_first_grand_summary_row {
+#naytngwrny .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1791,7 +1875,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#azoltgimws .gt_last_grand_summary_row_top {
+#naytngwrny .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1801,11 +1885,11 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#azoltgimws .gt_striped {
+#naytngwrny .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#azoltgimws .gt_table_body {
+#naytngwrny .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1814,7 +1898,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#azoltgimws .gt_footnotes {
+#naytngwrny .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1828,7 +1912,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#azoltgimws .gt_footnote {
+#naytngwrny .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1837,7 +1921,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#azoltgimws .gt_sourcenotes {
+#naytngwrny .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1851,7 +1935,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#azoltgimws .gt_sourcenote {
+#naytngwrny .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1859,72 +1943,72 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#azoltgimws .gt_left {
+#naytngwrny .gt_left {
   text-align: left;
 }
 
-#azoltgimws .gt_center {
+#naytngwrny .gt_center {
   text-align: center;
 }
 
-#azoltgimws .gt_right {
+#naytngwrny .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#azoltgimws .gt_font_normal {
+#naytngwrny .gt_font_normal {
   font-weight: normal;
 }
 
-#azoltgimws .gt_font_bold {
+#naytngwrny .gt_font_bold {
   font-weight: bold;
 }
 
-#azoltgimws .gt_font_italic {
+#naytngwrny .gt_font_italic {
   font-style: italic;
 }
 
-#azoltgimws .gt_super {
+#naytngwrny .gt_super {
   font-size: 65%;
 }
 
-#azoltgimws .gt_footnote_marks {
+#naytngwrny .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#azoltgimws .gt_asterisk {
+#naytngwrny .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#azoltgimws .gt_indent_1 {
+#naytngwrny .gt_indent_1 {
   text-indent: 5px;
 }
 
-#azoltgimws .gt_indent_2 {
+#naytngwrny .gt_indent_2 {
   text-indent: 10px;
 }
 
-#azoltgimws .gt_indent_3 {
+#naytngwrny .gt_indent_3 {
   text-indent: 15px;
 }
 
-#azoltgimws .gt_indent_4 {
+#naytngwrny .gt_indent_4 {
   text-indent: 20px;
 }
 
-#azoltgimws .gt_indent_5 {
+#naytngwrny .gt_indent_5 {
   text-indent: 25px;
 }
 
-#azoltgimws .katex-display {
+#naytngwrny .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#azoltgimws div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#naytngwrny div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>

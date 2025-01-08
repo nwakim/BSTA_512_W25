@@ -68,6 +68,103 @@ theme_set(theme_gray(base_size = 22))
 
 5.  Apply OLS in R for simple linear regression of real data
 
+```{css, echo=FALSE}
+.reveal code {
+  max-height: 100% !important;
+}
+```
+
+## Process of regression data analysis
+
+::: box
+![](../img_slides/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"} ![](../img_slides/arrow2.png){.absolute top="13.5%" right="28.4%" width="155"}![](../img_slides/arrow_back4.png){.absolute top="7.5%" right="30.5%" width="820"} ![](../img_slides/arrow_down.png){.absolute top="60.5%" right="48%" width="85"}
+
+::: columns
+::: {.column width="30%"}
+::: RAP1
+::: RAP1-title
+Model Selection
+:::
+
+::: RAP1-cont
+-   Building a model
+
+-   Selecting variables
+
+-   Prediction vs interpretation
+
+-   Comparing potential models
+:::
+:::
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="30%"}
+::: RAP2
+::: RAP2-title
+Model Fitting
+:::
+
+::: RAP2-cont
+-   Find best fit line
+
+-   Using OLS in this class
+
+-   Parameter estimation
+
+-   Categorical covariates
+
+-   Interactions
+:::
+:::
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="30%"}
+::: RAP3
+::: RAP3-title
+Model Evaluation
+:::
+
+::: RAP3-cont
+-   Evaluation of model fit
+-   Testing model assumptions
+-   Residuals
+-   Transformations
+-   Influential points
+-   Multicollinearity
+:::
+:::
+:::
+:::
+:::
+
+::: RAP4
+::: RAP4-title
+Model Use (Inference)
+:::
+
+::: RAP4-cont
+::: columns
+::: {.column width="50%"}
+-   Inference for coefficients
+-   Hypothesis testing for coefficients
+:::
+
+::: {.column width="50%"}
+-   Inference for expected $Y$ given $X$
+-   Prediction of new $Y$ given $X$
+:::
+:::
+:::
+:::
+
+
+
 ## Let's start with an example
 
 ::: columns
@@ -732,7 +829,7 @@ $$\begin{aligned}
 :::
 
 ::: {.column width="50%"}
-![](03_SLR_01/OLSassumptions-1.png){fig-align="center"}
+![](../img_slides/OLSassumptions-1.png){fig-align="center"}
 :::
 :::
 
@@ -1215,7 +1312,7 @@ $$\begin{aligned}
 
 ## Do I need to do all that work every time??
 
-![](03_SLR_01/hoopla.jpeg){fig-align="center"}
+![](../img_slides/hoopla.jpeg){fig-align="center"}
 
 ## Regression in R: `lm()`
 
@@ -1238,7 +1335,6 @@ model1 <- lm(life_expectancy_years_2011 ~ female_literacy_rate_2011,
 summary(model1)
 ```
 
-![](03_SLR_01/summary.png){fig-align="center"}
 
 ## Regression in R: `lm()` + `tidy()`
 

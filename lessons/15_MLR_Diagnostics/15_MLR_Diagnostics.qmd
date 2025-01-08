@@ -1,10 +1,9 @@
 ---
-title: "Lesson 14: MLR Model Diagnostics"
+title: "Lesson 15: MLR Model Diagnostics"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
-date: "3/13/2024"
-categories: ["Week 10"]
+date: "03/05/2025"
 format: 
   revealjs:
     theme: "../simple_NW.scss"
@@ -13,9 +12,9 @@ format:
     show-slide-number: all
     width: 1955
     height: 1100
-    footer: "Lesson 14: MLR Diagnostics"
-    html-math-method: mathjax
+    footer: "Lesson 15: MLR Diagnostics"
     highlight-style: ayu
+    html-math-method: mathjax
 execute:
   echo: true
   freeze: auto  # re-render only when source changes
@@ -63,7 +62,7 @@ gapm <- read_csv(here("./data/lifeexp_femlit_2011.csv"))
 ## Regression analysis process
 
 ::: box
-![](images/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"} ![](images/arrow2.png){.absolute top="13.5%" right="28.4%" width="155"}![](images/arrow_back4.png){.absolute top="7.5%" right="30.5%" width="820"} ![](images/arrow_down.png){.absolute top="60.5%" right="48%" width="85"}
+![](../img_slides/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"} ![](../img_slides/arrow2.png){.absolute top="13.5%" right="28.4%" width="155"}![](../img_slides/arrow_back4.png){.absolute top="7.5%" right="30.5%" width="820"} ![](../img_slides/arrow_down.png){.absolute top="60.5%" right="48%" width="85"}
 
 ::: columns
 ::: {.column width="30%"}
@@ -730,7 +729,7 @@ car::vif(final_model)
 ## Regression analysis process
 
 ::: box
-![](images/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"} ![](images/arrow2.png){.absolute top="13.5%" right="28.4%" width="155"}![](images/arrow_back4.png){.absolute top="7.5%" right="30.5%" width="820"} ![](images/arrow_down.png){.absolute top="60.5%" right="48%" width="85"}
+![](../img_slides/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"} ![](../img_slides/arrow2.png){.absolute top="13.5%" right="28.4%" width="155"}![](../img_slides/arrow_back4.png){.absolute top="7.5%" right="30.5%" width="820"} ![](../img_slides/arrow_down.png){.absolute top="60.5%" right="48%" width="85"}
 
 ::: columns
 ::: {.column width="30%"}

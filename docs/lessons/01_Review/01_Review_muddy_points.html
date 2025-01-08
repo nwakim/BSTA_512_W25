@@ -121,6 +121,13 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#f-distribution" id="toc-f-distribution" class="nav-link active" data-scroll-target="#f-distribution">1. F-distribution??</a></li>
   <li><a href="#linear-combination-of-normal-rvs-are-normal" id="toc-linear-combination-of-normal-rvs-are-normal" class="nav-link" data-scroll-target="#linear-combination-of-normal-rvs-are-normal">2. Linear combination of Normal RVs are Normal</a></li>
+  <li><a href="#muddy-points-from-winter-2024" id="toc-muddy-points-from-winter-2024" class="nav-link" data-scroll-target="#muddy-points-from-winter-2024">Muddy points from Winter 2024</a>
+  <ul class="collapse">
+  <li><a href="#relationship-between-distributions" id="toc-relationship-between-distributions" class="nav-link" data-scroll-target="#relationship-between-distributions">1. Relationship between distributions</a></li>
+  <li><a href="#a-word-about-the-distributions" id="toc-a-word-about-the-distributions" class="nav-link" data-scroll-target="#a-word-about-the-distributions">2. A word about the distributions</a></li>
+  <li><a href="#is-the-f-distribution-used-for-things-outside-of-anova" id="toc-is-the-f-distribution-used-for-things-outside-of-anova" class="nav-link" data-scroll-target="#is-the-f-distribution-used-for-things-outside-of-anova">3. Is the F distribution used for things outside of ANOVA?</a></li>
+  <li><a href="#multivariable-vs-multivariate" id="toc-multivariable-vs-multivariate" class="nav-link" data-scroll-target="#multivariable-vs-multivariate">4. Multivariable vs multivariate?</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -142,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">January 6, 2025</p>
+      <p class="date-modified">January 7, 2025</p>
     </div>
   </div>
     
@@ -156,8 +163,43 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="linear-combination-of-normal-rvs-are-normal" class="level3">
 <h3 class="anchored" data-anchor-id="linear-combination-of-normal-rvs-are-normal">2. Linear combination of Normal RVs are Normal</h3>
+</section>
+<section id="muddy-points-from-winter-2024" class="level2">
+<h2 class="anchored" data-anchor-id="muddy-points-from-winter-2024">Muddy points from Winter 2024</h2>
+<section id="relationship-between-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="relationship-between-distributions">1. Relationship between distributions</h3>
+<p>Just to clarify! We will be using the distributions in the context of hypothesis testing. I just wanted you to see some of the cool connections between the distributions. (We don’t need to know the connections for a lot of what we do in this class.)</p>
+<p>Also, I will discuss each distribution again as we hit the hypothesis tests that use them!</p>
+<p>There is a big, scary (but fun!) infographic at the end of a famous stat textbook (Casella and Berger) that shows all the connections between distributions:</p>
+<p><img src="../img_muddy_points/CB_distributions.png" class="img-fluid"></p>
+<p>We mostly talk about the red, circled area. Each line with the directional arrow represents a specific transformation that is needed to go from the starting distribution to the distribution at the end of the arrow.</p>
+<p><strong>Again, this is NOT information we need to perform regression, but it is really interesting to see the connections between these distributions.</strong></p>
+</section>
+<section id="a-word-about-the-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="a-word-about-the-distributions">2. A word about the distributions</h3>
+<p>I feel like I might’ve scared us with all the distribution talk.</p>
+<p>I want to be clear: We will further discuss and explore the distributions as we use them within the course. It will be more important <strong>to understand their use within regression</strong> then knowing the distribution in depth. <strong>Basically, when we implement specific hypothesis tests, we just need to know which distribution is most appropriate for the test.</strong></p>
+</section>
+<section id="is-the-f-distribution-used-for-things-outside-of-anova" class="level3">
+<h3 class="anchored" data-anchor-id="is-the-f-distribution-used-for-things-outside-of-anova">3. Is the F distribution used for things outside of ANOVA?</h3>
+<p>Yes! In regression, we often use the F-distribution through the F-test (same as ANOVA) However, in regression, we are comparing the variance of two models, that may differ by a coefficient. <a href="https://online.stat.psu.edu/stat501/lesson/6/6.2">See the STAT 501 page for more info if interested.</a> In ANOVA, we are comparing variance between and within groups. Both use the same test, but with different goals!</p>
+</section>
+<section id="multivariable-vs-multivariate" class="level3">
+<h3 class="anchored" data-anchor-id="multivariable-vs-multivariate">4. Multivariable vs multivariate?</h3>
+<p>Some people misuse “multivariate” instead of “multivariable” modeling. In this class, we will only look at multivariable regression. Here’s the big difference:</p>
+<ul>
+<li><strong>Multivariable:</strong> model with <strong>multiple independent variables</strong> (covariates, predictors)
+<ul>
+<li>If we want to see how our outcome (height) is related to parent height, birth country, sex assigned at birth, etc.</li>
+</ul></li>
+<li><strong>Multivariate:</strong> model with <strong>multiple dependent variables</strong> (outcome)
+<ul>
+<li>If we want to extend the outcome from height to height and head circumference. Multivariate modeling would try to model both outcomes together and see how they are related to other variables.</li>
+</ul></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

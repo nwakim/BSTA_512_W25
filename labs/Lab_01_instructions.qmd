@@ -8,37 +8,36 @@ format:
     link-external-newwindow: true
     toc: true
     embed-resources: true
-    self-contained: true
   pdf: default 
 editor_options: 
   chunk_output_type: console
 ---
 
 ::: callout-caution
-This lab is not ready to be worked on!! Nicky needs to update it.
+Lab is ready! 1/9/2025
 :::
 
 ## Directions
 
-Please turn in your `.html` file [on Sakai.](https://sakai.ohsu.edu/portal/site/BSTA-512-1-AB-W24/tool/961ec5ef-d7f9-4518-be16-25f7af3d6be4?panel=Main) Please let me know if you greatly prefer to submit a physical copy. We can work out another way for you to turn in the labs.
+Please turn in your `.html` file [on Sakai.](https://sakai.ohsu.edu/portal/site/BSTA-512-1-AC-W25/tool/af1e1389-d708-4fe2-94b3-caa1b503592b) Please let me know if you greatly prefer to submit a physical copy. We can work out another way for you to turn in the labs.
 
-[You can download the `.qmd` file for this lab here.](https://github.com/nwakim/W2024_BSTA_512/blob/main/labs/Lab_01.qmd)
+[You can download the `.qmd` file for this lab here.](https://github.com/nwakim/BSTA_512_W25/blob/main/labs/Lab_01.qmd)
 
 ### Purpose
 
 This lab will serve as an introduction to our quarter long project.
 
-There will be no analysis in this lab. Instead, we are building our knowledge around the research question.
+There will be no analysis in this lab. Instead, we are building our knowledge around the research question and setting up our folder. 
 
 ### Grading
 
-Each lab will have a slightly different grading rubric. Since this lab does not include coding nor analysis, this portion of the rubric is excluded.
+Each lab will follow the rubric on the Project page. Since this lab does not include coding nor analysis, this portion of the rubric is excluded.
 
 ## Lab activities
 
 ### 1. Reading and listening activities
 
-#### 1.1 Article: [Implicit and explicit anti-fat bias: The role of weight-related attitudes and beliefs](./resources/Implicit_anti_fat.pdf)
+#### 1.1 Article: [Implicit and explicit anti-fat bias: The role of weight-related attitudes and beliefs](https://ohsuitg-my.sharepoint.com/:b:/r/personal/wakim_ohsu_edu/Documents/Teaching/Classes/W25_BSTA_512_612/Student_files/Labs/Implicit_anti_fat.pdf?csf=1&web=1&e=Gg43c4)
 
 This article will serve as a reference point for our project. The article is meant to introduce social scientists' approaches to research and analyses. However, the article is not meant to be a basis for which we perform our analysis.
 
@@ -65,6 +64,12 @@ Please read sections 1 - 2, through 2.2 ("Procedures and measures"). Answer the 
     -   Internalization of societal standards
 
     For example, for Self-perception of weight, the italicized statement is the following statement outlined in red:![](images/example_lab_01.png)
+    
+::: callout-important
+#### Task
+
+Answer the above questions. 
+:::
 
 #### 1.2 Podcast: [Anti-Fat Bias by Maintenance Phase](https://maintenancephase.buzzsprout.com/1411126/6524683-anti-fat-bias)
 
@@ -76,6 +81,12 @@ This podcast shares the experience of one of its hosts that involves anti-fat bi
 
 If you decide to listen, feel free to share a quote that most impacted you.
 
+::: callout-important
+#### Task
+
+If you decide to listen, feel free to share a quote that most impacted you.
+:::
+
 ### 2. Familiarizing ourselves with the Implicit Association Test (IAT)
 
 #### 2.1 Learn more about the test
@@ -84,17 +95,35 @@ Visit the [Project Implicit site](https://implicit.harvard.edu/implicit/educatio
 
 *This exercise will serve as a good starting point for the discussion section of our project report.* *The more effort you put in here and now, the more prepared you will be for the report.*
 
+::: callout-important
+#### Task
+
+In 5-10 bullet points, write down some of your ideas on the study design that you may want to mention.
+:::
+
 #### 2.2 Take the test
 
 You will spend 15 minutes taking the IAT. You can go to the [Project Implicit website](https://implicit.harvard.edu/implicit/research/), register, and select a specific test to take. Once registered, you can click "Take a Test," read the Preliminary Information, and then click "I wish to proceed" at the bottom. Then you can click the button "Weight IAT" to take this particular test.
 
 I will not check that you have completed this test, but it will help you understand the data you are analyzing.
 
+::: callout-important
+#### Task
+
+Take the Weight IAT.
+:::
+
 ### 3. Get a sense of how you would like to analyze the data
 
 For our project, we will examine the association betwen the IAT score and one other variable. From the above article, and the introduced variables in section 2.2, which association are you most interested in analyzing? Please write this in the form of a research question.
 
 *We will have a chance to adjust our research question once we have explored the data in Lab 2.*
+
+::: callout-important
+#### Task
+
+Write your research question
+:::
 
 ### 4. Organize your "Project" folder
 
@@ -108,6 +137,12 @@ Display your working directory using the `here` package and `here()` function.
 
 ### 5. Compile above work into an introduction
 
-At this point, you have done a lot of the work needed to write an introduction for your report. Write a brief description of anti-fat bias, IAT, your research question, and the context for the question. This description should be in complete sentences and written as a single paragraph.
+At this point, you have done a lot of the work needed to write an introduction for your poster. In 3-5 bullet points, write a description of anti-fat bias, IAT, your research question, and the context for the question. 
 
 *In the next lab, we will work on a summary of the dataset (e.g. where are the data from, when were they collected, how many subjects, what are the variables, what are the exposure and outcomes variables of interest, etc.).*
+
+::: callout-important
+#### Task
+
+Write your introduction
+:::

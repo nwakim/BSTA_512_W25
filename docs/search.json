@@ -2538,42 +2538,42 @@
     "href": "lessons/03_SLR/03_SLR.html#reference-how-did-i-code-that",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "Reference: How did I code that?",
-    "text": "Reference: How did I code that?\n\n\nggplot(gapm, aes(x = female_literacy_rate_2011,\n                 y = life_expectancy_years_2011)) +\n  geom_point(size = 4) +\n  geom_smooth(method = \"lm\", se = FALSE, size = 3, colour=\"#F14124\") +\n  labs(x = \"Female literacy rate (%)\", \n       y = \"Life expectancy (years)\",\n       title = \"Relationship between life expectancy and \\n the female literacy rate in 2011\") +\n    theme(axis.title = element_text(size = 30), \n        axis.text = element_text(size = 25), \n        title = element_text(size = 30))"
+    "text": "Reference: How did I code that?\n\n\ngapm %&gt;%\n  ggplot(aes(x = FemaleLiteracyRate,\n             y = LifeExpectancyYrs)) +\n  geom_point(size = 4) +\n  geom_smooth(method = \"lm\", se = FALSE, size = 3, colour=\"#F14124\") +\n  labs(x = \"Female literacy rate (%)\", \n       y = \"Life expectancy (years)\",\n       title = \"Relationship between life expectancy and \\n the female literacy rate in 2011\") +\n    theme(axis.title = element_text(size = 30), \n        axis.text = element_text(size = 25), \n        title = element_text(size = 30))"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#dataset-description",
     "href": "lessons/03_SLR/03_SLR.html#dataset-description",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "Dataset description",
-    "text": "Dataset description\n\nData files\n\nCleaned: lifeexp_femlit_2011.csv\nNeeds cleaning: lifeexp_femlit_water_2011.csv\n\nData were downloaded from Gapminder\n2011 is the most recent year with the most complete data\nLife expectancy = the average number of years a newborn child would live if current mortality patterns were to stay the same.\nAdult literacy rate is the percentage of people ages 15 and above who can, with understanding, read and write a short, simple statement on their everyday life."
+    "text": "Dataset description\n\nData file: Gapminder_vars_2011.xlsx\nData were downloaded from Gapminder\n2011 is the most recent year with the most complete data\nLife expectancy = the average number of years a newborn child would live if current mortality patterns were to stay the same.\nAdult literacy rate is the percentage of people ages 15 and above who can, with understanding, read and write a short, simple statement on their everyday life."
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#get-to-know-the-data-12",
     "href": "lessons/03_SLR/03_SLR.html#get-to-know-the-data-12",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "Get to know the data (1/2)",
-    "text": "Get to know the data (1/2)\n\nLoad data\n\n\ngapm_original &lt;- read_csv(here::here(\"data\", \"lifeexp_femlit_water_2011.csv\"))\n\n\nGlimpse of the data\n\n\nglimpse(gapm_original)\n\nRows: 194\nColumns: 5\n$ country                    &lt;chr&gt; \"Afghanistan\", \"Albania\", \"Algeria\", \"Andor…\n$ life_expectancy_years_2011 &lt;dbl&gt; 56.7, 76.7, 76.7, 82.6, 60.9, 76.9, 76.0, 7…\n$ female_literacy_rate_2011  &lt;dbl&gt; 13.0, 95.7, NA, NA, 58.6, 99.4, 97.9, 99.5,…\n$ water_basic_source_2011    &lt;dbl&gt; 52.6, 88.1, 92.6, 100.0, 40.3, 97.0, 99.5, …\n$ water_2011_quart           &lt;chr&gt; \"Q1\", \"Q2\", \"Q2\", \"Q4\", \"Q1\", \"Q3\", \"Q4\", \"…\n\n\n\nNote the missing values for our variables of interest"
+    "text": "Get to know the data (1/2)\n\nLoad data\n\n\nlibrary(readxl)\ngapm1 &lt;- read_xlsx(here(\"data/Gapminder_vars_2011.xlsx\"), na = \"NA\")\n\n\nGlimpse of the data\n\n\nglimpse(gapm1)\n\nRows: 195\nColumns: 18\n$ country                            &lt;chr&gt; \"Afghanistan\", \"Albania\", \"Algeria\"…\n$ CO2emissions                       &lt;dbl&gt; 0.412, 1.790, 3.290, 5.870, 1.250, …\n$ ElectricityUsePP                   &lt;dbl&gt; NA, 2210.0, 1120.0, NA, 207.0, NA, …\n$ FoodSupplykcPPD                    &lt;dbl&gt; 2110, 3130, 3220, NA, 2410, 2370, 3…\n$ IncomePP                           &lt;dbl&gt; 1660, 10200, 13000, 42000, 5910, 18…\n$ LifeExpectancyYrs                  &lt;dbl&gt; 56.7, 76.7, 76.7, 82.6, 60.9, 76.9,…\n$ FemaleLiteracyRate                 &lt;dbl&gt; 13.0, 95.7, NA, NA, 58.6, 99.4, 97.…\n$ population                         &lt;dbl&gt; 2.97e+07, 2.93e+06, 3.68e+07, 8.38e…\n$ WaterSourcePrct                    &lt;dbl&gt; 52.6, 88.1, 92.6, 100.0, 40.3, 97.0…\n$ geo                                &lt;chr&gt; \"afg\", \"alb\", \"dza\", \"and\", \"ago\", …\n$ four_regions                       &lt;chr&gt; \"asia\", \"europe\", \"africa\", \"europe…\n$ eight_regions                      &lt;chr&gt; \"asia_west\", \"europe_east\", \"africa…\n$ six_regions                        &lt;chr&gt; \"south_asia\", \"europe_central_asia\"…\n$ members_oecd_g77                   &lt;chr&gt; \"g77\", \"others\", \"g77\", \"others\", \"…\n$ Latitude                           &lt;dbl&gt; 33.00000, 41.00000, 28.00000, 42.50…\n$ Longitude                          &lt;dbl&gt; 66.00000, 20.00000, 3.00000, 1.5210…\n$ `World bank region`                &lt;chr&gt; \"South Asia\", \"Europe & Central Asi…\n$ `World bank, 4 income groups 2017` &lt;chr&gt; \"Low income\", \"Upper middle income\"…\n\n\n\nNote the missing values for our variables of interest"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#get-to-know-the-data-22",
     "href": "lessons/03_SLR/03_SLR.html#get-to-know-the-data-22",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "Get to know the data (2/2)",
-    "text": "Get to know the data (2/2)\n\nGet a sense of the summary statistics\n\n\ngapm_original %&gt;% \n  select(life_expectancy_years_2011, female_literacy_rate_2011) %&gt;% \n  summary()\n\n life_expectancy_years_2011 female_literacy_rate_2011\n Min.   :47.50              Min.   :13.00            \n 1st Qu.:64.30              1st Qu.:70.97            \n Median :72.70              Median :91.60            \n Mean   :70.66              Mean   :81.65            \n 3rd Qu.:76.90              3rd Qu.:98.03            \n Max.   :82.90              Max.   :99.80            \n NA's   :7                  NA's   :114"
+    "text": "Get to know the data (2/2)\n\nGet a sense of the summary statistics\n\n\ngapm1 %&gt;% \n  select(LifeExpectancyYrs, \n         FemaleLiteracyRate) %&gt;% \n  summary()\n\n LifeExpectancyYrs FemaleLiteracyRate\n Min.   :47.50     Min.   :13.00     \n 1st Qu.:64.30     1st Qu.:70.97     \n Median :72.70     Median :91.60     \n Mean   :70.66     Mean   :81.65     \n 3rd Qu.:76.90     3rd Qu.:98.03     \n Max.   :82.90     Max.   :99.80     \n NA's   :8         NA's   :115"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#remove-missing-values-12",
     "href": "lessons/03_SLR/03_SLR.html#remove-missing-values-12",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "Remove missing values (1/2)",
-    "text": "Remove missing values (1/2)\n\nRemove rows with missing data for life expectancy and female literacy rate\n\n\ngapm &lt;- gapm_original %&gt;% \n  drop_na(life_expectancy_years_2011, female_literacy_rate_2011)\n\nglimpse(gapm)\n\nRows: 80\nColumns: 5\n$ country                    &lt;chr&gt; \"Afghanistan\", \"Albania\", \"Angola\", \"Antigu…\n$ life_expectancy_years_2011 &lt;dbl&gt; 56.7, 76.7, 60.9, 76.9, 76.0, 73.8, 71.0, 7…\n$ female_literacy_rate_2011  &lt;dbl&gt; 13.0, 95.7, 58.6, 99.4, 97.9, 99.5, 53.4, 9…\n$ water_basic_source_2011    &lt;dbl&gt; 52.6, 88.1, 40.3, 97.0, 99.5, 97.8, 96.7, 9…\n$ water_2011_quart           &lt;chr&gt; \"Q1\", \"Q2\", \"Q1\", \"Q3\", \"Q4\", \"Q3\", \"Q3\", \"…\n\n\n\nNo missing values now for our variables of interest"
+    "text": "Remove missing values (1/2)\n\nRemove rows with missing data for life expectancy and female literacy rate\n\n\ngapm &lt;- gapm1 %&gt;% drop_na(LifeExpectancyYrs, FemaleLiteracyRate)\nglimpse(gapm)\n\nRows: 80\nColumns: 18\n$ country                            &lt;chr&gt; \"Afghanistan\", \"Albania\", \"Angola\",…\n$ CO2emissions                       &lt;dbl&gt; 0.4120, 1.7900, 1.2500, 5.3600, 4.6…\n$ ElectricityUsePP                   &lt;dbl&gt; NA, 2210.0, 207.0, NA, 2900.0, 1810…\n$ FoodSupplykcPPD                    &lt;dbl&gt; 2110, 3130, 2410, 2370, 3160, 2790,…\n$ IncomePP                           &lt;dbl&gt; 1660, 10200, 5910, 18600, 19600, 70…\n$ LifeExpectancyYrs                  &lt;dbl&gt; 56.7, 76.7, 60.9, 76.9, 76.0, 73.8,…\n$ FemaleLiteracyRate                 &lt;dbl&gt; 13.0, 95.7, 58.6, 99.4, 97.9, 99.5,…\n$ population                         &lt;dbl&gt; 2.97e+07, 2.93e+06, 2.42e+07, 9.57e…\n$ WaterSourcePrct                    &lt;dbl&gt; 52.6, 88.1, 40.3, 97.0, 99.5, 97.8,…\n$ geo                                &lt;chr&gt; \"afg\", \"alb\", \"ago\", \"atg\", \"arg\", …\n$ four_regions                       &lt;chr&gt; \"asia\", \"europe\", \"africa\", \"americ…\n$ eight_regions                      &lt;chr&gt; \"asia_west\", \"europe_east\", \"africa…\n$ six_regions                        &lt;chr&gt; \"south_asia\", \"europe_central_asia\"…\n$ members_oecd_g77                   &lt;chr&gt; \"g77\", \"others\", \"g77\", \"g77\", \"g77…\n$ Latitude                           &lt;dbl&gt; 33.00000, 41.00000, -12.50000, 17.0…\n$ Longitude                          &lt;dbl&gt; 66.00000, 20.00000, 18.50000, -61.8…\n$ `World bank region`                &lt;chr&gt; \"South Asia\", \"Europe & Central Asi…\n$ `World bank, 4 income groups 2017` &lt;chr&gt; \"Low income\", \"Upper middle income\"…\n\n\n\nNo missing values now for our variables of interest"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#remove-missing-values-22",
     "href": "lessons/03_SLR/03_SLR.html#remove-missing-values-22",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "Remove missing values (2/2)",
-    "text": "Remove missing values (2/2)\n\nAnd no more missing values when we look only at our two variables of interest\n\n\ngapm %&gt;% select(life_expectancy_years_2011, female_literacy_rate_2011) %&gt;% \n  get_summary_stats()\n\n# A tibble: 2 × 13\n  variable        n   min   max median    q1    q3   iqr   mad  mean    sd    se\n  &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 life_expec…    80    48  81.8   72.4  65.9  75.8  9.95  6.30  69.9  7.95 0.889\n2 female_lit…    80    13  99.8   91.6  71.0  98.0 27.0  11.4   81.7 22.0  2.45 \n# ℹ 1 more variable: ci &lt;dbl&gt;\n\n\n\n\nNote\n\n\n\nRemoving the rows with missing data was not needed to run the regression model.\nI did this step since later we will be calculating the standard deviations of the explanatory and response variables for just the values included in the regression model. It’ll be easier to do this if we remove the missing values now."
+    "text": "Remove missing values (2/2)\n\nAnd no more missing values when we look only at our two variables of interest\n\n\ngapm %&gt;%\n  select(LifeExpectancyYrs, \n          FemaleLiteracyRate) %&gt;% \n  get_summary_stats()\n\n# A tibble: 2 × 13\n  variable        n   min   max median    q1    q3   iqr   mad  mean    sd    se\n  &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 LifeExpect…    80    48  81.8   72.4  65.9  75.8  9.95  6.30  69.9  7.95 0.889\n2 FemaleLite…    80    13  99.8   91.6  71.0  98.0 27.0  11.4   81.7 22.0  2.45 \n# ℹ 1 more variable: ci &lt;dbl&gt;\n\n\n\n\nNote\n\n\n\nRemoving the rows with missing data was not needed to run the regression model.\nI did this step since later we will be calculating the standard deviations of the explanatory and response variables for just the values included in the regression model. It’ll be easier to do this if we remove the missing values now."
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#questions-we-can-ask-with-a-simple-linear-regression-model",
@@ -2601,7 +2601,7 @@
     "href": "lessons/03_SLR/03_SLR.html#lets-revisit-the-regression-analysis-process",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "Let’s revisit the regression analysis process",
-    "text": "Let’s revisit the regression analysis process\n   \n \n\n\n\n\nModel Selection\n\n\n\nBuilding a model\nPrediction vs interpretation\nComparing models\n\n\n\n\n\n\n\n\nModel Fitting\n\n\n\nParameter estimation\nInterpret model parameters\nHypothesis tests for coefficients\nCategorical covariates\nInteractions\n\n\n\n\n\n\n\n\nModel Evaluation\n\n\n\nEvaluation of full and reduced models\nTesting model assumptions\nResiduals\nTransformations\nInfluential points\nMulticollinearity"
+    "text": "Let’s revisit the regression analysis process\n\n  \n\n\n\n\nModel Selection\n\n\n\nBuilding a model\nSelecting variables\nPrediction vs interpretation\nComparing potential models\n\n\n\n\n\n\n\n\nModel Fitting\n\n\n\nFind best fit line\nUsing OLS in this class\nParameter estimation\nCategorical covariates\nInteractions\n\n\n\n\n\n\n\n\nModel Evaluation\n\n\n\nEvaluation of model fit\nTesting model assumptions\nResiduals\nTransformations\nInfluential points\nMulticollinearity\n\n\n\n\n\n\n\n\nModel Use (Inference)\n\n\n\n\n\nInference for coefficients\nHypothesis testing for coefficients\n\n\n\nInference for expected \\(Y\\) given \\(X\\)\nPrediction of new \\(Y\\) given \\(X\\)"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#poll-everywhere-question-2",
@@ -2790,21 +2790,21 @@
     "href": "lessons/03_SLR/03_SLR.html#regression-in-r-lm",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "Regression in R: lm()",
-    "text": "Regression in R: lm()\n\nLet’s discuss the syntax of this function\n\n\nmodel1 &lt;- lm(life_expectancy_years_2011 ~ female_literacy_rate_2011,\n                 data = gapm)"
+    "text": "Regression in R: lm()\n\nLet’s discuss the syntax of this function\n\n\nmodel1 &lt;- gapm %&gt;% lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate)"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#regression-in-r-lm-summary",
     "href": "lessons/03_SLR/03_SLR.html#regression-in-r-lm-summary",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "Regression in R: lm() + summary()",
-    "text": "Regression in R: lm() + summary()\n\nmodel1 &lt;- lm(life_expectancy_years_2011 ~ female_literacy_rate_2011,\n                 data = gapm)\nsummary(model1)\n\n\nCall:\nlm(formula = life_expectancy_years_2011 ~ female_literacy_rate_2011, \n    data = gapm)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-22.299  -2.670   1.145   4.114   9.498 \n\nCoefficients:\n                          Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)               50.92790    2.66041  19.143  &lt; 2e-16 ***\nfemale_literacy_rate_2011  0.23220    0.03148   7.377  1.5e-10 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 6.142 on 78 degrees of freedom\n  (108 observations deleted due to missingness)\nMultiple R-squared:  0.4109,    Adjusted R-squared:  0.4034 \nF-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10"
+    "text": "Regression in R: lm() + summary()\n\nmodel1 &lt;- gapm %&gt;% lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate)\nsummary(model1)\n\n\nCall:\nlm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate, data = .)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-22.299  -2.670   1.145   4.114   9.498 \n\nCoefficients:\n                   Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)        50.92790    2.66041  19.143  &lt; 2e-16 ***\nFemaleLiteracyRate  0.23220    0.03148   7.377  1.5e-10 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 6.142 on 78 degrees of freedom\nMultiple R-squared:  0.4109,    Adjusted R-squared:  0.4034 \nF-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#regression-in-r-lm-tidy",
     "href": "lessons/03_SLR/03_SLR.html#regression-in-r-lm-tidy",
     "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
     "section": "Regression in R: lm() + tidy()",
-    "text": "Regression in R: lm() + tidy()\n \n\ntidy(model1) %&gt;% \n  gt() %&gt;% \n  tab_options(table.font.size = 45)\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n50.9278981\n2.66040695\n19.142898\n3.325312e-31\n    female_literacy_rate_2011\n0.2321951\n0.03147744\n7.376557\n1.501286e-10\n  \n  \n  \n\n\n\n\n \n\nRegression equation for our model (which we saw a looong time ago):\n\n\n\\[\\widehat{\\text{life expectancy}} =  50.9 + 0.232\\cdot\\text{female literacy rate}\\]"
+    "text": "Regression in R: lm() + tidy()\n \n\ntidy(model1) %&gt;% \n  gt() %&gt;% \n  tab_options(table.font.size = 45)\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n50.9278981\n2.66040695\n19.142898\n3.325312e-31\n    FemaleLiteracyRate\n0.2321951\n0.03147744\n7.376557\n1.501286e-10\n  \n  \n  \n\n\n\n\n \n\nRegression equation for our model (which we saw a looong time ago):\n\n\n\\[\\widehat{\\text{life expectancy}} =  50.9 + 0.232\\cdot\\text{female literacy rate}\\]"
   },
   {
     "objectID": "lessons/03_SLR/03_SLR.html#how-do-we-interpret-the-coefficients",
@@ -5276,5 +5276,26 @@
     "title": "Key Info and Announcements",
     "section": "",
     "text": "There is no Slack for this class\nAttendance policy: Attendance in-person or online to all (ish) classes. Attendance is taken by completing exit ticket within 1 week of class"
+  },
+  {
+    "objectID": "lessons/03_SLR/03_SLR.html#get-to-know-the-data-13",
+    "href": "lessons/03_SLR/03_SLR.html#get-to-know-the-data-13",
+    "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
+    "section": "Get to know the data (1/3)",
+    "text": "Get to know the data (1/3)\n\nLoad data\n\n\nlibrary(readxl)\ngapm1 &lt;- read_xlsx(here(\"data/Gapminder_vars_2011.xlsx\"), na = \"NA\")"
+  },
+  {
+    "objectID": "lessons/03_SLR/03_SLR.html#get-to-know-the-data-23",
+    "href": "lessons/03_SLR/03_SLR.html#get-to-know-the-data-23",
+    "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
+    "section": "Get to know the data (2/3)",
+    "text": "Get to know the data (2/3)\n\nGlimpse of the data\n\n\nglimpse(gapm1)\n\nRows: 195\nColumns: 18\n$ country                            &lt;chr&gt; \"Afghanistan\", \"Albania\", \"Algeria\"…\n$ CO2emissions                       &lt;dbl&gt; 0.412, 1.790, 3.290, 5.870, 1.250, …\n$ ElectricityUsePP                   &lt;dbl&gt; NA, 2210.0, 1120.0, NA, 207.0, NA, …\n$ FoodSupplykcPPD                    &lt;dbl&gt; 2110, 3130, 3220, NA, 2410, 2370, 3…\n$ IncomePP                           &lt;dbl&gt; 1660, 10200, 13000, 42000, 5910, 18…\n$ LifeExpectancyYrs                  &lt;dbl&gt; 56.7, 76.7, 76.7, 82.6, 60.9, 76.9,…\n$ FemaleLiteracyRate                 &lt;dbl&gt; 13.0, 95.7, NA, NA, 58.6, 99.4, 97.…\n$ population                         &lt;dbl&gt; 2.97e+07, 2.93e+06, 3.68e+07, 8.38e…\n$ WaterSourcePrct                    &lt;dbl&gt; 52.6, 88.1, 92.6, 100.0, 40.3, 97.0…\n$ geo                                &lt;chr&gt; \"afg\", \"alb\", \"dza\", \"and\", \"ago\", …\n$ four_regions                       &lt;chr&gt; \"asia\", \"europe\", \"africa\", \"europe…\n$ eight_regions                      &lt;chr&gt; \"asia_west\", \"europe_east\", \"africa…\n$ six_regions                        &lt;chr&gt; \"south_asia\", \"europe_central_asia\"…\n$ members_oecd_g77                   &lt;chr&gt; \"g77\", \"others\", \"g77\", \"others\", \"…\n$ Latitude                           &lt;dbl&gt; 33.00000, 41.00000, 28.00000, 42.50…\n$ Longitude                          &lt;dbl&gt; 66.00000, 20.00000, 3.00000, 1.5210…\n$ `World bank region`                &lt;chr&gt; \"South Asia\", \"Europe & Central Asi…\n$ `World bank, 4 income groups 2017` &lt;chr&gt; \"Low income\", \"Upper middle income\"…\n\n\n\nNote the missing values for our variables of interest"
+  },
+  {
+    "objectID": "lessons/03_SLR/03_SLR.html#get-to-know-the-data-33",
+    "href": "lessons/03_SLR/03_SLR.html#get-to-know-the-data-33",
+    "title": "Lesson 3: Introduction to Simple Linear Regression (SLR)",
+    "section": "Get to know the data (3/3)",
+    "text": "Get to know the data (3/3)\n\nGet a sense of the summary statistics\n\n\ngapm1 %&gt;% \n  select(LifeExpectancyYrs, \n         FemaleLiteracyRate) %&gt;% \n  summary()\n\n LifeExpectancyYrs FemaleLiteracyRate\n Min.   :47.50     Min.   :13.00     \n 1st Qu.:64.30     1st Qu.:70.97     \n Median :72.70     Median :91.60     \n Mean   :70.66     Mean   :81.65     \n 3rd Qu.:76.90     3rd Qu.:98.03     \n Max.   :82.90     Max.   :99.80     \n NA's   :8         NA's   :115"
   }
 ]

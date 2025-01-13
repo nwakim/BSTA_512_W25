@@ -533,18 +533,19 @@ Nicky Wakim
 </section>
 <section id="reference-how-did-i-code-that" class="slide level2 smaller">
 <h2>Reference: How did I code that?</h2>
-<p><img data-src="pause.png" class="absolute" style="top: 83%; right: 0%; width: 120px; height: 120px; "></p>
+<p><img data-src="../img_slides/pause.png" class="absolute" style="top: 83%; right: 0%; width: 120px; height: 120px; "></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">ggplot</span>(gapm, <span class="fu">aes</span>(<span class="at">x =</span> female_literacy_rate_2011,</span>
-<span id="cb1-2"><a href="#cb1-2"></a>                 <span class="at">y =</span> life_expectancy_years_2011)) <span class="sc">+</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">colour=</span><span class="st">"#F14124"</span>) <span class="sc">+</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Female literacy rate (%)"</span>, </span>
-<span id="cb1-6"><a href="#cb1-6"></a>       <span class="at">y =</span> <span class="st">"Life expectancy (years)"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7"></a>       <span class="at">title =</span> <span class="st">"Relationship between life expectancy and </span><span class="sc">\n</span><span class="st"> the female literacy rate in 2011"</span>) <span class="sc">+</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>    <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>), </span>
-<span id="cb1-9"><a href="#cb1-9"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">25</span>), </span>
-<span id="cb1-10"><a href="#cb1-10"></a>        <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>gapm <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> FemaleLiteracyRate,</span>
+<span id="cb1-3"><a href="#cb1-3"></a>             <span class="at">y =</span> LifeExpectancyYrs)) <span class="sc">+</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">colour=</span><span class="st">"#F14124"</span>) <span class="sc">+</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Female literacy rate (%)"</span>, </span>
+<span id="cb1-7"><a href="#cb1-7"></a>       <span class="at">y =</span> <span class="st">"Life expectancy (years)"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8"></a>       <span class="at">title =</span> <span class="st">"Relationship between life expectancy and </span><span class="sc">\n</span><span class="st"> the female literacy rate in 2011"</span>) <span class="sc">+</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>), </span>
+<span id="cb1-10"><a href="#cb1-10"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">25</span>), </span>
+<span id="cb1-11"><a href="#cb1-11"></a>        <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -557,62 +558,76 @@ Nicky Wakim
 <section id="dataset-description" class="slide level2">
 <h2>Dataset description</h2>
 <ul>
-<li><p>Data files</p>
-<ul>
-<li><p>Cleaned: <code>lifeexp_femlit_2011.csv</code></p></li>
-<li><p>Needs cleaning: <code>lifeexp_femlit_water_2011.csv</code></p></li>
-</ul></li>
+<li><p>Data file: <code>Gapminder_vars_2011.xlsx</code></p></li>
 <li><p>Data were downloaded from <a href="https://www.gapminder.org/data/" class="uri">Gapminder</a></p></li>
 <li><p>2011 is the most recent year with the most complete data</p></li>
 <li><p><a href="https://www.gapminder.org/data/documentation/gd004/"><strong>Life expectancy</strong></a> = the average number of years a newborn child would live if current mortality patterns were to stay the same.</p></li>
 <li><p><a href="http://data.uis.unesco.org/"><strong>Adult literacy rate</strong></a> is the percentage of people ages 15 and above who can, with understanding, read and write a short, simple statement on their everyday life.</p></li>
 </ul>
 </section>
-<section id="get-to-know-the-data-12" class="slide level2">
-<h2>Get to know the data (1/2)</h2>
+<section id="get-to-know-the-data-13" class="slide level2">
+<h2>Get to know the data (1/3)</h2>
 <ul>
 <li>Load data</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>gapm_original <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"lifeexp_femlit_water_2011.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>gapm1 <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="fu">here</span>(<span class="st">"data/Gapminder_vars_2011.xlsx"</span>), <span class="at">na =</span> <span class="st">"NA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="get-to-know-the-data-23" class="slide level2">
+<h2>Get to know the data (2/3)</h2>
 <ul>
 <li>Glimpse of the data</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">glimpse</span>(gapm_original)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">glimpse</span>(gapm1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 194
-Columns: 5
-$ country                    &lt;chr&gt; "Afghanistan", "Albania", "Algeria", "Andor…
-$ life_expectancy_years_2011 &lt;dbl&gt; 56.7, 76.7, 76.7, 82.6, 60.9, 76.9, 76.0, 7…
-$ female_literacy_rate_2011  &lt;dbl&gt; 13.0, 95.7, NA, NA, 58.6, 99.4, 97.9, 99.5,…
-$ water_basic_source_2011    &lt;dbl&gt; 52.6, 88.1, 92.6, 100.0, 40.3, 97.0, 99.5, …
-$ water_2011_quart           &lt;chr&gt; "Q1", "Q2", "Q2", "Q4", "Q1", "Q3", "Q4", "…</code></pre>
+<pre><code>Rows: 195
+Columns: 18
+$ country                            &lt;chr&gt; "Afghanistan", "Albania", "Algeria"…
+$ CO2emissions                       &lt;dbl&gt; 0.412, 1.790, 3.290, 5.870, 1.250, …
+$ ElectricityUsePP                   &lt;dbl&gt; NA, 2210.0, 1120.0, NA, 207.0, NA, …
+$ FoodSupplykcPPD                    &lt;dbl&gt; 2110, 3130, 3220, NA, 2410, 2370, 3…
+$ IncomePP                           &lt;dbl&gt; 1660, 10200, 13000, 42000, 5910, 18…
+$ LifeExpectancyYrs                  &lt;dbl&gt; 56.7, 76.7, 76.7, 82.6, 60.9, 76.9,…
+$ FemaleLiteracyRate                 &lt;dbl&gt; 13.0, 95.7, NA, NA, 58.6, 99.4, 97.…
+$ population                         &lt;dbl&gt; 2.97e+07, 2.93e+06, 3.68e+07, 8.38e…
+$ WaterSourcePrct                    &lt;dbl&gt; 52.6, 88.1, 92.6, 100.0, 40.3, 97.0…
+$ geo                                &lt;chr&gt; "afg", "alb", "dza", "and", "ago", …
+$ four_regions                       &lt;chr&gt; "asia", "europe", "africa", "europe…
+$ eight_regions                      &lt;chr&gt; "asia_west", "europe_east", "africa…
+$ six_regions                        &lt;chr&gt; "south_asia", "europe_central_asia"…
+$ members_oecd_g77                   &lt;chr&gt; "g77", "others", "g77", "others", "…
+$ Latitude                           &lt;dbl&gt; 33.00000, 41.00000, 28.00000, 42.50…
+$ Longitude                          &lt;dbl&gt; 66.00000, 20.00000, 3.00000, 1.5210…
+$ `World bank region`                &lt;chr&gt; "South Asia", "Europe &amp; Central Asi…
+$ `World bank, 4 income groups 2017` &lt;chr&gt; "Low income", "Upper middle income"…</code></pre>
 </div>
 </div>
 <ul>
 <li>Note the missing values for our variables of interest</li>
 </ul>
 </section>
-<section id="get-to-know-the-data-22" class="slide level2">
-<h2>Get to know the data (2/2)</h2>
+<section id="get-to-know-the-data-33" class="slide level2">
+<h2>Get to know the data (3/3)</h2>
 <ul>
 <li>Get a sense of the summary statistics</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>gapm_original <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">select</span>(life_expectancy_years_2011, female_literacy_rate_2011) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>gapm1 <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">select</span>(LifeExpectancyYrs, </span>
+<span id="cb5-3"><a href="#cb5-3"></a>         FemaleLiteracyRate) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> life_expectancy_years_2011 female_literacy_rate_2011
- Min.   :47.50              Min.   :13.00            
- 1st Qu.:64.30              1st Qu.:70.97            
- Median :72.70              Median :91.60            
- Mean   :70.66              Mean   :81.65            
- 3rd Qu.:76.90              3rd Qu.:98.03            
- Max.   :82.90              Max.   :99.80            
- NA's   :7                  NA's   :114              </code></pre>
+<pre><code> LifeExpectancyYrs FemaleLiteracyRate
+ Min.   :47.50     Min.   :13.00     
+ 1st Qu.:64.30     1st Qu.:70.97     
+ Median :72.70     Median :91.60     
+ Mean   :70.66     Mean   :81.65     
+ 3rd Qu.:76.90     3rd Qu.:98.03     
+ Max.   :82.90     Max.   :99.80     
+ NA's   :8         NA's   :115       </code></pre>
 </div>
 </div>
 </section>
@@ -622,18 +637,29 @@ $ water_2011_quart           &lt;chr&gt; "Q1", "Q2", "Q2", "Q4", "Q1", "Q3", "Q4
 <li>Remove rows with missing data for life expectancy and female literacy rate</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>gapm <span class="ot">&lt;-</span> gapm_original <span class="sc">%&gt;%</span> </span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">drop_na</span>(life_expectancy_years_2011, female_literacy_rate_2011)</span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="fu">glimpse</span>(gapm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>gapm <span class="ot">&lt;-</span> gapm1 <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>(LifeExpectancyYrs, FemaleLiteracyRate)</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">glimpse</span>(gapm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 80
-Columns: 5
-$ country                    &lt;chr&gt; "Afghanistan", "Albania", "Angola", "Antigu…
-$ life_expectancy_years_2011 &lt;dbl&gt; 56.7, 76.7, 60.9, 76.9, 76.0, 73.8, 71.0, 7…
-$ female_literacy_rate_2011  &lt;dbl&gt; 13.0, 95.7, 58.6, 99.4, 97.9, 99.5, 53.4, 9…
-$ water_basic_source_2011    &lt;dbl&gt; 52.6, 88.1, 40.3, 97.0, 99.5, 97.8, 96.7, 9…
-$ water_2011_quart           &lt;chr&gt; "Q1", "Q2", "Q1", "Q3", "Q4", "Q3", "Q3", "…</code></pre>
+Columns: 18
+$ country                            &lt;chr&gt; "Afghanistan", "Albania", "Angola",…
+$ CO2emissions                       &lt;dbl&gt; 0.4120, 1.7900, 1.2500, 5.3600, 4.6…
+$ ElectricityUsePP                   &lt;dbl&gt; NA, 2210.0, 207.0, NA, 2900.0, 1810…
+$ FoodSupplykcPPD                    &lt;dbl&gt; 2110, 3130, 2410, 2370, 3160, 2790,…
+$ IncomePP                           &lt;dbl&gt; 1660, 10200, 5910, 18600, 19600, 70…
+$ LifeExpectancyYrs                  &lt;dbl&gt; 56.7, 76.7, 60.9, 76.9, 76.0, 73.8,…
+$ FemaleLiteracyRate                 &lt;dbl&gt; 13.0, 95.7, 58.6, 99.4, 97.9, 99.5,…
+$ population                         &lt;dbl&gt; 2.97e+07, 2.93e+06, 2.42e+07, 9.57e…
+$ WaterSourcePrct                    &lt;dbl&gt; 52.6, 88.1, 40.3, 97.0, 99.5, 97.8,…
+$ geo                                &lt;chr&gt; "afg", "alb", "ago", "atg", "arg", …
+$ four_regions                       &lt;chr&gt; "asia", "europe", "africa", "americ…
+$ eight_regions                      &lt;chr&gt; "asia_west", "europe_east", "africa…
+$ six_regions                        &lt;chr&gt; "south_asia", "europe_central_asia"…
+$ members_oecd_g77                   &lt;chr&gt; "g77", "others", "g77", "g77", "g77…
+$ Latitude                           &lt;dbl&gt; 33.00000, 41.00000, -12.50000, 17.0…
+$ Longitude                          &lt;dbl&gt; 66.00000, 20.00000, 18.50000, -61.8…
+$ `World bank region`                &lt;chr&gt; "South Asia", "Europe &amp; Central Asi…
+$ `World bank, 4 income groups 2017` &lt;chr&gt; "Low income", "Upper middle income"…</code></pre>
 </div>
 </div>
 <ul>
@@ -646,14 +672,16 @@ $ water_2011_quart           &lt;chr&gt; "Q1", "Q2", "Q1", "Q3", "Q4", "Q3", "Q3
 <li>And no more missing values when we look only at our two variables of interest</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>gapm <span class="sc">%&gt;%</span> <span class="fu">select</span>(life_expectancy_years_2011, female_literacy_rate_2011) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">get_summary_stats</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>gapm <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">select</span>(LifeExpectancyYrs, </span>
+<span id="cb9-3"><a href="#cb9-3"></a>          FemaleLiteracyRate) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">get_summary_stats</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 13
   variable        n   min   max median    q1    q3   iqr   mad  mean    sd    se
   &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 life_expec…    80    48  81.8   72.4  65.9  75.8  9.95  6.30  69.9  7.95 0.889
-2 female_lit…    80    13  99.8   91.6  71.0  98.0 27.0  11.4   81.7 22.0  2.45 
+1 LifeExpect…    80    48  81.8   72.4  65.9  75.8  9.95  6.30  69.9  7.95 0.889
+2 FemaleLite…    80    13  99.8   91.6  71.0  98.0 27.0  11.4   81.7 22.0  2.45 
 # ℹ 1 more variable: ci &lt;dbl&gt;</code></pre>
 </div>
 </div>
@@ -808,8 +836,8 @@ $ water_2011_quart           &lt;chr&gt; "Q1", "Q2", "Q1", "Q3", "Q4", "Q3", "Q3
 </section>
 <section id="lets-revisit-the-regression-analysis-process" class="slide level2">
 <h2>Let’s revisit the regression analysis process</h2>
-<p>&nbsp; &nbsp;</p>
-<p><img data-src="images/arrow2.png" class="absolute" style="top: 17%; right: 63.15%; width: 155px; "> <img data-src="images/arrow2.png" class="absolute" style="top: 17%; right: 28.7%; width: 155px; "><img data-src="images/arrow_back4.png" class="absolute" style="top: 10%; right: 30.7%; width: 840px; "></p>
+<div class="box">
+<p><img data-src="../img_slides/arrow2.png" class="absolute" style="top: 13.5%; right: 62.1%; width: 155px; "> <img data-src="../img_slides/arrow2.png" class="absolute" style="top: 13.5%; right: 28.4%; width: 155px; "><img data-src="../img_slides/arrow_back4.png" class="absolute" style="top: 7.5%; right: 30.5%; width: 820px; "> <img data-src="../img_slides/arrow_down.png" class="absolute" style="top: 60.5%; right: 48%; width: 85px; "></p>
 <div class="columns">
 <div class="column" style="width:30%;">
 <div class="RAP1">
@@ -819,8 +847,9 @@ $ water_2011_quart           &lt;chr&gt; "Q1", "Q2", "Q1", "Q3", "Q4", "Q3", "Q3
 <div class="RAP1-cont">
 <ul>
 <li><p>Building a model</p></li>
+<li><p>Selecting variables</p></li>
 <li><p>Prediction vs interpretation</p></li>
-<li><p>Comparing models</p></li>
+<li><p>Comparing potential models</p></li>
 </ul>
 </div>
 </div>
@@ -833,9 +862,9 @@ $ water_2011_quart           &lt;chr&gt; "Q1", "Q2", "Q1", "Q3", "Q4", "Q3", "Q3
 </div>
 <div class="RAP2-cont">
 <ul>
+<li><p>Find best fit line</p></li>
+<li><p>Using OLS in this class</p></li>
 <li><p>Parameter estimation</p></li>
-<li><p>Interpret model parameters</p></li>
-<li><p>Hypothesis tests for coefficients</p></li>
 <li><p>Categorical covariates</p></li>
 <li><p>Interactions</p></li>
 </ul>
@@ -850,12 +879,33 @@ $ water_2011_quart           &lt;chr&gt; "Q1", "Q2", "Q1", "Q3", "Q4", "Q3", "Q3
 </div>
 <div class="RAP3-cont">
 <ul>
-<li>Evaluation of full and reduced models</li>
+<li>Evaluation of model fit</li>
 <li>Testing model assumptions</li>
 <li>Residuals</li>
 <li>Transformations</li>
 <li>Influential points</li>
 <li>Multicollinearity</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="RAP4">
+<div class="RAP4-title">
+<p>Model Use (Inference)</p>
+</div>
+<div class="RAP4-cont">
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Inference for coefficients</li>
+<li>Hypothesis testing for coefficients</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Inference for expected <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span></li>
+<li>Prediction of new <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span></li>
 </ul>
 </div>
 </div>
@@ -980,13 +1030,7 @@ $ water_2011_quart           &lt;chr&gt; "Q1", "Q2", "Q1", "Q3", "Q4", "Q3", "Q3
 <section id="poll-everywhere-question-3" class="slide level2">
 <h2>Poll Everywhere Question 3</h2>
 </section>
-<section id="okay-so-how-do-we-estimate-the-regression-line" class="slide level2">
-<h2>Okay, so how do we estimate the regression line?</h2>
-<p>&nbsp;</p>
-<p>At this point, we are going to move over to an R shiny app that I made.</p>
-<p>&nbsp;</p>
-<p>Let’s see if we can eyeball the best-fit line!</p>
-</section>
+
 <section id="regression-line-best-fit-line" class="slide level2">
 <h2>Regression line = best-fit line</h2>
 <div class="columns">
@@ -1520,35 +1564,31 @@ SSE = \displaystyle\sum^n_{i=1} (Y_i - \widehat{\beta}_0-\widehat{\beta}_1X_i)^2
 <li>Let’s discuss the syntax of this function</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(life_expectancy_years_2011 <span class="sc">~</span> female_literacy_rate_2011,</span>
-<span id="cb11-2"><a href="#cb11-2"></a>                 <span class="at">data =</span> gapm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>model1 <span class="ot">&lt;-</span> gapm <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="at">formula =</span> LifeExpectancyYrs <span class="sc">~</span> FemaleLiteracyRate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="regression-in-r-lm-summary" class="slide level2">
 <h2>Regression in R: <code>lm()</code> + <code>summary()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(life_expectancy_years_2011 <span class="sc">~</span> female_literacy_rate_2011,</span>
-<span id="cb12-2"><a href="#cb12-2"></a>                 <span class="at">data =</span> gapm)</span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>model1 <span class="ot">&lt;-</span> gapm <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="at">formula =</span> LifeExpectancyYrs <span class="sc">~</span> FemaleLiteracyRate)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = life_expectancy_years_2011 ~ female_literacy_rate_2011, 
-    data = gapm)
+lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate, data = .)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
 -22.299  -2.670   1.145   4.114   9.498 
 
 Coefficients:
-                          Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)               50.92790    2.66041  19.143  &lt; 2e-16 ***
-female_literacy_rate_2011  0.23220    0.03148   7.377  1.5e-10 ***
+                   Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        50.92790    2.66041  19.143  &lt; 2e-16 ***
+FemaleLiteracyRate  0.23220    0.03148   7.377  1.5e-10 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 6.142 on 78 degrees of freedom
-  (108 observations deleted due to missingness)
 Multiple R-squared:  0.4109,    Adjusted R-squared:  0.4034 
 F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
 </div>
@@ -1563,23 +1603,23 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
 <span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="naytngwrny" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#naytngwrny table {
+<div id="rnipausslh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rnipausslh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#naytngwrny thead, #naytngwrny tbody, #naytngwrny tfoot, #naytngwrny tr, #naytngwrny td, #naytngwrny th {
+#rnipausslh thead, #rnipausslh tbody, #rnipausslh tfoot, #rnipausslh tr, #rnipausslh td, #rnipausslh th {
   border-style: none;
 }
 
-#naytngwrny p {
+#rnipausslh p {
   margin: 0;
   padding: 0;
 }
 
-#naytngwrny .gt_table {
+#rnipausslh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1605,12 +1645,12 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#naytngwrny .gt_caption {
+#rnipausslh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#naytngwrny .gt_title {
+#rnipausslh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1622,7 +1662,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-bottom-width: 0;
 }
 
-#naytngwrny .gt_subtitle {
+#rnipausslh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1634,7 +1674,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-top-width: 0;
 }
 
-#naytngwrny .gt_heading {
+#rnipausslh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1646,13 +1686,13 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#naytngwrny .gt_bottom_border {
+#rnipausslh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#naytngwrny .gt_col_headings {
+#rnipausslh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1667,7 +1707,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#naytngwrny .gt_col_heading {
+#rnipausslh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1687,7 +1727,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   overflow-x: hidden;
 }
 
-#naytngwrny .gt_column_spanner_outer {
+#rnipausslh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1699,15 +1739,15 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 4px;
 }
 
-#naytngwrny .gt_column_spanner_outer:first-child {
+#rnipausslh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#naytngwrny .gt_column_spanner_outer:last-child {
+#rnipausslh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#naytngwrny .gt_column_spanner {
+#rnipausslh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1719,11 +1759,11 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   width: 100%;
 }
 
-#naytngwrny .gt_spanner_row {
+#rnipausslh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#naytngwrny .gt_group_heading {
+#rnipausslh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1749,7 +1789,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   text-align: left;
 }
 
-#naytngwrny .gt_empty_group_heading {
+#rnipausslh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1764,15 +1804,15 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   vertical-align: middle;
 }
 
-#naytngwrny .gt_from_md > :first-child {
+#rnipausslh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#naytngwrny .gt_from_md > :last-child {
+#rnipausslh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#naytngwrny .gt_row {
+#rnipausslh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1791,7 +1831,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   overflow-x: hidden;
 }
 
-#naytngwrny .gt_stub {
+#rnipausslh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1804,7 +1844,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#naytngwrny .gt_stub_row_group {
+#rnipausslh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1818,15 +1858,15 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   vertical-align: top;
 }
 
-#naytngwrny .gt_row_group_first td {
+#rnipausslh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#naytngwrny .gt_row_group_first th {
+#rnipausslh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#naytngwrny .gt_summary_row {
+#rnipausslh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1836,16 +1876,16 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#naytngwrny .gt_first_summary_row {
+#rnipausslh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#naytngwrny .gt_first_summary_row.thick {
+#rnipausslh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#naytngwrny .gt_last_summary_row {
+#rnipausslh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1855,7 +1895,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#naytngwrny .gt_grand_summary_row {
+#rnipausslh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1865,7 +1905,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#naytngwrny .gt_first_grand_summary_row {
+#rnipausslh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1875,7 +1915,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#naytngwrny .gt_last_grand_summary_row_top {
+#rnipausslh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1885,11 +1925,11 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#naytngwrny .gt_striped {
+#rnipausslh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#naytngwrny .gt_table_body {
+#rnipausslh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1898,7 +1938,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#naytngwrny .gt_footnotes {
+#rnipausslh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1912,7 +1952,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#naytngwrny .gt_footnote {
+#rnipausslh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1921,7 +1961,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#naytngwrny .gt_sourcenotes {
+#rnipausslh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1935,7 +1975,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#naytngwrny .gt_sourcenote {
+#rnipausslh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1943,72 +1983,72 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#naytngwrny .gt_left {
+#rnipausslh .gt_left {
   text-align: left;
 }
 
-#naytngwrny .gt_center {
+#rnipausslh .gt_center {
   text-align: center;
 }
 
-#naytngwrny .gt_right {
+#rnipausslh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#naytngwrny .gt_font_normal {
+#rnipausslh .gt_font_normal {
   font-weight: normal;
 }
 
-#naytngwrny .gt_font_bold {
+#rnipausslh .gt_font_bold {
   font-weight: bold;
 }
 
-#naytngwrny .gt_font_italic {
+#rnipausslh .gt_font_italic {
   font-style: italic;
 }
 
-#naytngwrny .gt_super {
+#rnipausslh .gt_super {
   font-size: 65%;
 }
 
-#naytngwrny .gt_footnote_marks {
+#rnipausslh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#naytngwrny .gt_asterisk {
+#rnipausslh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#naytngwrny .gt_indent_1 {
+#rnipausslh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#naytngwrny .gt_indent_2 {
+#rnipausslh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#naytngwrny .gt_indent_3 {
+#rnipausslh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#naytngwrny .gt_indent_4 {
+#rnipausslh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#naytngwrny .gt_indent_5 {
+#rnipausslh .gt_indent_5 {
   text-indent: 25px;
 }
 
-#naytngwrny .katex-display {
+#rnipausslh .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#naytngwrny div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#rnipausslh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2028,7 +2068,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
 <td headers="std.error" class="gt_row gt_right">2.66040695</td>
 <td headers="statistic" class="gt_row gt_right">19.142898</td>
 <td headers="p.value" class="gt_row gt_right">3.325312e-31</td></tr>
-    <tr><td headers="term" class="gt_row gt_left">female_literacy_rate_2011</td>
+    <tr><td headers="term" class="gt_row gt_left">FemaleLiteracyRate</td>
 <td headers="estimate" class="gt_row gt_right">0.2321951</td>
 <td headers="std.error" class="gt_row gt_right">0.03147744</td>
 <td headers="statistic" class="gt_row gt_right">7.376557</td>

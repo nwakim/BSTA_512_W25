@@ -174,9 +174,17 @@ Model Use (Inference)
 #| fig-width: 11
 #| echo: false
 
-gapm <- read_csv("data/lifeexp_femlit_2011.csv")
-ggplot(gapm, aes(x = female_literacy_rate_2011,
-                 y = life_expectancy_years_2011)) +
+gapm1 <- readxl::read_xlsx(here("data/Gapminder_vars_2011.xlsx"), na = "NA")
+
+gapm = gapm1 %>% 
+  drop_na(FemaleLiteracyRate, 
+          LifeExpectancyYrs, 
+          four_regions, 
+          FoodSupplykcPPD)
+
+gapm_slr_plot = gapm %>%
+  ggplot(aes(x = FemaleLiteracyRate,
+             y = LifeExpectancyYrs)) +
   geom_point(size = 4) +
   geom_smooth(method = "lm", se = FALSE, size = 3, colour="#F14124") +
   labs(x = "Female literacy rate (%)", 
@@ -185,6 +193,8 @@ ggplot(gapm, aes(x = female_literacy_rate_2011,
     theme(axis.title = element_text(size = 30), 
         axis.text = element_text(size = 25), 
         title = element_text(size = 30))
+
+gapm_slr_plot
 
 ```
 :::
@@ -214,15 +224,16 @@ $$\widehat{\text{life expectancy}} =  50.9 + 0.232\cdot\text{female literacy rat
 
 ## Reference: How did I code that? {.smaller}
 
-![](pause.png){.absolute top="83%" right="0%" width="120" height="120"}
+![](../img_slides/pause.png){.absolute top="83%" right="0%" width="120" height="120"}
 
 ```{r}
 #| fig-height: 6.5
 #| fig-width: 10
 #| fig-align: center
 
-ggplot(gapm, aes(x = female_literacy_rate_2011,
-                 y = life_expectancy_years_2011)) +
+gapm %>%
+  ggplot(aes(x = FemaleLiteracyRate,
+             y = LifeExpectancyYrs)) +
   geom_point(size = 4) +
   geom_smooth(method = "lm", se = FALSE, size = 3, colour="#F14124") +
   labs(x = "Female literacy rate (%)", 
@@ -236,11 +247,7 @@ ggplot(gapm, aes(x = female_literacy_rate_2011,
 
 ## Dataset description
 
--   Data files
-
-    -   Cleaned: `lifeexp_femlit_2011.csv`
-
-    -   Needs cleaning: `lifeexp_femlit_water_2011.csv`
+-   Data file: `Gapminder_vars_2011.xlsx`
 
 -   Data were downloaded from
     [Gapminder](https://www.gapminder.org/data/){.uri}
@@ -255,30 +262,36 @@ ggplot(gapm, aes(x = female_literacy_rate_2011,
 -   [**Adult literacy rate**](http://data.uis.unesco.org/) is the
     percentage of people ages 15 and above who can, with understanding,
     read and write a short, simple statement on their everyday life.
+    
 
-## Get to know the data (1/2)
+
+## Get to know the data (1/3)
 
 -   Load data
 
 ```{r}
-gapm_original <- read_csv(here::here("data", "lifeexp_femlit_water_2011.csv"))
+library(readxl)
+gapm1 <- read_xlsx(here("data/Gapminder_vars_2011.xlsx"), na = "NA")
 ```
+
+## Get to know the data (2/3)
 
 -   Glimpse of the data
 
 ```{r}
-glimpse(gapm_original)
+glimpse(gapm1)
 ```
 
 -   Note the missing values for our variables of interest
 
-## Get to know the data (2/2)
+## Get to know the data (3/3)
 
 -   Get a sense of the summary statistics
 
 ```{r}
-gapm_original %>% 
-  select(life_expectancy_years_2011, female_literacy_rate_2011) %>% 
+gapm1 %>% 
+  select(LifeExpectancyYrs, 
+         FemaleLiteracyRate) %>% 
   summary()
 ```
 
@@ -288,11 +301,8 @@ gapm_original %>%
     literacy rate
 
 ```{r}
-gapm <- gapm_original %>% 
-  drop_na(life_expectancy_years_2011, female_literacy_rate_2011)
-
+gapm <- gapm1 %>% drop_na(LifeExpectancyYrs, FemaleLiteracyRate)
 glimpse(gapm)
-
 ```
 
 -   No missing values now for our variables of interest
@@ -303,7 +313,9 @@ glimpse(gapm)
     interest
 
 ```{r}
-gapm %>% select(life_expectancy_years_2011, female_literacy_rate_2011) %>% 
+gapm %>%
+  select(LifeExpectancyYrs, 
+          FemaleLiteracyRate) %>% 
   get_summary_stats()
 ```
 
@@ -351,20 +363,7 @@ Note
 #| fig-width: 11
 #| echo: false
 
-gapm <- read_csv("data/lifeexp_femlit_2011.csv")
-ggplot(gapm, aes(x = female_literacy_rate_2011,
-                 y = life_expectancy_years_2011)) +
-  geom_point(size = 4) +
-  geom_smooth(method = "lm", se = FALSE, size = 3, colour="#F14124") +
-  labs(x = "Female literacy rate (%)", 
-       y = "Life expectancy (years)",
-       title = "Relationship between life expectancy and \n the female literacy rate in 2011") +
-    theme(axis.title = element_text(
-        size = 30), 
-        axis.text = element_text(
-        size = 25), 
-        title = element_text(
-        size = 30))
+gapm_slr_plot 
 
 ```
 :::
@@ -427,20 +426,7 @@ $$\widehat{\text{life expectancy}} =  50.9 + 0.232\cdot\text{female literacy rat
 #| echo: false
 #| fig-align: center
 
-gapm <- read_csv("data/lifeexp_femlit_2011.csv")
-ggplot(gapm, aes(x = female_literacy_rate_2011,
-                 y = life_expectancy_years_2011)) +
-  geom_point(size = 4) +
-  geom_smooth(method = "lm", se = FALSE, size = 3, colour="#F14124") +
-  labs(x = "Female literacy rate (%)", 
-       y = "Life expectancy (years)",
-       title = "Relationship between life expectancy and \n the female literacy rate in 2011") +
-    theme(axis.title = element_text(
-        size = 30), 
-        axis.text = element_text(
-        size = 25), 
-        title = element_text(
-        size = 30))
+gapm_slr_plot 
 
 ```
 
@@ -501,12 +487,8 @@ Observational
 
 ## Let's revisit the regression analysis process
 
-   
-
-![](images/arrow2.png){.absolute top="17%" right="63.15%" width="155"}
-![](images/arrow2.png){.absolute top="17%" right="28.7%"
-width="155"}![](images/arrow_back4.png){.absolute top="10%"
-right="30.7%" width="840"}
+::: box
+![](../img_slides/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"} ![](../img_slides/arrow2.png){.absolute top="13.5%" right="28.4%" width="155"}![](../img_slides/arrow_back4.png){.absolute top="7.5%" right="30.5%" width="820"} ![](../img_slides/arrow_down.png){.absolute top="60.5%" right="48%" width="85"}
 
 ::: columns
 ::: {.column width="30%"}
@@ -518,9 +500,11 @@ Model Selection
 ::: RAP1-cont
 -   Building a model
 
+-   Selecting variables
+
 -   Prediction vs interpretation
 
--   Comparing models
+-   Comparing potential models
 :::
 :::
 :::
@@ -535,11 +519,11 @@ Model Fitting
 :::
 
 ::: RAP2-cont
+-   Find best fit line
+
+-   Using OLS in this class
+
 -   Parameter estimation
-
--   Interpret model parameters
-
--   Hypothesis tests for coefficients
 
 -   Categorical covariates
 
@@ -558,7 +542,7 @@ Model Evaluation
 :::
 
 ::: RAP3-cont
--   Evaluation of full and reduced models
+-   Evaluation of model fit
 -   Testing model assumptions
 -   Residuals
 -   Transformations
@@ -568,6 +552,28 @@ Model Evaluation
 :::
 :::
 :::
+:::
+
+::: RAP4
+::: RAP4-title
+Model Use (Inference)
+:::
+
+::: RAP4-cont
+::: columns
+::: {.column width="50%"}
+-   Inference for coefficients
+-   Hypothesis testing for coefficients
+:::
+
+::: {.column width="50%"}
+-   Inference for expected $Y$ given $X$
+-   Prediction of new $Y$ given $X$
+:::
+:::
+:::
+:::
+
 
 ## Poll Everywhere Question 2
 
@@ -674,17 +680,7 @@ trying to estimate using our sample data
 #| echo: false
 #| fig-align: center
 
-gapm <- read_csv("data/lifeexp_femlit_2011.csv")
-ggplot(gapm, aes(x = female_literacy_rate_2011,
-                 y = life_expectancy_years_2011)) +
-  geom_point(size = 4) +
-  geom_smooth(method = "lm", se = FALSE, size = 3, colour="#F14124") +
-  labs(x = "Female literacy rate (%)", 
-       y = "Life expectancy (years)",
-       title = "Relationship between life expectancy and \n the female literacy rate in 2011") +
-    theme(axis.title = element_text(size = 30), 
-        axis.text = element_text(size = 25), 
-        title = element_text(size = 30))
+gapm_slr_plot 
 
 ```
 :::
@@ -692,7 +688,7 @@ ggplot(gapm, aes(x = female_literacy_rate_2011,
 
 ## Poll Everywhere Question 3
 
-## Okay, so how do we estimate the regression line?
+## Okay, so how do we estimate the regression line? {visibility="hidden"}
 
  
 
@@ -722,17 +718,7 @@ $$\widehat{Y} = \widehat{\beta}_0 + \widehat{\beta}_1 X $$
 #| fig-width: 11
 #| echo: false
 
-gapm <- read_csv("data/lifeexp_femlit_2011.csv")
-ggplot(gapm, aes(x = female_literacy_rate_2011,
-                 y = life_expectancy_years_2011)) +
-  geom_point(size = 4) +
-  geom_smooth(method = "lm", se = FALSE, size = 3, colour="#F14124") +
-  labs(x = "Female literacy rate (%)", 
-       y = "Life expectancy (years)",
-       title = "Relationship between life expectancy and \n the female literacy rate in 2011") +
-    theme(axis.title = element_text(size = 30), 
-        axis.text = element_text(size = 25), 
-        title = element_text(size = 30))
+gapm_slr_plot 
 ```
 :::
 :::
@@ -947,15 +933,14 @@ residuals: $\widehat\epsilon = Y - \widehat{Y}$
 #| fig-align: center
 # code from https://drsimonj.svbtle.com/visualising-residuals
 
-model1 <- lm(life_expectancy_years_2011 ~ female_literacy_rate_2011,
-                 data = gapm)
+model1 <- gapm %>% lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate)
 regression_points <- augment(model1)
 # summary(model1)
 # sum(model1$residuals^2)
 
 ggplot(regression_points, 
-       aes(x = female_literacy_rate_2011,
-                 y = life_expectancy_years_2011)) +
+       aes(x = FemaleLiteracyRate,
+                 y = LifeExpectancyYrs)) +
   # geom_segment(aes(
   #   xend = female_literacy_rate_2011, 
   #   yend = .fitted), 
@@ -1007,17 +992,16 @@ labs(x = "Female literacy rate (%)",
 #| fig-align: center
 # code from https://drsimonj.svbtle.com/visualising-residuals
 
-model1 <- lm(life_expectancy_years_2011 ~ female_literacy_rate_2011,
-                 data = gapm)
+model1 <- gapm %>% lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate)
 regression_points <- augment(model1)
 # summary(model1)
 # sum(model1$residuals^2)
 
 ggplot(regression_points, 
-       aes(x = female_literacy_rate_2011,
-                 y = life_expectancy_years_2011)) +
+       aes(x = FemaleLiteracyRate,
+                 y = LifeExpectancyYrs)) +
   geom_segment(aes(
-    xend = female_literacy_rate_2011, 
+    xend = FemaleLiteracyRate, 
     yend = .fitted), 
     alpha = 1, 
     color = "#4FADF3", 
@@ -1321,8 +1305,7 @@ $$\begin{aligned}
 ```{r}
 #| out-height: 800px 
 
-model1 <- lm(life_expectancy_years_2011 ~ female_literacy_rate_2011,
-                 data = gapm)
+model1 <- gapm %>% lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate)
 ```
 
 ## Regression in R: `lm()` + `summary()`
@@ -1330,8 +1313,7 @@ model1 <- lm(life_expectancy_years_2011 ~ female_literacy_rate_2011,
 ```{r}
 #| out-height: 800px 
 
-model1 <- lm(life_expectancy_years_2011 ~ female_literacy_rate_2011,
-                 data = gapm)
+model1 <- gapm %>% lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate)
 summary(model1)
 ```
 

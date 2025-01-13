@@ -8,7 +8,7 @@ format:
 ---
 
 | Homework | Assignment | Assignment due (\@11pm) | Answers | Solutions (`.qmd`) | Solutions (`.html`)\* |
-|----|----|----|----|----|----|
+|------------|------------|------------|------------|------------|------------|
 | 0 | [[{{< iconify material-symbols assignment size=29px >}}](/homework/HW_00.qmd)]{style="color:#f8f5f0;"} | 1/9 | [{{< iconify ph key-fill size=29px >}}]{style="color:#f8f5f0;"} | [{{< iconify icon-park-twotone file-code size=29px >}}]{style="color:#f8f5f0;"} | [{{< iconify mingcute web-fill size=29px >}}]{style="color:#f8f5f0;"} |
 | 1 | [[{{< iconify material-symbols assignment size=29px >}}](/homework/HW_01.qmd)]{style="color:#f8f5f0;"} | 1/23 | [{{< iconify ph key-fill size=29px >}}]{style="color:#f8f5f0;"} | [{{< iconify icon-park-twotone file-code size=29px >}}]{style="color:#f8f5f0;"} | [{{< iconify mingcute web-fill size=29px >}}]{style="color:#f8f5f0;"} |
 | 2 | [[{{< iconify material-symbols assignment size=29px >}}](/homework/HW_02.qmd)]{style="color:#f8f5f0;"} | 1/30 | [{{< iconify ph key-fill size=29px >}}]{style="color:#f8f5f0;"} | [{{< iconify icon-park-twotone file-code size=29px >}}]{style="color:#f8f5f0;"} | [{{< iconify mingcute web-fill size=29px >}}]{style="color:#f8f5f0;"} |
@@ -25,5 +25,5 @@ format:
 ## Rubrics
 
 |   | 1 point | 0 points |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | Completion | 75% of the question parts are thoroughly worked out and have an answer. "Question parts" means the sub-questions labeled "Part \_" | Less than 75% of question parts are thoroughly worked out. Attempts do not count as thoroughly worked out. |

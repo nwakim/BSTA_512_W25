@@ -42,6 +42,7 @@ library(broom)
 library(here) 
 library(pwr) 
 library(gridExtra) # NEW!!!
+library(readxl)
 
 # terminal: for icons
 # quarto install extension quarto-ext/fontawesome
@@ -165,6 +166,7 @@ Model Use (Inference)
 
 
 
+
 ## Let's start with an example
 
 ::: columns
@@ -174,7 +176,7 @@ Model Use (Inference)
 #| fig-width: 11
 #| echo: false
 
-gapm1 <- readxl::read_xlsx(here("data/Gapminder_vars_2011.xlsx"), na = "NA")
+gapm1 <- read_excel(here("data/Gapminder_vars_2011.xlsx"), na = "NA")
 
 gapm = gapm1 %>% 
   drop_na(FemaleLiteracyRate, 
@@ -245,14 +247,18 @@ gapm %>%
 
 ```
 
-## Dataset description
+## Research and dataset description
+
+::: hl3
+**Research question:** Is there an association between average life expectancy and female literacy rates?
+:::
 
 -   Data file: `Gapminder_vars_2011.xlsx`
 
 -   Data were downloaded from
     [Gapminder](https://www.gapminder.org/data/){.uri}
-
--   2011 is the most recent year with the most complete data
+    -   2011 is the most recent year with the most complete data
+    -   Observational study measuring different characteristics of countries, including population, health, environment, work, etc.
 
 -   [**Life
     expectancy**](https://www.gapminder.org/data/documentation/gd004/) =
@@ -263,7 +269,13 @@ gapm %>%
     percentage of people ages 15 and above who can, with understanding,
     read and write a short, simple statement on their everyday life.
     
+ 
 
+- [National Literacy Trust](https://literacytrust.org.uk/research-services/research-reports/literacy-and-life-expectancy/) in England has studied the link between these two variables
+  - Please note that they clearly state that literacy is linked to life expectancy **through many socioeconomic and health factors**
+
+
+## Poll Everywhere Question 1
 
 ## Get to know the data (1/3)
 
@@ -271,7 +283,7 @@ gapm %>%
 
 ```{r}
 library(readxl)
-gapm1 <- read_xlsx(here("data/Gapminder_vars_2011.xlsx"), na = "NA")
+gapm1 <- read_excel(here("data/Gapminder_vars_2011.xlsx"), na = "NA")
 ```
 
 ## Get to know the data (2/3)
@@ -334,7 +346,7 @@ Note
 :::
 :::
 
-## Poll Everywhere Question 1
+## Poll Everywhere Question 2
 
 # Learning Objectives
 
@@ -575,7 +587,7 @@ Model Use (Inference)
 :::
 
 
-## Poll Everywhere Question 2
+## Poll Everywhere Question 3
 
 # Learning Objectives
 
@@ -686,7 +698,7 @@ gapm_slr_plot
 :::
 :::
 
-## Poll Everywhere Question 3
+## Poll Everywhere Question 4
 
 ## Okay, so how do we estimate the regression line? {visibility="hidden"}
 
@@ -811,7 +823,7 @@ $$\begin{aligned}
         E[Y|X] & = \beta_0 + \beta_1X \\
 \end{aligned}$$
 
--   We call $E[Y|X]$ the expected value of $Y$ given $X$
+-   We call $E[Y|X]$ the expected value (or average) of $Y$ given $X$
 :::
 
 ::: {.column width="50%"}
@@ -1022,7 +1034,7 @@ labs(x = "Female literacy rate (%)",
 :::
 :::
 
-## Poll Everywhere Question 4
+## Poll Everywhere Question 5
 
 ## So what do we do with the residuals?
 
@@ -1292,7 +1304,7 @@ $$\begin{aligned}
 :::
 :::
 
-## Poll Everywhere Question 5
+## Poll Everywhere Question 6
 
 ## Do I need to do all that work every time??
 
@@ -1306,6 +1318,19 @@ $$\begin{aligned}
 #| out-height: 800px 
 
 model1 <- gapm %>% lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate)
+```
+
+ 
+
+ 
+
+In the general form:
+
+```{r}
+#| eval: false
+
+lm( Y ~ X, data = dataset_name)
+dataset_name %>% lm( formula = Y ~ X )
 ```
 
 ## Regression in R: `lm()` + `summary()`
@@ -1342,13 +1367,13 @@ $$\widehat{\text{life expectancy}} =  50.9 + 0.232\cdot\text{female literacy rat
 $$\widehat{\text{life expectancy}} =  50.9 + 0.232\cdot\text{female literacy rate}$$
 :::
 
--   **Intercept**
-    -   The expected outcome for the $Y$-variable when the $X$-variable
+-   **Intercept ($\hat{\beta}_0$)**
+    -   The expected outcome for the $Y$-variable when the $X$-variable (if continuous)
         is 0
     -   **Example:** The expected/average life expectancy is 50.9 years
         for a country with 0% female literacy.
--   **Slope**
-    -   For every increase of 1 unit in the $X$-variable, there is an
+-   **Slope ($\hat{\beta}_1$)**
+    -   For every increase of 1 unit in the $X$-variable (if continuous), there is an
         expected increase of, on average, $\widehat\beta_1$ units in the
         $Y$-variable.
 
@@ -1356,10 +1381,12 @@ $$\widehat{\text{life expectancy}} =  50.9 + 0.232\cdot\text{female literacy rat
         necessarily a causal increase.
 
     -   **Example:** For every 1 percent increase in the female literacy
-        rate, the expected/average life expectancy increases, on
-        average, 0.232 years.
+        rate, life expectancy increases, on average, 0.232 years.
+          - Can also say "...average life expectancy increases 0.232..."
 
 ## Next time
+
+-   More on interpreting the estimate coefficients
 
 -   Inference of our estimated coefficients
 

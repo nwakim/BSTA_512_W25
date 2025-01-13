@@ -555,15 +555,31 @@ Nicky Wakim
 </div>
 </div>
 </section>
-<section id="dataset-description" class="slide level2">
-<h2>Dataset description</h2>
+<section id="research-and-dataset-description" class="slide level2">
+<h2>Research and dataset description</h2>
+<div class="hl3">
+<p><strong>Research question:</strong> Is there an association between average life expectancy and female literacy rates?</p>
+</div>
 <ul>
 <li><p>Data file: <code>Gapminder_vars_2011.xlsx</code></p></li>
-<li><p>Data were downloaded from <a href="https://www.gapminder.org/data/" class="uri">Gapminder</a></p></li>
-<li><p>2011 is the most recent year with the most complete data</p></li>
+<li><p>Data were downloaded from <a href="https://www.gapminder.org/data/" class="uri">Gapminder</a></p>
+<ul>
+<li>2011 is the most recent year with the most complete data</li>
+<li>Observational study measuring different characteristics of countries, including population, health, environment, work, etc.</li>
+</ul></li>
 <li><p><a href="https://www.gapminder.org/data/documentation/gd004/"><strong>Life expectancy</strong></a> = the average number of years a newborn child would live if current mortality patterns were to stay the same.</p></li>
 <li><p><a href="http://data.uis.unesco.org/"><strong>Adult literacy rate</strong></a> is the percentage of people ages 15 and above who can, with understanding, read and write a short, simple statement on their everyday life.</p></li>
 </ul>
+<p>&nbsp;</p>
+<ul>
+<li><a href="https://literacytrust.org.uk/research-services/research-reports/literacy-and-life-expectancy/">National Literacy Trust</a> in England has studied the link between these two variables
+<ul>
+<li>Please note that they clearly state that literacy is linked to life expectancy <strong>through many socioeconomic and health factors</strong></li>
+</ul></li>
+</ul>
+</section>
+<section id="poll-everywhere-question-1" class="slide level2">
+<h2>Poll Everywhere Question 1</h2>
 </section>
 <section id="get-to-know-the-data-13" class="slide level2">
 <h2>Get to know the data (1/3)</h2>
@@ -572,7 +588,7 @@ Nicky Wakim
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb2-2"><a href="#cb2-2"></a>gapm1 <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="fu">here</span>(<span class="st">"data/Gapminder_vars_2011.xlsx"</span>), <span class="at">na =</span> <span class="st">"NA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2"></a>gapm1 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">"data/Gapminder_vars_2011.xlsx"</span>), <span class="at">na =</span> <span class="st">"NA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="get-to-know-the-data-23" class="slide level2">
@@ -697,8 +713,8 @@ $ `World bank, 4 income groups 2017` &lt;chr&gt; "Low income", "Upper middle inc
 </div>
 </div>
 </section>
-<section id="poll-everywhere-question-1" class="slide level2">
-<h2>Poll Everywhere Question 1</h2>
+<section id="poll-everywhere-question-2" class="slide level2">
+<h2>Poll Everywhere Question 2</h2>
 </section></section>
 <section>
 <section id="learning-objectives-1" class="title-slide slide level1 center">
@@ -912,8 +928,8 @@ $ `World bank, 4 income groups 2017` &lt;chr&gt; "Low income", "Upper middle inc
 </div>
 </div>
 </section>
-<section id="poll-everywhere-question-2" class="slide level2">
-<h2>Poll Everywhere Question 2</h2>
+<section id="poll-everywhere-question-3" class="slide level2">
+<h2>Poll Everywhere Question 3</h2>
 </section></section>
 <section>
 <section id="learning-objectives-2" class="title-slide slide level1 center">
@@ -1027,8 +1043,8 @@ $ `World bank, 4 income groups 2017` &lt;chr&gt; "Low income", "Upper middle inc
 </div>
 </div>
 </section>
-<section id="poll-everywhere-question-3" class="slide level2">
-<h2>Poll Everywhere Question 3</h2>
+<section id="poll-everywhere-question-4" class="slide level2">
+<h2>Poll Everywhere Question 4</h2>
 </section>
 
 <section id="regression-line-best-fit-line" class="slide level2">
@@ -1159,7 +1175,7 @@ $ `World bank, 4 income groups 2017` &lt;chr&gt; "Low income", "Upper middle inc
         E[Y|X] &amp; = \beta_0 + \beta_1X \\
 \end{aligned}\]</span></p>
 <ul>
-<li>We call <span class="math inline">\(E[Y|X]\)</span> the expected value of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span></li>
+<li>We call <span class="math inline">\(E[Y|X]\)</span> the expected value (or average) of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span></li>
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
@@ -1307,8 +1323,8 @@ Y &amp; = \widehat{Y} + \widehat\epsilon \\
 </div>
 </div>
 </section>
-<section id="poll-everywhere-question-4" class="slide level2">
-<h2>Poll Everywhere Question 4</h2>
+<section id="poll-everywhere-question-5" class="slide level2">
+<h2>Poll Everywhere Question 5</h2>
 </section>
 <section id="so-what-do-we-do-with-the-residuals" class="slide level2">
 <h2>So what do we do with the residuals?</h2>
@@ -1551,8 +1567,8 @@ SSE = \displaystyle\sum^n_{i=1} (Y_i - \widehat{\beta}_0-\widehat{\beta}_1X_i)^2
 </div>
 </div>
 </section>
-<section id="poll-everywhere-question-5" class="slide level2">
-<h2>Poll Everywhere Question 5</h2>
+<section id="poll-everywhere-question-6" class="slide level2">
+<h2>Poll Everywhere Question 6</h2>
 </section>
 <section id="do-i-need-to-do-all-that-work-every-time" class="slide level2">
 <h2>Do I need to do all that work every time??</h2>
@@ -1566,12 +1582,19 @@ SSE = \displaystyle\sum^n_{i=1} (Y_i - \widehat{\beta}_0-\widehat{\beta}_1X_i)^2
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>model1 <span class="ot">&lt;-</span> gapm <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="at">formula =</span> LifeExpectancyYrs <span class="sc">~</span> FemaleLiteracyRate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>In the general form:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">lm</span>( Y <span class="sc">~</span> X, <span class="at">data =</span> dataset_name)</span>
+<span id="cb12-2"><a href="#cb12-2"></a>dataset_name <span class="sc">%&gt;%</span> <span class="fu">lm</span>( <span class="at">formula =</span> Y <span class="sc">~</span> X )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="regression-in-r-lm-summary" class="slide level2">
 <h2>Regression in R: <code>lm()</code> + <code>summary()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>model1 <span class="ot">&lt;-</span> gapm <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="at">formula =</span> LifeExpectancyYrs <span class="sc">~</span> FemaleLiteracyRate)</span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>model1 <span class="ot">&lt;-</span> gapm <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="at">formula =</span> LifeExpectancyYrs <span class="sc">~</span> FemaleLiteracyRate)</span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1598,28 +1621,28 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
 <h2>Regression in R: <code>lm()</code> + <code>tidy()</code></h2>
 <p>&nbsp;</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">tidy</span>(model1) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">tidy</span>(model1) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="rnipausslh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rnipausslh table {
+<div id="sixwwxsmdq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#sixwwxsmdq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rnipausslh thead, #rnipausslh tbody, #rnipausslh tfoot, #rnipausslh tr, #rnipausslh td, #rnipausslh th {
+#sixwwxsmdq thead, #sixwwxsmdq tbody, #sixwwxsmdq tfoot, #sixwwxsmdq tr, #sixwwxsmdq td, #sixwwxsmdq th {
   border-style: none;
 }
 
-#rnipausslh p {
+#sixwwxsmdq p {
   margin: 0;
   padding: 0;
 }
 
-#rnipausslh .gt_table {
+#sixwwxsmdq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1645,12 +1668,12 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#rnipausslh .gt_caption {
+#sixwwxsmdq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rnipausslh .gt_title {
+#sixwwxsmdq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1662,7 +1685,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-bottom-width: 0;
 }
 
-#rnipausslh .gt_subtitle {
+#sixwwxsmdq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1674,7 +1697,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-top-width: 0;
 }
 
-#rnipausslh .gt_heading {
+#sixwwxsmdq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1686,13 +1709,13 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#rnipausslh .gt_bottom_border {
+#sixwwxsmdq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rnipausslh .gt_col_headings {
+#sixwwxsmdq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1707,7 +1730,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#rnipausslh .gt_col_heading {
+#sixwwxsmdq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1727,7 +1750,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   overflow-x: hidden;
 }
 
-#rnipausslh .gt_column_spanner_outer {
+#sixwwxsmdq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1739,15 +1762,15 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 4px;
 }
 
-#rnipausslh .gt_column_spanner_outer:first-child {
+#sixwwxsmdq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rnipausslh .gt_column_spanner_outer:last-child {
+#sixwwxsmdq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rnipausslh .gt_column_spanner {
+#sixwwxsmdq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1759,11 +1782,11 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   width: 100%;
 }
 
-#rnipausslh .gt_spanner_row {
+#sixwwxsmdq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rnipausslh .gt_group_heading {
+#sixwwxsmdq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1789,7 +1812,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   text-align: left;
 }
 
-#rnipausslh .gt_empty_group_heading {
+#sixwwxsmdq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1804,15 +1827,15 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   vertical-align: middle;
 }
 
-#rnipausslh .gt_from_md > :first-child {
+#sixwwxsmdq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rnipausslh .gt_from_md > :last-child {
+#sixwwxsmdq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rnipausslh .gt_row {
+#sixwwxsmdq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1831,7 +1854,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   overflow-x: hidden;
 }
 
-#rnipausslh .gt_stub {
+#sixwwxsmdq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1844,7 +1867,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#rnipausslh .gt_stub_row_group {
+#sixwwxsmdq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1858,15 +1881,15 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   vertical-align: top;
 }
 
-#rnipausslh .gt_row_group_first td {
+#sixwwxsmdq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rnipausslh .gt_row_group_first th {
+#sixwwxsmdq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rnipausslh .gt_summary_row {
+#sixwwxsmdq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1876,16 +1899,16 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#rnipausslh .gt_first_summary_row {
+#sixwwxsmdq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rnipausslh .gt_first_summary_row.thick {
+#sixwwxsmdq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rnipausslh .gt_last_summary_row {
+#sixwwxsmdq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1895,7 +1918,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#rnipausslh .gt_grand_summary_row {
+#sixwwxsmdq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1905,7 +1928,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#rnipausslh .gt_first_grand_summary_row {
+#sixwwxsmdq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1915,7 +1938,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#rnipausslh .gt_last_grand_summary_row_top {
+#sixwwxsmdq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1925,11 +1948,11 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#rnipausslh .gt_striped {
+#sixwwxsmdq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rnipausslh .gt_table_body {
+#sixwwxsmdq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1938,7 +1961,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#rnipausslh .gt_footnotes {
+#sixwwxsmdq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1952,7 +1975,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#rnipausslh .gt_footnote {
+#sixwwxsmdq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1961,7 +1984,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#rnipausslh .gt_sourcenotes {
+#sixwwxsmdq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1975,7 +1998,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#rnipausslh .gt_sourcenote {
+#sixwwxsmdq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1983,72 +2006,72 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#rnipausslh .gt_left {
+#sixwwxsmdq .gt_left {
   text-align: left;
 }
 
-#rnipausslh .gt_center {
+#sixwwxsmdq .gt_center {
   text-align: center;
 }
 
-#rnipausslh .gt_right {
+#sixwwxsmdq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rnipausslh .gt_font_normal {
+#sixwwxsmdq .gt_font_normal {
   font-weight: normal;
 }
 
-#rnipausslh .gt_font_bold {
+#sixwwxsmdq .gt_font_bold {
   font-weight: bold;
 }
 
-#rnipausslh .gt_font_italic {
+#sixwwxsmdq .gt_font_italic {
   font-style: italic;
 }
 
-#rnipausslh .gt_super {
+#sixwwxsmdq .gt_super {
   font-size: 65%;
 }
 
-#rnipausslh .gt_footnote_marks {
+#sixwwxsmdq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rnipausslh .gt_asterisk {
+#sixwwxsmdq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rnipausslh .gt_indent_1 {
+#sixwwxsmdq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rnipausslh .gt_indent_2 {
+#sixwwxsmdq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rnipausslh .gt_indent_3 {
+#sixwwxsmdq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rnipausslh .gt_indent_4 {
+#sixwwxsmdq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rnipausslh .gt_indent_5 {
+#sixwwxsmdq .gt_indent_5 {
   text-indent: 25px;
 }
 
-#rnipausslh .katex-display {
+#sixwwxsmdq .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#rnipausslh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#sixwwxsmdq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2094,22 +2117,26 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
 <p><span class="math display">\[\widehat{\text{life expectancy}} =  50.9 + 0.232\cdot\text{female literacy rate}\]</span></p>
 </div>
 <ul>
-<li><strong>Intercept</strong>
+<li><strong>Intercept (<span class="math inline">\(\hat{\beta}_0\)</span>)</strong>
 <ul>
-<li>The expected outcome for the <span class="math inline">\(Y\)</span>-variable when the <span class="math inline">\(X\)</span>-variable is 0</li>
+<li>The expected outcome for the <span class="math inline">\(Y\)</span>-variable when the <span class="math inline">\(X\)</span>-variable (if continuous) is 0</li>
 <li><strong>Example:</strong> The expected/average life expectancy is 50.9 years for a country with 0% female literacy.</li>
 </ul></li>
-<li><strong>Slope</strong>
+<li><strong>Slope (<span class="math inline">\(\hat{\beta}_1\)</span>)</strong>
 <ul>
-<li><p>For every increase of 1 unit in the <span class="math inline">\(X\)</span>-variable, there is an expected increase of, on average, <span class="math inline">\(\widehat\beta_1\)</span> units in the <span class="math inline">\(Y\)</span>-variable.</p></li>
+<li><p>For every increase of 1 unit in the <span class="math inline">\(X\)</span>-variable (if continuous), there is an expected increase of, on average, <span class="math inline">\(\widehat\beta_1\)</span> units in the <span class="math inline">\(Y\)</span>-variable.</p></li>
 <li><p>We only say that there is an expected increase and not necessarily a causal increase.</p></li>
-<li><p><strong>Example:</strong> For every 1 percent increase in the female literacy rate, the expected/average life expectancy increases, on average, 0.232 years.</p></li>
+<li><p><strong>Example:</strong> For every 1 percent increase in the female literacy rate, life expectancy increases, on average, 0.232 years.</p>
+<ul>
+<li>Can also say “…average life expectancy increases 0.232…”</li>
+</ul></li>
 </ul></li>
 </ul>
 </section>
 <section id="next-time" class="slide level2">
 <h2>Next time</h2>
 <ul>
+<li><p>More on interpreting the estimate coefficients</p></li>
 <li><p>Inference of our estimated coefficients</p></li>
 <li><p>Inference of estimated expected <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span></p></li>
 <li><p>Prediction</p></li>

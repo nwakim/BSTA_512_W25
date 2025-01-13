@@ -10,4 +10,9 @@ editor_options:
 
 ## Announcements
 
+- There is no Slack for this class
+- Attendance policy: Attendance in-person or online to all (ish) classes. Attendance is taken by completing exit ticket within 1 week of class
+
 ## Key Dates
+
+- Lab 1 due this Thursday at 11pm

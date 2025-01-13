@@ -334,9 +334,15 @@ If you think a question was incorrectly graded, first compare your answer to the
 
 You are expected to attend class, participate in-class polls, and complete the exit ticket. For students who miss class or need a review, I will make video and audio recordings of lectures available. There are no guarantees against technical or other challenges for the recording availability or quality.
 
-**You will need to attend at least 12 classes in person.** There are 19 classes total, so you are welcome to watch the recordings for up to 7 classes in lieu of in-person attendance. While I want attendance to be a flexible thing, I need to set certain requirements around in-person attendance to align with the school’s policy.
+You have three options to attend class:
 
-This is meant to keep you on track within the course and prevent a pile up of material. Make sure to complete the exit ticket at the end of class to demonstrate attendance.
+1.  Attend in-person synchronously and fill out exit ticket
+
+2.  Watch online synchronously and fill out exit ticket
+
+3.  Watch online asynchronously within 7 days and fill out exit ticket
+
+This is meant to keep you on track within the course and prevent a pile up of material. Make sure to complete the exit ticket at the end of class or viewing to demonstrate attendance.
 
 ### Plagiarism and Attribution
 

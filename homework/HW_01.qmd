@@ -178,27 +178,10 @@ For the regression that you chose as being more appropriate in part (d), find 95
 You can get the CI's from the R output
 :::
 
-::: callout-important
-## Update 1/21/2024
-
-I removed some of the instructions because they were a little confusing. No need to go through the formal process of a hypothesis test.
-:::
-
-#### Part f (to be covered on Monday 1/22)
+#### Part f
 
 For the regression that you chose as being more appropriate in part (d), add 95% confidence ~~and prediction~~ bands. Using your sketch, find and interpret an approximate 95% confidence interval for the mean response of an 8-day-old chick.
 
-::: callout-important
-## Update 1/21/2024
-
-I removed prediction bands because we did not cover them!
-:::
-
-::: callout-note
-## Update 1/22/2024
-
-You do NOT need to do this problem (Question 6, part f). We did NOT get to it on Monday, so I don't expect you to do it for the homework.
-:::
 
 ## Question 7
 

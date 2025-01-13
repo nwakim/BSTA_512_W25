@@ -12,6 +12,7 @@ editor_options:
 
 - There is no Slack for this class
 - Attendance policy: Attendance in-person or online to all (ish) classes. Attendance is taken by completing exit ticket within 1 week of class
+- Extra question on preference for Thursday morning office hours
 
 ## Key Dates
 

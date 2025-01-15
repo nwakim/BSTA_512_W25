@@ -5381,5 +5381,12 @@
     "title": "Lesson 4: SLR Inference and Prediction",
     "section": "\\(\\widehat\\sigma^2\\): I hope R can calculate that for me… (2/2)",
     "text": "\\(\\widehat\\sigma^2\\): I hope R can calculate that for me… (2/2)\n\nIt can!!\n\n\nm1_sum = summary(model1)\nm1_sum$sigma\n\n[1] 6.142157\n\n# number of observations (pairs of data) used to run the model\nnobs(model1) \n\n[1] 80"
+  },
+  {
+    "objectID": "lessons/04_SLR_Inf_Pred/04_SLR_Inf_Pred.html#textbook-readings",
+    "href": "lessons/04_SLR_Inf_Pred/04_SLR_Inf_Pred.html#textbook-readings",
+    "title": "Lesson 4: SLR Inference and Prediction",
+    "section": "Textbook readings",
+    "text": "Textbook readings\n\nIntroduction to Regression Methods for Public Health Using R\n\n4.5 Interpreting p-values\n4.6 Predictions from the model\n4.7 Confidence intervals and prediction intervals\n\nA Progressive Introduction to Linear Models\n\nNot really any good sections"
   }
 ]

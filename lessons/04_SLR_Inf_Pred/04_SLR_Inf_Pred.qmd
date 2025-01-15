@@ -84,6 +84,16 @@ summary(model1)
 tidy(model1) %>% gt()
 ```
 
+## Textbook readings
+
+- [Introduction to Regression Methods for Public Health Using R](https://bookdown.org/rwnahhas/RMPH/)
+  - [4.5 Interpreting p-values](https://bookdown.org/rwnahhas/RMPH/slr-pvalues.html#slr-pvalues)
+  - [4.6 Predictions from the model](https://bookdown.org/rwnahhas/RMPH/slr-prediction.html#slr-prediction)
+  - [4.7 Confidence intervals and prediction intervals](https://bookdown.org/rwnahhas/RMPH/slr-confints.html)
+  
+- [A Progressive Introduction to Linear Models](https://jfrench.github.io/LinearRegression/)
+  - Not really any good sections
+
 # Learning Objectives
 
 1.  Estimate the variance of the residuals

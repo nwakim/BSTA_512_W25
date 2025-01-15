@@ -512,7 +512,7 @@ Nicky Wakim
 </div>
 </div><div class="column" style="width:45%;">
 <p>&nbsp;</p>
-<p>Average life expectancy vs.&nbsp;female literacy rate</p>
+<p>Life expectancy vs.&nbsp;female literacy rate</p>
 <p>&nbsp;</p>
 <ul>
 <li>Each point on the plot is for a different country</li>
@@ -523,7 +523,7 @@ Nicky Wakim
 </ul>
 <p>&nbsp;</p>
 <ul>
-<li><span class="math inline">\(Y\)</span> = country’s average life expectancy (years)</li>
+<li><span class="math inline">\(Y\)</span> = country’s life expectancy (years)</li>
 </ul>
 </div>
 </div>
@@ -558,7 +558,7 @@ Nicky Wakim
 <section id="research-and-dataset-description" class="slide level2">
 <h2>Research and dataset description</h2>
 <div class="hl3">
-<p><strong>Research question:</strong> Is there an association between average life expectancy and female literacy rates?</p>
+<p><strong>Research question:</strong> Is there an association between life expectancy and female literacy rates?</p>
 </div>
 <ul>
 <li><p>Data file: <code>Gapminder_vars_2011.xlsx</code></p></li>
@@ -792,7 +792,7 @@ $ `World bank, 4 income groups 2017` &lt;chr&gt; "Low income", "Upper middle inc
 </div>
 <div class="def-cont">
 <ul>
-<li>What is the expected average life expectancy for a country with a specified female literacy rate? &nbsp; &nbsp;</li>
+<li>What is the expected life expectancy for a country with a specified female literacy rate? &nbsp; &nbsp;</li>
 </ul>
 </div>
 </div>
@@ -1264,11 +1264,11 @@ Y &amp; = \widehat{Y} + \widehat\epsilon \\
 <div class="columns">
 <div class="column" style="width:45%;">
 <ul>
-<li><strong>Observed values for each individual</strong> <span class="math inline">\(i\)</span>: <span class="math inline">\(Y_i\)</span>
+<li><strong>Observed values for each country</strong> <span class="math inline">\(i\)</span>: <span class="math inline">\(Y_i\)</span>
 <ul>
-<li>Value in the dataset for individual <span class="math inline">\(i\)</span></li>
+<li>Value in the dataset for country <span class="math inline">\(i\)</span></li>
 </ul></li>
-<li><strong>Fitted value for each individual</strong> <span class="math inline">\(i\)</span>: <span class="math inline">\(\widehat{Y}_i\)</span>
+<li><strong>Fitted value for each country</strong> <span class="math inline">\(i\)</span>: <span class="math inline">\(\widehat{Y}_i\)</span>
 <ul>
 <li>Value that falls on the best-fit line for a specific <span class="math inline">\(X_i\)</span></li>
 <li>If two individuals have the same <span class="math inline">\(X_i\)</span>, then they have the same <span class="math inline">\(\widehat{Y}_i\)</span></li>
@@ -1626,23 +1626,23 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
 <span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="sixwwxsmdq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#sixwwxsmdq table {
+<div id="bdkakihiyj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bdkakihiyj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#sixwwxsmdq thead, #sixwwxsmdq tbody, #sixwwxsmdq tfoot, #sixwwxsmdq tr, #sixwwxsmdq td, #sixwwxsmdq th {
+#bdkakihiyj thead, #bdkakihiyj tbody, #bdkakihiyj tfoot, #bdkakihiyj tr, #bdkakihiyj td, #bdkakihiyj th {
   border-style: none;
 }
 
-#sixwwxsmdq p {
+#bdkakihiyj p {
   margin: 0;
   padding: 0;
 }
 
-#sixwwxsmdq .gt_table {
+#bdkakihiyj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1668,12 +1668,12 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#sixwwxsmdq .gt_caption {
+#bdkakihiyj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#sixwwxsmdq .gt_title {
+#bdkakihiyj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1685,7 +1685,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-bottom-width: 0;
 }
 
-#sixwwxsmdq .gt_subtitle {
+#bdkakihiyj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1697,7 +1697,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-top-width: 0;
 }
 
-#sixwwxsmdq .gt_heading {
+#bdkakihiyj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1709,13 +1709,13 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#sixwwxsmdq .gt_bottom_border {
+#bdkakihiyj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sixwwxsmdq .gt_col_headings {
+#bdkakihiyj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1730,7 +1730,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#sixwwxsmdq .gt_col_heading {
+#bdkakihiyj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1750,7 +1750,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   overflow-x: hidden;
 }
 
-#sixwwxsmdq .gt_column_spanner_outer {
+#bdkakihiyj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1762,15 +1762,15 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 4px;
 }
 
-#sixwwxsmdq .gt_column_spanner_outer:first-child {
+#bdkakihiyj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sixwwxsmdq .gt_column_spanner_outer:last-child {
+#bdkakihiyj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sixwwxsmdq .gt_column_spanner {
+#bdkakihiyj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1782,11 +1782,11 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   width: 100%;
 }
 
-#sixwwxsmdq .gt_spanner_row {
+#bdkakihiyj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#sixwwxsmdq .gt_group_heading {
+#bdkakihiyj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1812,7 +1812,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   text-align: left;
 }
 
-#sixwwxsmdq .gt_empty_group_heading {
+#bdkakihiyj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1827,15 +1827,15 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   vertical-align: middle;
 }
 
-#sixwwxsmdq .gt_from_md > :first-child {
+#bdkakihiyj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sixwwxsmdq .gt_from_md > :last-child {
+#bdkakihiyj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sixwwxsmdq .gt_row {
+#bdkakihiyj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1854,7 +1854,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   overflow-x: hidden;
 }
 
-#sixwwxsmdq .gt_stub {
+#bdkakihiyj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1867,7 +1867,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#sixwwxsmdq .gt_stub_row_group {
+#bdkakihiyj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1881,15 +1881,15 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   vertical-align: top;
 }
 
-#sixwwxsmdq .gt_row_group_first td {
+#bdkakihiyj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#sixwwxsmdq .gt_row_group_first th {
+#bdkakihiyj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#sixwwxsmdq .gt_summary_row {
+#bdkakihiyj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1899,16 +1899,16 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#sixwwxsmdq .gt_first_summary_row {
+#bdkakihiyj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#sixwwxsmdq .gt_first_summary_row.thick {
+#bdkakihiyj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#sixwwxsmdq .gt_last_summary_row {
+#bdkakihiyj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1918,7 +1918,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#sixwwxsmdq .gt_grand_summary_row {
+#bdkakihiyj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1928,7 +1928,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#sixwwxsmdq .gt_first_grand_summary_row {
+#bdkakihiyj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1938,7 +1938,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#sixwwxsmdq .gt_last_grand_summary_row_top {
+#bdkakihiyj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1948,11 +1948,11 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#sixwwxsmdq .gt_striped {
+#bdkakihiyj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sixwwxsmdq .gt_table_body {
+#bdkakihiyj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1961,7 +1961,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#sixwwxsmdq .gt_footnotes {
+#bdkakihiyj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1975,7 +1975,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#sixwwxsmdq .gt_footnote {
+#bdkakihiyj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1984,7 +1984,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#sixwwxsmdq .gt_sourcenotes {
+#bdkakihiyj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1998,7 +1998,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#sixwwxsmdq .gt_sourcenote {
+#bdkakihiyj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2006,72 +2006,72 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
   padding-right: 5px;
 }
 
-#sixwwxsmdq .gt_left {
+#bdkakihiyj .gt_left {
   text-align: left;
 }
 
-#sixwwxsmdq .gt_center {
+#bdkakihiyj .gt_center {
   text-align: center;
 }
 
-#sixwwxsmdq .gt_right {
+#bdkakihiyj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sixwwxsmdq .gt_font_normal {
+#bdkakihiyj .gt_font_normal {
   font-weight: normal;
 }
 
-#sixwwxsmdq .gt_font_bold {
+#bdkakihiyj .gt_font_bold {
   font-weight: bold;
 }
 
-#sixwwxsmdq .gt_font_italic {
+#bdkakihiyj .gt_font_italic {
   font-style: italic;
 }
 
-#sixwwxsmdq .gt_super {
+#bdkakihiyj .gt_super {
   font-size: 65%;
 }
 
-#sixwwxsmdq .gt_footnote_marks {
+#bdkakihiyj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#sixwwxsmdq .gt_asterisk {
+#bdkakihiyj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#sixwwxsmdq .gt_indent_1 {
+#bdkakihiyj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#sixwwxsmdq .gt_indent_2 {
+#bdkakihiyj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#sixwwxsmdq .gt_indent_3 {
+#bdkakihiyj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#sixwwxsmdq .gt_indent_4 {
+#bdkakihiyj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#sixwwxsmdq .gt_indent_5 {
+#bdkakihiyj .gt_indent_5 {
   text-indent: 25px;
 }
 
-#sixwwxsmdq .katex-display {
+#bdkakihiyj .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#sixwwxsmdq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#bdkakihiyj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2124,7 +2124,7 @@ F-statistic: 54.41 on 1 and 78 DF,  p-value: 1.501e-10</code></pre>
 </ul></li>
 <li><strong>Slope (<span class="math inline">\(\hat{\beta}_1\)</span>)</strong>
 <ul>
-<li><p>For every increase of 1 unit in the <span class="math inline">\(X\)</span>-variable (if continuous), there is an expected increase of, on average, <span class="math inline">\(\widehat\beta_1\)</span> units in the <span class="math inline">\(Y\)</span>-variable.</p></li>
+<li><p>For every increase of 1 unit in the <span class="math inline">\(X\)</span>-variable (if continuous), there is an expected increase of <span class="math inline">\(\widehat\beta_1\)</span> units in the <span class="math inline">\(Y\)</span>-variable.</p></li>
 <li><p>We only say that there is an expected increase and not necessarily a causal increase.</p></li>
 <li><p><strong>Example:</strong> For every 1 percent increase in the female literacy rate, life expectancy increases, on average, 0.232 years.</p>
 <ul>

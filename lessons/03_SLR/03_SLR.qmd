@@ -204,7 +204,7 @@ gapm_slr_plot
 ::: {.column width="45%"}
  
 
-Average life expectancy vs. female literacy rate
+Life expectancy vs. female literacy rate
 
  
 
@@ -216,7 +216,7 @@ Average life expectancy vs. female literacy rate
 
  
 
--   $Y$ = country's average life expectancy (years)
+-   $Y$ = country's life expectancy (years)
 :::
 :::
 
@@ -250,7 +250,7 @@ gapm %>%
 ## Research and dataset description
 
 ::: hl3
-**Research question:** Is there an association between average life expectancy and female literacy rates?
+**Research question:** Is there an association between life expectancy and female literacy rates?
 :::
 
 -   Data file: `Gapminder_vars_2011.xlsx`
@@ -423,7 +423,7 @@ Prediction
 :::
 
 ::: def-cont
--   What is the expected average life expectancy for a country with a
+-   What is the expected life expectancy for a country with a
     specified female literacy rate?    
 :::
 :::
@@ -928,9 +928,9 @@ residuals: $\widehat\epsilon = Y - \widehat{Y}$
 
 ::: columns
 ::: {.column width="45%"}
--   **Observed values for each individual** $i$: $Y_i$
-    -   Value in the dataset for individual $i$
--   **Fitted value for each individual** $i$: $\widehat{Y}_i$
+-   **Observed values for each country** $i$: $Y_i$
+    -   Value in the dataset for country $i$
+-   **Fitted value for each country** $i$: $\widehat{Y}_i$
     -   Value that falls on the best-fit line for a specific $X_i$
     -   If two individuals have the same $X_i$, then they have the same
         $\widehat{Y}_i$
@@ -1374,7 +1374,7 @@ $$\widehat{\text{life expectancy}} =  50.9 + 0.232\cdot\text{female literacy rat
         for a country with 0% female literacy.
 -   **Slope ($\hat{\beta}_1$)**
     -   For every increase of 1 unit in the $X$-variable (if continuous), there is an
-        expected increase of, on average, $\widehat\beta_1$ units in the
+        expected increase of $\widehat\beta_1$ units in the
         $Y$-variable.
 
     -   We only say that there is an expected increase and not

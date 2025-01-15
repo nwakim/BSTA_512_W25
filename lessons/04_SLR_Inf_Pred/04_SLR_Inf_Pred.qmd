@@ -42,6 +42,7 @@ library(broom)
 library(here) 
 library(pwr) 
 library(gridExtra) # NEW!!!
+library(readxl)
 
 # terminal: for icons
 # quarto install extension quarto-ext/fontawesome
@@ -56,7 +57,8 @@ theme_set(theme_gray(base_size = 22))
 #| include: false
 #| message: false
 #| warning: false
-gapm <- read_csv("data/lifeexp_femlit_2011.csv")
+gapm1 <- read_excel(here("data/Gapminder_vars_2011.xlsx"), na = "NA") 
+gapm <- gapm1 %>% drop_na(LifeExpectancyYrs, FemaleLiteracyRate)
 ```
 
 ```{r}
@@ -64,8 +66,7 @@ gapm <- read_csv("data/lifeexp_femlit_2011.csv")
 #| message: false
 #| warning: false
 # Fit regression model:
-model1 <- lm(life_expectancy_years_2011 ~ female_literacy_rate_2011,
-             data = gapm)
+model1 <- gapm %>% lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate)
 
 # some output, but not complete
 model1
@@ -92,6 +93,12 @@ tidy(model1) %>% gt()
     population slope $\beta_1$ (applies to $\beta_0$ as well)
 4.  Calculate and report the estimate and confidence interval for the
     expected/mean response given $X$
+    
+```{css, echo=FALSE}
+.reveal code {
+  max-height: 100% !important;
+}
+```
     
 ## Process of regression data analysis
 
@@ -183,100 +190,6 @@ Model Use (Inference)
 :::
 
 
-
-## Let's revisit the regression analysis process
-
-::: box
-![](images/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"}
-![](images/arrow2.png){.absolute top="13.5%" right="28.4%"
-width="155"}![](images/arrow_back4.png){.absolute top="7.5%"
-right="30.5%" width="820"} ![](images/arrow_down.png){.absolute
-top="60.5%" right="48%" width="85"}
-
-::: columns
-::: {.column width="30%"}
-::: RAP1
-::: RAP1-title
-Model Selection
-:::
-
-::: RAP1-cont
--   Building a model
-
--   Selecting variables
-
--   Prediction vs interpretation
-
--   Comparing potential models
-:::
-:::
-:::
-
-::: {.column width="4%"}
-:::
-
-::: {.column width="30%"}
-::: RAP2
-::: RAP2-title
-Model Fitting
-:::
-
-::: RAP2-cont
--   Find best fit line
-
--   Using OLS in this class
-
--   Parameter estimation
-
--   Categorical covariates
-
--   Interactions
-:::
-:::
-:::
-
-::: {.column width="4%"}
-:::
-
-::: {.column width="30%"}
-::: RAP3
-::: RAP3-title
-Model Evaluation
-:::
-
-::: RAP3-cont
--   Evaluation of model fit
--   Testing model assumptions
--   Residuals
--   Transformations
--   Influential points
--   Multicollinearity
-:::
-:::
-:::
-:::
-:::
-
-::: RAP4
-::: RAP4-title
-Model Use (Inference)
-:::
-
-::: RAP4-cont
-::: columns
-::: {.column width="50%"}
--   Inference for coefficients
--   Hypothesis testing for coefficients
-:::
-
-::: {.column width="50%"}
--   Inference for expected $Y$ given $X$
--   Prediction of new $Y$ given $X$
-:::
-:::
-:::
-:::
-
 ## Let's remind ourselves of the model that we fit last lesson
 
 -   We fit Gapminder data with female literacy rate as our independent
@@ -287,9 +200,7 @@ Model Use (Inference)
 ::: columns
 ::: {.column width="58%"}
 ```{r}
-model1 <- lm(life_expectancy_years_2011 ~
-               female_literacy_rate_2011,
-                 data = gapm)
+model1 <- gapm %>% lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate)
 # Get regression table:
 tidy(model1) %>% gt() %>% 
  tab_options(table.font.size = 40) %>%
@@ -313,9 +224,9 @@ tidy(model1) %>% gt() %>%
 #| fig-width: 11
 #| echo: false
 
-gapm <- read_csv("data/lifeexp_femlit_2011.csv")
-ggplot(gapm, aes(x = female_literacy_rate_2011,
-                 y = life_expectancy_years_2011)) +
+gapm_slr_plot = gapm %>%
+  ggplot(aes(x = FemaleLiteracyRate,
+             y = LifeExpectancyYrs)) +
   geom_point(size = 4) +
   geom_smooth(method = "lm", se = FALSE, size = 3, colour="#F14124") +
   labs(x = "Female literacy rate (%)", 
@@ -325,6 +236,7 @@ ggplot(gapm, aes(x = female_literacy_rate_2011,
         axis.text = element_text(size = 25), 
         title = element_text(size = 30))
 
+gapm_slr_plot
 ```
 :::
 :::
@@ -378,7 +290,7 @@ $$Y =  \beta_0 + \beta_1X + \epsilon$$
 $$\widehat{\sigma}^2 = S_{y|x}^2= \frac{1}{n-2}\sum_{i=1}^n (Y_i - \widehat{Y}_i)^2 =\frac{1}{n-2}SSE = MSE$$
 :::
 
-## $\widehat\sigma^2$: I hope R can calculate that for me...
+## $\widehat\sigma^2$: I hope R can calculate that for me... (1/2)
 
 -   The *standard deviation* $\widehat{\sigma}$ is given in the R output
     as the `Residual standard error`
@@ -386,8 +298,17 @@ $$\widehat{\sigma}^2 = S_{y|x}^2= \frac{1}{n-2}\sum_{i=1}^n (Y_i - \widehat{Y}_i
     -   $4^{th}$ line from the bottom in the `summary()` output of the
         model:
 
+
 ```{r}
-(m1_sum = summary(model1))
+summary(model1)
+```
+
+## $\widehat\sigma^2$: I hope R can calculate that for me... (2/2)
+
+- It can!!
+
+```{r}
+m1_sum = summary(model1)
 m1_sum$sigma
 # number of observations (pairs of data) used to run the model
 nobs(model1) 
@@ -425,13 +346,19 @@ SSE & = 78 \cdot 6.142^2 = 2942.48
 
 ## Do we trust our estimate $\widehat\beta_1$?
 
--   So far, we have shown that we think the estimate is 0.232  
--   $\widehat\beta_1$ uses our sample data to estimate the population
-    parameter $\beta_1$  
--   Inference helps us figure out ~mathematically~ how much we trust our
-    best-fit line  
--   Are we certain that the relationship between $X$ and $Y$ that we
-    estimated reflects the true, underlying relationship?
+-   So far, we have shown that we think the estimate is 0.232 
+
+ 
+
+-   $\widehat\beta_1$ (coefficient estimate) uses our sample data to estimate the population parameter $\beta_1$
+
+ 
+
+-   Inference helps us figure out *mathematically* how much we trust our best-fit line 
+
+ 
+
+-   Are we certain that the relationship between $X$ and $Y$ that we estimated reflects the true, underlying relationship?
 
 ## Poll Everywhere Question 2
 
@@ -507,28 +434,46 @@ H_0 &: \beta_1 = 0\\
 4.  Calculate and report the estimate and confidence interval for the
     expected/mean response given $X$
 
-## Steps in hypothesis testing
+## Reference: Steps in a Hypothesis Test
 
-![](01_Review/hypothesis_test_steps.png)
+1.  Check the [**assumptions**]{style="color:#4FADF3"}
 
-## General steps for hypothesis test for population **slope** $\beta_1$ (t-test)
+    - What sampling distribution are you using? What assumptions are required for it?
+
+2.  Set the [**level of significance**]{style="color:#4FADF3"} $\alpha$
+
+3.  Specify the [**null**]{style="color:#4FADF3"} ( $H_0$ ) and [**alternative**]{style="color:#4FADF3"} ( $H_A$ ) [**hypotheses**]{style="color:#4FADF3"}
+
+    -  In symbols and/or in words
+    -  Alternative: one- or two-sided?
+
+4.  Specify the test statistic and its [**distribution under the null**]{style="color:#4FADF3"}
+
+5.  Calculate the [**test statistic**]{style="color:#4FADF3"}.
+
+6.  Calculate the [**p-value**]{style="color:#4FADF3"} based on the observed test statistic and its sampling distribution
+
+7.  Write a [**conclusion**]{style="color:#4FADF3"} to the hypothesis test
+
+    -  Do we reject or fail to reject $H_0$?
+    -  Write a conclusion in the context of the problem
+    
+
+
+## Steps for hypothesis test for population **slope** $\beta_1$ (using t-test)
 
 ::: columns
 ::: {.column width="48%"}
-::: highlight-container
-::: highlight
-1.  For today's class, we are assuming that we have met the underlying
-    assumptions (checked in our Model Evaluation step)
-:::
-:::
 
-::: highlight-container
-::: highlight
-2.  State the null hypothesis.
-:::
-:::
+1.  Check the [**assumptions**]{style="color:#4FADF3"}
 
-Often, we are curious if the coefficient is 0 or not:
+2.  Set the [**level of significance**]{style="color:#4FADF3"}
+
+    - Often we use $\alpha = 0.05$
+
+3.  Specify the [**null**]{style="color:#4FADF3"} ( $H_0$ ) and [**alternative**]{style="color:#4FADF3"} ( $H_A$ ) [**hypotheses**]{style="color:#4FADF3"}
+
+    - Often, we are curious if the coefficient is 0 or not:
 
 ```{=tex}
 \begin{align}
@@ -536,63 +481,34 @@ H_0 &: \beta_1 = 0\\
 \text{vs. } H_A&: \beta_1 \neq 0
 \end{align}
 ```
-::: highlight-container
-::: highlight
-3.  Specify the significance level.
-:::
-:::
 
-Often we use $\alpha = 0.05$
+4.  Specify the test statistic and its [**distribution under the null**]{style="color:#4FADF3"}
 
-::: highlight-container
-::: highlight
-4.  Specify the test statistic and its distribution under the null
-:::
-:::
-
-The test statistic is $t$, and follows a Student's t-distribution.
+    - The test statistic is $t$, and follows a Student's t-distribution.
 :::
 
 ::: {.column width="4%"}
 :::
 
 ::: {.column width="48%"}
-::: highlight-container
-::: highlight
-5.  Compute the value of the test statistic
-:::
-:::
 
-The calculated **test statistic** for $\widehat\beta_1$ is
+5.  Calculate the [**test statistic**]{style="color:#4FADF3"}.
 
-$$t = \frac{ \widehat\beta_1 - \beta_1}{ \text{SE}_{\widehat\beta_1}} = \frac{ \widehat\beta_1}{ \text{SE}_{\widehat\beta_1}}$$
+    - The calculated **test statistic** for $\widehat\beta_1$ is $$t = \frac{ \widehat\beta_1 - \beta_1}{ \text{SE}_{\widehat\beta_1}} = \frac{ \widehat\beta_1}{ \text{SE}_{\widehat\beta_1}}$$ when we assume $H_0: \beta_1 = 0$ is true.
 
-when we assume $H_0: \beta_1 = 0$ is true.
+6.  Calculate the [**p-value**]{style="color:#4FADF3"}
 
-::: highlight-container
-::: highlight
-6.  Calculate the p-value
-:::
-:::
+    - We are generally calculating: $2\cdot P(T > t)$
 
-We are generally calculating: $2\cdot P(T > t)$
+7.  Write a [**conclusion**]{style="color:#4FADF3"}
 
-::: highlight-container
-::: highlight
-7.  Write conclusion for hypothesis test
-:::
-:::
-
-We (reject/fail to reject) the null hypothesis that the slope is 0 at
-the $100\alpha\%$ significiance level. There is
-(sufficient/insufficient) evidence that there is significant association
-between ($Y$) and ($X$) (p-value = $P(T > t)$).
+    - We (reject/fail to reject) the null hypothesis that the slope is 0 at the $100\alpha\%$ significiance level. There is (sufficient/insufficient) evidence that there is significant association between ($Y$) and ($X$) (p-value = $P(T > t)$).
 :::
 :::
 
 ## Standard error of fitted slope $\widehat\beta_1$
 
-![](pause.png){.absolute top="1%" right="0%" width="120" height="120"}
+![](../img_slides/pause.png){.absolute top="1%" right="0%" width="120" height="120"}
 
    
 
@@ -633,7 +549,7 @@ $\widehat\beta_1$
 
 ## Calculating standard error for $\widehat\beta_1$ (1/2)
 
-![](pause.png){.absolute top="1%" right="0%" width="120" height="120"}
+![](../img_slides/pause.png){.absolute top="1%" right="0%" width="120" height="120"}
 
 -   **Option 1:** Calculate using the formula
 
@@ -644,7 +560,7 @@ glance(model1)
 (s_resid <- glance(model1)$sigma)
 
 # standard deviation of x's
-(s_x <- sd(gapm$female_literacy_rate_2011, na.rm=T))
+(s_x <- sd(gapm$FemaleLiteracyRate, na.rm=T))
 
 # number of pairs of complete observations
 (n <- nobs(model1))
@@ -654,13 +570,13 @@ glance(model1)
 
 ## Calculating standard error for $\widehat\beta_1$ (2/2)
 
-![](pause.png){.absolute top="1%" right="0%" width="120" height="120"}
+![](../img_slides/pause.png){.absolute top="1%" right="0%" width="120" height="120"}
 
 -   **Option 2:** Use regression table
 
 ```{r}
 # recall model1_b1 is regression table restricted to b1 row
-model1_b1 <-tidy(model1) %>% filter(term == "female_literacy_rate_2011")
+model1_b1 <-tidy(model1) %>% filter(term == "FemaleLiteracyRate")
 model1_b1 %>% gt() %>%
   tab_options(table.font.size = 45) %>% fmt_number(decimals = 4)
 ```
@@ -754,7 +670,7 @@ The test statistic is $t$, and follows a Student's t-distribution.
 
 ```{r}
 # recall model1_b1 is regression table restricted to b1 row
-model1_b1 <-tidy(model1) %>% filter(term == "female_literacy_rate_2011")
+model1_b1 <-tidy(model1) %>% filter(term == "FemaleLiteracyRate")
 model1_b1 %>% gt() %>%
   tab_options(table.font.size = 40) %>% fmt_number(decimals = 2)
 (TestStat_b1 <- model1_b1$estimate / model1_b1$std.error)
@@ -1076,7 +992,7 @@ tidy(model1, conf.int = T) %>% gt() %>%
   tab_options(table.font.size = 40) %>% fmt_number(decimals = 3)
 ```
 
-## Reporting the coefficient estimate of the population slope
+## Interpreting the coefficient estimate of the population slope with CIs
 
 -   When we report our results to someone else, we don't usually show
     them our full hypothesis test
@@ -1097,14 +1013,27 @@ General statement for population slope inference
 :::
 
 ::: def-cont
-For every increase of 1 unit in the $X$-variable, there is an expected
-average increase of $\widehat\beta_1$ units in the $Y$-variable (95%:
+For every increase of 1 unit in the $X$-variable, there is an expected/average (pick one) increase of $\widehat\beta_1$ units in the $Y$-variable (95%:
 LB, UB).
 :::
 :::
 
--   **In our example:** For every 1% increase in female literacy rate,
-    the average life expectancy is expected to increase, on average,
+-   **In our example:** For every 1% increase in female literacy rate, life expectancy increases, on average,
+    0.232 years (95% CI: 0.170, 0.295).
+    
+## Usually three options for your interpretations
+
+- **Option 1:** For every 1% increase in female literacy rate, life expectancy increases, **on average**,
+    0.232 years (95% CI: 0.170, 0.295).
+    
+ 
+
+- **Option 2:** For every 1% increase in female literacy rate, **average** life expectancy increases
+    0.232 years (95% CI: 0.170, 0.295).
+    
+ 
+
+- **Option 3:** For every 1% increase in female literacy rate, **expected** life expectancy increases
     0.232 years (95% CI: 0.170, 0.295).
 
 ## Poll Everywhere Question 4
@@ -1200,8 +1129,10 @@ $$\widehat{E}[Y|X^*] = \widehat\beta_0 + \widehat\beta_1 X^*$$
 #| echo: false
 #| fig.height: 8.0
 #| fig.width: 8.0
-ggplot(gapm, aes(x = female_literacy_rate_2011,
-                 y = life_expectancy_years_2011)) +
+
+gapm %>%
+  ggplot(aes(x = FemaleLiteracyRate,
+                 y = LifeExpectancyYrs)) +
   geom_point(size=2) +
   labs(x = "Female literacy rate (%)", 
        y = "Life expectancy (years)",
@@ -1265,8 +1196,8 @@ rate is 60.**
 ::: {.column width="50%"}
 ```{r}
 (n <- nobs(model1))
-(mx <- mean(gapm$female_literacy_rate_2011, na.rm=T))
-(s_x <- sd(gapm$female_literacy_rate_2011, na.rm=T))
+(mx <- mean(gapm$FemaleLiteracyRate, na.rm=T))
+(s_x <- sd(gapm$FemaleLiteracyRate, na.rm=T))
 ```
 :::
 :::
@@ -1315,7 +1246,7 @@ literacy rate is 60 and 80.**
         model
 
 ```{r}
-newdata <- data.frame(female_literacy_rate_2011 = c(60, 80)) 
+newdata <- data.frame(FemaleLiteracyRate = c(60, 80)) 
 newdata
 ```
 
@@ -1357,9 +1288,9 @@ with a 60% female literacy rate will be between 62.9 and 66.8 years.
 ```{r}
 #| fig-align: center
 
-ggplot(gapm,
-       aes(x=female_literacy_rate_2011, 
-           y=life_expectancy_years_2011)) +
+gapm %>%
+  ggplot(aes(x=FemaleLiteracyRate, 
+             y=LifeExpectancyYrs)) +
   geom_point()+
   geom_smooth(method = lm, se=TRUE)+
   ggtitle("Life expectancy vs. female literacy rate") 
@@ -1380,8 +1311,9 @@ ggplot(gapm,
 #| echo: false
 #| fig-align: center
 
-ggplot(gapm, aes(x = female_literacy_rate_2011,
-                 y = life_expectancy_years_2011)) +
+gapm %>%
+  ggplot(aes(x = FemaleLiteracyRate,
+                 y = LifeExpectancyYrs)) +
   geom_point(size = 4) +
   geom_smooth(method = "lm", se = TRUE, size = 3, colour="#F14124") +
   labs(x = "Female literacy rate (%)", 

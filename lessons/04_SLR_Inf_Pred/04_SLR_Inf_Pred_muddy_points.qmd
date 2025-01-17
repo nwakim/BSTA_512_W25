@@ -9,3 +9,62 @@ editor_options:
   chunk_output_type: console
 ---
 
+### Muddy Points from 2025
+
+To be answered
+
+### Muddy Points from 2024
+
+### 1. "all of the different manifestations of t"
+
+I love the way this person said it!
+
+So I've sorted this out:
+
+-   We say $T$ follows a t-distribution
+
+    -   $T$ is the general name for the variable (like $X$ or $Y$)
+
+-   We calculate a given $t$-value and call that $t$
+
+    -   We also call this the test statistic
+
+-   The critical value that corresponds to a specific confidence interval and $\alpha$ is labelled $t^*$
+
+### 2. What's the difference between SD and variance?
+
+SD (standard deviation) is the square root of the variance. That's why I sometimes write $\sigma$ (standard deviation) or $\sigma^2$ (variance) when I'm talking about the distribution of residuals.
+
+$$
+\sigma = \sqrt{\sigma^2}
+$$
+
+Variance is usually easier to work with mathematically, but standard deviation is in the units that match a variable. For example, the variance of 10 height measurements are in square inches, but the standard deviation are in inches.
+
+### 3. Why is it important to test if $\beta_1$ is equal to zero? Is $\beta_1=0$ the same as the x and y variables having no correlation?
+
+Let's answer the second question: Yes! It is the same in simple linear regression. When we get to multiple linear regression, and have several variables/coefficients in our model, testing $\beta_1=0$ won't be the same as testing the correlation.
+
+In simple linear regression, it is important to test $\beta_1$ mostly for pedagogical reasons. It's just helpful to establish the process in a simpler setting.
+
+### 4. SSE and sigma
+
+We were looking at the relationship between SSE and $\widehat\sigma^2$:
+
+$$ \widehat{\sigma}^2 = \frac{1}{n-2}SSE $$
+
+The sum of square errors is $SSE = \sum_{i=1}^n (Y_i - \widehat{Y}_i)^2 = \sum_{i=1}^n \epsilon_i^2$
+
+::: callout-note
+## An aside on variance
+
+The definition of variance is the sum of the squared differences between values and their mean.
+
+So if I had a variable $S$, with 100 observations, the mean of $S$, which we call $\overline{S}$, would be $\frac{\sum_{i=1}^{100} S_i}{100}$. The variance of $S$ would be $\sum_{i=1}^{100} (S_i - \overline{S})^2$.
+:::
+
+Now, let's get back to the sum of square errors: $SSE = \sum_{i=1}^n \epsilon_i^2$
+
+The variance of the residuals would be $\sum_{i=1}^n (\epsilon_i - \overline{\epsilon})^2$. The mean of $\epsilon$, $\overline\epsilon$, should be 0 by our assumptions. So the variance of the residuals is $\sum_{i=1}^n \epsilon_i^2$ which is our SSE!
+
+There is some more complicated math that goes into why our variance is divided by n-2 to get the estimated variance of the residuals, but that's basically it!

@@ -9,11 +9,15 @@ editor_options:
   chunk_output_type: console
 ---
 
-### Muddy Points from 2025
+## Muddy Points from 2025
 
-To be answered
+### 1. In a homework problem, or in a real-life scenario: I am a bit confused on when to use population vs estimate SLR. How do we know when to use the population parameters and estimated coefficients?
 
-### Muddy Points from 2024
+The population model is only used to describe what we will fit. Before we use the data to estimate anything, we need a reference model for what we will fit. Once we fit the population model using our data, we report the estimated model with the best fit line.
+
+## Muddy Points from 2024
+
+If I saw overlap between questions from this year and 2024, I am leaving my old answer below:
 
 ### 1. What does the epsilon mean and how does it relate to the line in the linear model?
 
@@ -53,7 +57,7 @@ I think this is referring to [this slide](https://nwakim.github.io/W2024_BSTA_51
 
 Huh, I'm scratching my head with this one. Why does it matter? We basically mirror all the mathematical manipulations with the estimated model anyway...
 
-But then I thought: What would our world or our class lectures look like without the population model? The answer might be more philosophical than mathematical. The representation of the true, underlying model that we are aspiring for with our sample data reminds us that our estimated model is not perfect. That we are just trying out best to uncover some fraction of the truth. And at the end of the day, when we perform hypothesis tests, we're working to provide evidence fro the value of the coefficient parameters from the population model. We know what the estimated values are, but can they help us get an idea of what the parameter values are?
+But then I thought: What would our world or class lectures look like without the population model? The answer might be more philosophical than mathematical. The representation of the true, underlying model that we are aspiring for with our sample data reminds us that our estimated model is not perfect. That we are just trying out best to uncover some fraction of the truth. And at the end of the day, when we perform hypothesis tests, we're working to provide evidence for the value of the population parameters from the population model. We know what the estimated values are, but can they help us get an idea of what the parameter values are?
 
 ### 3. Math for minimizing SSE (aka OLS process)
 

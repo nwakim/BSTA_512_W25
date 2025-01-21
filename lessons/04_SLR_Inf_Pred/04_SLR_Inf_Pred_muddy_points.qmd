@@ -9,11 +9,51 @@ editor_options:
   chunk_output_type: console
 ---
 
-### Muddy Points from 2025
+## Muddy Points from 2025
 
-To be answered
+### 1. I had a little bit of trouble visualizing the "worthiness" of how reliable the data is on a graph
 
-### Muddy Points from 2024
+Exactly. We can get an idea of the "trustworthiness" from a graph, but we can never be certain. That's why we gotta use the math! The math will exactly quantify that "trustworthiness."
+
+### 2. when to use a CI vs a hypothesis test to convey information
+
+Big question. For this class, when each is asked (heh). This is mostly so we get practice doing both and can do either in a quicker, more informal way.
+
+For real life, people will report the p-value of a hypothesis test as they make a more meaningful statement about the coefficient estimate. No one really writes "We rejected the null hypothesis that ..." However, they DO write "We found significant association with number of visits to the doctor (p-value = 0.008)." And even more likely, they are writing "We found that for an increase of one doctor visit per year, there was a 0.5 decrease in the expected number of 911 calls (95%CI: 0.2, 0.8). All that to say that people typically use CIs when doing a presentation or written report. When chatting with colleagues, you may informally discuss the hypothesis test.
+
+### 3. Getting a little lost between all the terms (with hats, without hats etc.)
+
+It's hard! My main advice is to keep practicing! Hats mean we are referring to the result of our estimate. We can replace any time we write "$\hat{\beta_1}$" with the actual value we found in the regression table. For $\beta_1$, we cannot replace it with an actual value. We can hypothesize what that value is, but we can never replace $\beta_1$ with a 100% certain value. 
+
+### 4. The equation for confidence bands around the linear model completely lost me
+
+### 5. trying to keep up with when to talk about the population model and when to talk about the sample estimate
+
+The population model is basically the plan for what we will do. It's our guide, our blueprint. It does not actually exist in the world though! That's becuase it is just a way to represent the true, underlying relationship that we cannot fully uncover. 
+
+That's where the sample estimated model comes in. We can take the population model (our plan, guide, blueprint) and then implement it using data. Then we have the estimates! Those estimates are our closest bet to the population from our data.
+
+You can think of it like the blueprint to a house. We have a plan. It's our ideal structure for the home. If we have really good materials and evreyhting we need (think really good sample), then we can execute the blueprint pretty well. Our house will resemble the blueprint closely. It will never **exactly** be the blueprint, but it will get close. However, if our materials are lacking, and maybe someone forgot their measuring tape at home, then our house will not resemble our blueprint as nicely. There are many different houses that can come from the same blueprint. 
+
+### 6. The difference between when to use inference and prediction as the words seemed to used interchangeably.
+
+Prediction means we are using the model to predict the outcome. Inference means we are using the model to discuss the relationship between variables.
+
+For the most part, models learned in this class will be most appropriate for inference. Prediction requires much more information and variables to make the predicted value more accurate. 
+
+### 7. Why do we calculate SSE with the square of the residuals? Why not just the sum of the residuals themselves?
+
+Remember that the residuals can be negative or positive depending what side of the best-fit line they fall. If we sum them, no matter how far they are from the line, it is likely the sum will be close to zero. To make sure the negative and positive residuals do not cancel each other out, we square them!
+
+### 8. In the hypothesis test for the population slope, why was the degrees of freedom calculated as $df = n-2$, instead of $df = n-1$?
+
+This is because our **model** is what gives us the degrees of freedom. We are performing the hypothesis test on one coefficient, $\beta_1$, but our model is estimating 2 coefficients! Thus we are restricted to $n-2$ degrees of freedom.
+
+### 9. What is the best way to calculate the standard error for B HAT 1, using a regression table?
+
+The best way is to look at the std. error column and then find the row that has the X-variable. The number in the table is the standard error for $\beta_1$.
+
+## Muddy Points from 2024
 
 ### 1. "all of the different manifestations of t"
 

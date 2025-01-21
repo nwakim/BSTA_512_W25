@@ -39,7 +39,7 @@ You can think of it like the blueprint to a house. We have a plan. It's our idea
 
 Prediction means we are using the model to predict the outcome. Inference means we are using the model to discuss the relationship between variables.
 
-For the most part, models learned in this class will be most appropriate for inference. Prediction requires much more information and variables to make the predicted value more accurate. 
+For the most part, models learned in this class will be most appropriate for inference. Prediction requires much more information, flexibility, and variables to make the predicted value more accurate. 
 
 ### 7. Why do we calculate SSE with the square of the residuals? Why not just the sum of the residuals themselves?
 

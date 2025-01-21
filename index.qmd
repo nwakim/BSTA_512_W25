@@ -74,11 +74,11 @@ Liv
 Miyuki
 :::
 ::: {.column width="75%"}
-{{< iconify icon-park-solid time size=24px >}} TBD
+{{< iconify icon-park-solid time size=24px >}} M 4:30-5:30
 
-{{< iconify icon-park-solid time size=24px >}} TBD
+{{< iconify icon-park-solid time size=24px >}} F 10-11
 
-{{< iconify icon-park-solid time size=24px >}} TBD
+{{< iconify icon-park-solid time size=24px >}} Th 10-11
 :::
 :::
 :::

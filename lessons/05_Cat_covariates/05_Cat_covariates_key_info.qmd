@@ -13,6 +13,14 @@ editor_options:
 - Question in exit ticket: Could you please repeat questions for the live-streamers?
   - I will try to remember! This is one of those cases where the recording is not the exact substitute for the class. It's just hard for me to think about the mic picking up everything while I'm speaking.
 
+- Going through labs
+  - Please submit your labs using html files!! (I took off a point if you submitted a qmd only)
+  - Please write your answers outside of the task box and below it
+  - I have adjusted grades this morning and gave some important feedback on your research questions
+    - Please make sure to review this and integrate into the next lab!
+  - Your grade might have changed - please check my comments
+    - Your grade may not have changed - please check my comments
+
 ### Office hours / TAs 
 #### Liv Ainsworth
 

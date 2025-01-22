@@ -29,7 +29,7 @@ library(gtsummary) ## Added this package!!
 ```
 
 ::: callout-caution
-This homework is not ready to be worked on!! Nicky needs to update it.
+Homework is ready! 1/21/25
 :::
 
 ## Directions
@@ -52,7 +52,9 @@ This homework is not ready to be worked on!! Nicky needs to update it.
 It is a good idea to try rendering your document from time to time as you go along! Note that rendering automatically saves your qmd file and rendering frequently helps you catch your errors more quickly.
 :::
 
-## Question 1
+## Questions
+
+### Question 1
 
 This homework assignment is based on data collected as part of an observational study of patients who suffered from stroke.
 
@@ -74,11 +76,11 @@ For our homework purposes we will assume they are continuous.
 fatal_dep = read_sas(here("./data/completedata.sas7bdat"))
 ```
 
-### Part a
+#### Part a
 
 Plot the data, with title and axis labels, for Depression (y-axis) vs. Fatalism (x-axis). Comment on what you see.
 
-### Part b
+#### Part b
 
 Fit a linear regression model to estimate the association between the predictor Fatalism and the outcome Depression.
 
@@ -88,7 +90,7 @@ Interpret the slope and intercept. Does the intercept make sense?
 Make sure to include the confidence interval. Whenever asked to interpret coefficients, you must include confidence intervals. Also, the "units" for fatalism and depression are scores.
 :::
 
-### Part c
+#### Part c
 
 In your dataset, make a new variable FatalismC, equal to Fatalism centered at its median (C is for centered).
 
@@ -100,7 +102,7 @@ This is one way of centering a variable, and can be used when the intercept esti
 
 Plot the data, with title and axis labels, for Depression (y-axis) vs. FatalismC (x-axis).
 
-### Part d
+#### Part d
 
 Re-run the regression from Part b using this new variable for FatalismC. Interpret the new slope and intercept. Which of the following are the same as Part b: intercept, slope?
 
@@ -108,7 +110,7 @@ Re-run the regression from Part b using this new variable for FatalismC. Interpr
 Make sure to include the confidence interval. Whenever asked to interpret coefficients, you must include confidence intervals. Also, the "units" for the centered fatalism is still the score.
 :::
 
-### Part e
+#### Part e
 
 From the above interpretations, what would be the equivalent conclusion from a hypothesis test for the association between Depression and Fatalism?
 
@@ -116,81 +118,47 @@ From the above interpretations, what would be the equivalent conclusion from a h
 You do not need to go through the whole process for the hypothesis test. You only need to state whether it is rejected or not and site the confidence interval as evidence.
 :::
 
-## Question 2
+### Question 2
 
-This question and data are adapted from [this textbook](https://catalog.lib.uchicago.edu/vufind/Record/7546272).
+For this problem we will be using the `penguins` dataset from the `palmerpenguins` R package. We will look at the association between flipper length of penguins (measured in mm) and specific species of penguins.
 
-In an experiment designed to describe the dose–response curve for vitamin K, individual rats were depleted of their vitamin K reserves and then fed dried liver for 4 days at different dosage levels. The response of each rat was measured as the concentration of a clotting agent needed to clot a sample of its blood in 3 minutes. The results of the experiment on 12 rats are given in the following table; values are expressed in common logarithms for both dose and response.
+Description from help file:
 
-```{r}
-clot = read_excel(here("./data/CH05Q09.xls"))
-clot %>% gt() %>%
-  cols_label(RAT = md("**Rat**"),
-             LOGCONC = md("**Log10 Concentration (Y)**"),
-             LOGDOSE = md("**Log10 Dose (X)**"))
-```
+> Includes measurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.
 
-Use the log-transformed values as given in the dataset.
-
-Use the following scatterplot to build your answers off of:
+[More info about the data.](https://allisonhorst.github.io/palmerpenguins/)
 
 ```{r}
-#| fig-height: 5
-#| fig-width: 6.5
-#| fig-align: center
-#| echo: false
+# first install the palmerpenguins package
+# install.packages("palmerpenguins")
+library(palmerpenguins)
+data(penguins)
 
-ggplot(clot, aes(x = LOGDOSE,
-                 y = LOGCONC)) +
-  geom_point(size = 2) +
-  labs(x = "Log10 dose (X)", 
-       y = "Log10 concentration (Y)",
-       title = "Concentration of clotting agent needed vs. dosage levels of liver") +
-    theme(axis.title = element_text(size = 12), 
-        axis.text = element_text(size = 12), 
-        title = element_text(size = 12))
+# run the command below to learn more about the variables in the penguins dataset
+# ?penguins
 ```
 
-### Part a
+#### Part a
 
-Fit a linear regression model to the data and add the regression line to the plot.
+Calculate the average flipper lengths stratified by each of the penguin species.
 
-### Part b
+#### Part b
 
-Use R to create the ANOVA table for the regression described in the exercise.
+Make a scatterplot (with jigger) of flipper lengths by species, and include diamond-shape points for the averages of the flipper lengths for each of the species.
 
-### Part c
+#### Part c
 
-Using the F-test, determine whether there is an association between the log10 concentration and log10 dose.
+Write out the fitted regression equation that models the flipper length by penguin species. Use LaTeX math markup or insert an image of your equation. Do not yet insert values for the regression coefficients, i.e. use the generic coefficients $\widehat{\beta}_0, \widehat{\beta}_1$. Use Adelie as the reference level.
 
-::: callout-note
-Make sure to include all needed steps for an F-test. Calculating the F test statistic (step 5) is not needed if you use the ANOVA table. Make sure your conclusion connects back the research context.
-:::
+#### Part d
 
-### Part d
+Run the linear regression of flipper lengths vs. species in R, and display the regression table output. Which species did R choose as the reference level, and how did you determine this?
 
-Rewrite your hypothesis test in Part c to show the null and alternative models that we are testing. Did we reject the smaller (reduced) model?
+#### Part e
 
-::: callout-note
-You do not need to go through the hypothesis test process again. A quick statement on rejecting or not is okay.
-:::
+How do we interpret each of the regression coefficients for this model? *Write out a separate interpretation for each of the coefficients.*
 
-::: callout-tip
-If you prefer to write out the models by hand, remember that you can take a picture of your work and insert it into this document. HW0 can be a good reference for how we've done this before.
-:::
+#### Part f
 
-## Question 3
+Calculate the mean flipper length (and the 95% CI) of penguins in the Chinstrap and Gentoo species using the `predict()` function.
 
-We will continue to work with the study and dataset from Question 2 above.
-
-### Part a
-
-Find the correlation coefficient between the two variables. Is the value consistent with your description of the relationship in Question 2? Why or why not?
-
-### Part b
-
-Calculate the coefficient of determination using linear regression summary output. Can we also calculate the coefficient of determination from the ANOVA in Question 2?
-
-### Part c
-
-Give an interpretation of the coefficient of determination in the context of the study.

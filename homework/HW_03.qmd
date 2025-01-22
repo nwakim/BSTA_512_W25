@@ -62,6 +62,86 @@ It is a good idea to try rendering your document from time to time as you go alo
 
 ### Question 1
 
+This question and data are adapted from [this textbook](https://catalog.lib.uchicago.edu/vufind/Record/7546272).
+
+In an experiment designed to describe the dose–response curve for vitamin K, individual rats were depleted of their vitamin K reserves and then fed dried liver for 4 days at different dosage levels. The response of each rat was measured as the concentration of a clotting agent needed to clot a sample of its blood in 3 minutes. The results of the experiment on 12 rats are given in the following table; values are expressed in common logarithms for both dose and response.
+
+```{r}
+clot = read_excel(here("./data/CH05Q09.xls"))
+clot %>% gt() %>%
+  cols_label(RAT = md("**Rat**"),
+             LOGCONC = md("**Log10 Concentration (Y)**"),
+             LOGDOSE = md("**Log10 Dose (X)**"))
+```
+
+Use the log-transformed values as given in the dataset.
+
+Use the following scatterplot to build your answers off of:
+
+```{r}
+#| fig-height: 5
+#| fig-width: 6.5
+#| fig-align: center
+#| echo: false
+
+ggplot(clot, aes(x = LOGDOSE,
+                 y = LOGCONC)) +
+  geom_point(size = 2) +
+  labs(x = "Log10 dose (X)", 
+       y = "Log10 concentration (Y)",
+       title = "Concentration of clotting agent needed vs. dosage levels of liver") +
+    theme(axis.title = element_text(size = 12), 
+        axis.text = element_text(size = 12), 
+        title = element_text(size = 12))
+```
+
+#### Part a
+
+Fit a linear regression model to the data and add the regression line to the plot.
+
+#### Part b
+
+Use R to create the ANOVA table for the regression described in the exercise.
+
+#### Part c
+
+Using the F-test, determine whether there is an association between the log10 concentration and log10 dose.
+
+::: callout-note
+Make sure to include all needed steps for an F-test. Calculating the F test statistic (step 5) is not needed if you use the ANOVA table. Make sure your conclusion connects back the research context.
+:::
+
+#### Part d
+
+Rewrite your hypothesis test in Part c to show the null and alternative models that we are testing. Did we reject the smaller (reduced) model?
+
+::: callout-note
+You do not need to go through the hypothesis test process again. A quick statement on rejecting or not is okay.
+:::
+
+::: callout-tip
+If you prefer to write out the models by hand, remember that you can take a picture of your work and insert it into this document. HW0 can be a good reference for how we've done this before.
+:::
+
+### Question 3
+
+We will continue to work with the study and dataset from Question 2 above.
+
+#### Part a
+
+Find the correlation coefficient between the two variables. Is the value consistent with your description of the relationship in Question 2? Why or why not?
+
+#### Part b
+
+Calculate the coefficient of determination using linear regression summary output. Can we also calculate the coefficient of determination from the ANOVA in Question 2?
+
+#### Part c
+
+Give an interpretation of the coefficient of determination in the context of the study.
+
+
+### Question 1
+
 A high respiratory rate is a potential diagnostic indicator of respiratory infection in children. To judge whether a respiratory rate is “high” however, a physician must have a clear picture of the distribution of normal rates. To this end, Italian researchers measured the respiratory rates (in breaths/minute) of 618 children between the ages of 15 days and 3 years (measured in months).
 
 The data and problem framing came from the `Sleuth3` package. Please make sure to run the following code to load the data. You can directly access the dataset `ex0824` from the package. I have included a new assignment of the data to `q1_data` if you would like to use that.

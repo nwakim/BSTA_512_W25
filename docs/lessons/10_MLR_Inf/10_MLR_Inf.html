@@ -1,0 +1,4591 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Nicky Wakim">
+<meta name="dcterms.date" content="2025-02-05">
+
+<title>Linear Models - Lesson 9: MLR: Inference + F-test</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-sm navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/bsta_512_hex.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Linear Models</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../schedule.html" rel="" target="">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../syllabus.html" rel="" target="">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../instructors.html" rel="" target="">
+ <span class="menu-text">Instructors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../homework.html" rel="" target="">
+ <span class="menu-text">Homework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../project.html" rel="" target="">
+ <span class="menu-text">Project</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a>
+  <ul class="collapse">
+  <li><a href="#lets-map-that-to-our-regression-analysis-process" id="toc-lets-map-that-to-our-regression-analysis-process" class="nav-link" data-scroll-target="#lets-map-that-to-our-regression-analysis-process">Let’s map that to our regression analysis process</a></li>
+  </ul></li>
+  <li><a href="#learning-objectives-1" id="toc-learning-objectives-1" class="nav-link" data-scroll-target="#learning-objectives-1">Learning Objectives</a>
+  <ul class="collapse">
+  <li><a href="#interpreting-the-estimated-population-coefficients" id="toc-interpreting-the-estimated-population-coefficients" class="nav-link" data-scroll-target="#interpreting-the-estimated-population-coefficients">Interpreting the estimated population coefficients</a></li>
+  <li><a href="#getting-these-interpretations-from-our-regression-table" id="toc-getting-these-interpretations-from-our-regression-table" class="nav-link" data-scroll-target="#getting-these-interpretations-from-our-regression-table">Getting these interpretations from our regression table</a></li>
+  <li><a href="#lets-just-examine-the-general-interpretation-vs.-the-example" id="toc-lets-just-examine-the-general-interpretation-vs.-the-example" class="nav-link" data-scroll-target="#lets-just-examine-the-general-interpretation-vs.-the-example">Let’s just examine the general interpretation vs.&nbsp;the example</a></li>
+  <li><a href="#what-we-need-in-our-interpretations-of-coefficients-reference" id="toc-what-we-need-in-our-interpretations-of-coefficients-reference" class="nav-link" data-scroll-target="#what-we-need-in-our-interpretations-of-coefficients-reference">What we need in our interpretations of coefficients (reference)</a></li>
+  </ul></li>
+  <li><a href="#learning-objectives-2" id="toc-learning-objectives-2" class="nav-link" data-scroll-target="#learning-objectives-2">Learning Objectives</a>
+  <ul class="collapse">
+  <li><a href="#we-must-revisit-our-dear-friend-the-f-test" id="toc-we-must-revisit-our-dear-friend-the-f-test" class="nav-link" data-scroll-target="#we-must-revisit-our-dear-friend-the-f-test">We must revisit our dear friend, the F-test!</a></li>
+  <li><a href="#remember-from-lesson-5-f-test-vs.-t-test-for-the-population-slope" id="toc-remember-from-lesson-5-f-test-vs.-t-test-for-the-population-slope" class="nav-link" data-scroll-target="#remember-from-lesson-5-f-test-vs.-t-test-for-the-population-slope"><em>Remember from Lesson 5:</em> F-test vs.&nbsp;t-test for the population slope</a></li>
+  <li><a href="#remember-from-lesson-5-planting-a-seed-about-the-f-test" id="toc-remember-from-lesson-5-planting-a-seed-about-the-f-test" class="nav-link" data-scroll-target="#remember-from-lesson-5-planting-a-seed-about-the-f-test"><em>Remember from Lesson 5:</em> Planting a seed about the F-test</a></li>
+  <li><a href="#we-can-extend-this" id="toc-we-can-extend-this" class="nav-link" data-scroll-target="#we-can-extend-this">We can extend this!!</a></li>
+  <li><a href="#poll-everywhere-question-1" id="toc-poll-everywhere-question-1" class="nav-link" data-scroll-target="#poll-everywhere-question-1">Poll Everywhere Question 1</a></li>
+  <li><a href="#building-a-very-important-toolkit-three-types-of-tests" id="toc-building-a-very-important-toolkit-three-types-of-tests" class="nav-link" data-scroll-target="#building-a-very-important-toolkit-three-types-of-tests">Building a very important toolkit: three types of tests</a></li>
+  <li><a href="#variation-explained-vs.-unexplained" id="toc-variation-explained-vs.-unexplained" class="nav-link" data-scroll-target="#variation-explained-vs.-unexplained">Variation: Explained vs.&nbsp;Unexplained</a></li>
+  <li><a href="#another-way-to-think-of-ssy-ssr-and-sse" id="toc-another-way-to-think-of-ssy-ssr-and-sse" class="nav-link" data-scroll-target="#another-way-to-think-of-ssy-ssr-and-sse">Another way to think of SSY, SSR, and SSE</a></li>
+  <li><a href="#plot-the-components-of-each-sum-of-squares" id="toc-plot-the-components-of-each-sum-of-squares" class="nav-link" data-scroll-target="#plot-the-components-of-each-sum-of-squares">Plot the components of each sum of squares</a></li>
+  <li><a href="#when-running-a-f-test-for-linear-models" id="toc-when-running-a-f-test-for-linear-models" class="nav-link" data-scroll-target="#when-running-a-f-test-for-linear-models">When running a F-test for linear models…</a></li>
+  <li><a href="#poll-everywhere-question-2" id="toc-poll-everywhere-question-2" class="nav-link" data-scroll-target="#poll-everywhere-question-2">Poll Everywhere Question 2</a></li>
+  <li><a href="#we-will-keep-working-with-the-mlr-model-from-last-class" id="toc-we-will-keep-working-with-the-mlr-model-from-last-class" class="nav-link" data-scroll-target="#we-will-keep-working-with-the-mlr-model-from-last-class">We will keep working with the MLR model from last class</a></li>
+  </ul></li>
+  <li><a href="#learning-objectives-3" id="toc-learning-objectives-3" class="nav-link" data-scroll-target="#learning-objectives-3">Learning Objectives</a>
+  <ul class="collapse">
+  <li><a href="#overall-f-test" id="toc-overall-f-test" class="nav-link" data-scroll-target="#overall-f-test">Overall F-test</a></li>
+  <li><a href="#overall-f-test-general-steps-for-hypothesis-test" id="toc-overall-f-test-general-steps-for-hypothesis-test" class="nav-link" data-scroll-target="#overall-f-test-general-steps-for-hypothesis-test">Overall F-test: general steps for hypothesis test</a></li>
+  <li><a href="#overall-f-test-a-word-on-the-conclusion" id="toc-overall-f-test-a-word-on-the-conclusion" class="nav-link" data-scroll-target="#overall-f-test-a-word-on-the-conclusion">Overall F-test: a word on the conclusion</a></li>
+  <li><a href="#lets-think-about-our-mlr-example-for-life-expectancy" id="toc-lets-think-about-our-mlr-example-for-life-expectancy" class="nav-link" data-scroll-target="#lets-think-about-our-mlr-example-for-life-expectancy">Let’s think about our MLR example for life expectancy</a></li>
+  <li><a href="#comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model" id="toc-comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model" class="nav-link" data-scroll-target="#comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model">Comparing the SSY, SSR, and SSE for reduced and full model</a></li>
+  <li><a href="#comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model-1" id="toc-comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model-1" class="nav-link" data-scroll-target="#comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model-1">Comparing the SSY, SSR, and SSE for reduced and full model</a></li>
+  <li><a href="#poll-everywhere-question-3" id="toc-poll-everywhere-question-3" class="nav-link" data-scroll-target="#poll-everywhere-question-3">Poll Everywhere Question 3</a></li>
+  <li><a href="#so-lets-step-through-our-hypothesis-test-13" id="toc-so-lets-step-through-our-hypothesis-test-13" class="nav-link" data-scroll-target="#so-lets-step-through-our-hypothesis-test-13">So let’s step through our hypothesis test (1/3)</a></li>
+  <li><a href="#so-lets-step-through-our-hypothesis-test-23" id="toc-so-lets-step-through-our-hypothesis-test-23" class="nav-link" data-scroll-target="#so-lets-step-through-our-hypothesis-test-23">So let’s step through our hypothesis test (2/3)</a></li>
+  <li><a href="#so-lets-step-through-our-hypothesis-test-33" id="toc-so-lets-step-through-our-hypothesis-test-33" class="nav-link" data-scroll-target="#so-lets-step-through-our-hypothesis-test-33">So let’s step through our hypothesis test (3/3)</a></li>
+  </ul></li>
+  <li><a href="#learning-objectives-4" id="toc-learning-objectives-4" class="nav-link" data-scroll-target="#learning-objectives-4">Learning Objectives</a>
+  <ul class="collapse">
+  <li><a href="#covariate-subset-test-single-variable" id="toc-covariate-subset-test-single-variable" class="nav-link" data-scroll-target="#covariate-subset-test-single-variable">Covariate subset test: Single variable</a></li>
+  <li><a href="#single-covariate-f-test-general-steps-for-hypothesis-test-reference" id="toc-single-covariate-f-test-general-steps-for-hypothesis-test-reference" class="nav-link" data-scroll-target="#single-covariate-f-test-general-steps-for-hypothesis-test-reference">Single covariate F-test: general steps for hypothesis test (reference)</a></li>
+  <li><a href="#lets-think-about-our-mlr-example-for-life-expectancy-1" id="toc-lets-think-about-our-mlr-example-for-life-expectancy-1" class="nav-link" data-scroll-target="#lets-think-about-our-mlr-example-for-life-expectancy-1">Let’s think about our MLR example for life expectancy</a></li>
+  <li><a href="#comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model-2" id="toc-comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model-2" class="nav-link" data-scroll-target="#comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model-2">Comparing the SSY, SSR, and SSE for reduced and full model</a></li>
+  <li><a href="#poll-everywhere-question-4" id="toc-poll-everywhere-question-4" class="nav-link" data-scroll-target="#poll-everywhere-question-4">Poll Everywhere Question 4</a></li>
+  <li><a href="#so-lets-step-through-our-hypothesis-test-13-1" id="toc-so-lets-step-through-our-hypothesis-test-13-1" class="nav-link" data-scroll-target="#so-lets-step-through-our-hypothesis-test-13-1">So let’s step through our hypothesis test (1/3)</a></li>
+  <li><a href="#so-lets-step-through-our-hypothesis-test-23-1" id="toc-so-lets-step-through-our-hypothesis-test-23-1" class="nav-link" data-scroll-target="#so-lets-step-through-our-hypothesis-test-23-1">So let’s step through our hypothesis test (2/3)</a></li>
+  <li><a href="#so-lets-step-through-our-hypothesis-test-33-1" id="toc-so-lets-step-through-our-hypothesis-test-33-1" class="nav-link" data-scroll-target="#so-lets-step-through-our-hypothesis-test-33-1">So let’s step through our hypothesis test (3/3)</a></li>
+  </ul></li>
+  <li><a href="#learning-objectives-5" id="toc-learning-objectives-5" class="nav-link" data-scroll-target="#learning-objectives-5">Learning Objectives</a>
+  <ul class="collapse">
+  <li><a href="#covariate-subset-test-group-of-variables" id="toc-covariate-subset-test-group-of-variables" class="nav-link" data-scroll-target="#covariate-subset-test-group-of-variables">Covariate subset test: group of variables</a></li>
+  <li><a href="#covariate-subset-f-test-general-steps-for-hypothesis-test-reference" id="toc-covariate-subset-f-test-general-steps-for-hypothesis-test-reference" class="nav-link" data-scroll-target="#covariate-subset-f-test-general-steps-for-hypothesis-test-reference">Covariate subset F-test: general steps for hypothesis test (reference)</a></li>
+  <li><a href="#we-need-to-slightly-alter-our-mlr-example-for-life-expectancy" id="toc-we-need-to-slightly-alter-our-mlr-example-for-life-expectancy" class="nav-link" data-scroll-target="#we-need-to-slightly-alter-our-mlr-example-for-life-expectancy">We need to slightly alter our MLR example for life expectancy</a></li>
+  <li><a href="#comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model-3" id="toc-comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model-3" class="nav-link" data-scroll-target="#comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model-3">Comparing the SSY, SSR, and SSE for reduced and full model</a></li>
+  <li><a href="#so-lets-step-through-our-hypothesis-test-13-2" id="toc-so-lets-step-through-our-hypothesis-test-13-2" class="nav-link" data-scroll-target="#so-lets-step-through-our-hypothesis-test-13-2">So let’s step through our hypothesis test (1/3)</a></li>
+  <li><a href="#so-lets-step-through-our-hypothesis-test-23-2" id="toc-so-lets-step-through-our-hypothesis-test-23-2" class="nav-link" data-scroll-target="#so-lets-step-through-our-hypothesis-test-23-2">So let’s step through our hypothesis test (2/3)</a></li>
+  <li><a href="#so-lets-step-through-our-hypothesis-test-33-2" id="toc-so-lets-step-through-our-hypothesis-test-33-2" class="nav-link" data-scroll-target="#so-lets-step-through-our-hypothesis-test-33-2">So let’s step through our hypothesis test (3/3)</a></li>
+  <li><a href="#other-ways-to-word-the-hypothesis-tests-reference" id="toc-other-ways-to-word-the-hypothesis-tests-reference" class="nav-link" data-scroll-target="#other-ways-to-word-the-hypothesis-tests-reference">Other ways to word the hypothesis tests (reference)</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="10_MLR_Inf.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lesson 9: MLR: Inference + F-test</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Week 5</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nicky Wakim </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 5, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="learning-objectives" class="level1">
+<h1>Learning Objectives</h1>
+<ol type="1">
+<li>Interpret MLR (population) coefficient estimates with additional variable in model</li>
+<li>Understand the use of the general F-test and interpret what it measures.</li>
+<li>Understand the context of the <strong>Overall F-test</strong>, conduct the needed hypothesis test, and interpret the results.</li>
+<li>Understand the context of the <strong>single covariate F-test</strong>, conduct the needed hypothesis test, and interpret the results.</li>
+<li>Understand the context of the <strong>group of covariates F-test</strong>, conduct the needed hypothesis test, and interpret the results.</li>
+</ol>
+<section id="lets-map-that-to-our-regression-analysis-process" class="level2">
+<h2 class="anchored" data-anchor-id="lets-map-that-to-our-regression-analysis-process">Let’s map that to our regression analysis process</h2>
+<div class="box">
+<p><img src="images/arrow2.png" class="absolute img-fluid" data-top="13.5%" data-right="62.1%" width="155"> <img src="images/arrow2.png" class="absolute img-fluid" data-top="13.5%" data-right="28.4%" width="155"><img src="images/arrow_back4.png" class="absolute img-fluid" data-top="7.5%" data-right="30.5%" width="820"> <img src="images/arrow_down.png" class="absolute img-fluid" data-top="60.5%" data-right="48%" width="85"></p>
+<div class="columns">
+<div class="column" style="width:30%;">
+<div class="RAP1">
+<div class="RAP1-title">
+<p>Model Selection</p>
+</div>
+<div class="RAP1-cont">
+<ul>
+<li><p>Building a model</p></li>
+<li><p>Selecting variables</p></li>
+<li><p>Prediction vs interpretation</p></li>
+<li><p>Comparing potential models</p></li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:4%;">
+
+</div><div class="column" style="width:30%;">
+<div class="RAP2">
+<div class="RAP2-title">
+<p>Model Fitting</p>
+</div>
+<div class="RAP2-cont">
+<ul>
+<li><p>Find best fit line</p></li>
+<li><p>Using OLS in this class</p></li>
+<li><p>Parameter estimation</p></li>
+<li><p>Categorical covariates</p></li>
+<li><p>Interactions</p></li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:4%;">
+
+</div><div class="column" style="width:30%;">
+<div class="RAP3">
+<div class="RAP3-title">
+<p>Model Evaluation</p>
+</div>
+<div class="RAP3-cont">
+<ul>
+<li>Evaluation of model fit</li>
+<li>Testing model assumptions</li>
+<li>Residuals</li>
+<li>Transformations</li>
+<li>Influential points</li>
+<li>Multicollinearity</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="RAP4">
+<div class="RAP4-title">
+<p>Model Use (Inference)</p>
+</div>
+<div class="RAP4-cont">
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Inference for coefficients</li>
+<li>Hypothesis testing for coefficients</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Inference for expected <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="learning-objectives-1" class="level1">
+<h1>Learning Objectives</h1>
+<div class="lob">
+<ol type="1">
+<li>Interpret MLR (population) coefficient estimates with additional variable in model</li>
+</ol>
+</div>
+<ol start="2" type="1">
+<li>Understand the use of the general F-test and interpret what it measures.</li>
+<li>Understand the context of the <strong>Overall F-test</strong>, conduct the needed hypothesis test, and interpret the results.</li>
+<li>Understand the context of the <strong>single covariate F-test</strong>, conduct the needed hypothesis test, and interpret the results.</li>
+<li>Understand the context of the <strong>group of covariates F-test</strong>, conduct the needed hypothesis test, and interpret the results.</li>
+</ol>
+<section id="interpreting-the-estimated-population-coefficients" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-the-estimated-population-coefficients">Interpreting the estimated population coefficients</h2>
+<ul>
+<li>For a population model: <span class="math display">\[Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2+ \epsilon\]</span>
+<ul>
+<li>Where <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are continuous variables</li>
+<li>No need to specify <span class="math inline">\(Y\)</span> because it required to be continuous in linear regression</li>
+</ul></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:33%;">
+<div class="fact">
+<div class="fact-title">
+<p>General interpretation for <span class="math inline">\(\widehat{\beta}_0\)</span></p>
+</div>
+<div class="fact-cont">
+<p>The expected <span class="math inline">\(Y\)</span>-variable is (<span class="math inline">\(\widehat\beta_0\)</span> units) when the <span class="math inline">\(X_1\)</span>-variable is 0 <span class="math inline">\(X_1\)</span>-units and <span class="math inline">\(X_2\)</span>-variable is 0 <span class="math inline">\(X_1\)</span>-units (95% CI: LB, UB).</p>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="definition">
+<div class="def-title">
+<p>General interpretation for <span class="math inline">\(\widehat{\beta}_1\)</span></p>
+</div>
+<div class="def-cont">
+<p>For every increase of 1 <span class="math inline">\(X_1\)</span>-unit in the <span class="math inline">\(X_1\)</span>-variable, adjusting/controlling for <span class="math inline">\(X_2\)</span>-variable, there is an expected increase/decrease of <span class="math inline">\(|\widehat\beta_1|\)</span> units in the <span class="math inline">\(Y\)</span>-variable (95%: LB, UB).</p>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="proof1">
+<div class="proof-title">
+<p>General interpretation for <span class="math inline">\(\widehat{\beta}_2\)</span></p>
+</div>
+<div class="proof-cont">
+<p>For every increase of 1 <span class="math inline">\(X_2\)</span>-unit in the <span class="math inline">\(X_2\)</span>-variable, adjusting/controlling for <span class="math inline">\(X_1\)</span>-variable, there is an expected increase/decrease of <span class="math inline">\(|\widehat\beta_2|\)</span> units in the <span class="math inline">\(Y\)</span>-variable (95%: LB, UB).</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="getting-these-interpretations-from-our-regression-table" class="level2">
+<h2 class="anchored" data-anchor-id="getting-these-interpretations-from-our-regression-table">Getting these interpretations from our regression table</h2>
+<p>We fit the regression model in R and printed the regression table:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mr1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(LifeExpectancyYrs <span class="sc">~</span> FemaleLiteracyRate <span class="sc">+</span> FoodSupplykcPPD, </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> gapm_sub)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="lxulhpcceu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lxulhpcceu table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#lxulhpcceu thead, #lxulhpcceu tbody, #lxulhpcceu tfoot, #lxulhpcceu tr, #lxulhpcceu td, #lxulhpcceu th {
+  border-style: none;
+}
+
+#lxulhpcceu p {
+  margin: 0;
+  padding: 0;
+}
+
+#lxulhpcceu .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 30px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#lxulhpcceu .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#lxulhpcceu .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#lxulhpcceu .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#lxulhpcceu .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lxulhpcceu .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lxulhpcceu .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lxulhpcceu .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#lxulhpcceu .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#lxulhpcceu .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#lxulhpcceu .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#lxulhpcceu .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#lxulhpcceu .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#lxulhpcceu .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#lxulhpcceu .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#lxulhpcceu .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#lxulhpcceu .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#lxulhpcceu .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#lxulhpcceu .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lxulhpcceu .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#lxulhpcceu .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#lxulhpcceu .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#lxulhpcceu .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lxulhpcceu .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#lxulhpcceu .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#lxulhpcceu .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lxulhpcceu .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lxulhpcceu .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#lxulhpcceu .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lxulhpcceu .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#lxulhpcceu .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lxulhpcceu .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lxulhpcceu .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lxulhpcceu .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lxulhpcceu .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lxulhpcceu .gt_left {
+  text-align: left;
+}
+
+#lxulhpcceu .gt_center {
+  text-align: center;
+}
+
+#lxulhpcceu .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#lxulhpcceu .gt_font_normal {
+  font-weight: normal;
+}
+
+#lxulhpcceu .gt_font_bold {
+  font-weight: bold;
+}
+
+#lxulhpcceu .gt_font_italic {
+  font-style: italic;
+}
+
+#lxulhpcceu .gt_super {
+  font-size: 65%;
+}
+
+#lxulhpcceu .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#lxulhpcceu .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#lxulhpcceu .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#lxulhpcceu .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#lxulhpcceu .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#lxulhpcceu .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#lxulhpcceu .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#lxulhpcceu .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#lxulhpcceu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="std.error">std.error</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="term" class="gt_row gt_left">(Intercept)</td>
+<td headers="estimate" class="gt_row gt_right">33.595</td>
+<td headers="std.error" class="gt_row gt_right">4.472</td>
+<td headers="statistic" class="gt_row gt_right">7.512</td>
+<td headers="p.value" class="gt_row gt_right">0.000</td>
+<td headers="conf.low" class="gt_row gt_right">24.674</td>
+<td headers="conf.high" class="gt_row gt_right">42.517</td></tr>
+    <tr><td headers="term" class="gt_row gt_left">FemaleLiteracyRate</td>
+<td headers="estimate" class="gt_row gt_right">0.157</td>
+<td headers="std.error" class="gt_row gt_right">0.032</td>
+<td headers="statistic" class="gt_row gt_right">4.873</td>
+<td headers="p.value" class="gt_row gt_right">0.000</td>
+<td headers="conf.low" class="gt_row gt_right">0.093</td>
+<td headers="conf.high" class="gt_row gt_right">0.221</td></tr>
+    <tr><td headers="term" class="gt_row gt_left">FoodSupplykcPPD</td>
+<td headers="estimate" class="gt_row gt_right">0.008</td>
+<td headers="std.error" class="gt_row gt_right">0.002</td>
+<td headers="statistic" class="gt_row gt_right">4.726</td>
+<td headers="p.value" class="gt_row gt_right">0.000</td>
+<td headers="conf.low" class="gt_row gt_right">0.005</td>
+<td headers="conf.high" class="gt_row gt_right">0.012</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>Fitted multiple regression model: <span class="math inline">\(\widehat{\text{LE}} = 33.595 + 0.157 \text{ FLR} + 0.008 \text{ FS}\)</span></p>
+<div class="columns">
+<div class="column" style="width:33%;">
+<div class="fact">
+<div class="fact-title">
+<p>Interpretation for <span class="math inline">\(\widehat{\beta}_0\)</span></p>
+</div>
+<div class="fact-cont">
+<p>The expected life expectancy is 33.595 years when the female literacy rate is 0% and food supply is 0 0 kcal PPD (95% CI: 24.674, 41.517).</p>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="definition">
+<div class="def-title">
+<p>Interpretation for <span class="math inline">\(\widehat{\beta}_1\)</span></p>
+</div>
+<div class="def-cont">
+<p>For every 1% increase in the female literacy rate, adjusting for food supply, there is an expected increase of 0.157 years in the life expectancy (95%: 0.093, 0.221).</p>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="proof1">
+<div class="proof-title">
+<p>Interpretation for <span class="math inline">\(\widehat{\beta}_2\)</span></p>
+</div>
+<div class="proof-cont">
+<p>For every 1 kcal PPD increase in the food supply, adjusting for female literacy rate, there is an expected increase of 0.008 years in life expectancy (95%: 0.005, 0.012).</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lets-just-examine-the-general-interpretation-vs.-the-example" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="lets-just-examine-the-general-interpretation-vs.-the-example">Let’s just examine the general interpretation vs.&nbsp;the example</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<div class="fact">
+<div class="fact-title">
+<p>General interpretation for <span class="math inline">\(\widehat{\beta}_0\)</span></p>
+</div>
+<div class="fact-cont">
+<p>The expected <span class="math inline">\(Y\)</span>-variable is (<span class="math inline">\(\widehat\beta_0\)</span> units) when the <span class="math inline">\(X_1\)</span>-variable is 0 <span class="math inline">\(X_1\)</span>-units and <span class="math inline">\(X_2\)</span>-variable is 0 <span class="math inline">\(X_1\)</span>-units (95% CI: LB, UB).</p>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="definition">
+<div class="def-title">
+<p>General interpretation for <span class="math inline">\(\widehat{\beta}_1\)</span></p>
+</div>
+<div class="def-cont">
+<p>For every increase of 1 <span class="math inline">\(X_1\)</span>-unit in the <span class="math inline">\(X_1\)</span>-variable, adjusting/controlling for <span class="math inline">\(X_2\)</span>-variable, there is an expected increase/decrease of <span class="math inline">\(|\widehat\beta_1|\)</span> units in the <span class="math inline">\(Y\)</span>-variable (95%: LB, UB).</p>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="proof1">
+<div class="proof-title">
+<p>General interpretation for <span class="math inline">\(\widehat{\beta}_2\)</span></p>
+</div>
+<div class="proof-cont">
+<p>For every increase of 1 <span class="math inline">\(X_2\)</span>-unit in the <span class="math inline">\(X_2\)</span>-variable, adjusting/controlling for <span class="math inline">\(X_1\)</span>-variable, there is an expected increase/decrease of <span class="math inline">\(|\widehat\beta_2|\)</span> units in the <span class="math inline">\(Y\)</span>-variable (95%: LB, UB).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:33%;">
+<div class="fact">
+<div class="fact-title">
+<p>Interpretation for <span class="math inline">\(\widehat{\beta}_0\)</span></p>
+</div>
+<div class="fact-cont">
+<p>The expected life expectancy is 33.595 years when the female literacy rate is 0% and food supply is 0 0 kcal PPD (95% CI: 24.674, 41.517).</p>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="definition">
+<div class="def-title">
+<p>Interpretation for <span class="math inline">\(\widehat{\beta}_1\)</span></p>
+</div>
+<div class="def-cont">
+<p>For every 1% increase in the female literacy rate, adjusting for food supply, there is an expected increase of 0.157 years in the life expectancy (95%: 0.093, 0.221).</p>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="proof1">
+<div class="proof-title">
+<p>Interpretation for <span class="math inline">\(\widehat{\beta}_2\)</span></p>
+</div>
+<div class="proof-cont">
+<p>For every 1 kcal PPD increase in the food supply, adjusting for female literacy rate, there is an expected increase of 0.008 years in life expectancy (95%: 0.005, 0.012).</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="what-we-need-in-our-interpretations-of-coefficients-reference" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-need-in-our-interpretations-of-coefficients-reference">What we need in our interpretations of coefficients (reference)</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Units of Y</p></li>
+<li><p>Units of X</p></li>
+<li><p>Discussing intercept: Mean or average or expected before Y</p></li>
+<li><p>Discussing coefficient for continuous covariate: Mean or average or expected before difference, increase, or decrease</p>
+<ul>
+<li>OR: Mean or average or expected before Y</li>
+<li>Only need before difference or Y!!</li>
+</ul></li>
+<li><p>Confidence interval</p></li>
+</ul>
+</div><div class="column">
+<ul>
+<li><p>If other covariates in the model</p>
+<ul>
+<li><p>Discussing intercept: Must state that variables are equal to 0</p>
+<ul>
+<li>or at their centered value if centered!</li>
+</ul></li>
+<li><p>Discussing coefficient for covariate: Must state “adjusting for all other variables”, “Controlling for all other variables”, or “Holding all other variables constant”</p>
+<ul>
+<li>If only one other variable in the model, then replace “all other variables” with the single variable name</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="learning-objectives-2" class="level1">
+<h1>Learning Objectives</h1>
+<ol type="1">
+<li>Interpret MLR (population) coefficient estimates with additional variable in model</li>
+</ol>
+<div class="lob">
+<ol start="2" type="1">
+<li>Understand the use of the general F-test and interpret what it measures.</li>
+</ol>
+</div>
+<ol start="3" type="1">
+<li>Understand the context of the <strong>Overall F-test</strong>, conduct the needed hypothesis test, and interpret the results.</li>
+<li>Understand the context of the <strong>single covariate F-test</strong>, conduct the needed hypothesis test, and interpret the results.</li>
+<li>Understand the context of the <strong>group of covariates F-test</strong>, conduct the needed hypothesis test, and interpret the results.</li>
+</ol>
+<section id="we-must-revisit-our-dear-friend-the-f-test" class="level2">
+<h2 class="anchored" data-anchor-id="we-must-revisit-our-dear-friend-the-f-test">We must revisit our dear friend, the F-test!</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="09_MLR_Inference/foreshadowing.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">https://www.writerswrite.co.za/foreshadowing/</figcaption>
+</figure>
+</div>
+</section>
+<section id="remember-from-lesson-5-f-test-vs.-t-test-for-the-population-slope" class="level2">
+<h2 class="anchored" data-anchor-id="remember-from-lesson-5-f-test-vs.-t-test-for-the-population-slope"><em>Remember from Lesson 5:</em> F-test vs.&nbsp;t-test for the population slope</h2>
+<p>The square of a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(df = \nu\)</span> is an <span class="math inline">\(F\)</span>-distribution with <span class="math inline">\(df = 1, \nu\)</span></p>
+<p><span class="math display">\[T_{\nu}^2 \sim F_{1,\nu}\]</span></p>
+<ul>
+<li>We can use <strong>either F-test</strong> or <strong>t-test</strong> to run the following hypothesis test:</li>
+</ul>
+<span class="math display">\[\begin{align}
+H_0 &amp;: \beta_1 = 0\\
+\text{vs. } H_A&amp;: \beta_1 \neq 0
+\end{align}\]</span>
+<ul>
+<li>Note that the F-test does not support one-sided alternative tests, but the t-test does!</li>
+</ul>
+</section>
+<section id="remember-from-lesson-5-planting-a-seed-about-the-f-test" class="level2">
+<h2 class="anchored" data-anchor-id="remember-from-lesson-5-planting-a-seed-about-the-f-test"><em>Remember from Lesson 5:</em> Planting a seed about the F-test</h2>
+<p>We can think about the hypothesis test for the slope…</p>
+<div class="columns">
+<div class="column" style="width:17%;">
+
+</div><div class="column" style="width:33%;">
+<div class="proof1">
+<div class="proof-title">
+<p>Null <span class="math inline">\(H_0\)</span></p>
+</div>
+<div class="proof-cont">
+<p><span class="math inline">\(\beta_1=0\)</span></p>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="definition">
+<div class="def-title">
+<p>Alternative <span class="math inline">\(H_1\)</span></p>
+</div>
+<div class="def-cont">
+<p><span class="math inline">\(\beta_1\neq0\)</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>in a slightly different way…</p>
+<div class="columns">
+<div class="column" style="width:17%;">
+
+</div><div class="column" style="width:33%;">
+<div class="proof1">
+<div class="proof-title">
+<p>Null model (<span class="math inline">\(\beta_1=0\)</span>)</p>
+</div>
+<div class="proof-cont">
+<ul>
+<li><span class="math inline">\(Y = \beta_0 + \epsilon\)</span></li>
+<li>Smaller (reduced) model</li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="definition">
+<div class="def-title">
+<p>Alternative model (<span class="math inline">\(\beta_1\neq0\)</span>)</p>
+</div>
+<div class="def-cont">
+<ul>
+<li><span class="math inline">\(Y = \beta_0 + \beta_1 X + \epsilon\)</span></li>
+<li>Larger (full) model</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><p>In multiple linear regression, we can start using this framework to test multiple coefficient parameters at once</p>
+<ul>
+<li><p>Decide whether or not to reject the smaller reduced model in favor of the larger full model</p></li>
+<li><p>Cannot do this with the t-test!</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="we-can-extend-this" class="level2">
+<h2 class="anchored" data-anchor-id="we-can-extend-this">We can extend this!!</h2>
+<p>We can create a hypothesis test for more than one coefficient at a time…</p>
+<div class="columns">
+<div class="column" style="width:17%;">
+
+</div><div class="column" style="width:33%;">
+<div class="proof1">
+<div class="proof-title">
+<p>Null <span class="math inline">\(H_0\)</span></p>
+</div>
+<div class="proof-cont">
+<p><span class="math inline">\(\beta_1=\beta_2=0\)</span></p>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="definition">
+<div class="def-title">
+<p>Alternative <span class="math inline">\(H_1\)</span></p>
+</div>
+<div class="def-cont">
+<p><span class="math inline">\(\beta_1\neq0\)</span> and/or <span class="math inline">\(\beta_2\neq0\)</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>in a slightly different way…</p>
+<div class="columns">
+<div class="column" style="width:17%;">
+
+</div><div class="column" style="width:33%;">
+<div class="proof1">
+<div class="proof-title">
+<p>Null model</p>
+</div>
+<div class="proof-cont">
+<ul>
+<li><span class="math inline">\(Y = \beta_0 + \epsilon\)</span></li>
+<li>Smaller (reduced) model</li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="definition">
+<div class="def-title">
+<p>Alternative* model</p>
+</div>
+<div class="def-cont">
+<ul>
+<li><span class="math inline">\(Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \epsilon\)</span></li>
+<li>Larger (full) model</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>*This is <strong>not quite</strong> the alternative, but if we reject the null, then this is the model we move forward with</p>
+</section>
+<section id="poll-everywhere-question-1" class="level2">
+<h2 class="anchored" data-anchor-id="poll-everywhere-question-1">Poll Everywhere Question 1</h2>
+</section>
+<section id="building-a-very-important-toolkit-three-types-of-tests" class="level2">
+<h2 class="anchored" data-anchor-id="building-a-very-important-toolkit-three-types-of-tests">Building a very important toolkit: three types of tests</h2>
+<div class="fact">
+<div class="fact-title">
+<p>Overall test</p>
+</div>
+<div class="fact-cont">
+<p>Does at least one of the covariates/predictors contribute significantly to the prediction of Y?</p>
+</div>
+</div>
+<div class="example">
+<div class="ex-title">
+<p>Test for addition of a single variable (covariate subset test)</p>
+</div>
+<div class="ex-cont">
+<p>Does the addition of one particular covariate add significantly to the prediction of Y achieved by other covariates already present in the model?</p>
+</div>
+</div>
+<div class="proposition">
+<div class="prop-title">
+<p>Test for addition of group of variables (covariate subset test)</p>
+</div>
+<div class="prop-cont">
+<p>Does the addition of some group of covariates add significantly to the prediction of Y achieved by other covariates already present in the model?</p>
+</div>
+</div>
+</section>
+<section id="variation-explained-vs.-unexplained" class="level2">
+<h2 class="anchored" data-anchor-id="variation-explained-vs.-unexplained">Variation: Explained vs.&nbsp;Unexplained</h2>
+<p><span class="math display">\[\begin{aligned}
+\sum_{i=1}^n (Y_i - \overline{Y})^2 &amp;= \sum_{i=1}^n (\widehat{Y}_i- \overline{Y})^2 + \sum_{i=1}^n (Y_i - \widehat{Y}_i)^2 \\
+SSY &amp;= SSR + SSE
+\end{aligned}\]</span></p>
+<ul>
+<li><span class="math inline">\(Y_i - \overline{Y}\)</span> = the deviation of <span class="math inline">\(Y_i\)</span> around the mean <span class="math inline">\(\overline{Y}\)</span>
+<ul>
+<li>(the <strong>total</strong> amount deviation unexplained at <span class="math inline">\(X_{i1},\ldots,X_{ik}\)</span> ).</li>
+</ul></li>
+<li><span class="math inline">\(\widehat{Y}_i- \overline{Y}\)</span> = the deviation of the fitted value <span class="math inline">\(\widehat{Y}_i\)</span> around the mean <span class="math inline">\(\overline{Y}\)</span>
+<ul>
+<li>(the amount deviation <strong>explained</strong> by the regression at <span class="math inline">\(X_{i1},\ldots,X_{ik}\)</span> ).</li>
+</ul></li>
+<li><span class="math inline">\(Y_i - \widehat{Y}_i\)</span> = the deviation of the observation <span class="math inline">\(Y\)</span> around the fitted regression line
+<ul>
+<li>(the amount deviation <strong>unexplained</strong> by the regression at <span class="math inline">\(X_{i1},\ldots,X_{ik}\)</span> )</li>
+</ul></li>
+</ul>
+</section>
+<section id="another-way-to-think-of-ssy-ssr-and-sse" class="level2">
+<h2 class="anchored" data-anchor-id="another-way-to-think-of-ssy-ssr-and-sse">Another way to think of SSY, SSR, and SSE</h2>
+<ul>
+<li><p>Let’s create a data frame of each component within the SS’s</p>
+<ul>
+<li>Difference in SSY: <span class="math inline">\(Y_i - \overline{Y}\)</span></li>
+<li>Difference in SSR: <span class="math inline">\(\widehat{Y}_i- \overline{Y}\)</span></li>
+<li>Difference in SSE: <span class="math inline">\(Y_i - \widehat{Y}_i\)</span></li>
+</ul></li>
+<li><p>Using our simple linear regression model as an example:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>slr1 <span class="ot">=</span> <span class="fu">lm</span>(LifeExpectancyYrs <span class="sc">~</span> FemaleLiteracyRate, <span class="at">data =</span> gapm_sub)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>aug_slr1 <span class="ot">=</span> <span class="fu">augment</span>(slr1)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>SS_df <span class="ot">=</span> gapm_sub <span class="sc">%&gt;%</span> <span class="fu">select</span>(LifeExpectancyYrs) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">SSY_diff =</span> LifeExpectancyYrs <span class="sc">-</span> <span class="fu">mean</span>(LifeExpectancyYrs),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">y_fit =</span> aug_slr1<span class="sc">$</span>.fitted, </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">SSR_diff =</span> y_fit <span class="sc">-</span> <span class="fu">mean</span>(LifeExpectancyYrs), </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">SSE_diff =</span> aug_slr1<span class="sc">$</span>.resid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="plot-the-components-of-each-sum-of-squares" class="level2">
+<h2 class="anchored" data-anchor-id="plot-the-components-of-each-sum-of-squares">Plot the components of each sum of squares</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>SSY_plot <span class="ot">=</span> <span class="fu">ggplot</span>(SS_df, <span class="fu">aes</span>(SSY_diff)) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="sc">+</span> <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">30</span>, <span class="dv">30</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">35</span>) </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>SSR_plot <span class="ot">=</span> <span class="fu">ggplot</span>(SS_df, <span class="fu">aes</span>(SSR_diff)) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="sc">+</span> <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">30</span>, <span class="dv">30</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">35</span>) </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>SSE_plot <span class="ot">=</span> <span class="fu">ggplot</span>(SS_df, <span class="fu">aes</span>(SSE_diff)) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="sc">+</span> <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">30</span>, <span class="dv">30</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">35</span>) </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(SSY_plot, SSR_plot, SSE_plot, <span class="at">nrow =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="columns">
+<div class="column">
+<div class="cell" data-layout-align="right">
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-right">
+<figure class="figure">
+<p><img src="10_MLR_Inf_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<p><span class="math display">\[SSY = \sum_{i=1}^n (Y_i - \overline{Y})^2 = 64.64\]</span></p>
+<p><span class="math display">\[SSR = \sum_{i=1}^n (\widehat{Y}_i- \overline{Y})^2 = 27.24\]</span></p>
+<p><span class="math display">\[SSE =\sum_{i=1}^n (Y_i - \widehat{Y}_i)^2 = 37.39\]</span></p>
+</div>
+</div>
+</section>
+<section id="when-running-a-f-test-for-linear-models" class="level2">
+<h2 class="anchored" data-anchor-id="when-running-a-f-test-for-linear-models">When running a F-test for linear models…</h2>
+<ul>
+<li>We need to define a larger, full model (more parameters)</li>
+<li>We need to define a smaller, reduced model (fewer parameters)</li>
+<li>Use the F-statistic to decide whether or not we reject the smaller model
+<ul>
+<li>The F-statistic compares the SSE of each model to determine if the full model explains a significant amount of additional variance</li>
+</ul></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p>&nbsp;</p>
+<p><span class="math display">\[
+F = \dfrac{\frac{SSE(R) - SSE(F)}{df_R - df_F}}{\frac{SSE(F)}{df_F}}
+\]</span></p>
+</div><div class="column" style="width:70%;">
+<ul>
+<li><span class="math inline">\(SSE(R) \geq SSE(F)\)</span></li>
+<li>Numerator measures difference in <strong>unexplained</strong> variation between the models
+<ul>
+<li>Big difference = added parameters greatly reduce the unexplained variation (increase explained variation)</li>
+<li>Smaller difference = added parameters don’t reduce the unexplained variation</li>
+</ul></li>
+<li>Take ratio of difference to the unexplained variation in the full model</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="poll-everywhere-question-2" class="level2">
+<h2 class="anchored" data-anchor-id="poll-everywhere-question-2">Poll Everywhere Question 2</h2>
+</section>
+<section id="we-will-keep-working-with-the-mlr-model-from-last-class" class="level2">
+<h2 class="anchored" data-anchor-id="we-will-keep-working-with-the-mlr-model-from-last-class">We will keep working with the MLR model from last class</h2>
+<p>New population model for example:</p>
+<p><span class="math display">\[\text{Life expectancy} = \beta_0 + \beta_1 \text{Female literacy rate} + \beta_2 \text{Food supply} + \epsilon\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit regression model:</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mr1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(LifeExpectancyYrs <span class="sc">~</span> FemaleLiteracyRate <span class="sc">+</span> FoodSupplykcPPD, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> gapm_sub)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(mr1, <span class="at">conf.int=</span>T) <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">35</span>) <span class="sc">%&gt;%</span> <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="plpkbepuah" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#plpkbepuah table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#plpkbepuah thead, #plpkbepuah tbody, #plpkbepuah tfoot, #plpkbepuah tr, #plpkbepuah td, #plpkbepuah th {
+  border-style: none;
+}
+
+#plpkbepuah p {
+  margin: 0;
+  padding: 0;
+}
+
+#plpkbepuah .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 35px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#plpkbepuah .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#plpkbepuah .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#plpkbepuah .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#plpkbepuah .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#plpkbepuah .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#plpkbepuah .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#plpkbepuah .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#plpkbepuah .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#plpkbepuah .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#plpkbepuah .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#plpkbepuah .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#plpkbepuah .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#plpkbepuah .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#plpkbepuah .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#plpkbepuah .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#plpkbepuah .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#plpkbepuah .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#plpkbepuah .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#plpkbepuah .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#plpkbepuah .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#plpkbepuah .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#plpkbepuah .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#plpkbepuah .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#plpkbepuah .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#plpkbepuah .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#plpkbepuah .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#plpkbepuah .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#plpkbepuah .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#plpkbepuah .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#plpkbepuah .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#plpkbepuah .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#plpkbepuah .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#plpkbepuah .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#plpkbepuah .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#plpkbepuah .gt_left {
+  text-align: left;
+}
+
+#plpkbepuah .gt_center {
+  text-align: center;
+}
+
+#plpkbepuah .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#plpkbepuah .gt_font_normal {
+  font-weight: normal;
+}
+
+#plpkbepuah .gt_font_bold {
+  font-weight: bold;
+}
+
+#plpkbepuah .gt_font_italic {
+  font-style: italic;
+}
+
+#plpkbepuah .gt_super {
+  font-size: 65%;
+}
+
+#plpkbepuah .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#plpkbepuah .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#plpkbepuah .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#plpkbepuah .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#plpkbepuah .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#plpkbepuah .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#plpkbepuah .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#plpkbepuah .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#plpkbepuah div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="std.error">std.error</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="term" class="gt_row gt_left">(Intercept)</td>
+<td headers="estimate" class="gt_row gt_right">33.595</td>
+<td headers="std.error" class="gt_row gt_right">4.472</td>
+<td headers="statistic" class="gt_row gt_right">7.512</td>
+<td headers="p.value" class="gt_row gt_right">0.000</td>
+<td headers="conf.low" class="gt_row gt_right">24.674</td>
+<td headers="conf.high" class="gt_row gt_right">42.517</td></tr>
+    <tr><td headers="term" class="gt_row gt_left">FemaleLiteracyRate</td>
+<td headers="estimate" class="gt_row gt_right">0.157</td>
+<td headers="std.error" class="gt_row gt_right">0.032</td>
+<td headers="statistic" class="gt_row gt_right">4.873</td>
+<td headers="p.value" class="gt_row gt_right">0.000</td>
+<td headers="conf.low" class="gt_row gt_right">0.093</td>
+<td headers="conf.high" class="gt_row gt_right">0.221</td></tr>
+    <tr><td headers="term" class="gt_row gt_left">FoodSupplykcPPD</td>
+<td headers="estimate" class="gt_row gt_right">0.008</td>
+<td headers="std.error" class="gt_row gt_right">0.002</td>
+<td headers="statistic" class="gt_row gt_right">4.726</td>
+<td headers="p.value" class="gt_row gt_right">0.000</td>
+<td headers="conf.low" class="gt_row gt_right">0.005</td>
+<td headers="conf.high" class="gt_row gt_right">0.012</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>Fitted multiple regression model:</p>
+<p><span class="math display">\[\begin{aligned}
+\widehat{\text{Life expectancy}} &amp;= \widehat{\beta}_0 + \widehat{\beta}_1 \text{Female literacy rate} + \widehat{\beta}_2 \text{Food supply} \\
+\widehat{\text{Life expectancy}} &amp;= 33.595 + 0.157\ \text{Female literacy rate}
++ 0.008\ \text{Food supply}
+\end{aligned}\]</span></p>
+</section>
+</section>
+<section id="learning-objectives-3" class="level1">
+<h1>Learning Objectives</h1>
+<ol type="1">
+<li>Interpret MLR (population) coefficient estimates with additional variable in model</li>
+<li>Understand the use of the general F-test and interpret what it measures.</li>
+</ol>
+<div class="lob">
+<ol start="3" type="1">
+<li>Understand the context of the <strong>Overall F-test</strong>, conduct the needed hypothesis test, and interpret the results.</li>
+</ol>
+</div>
+<ol start="4" type="1">
+<li>Understand the context of the <strong>single covariate F-test</strong>, conduct the needed hypothesis test, and interpret the results.</li>
+<li>Understand the context of the <strong>group of covariates F-test</strong>, conduct the needed hypothesis test, and interpret the results.</li>
+</ol>
+<section id="overall-f-test" class="level2">
+<h2 class="anchored" data-anchor-id="overall-f-test">Overall F-test</h2>
+<p>Does at least one of the covariates/predictors contribute significantly to the prediction of Y?</p>
+<ul>
+<li>For a general population MLR model, <span class="math display">\[Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2+ \ldots + \beta_k X_k + \epsilon\]</span></li>
+</ul>
+<p>We can create a hypothesis test for all the covariate coefficients…</p>
+<div class="columns">
+<div class="column" style="width:5%;">
+
+</div><div class="column" style="width:45%;">
+<div class="proof1">
+<div class="proof-title">
+<p>Null <span class="math inline">\(H_0\)</span></p>
+</div>
+<div class="proof-cont">
+<p><span class="math inline">\(\beta_1=\beta_2= \ldots=\beta_k=0\)</span></p>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<div class="definition">
+<div class="def-title">
+<p>Alternative <span class="math inline">\(H_1\)</span></p>
+</div>
+<div class="def-cont">
+<p>At least one <span class="math inline">\(\beta_j\neq0\)</span> (for <span class="math inline">\(j=1, 2, \ldots, k\)</span>)</p>
+</div>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:5%;">
+
+</div><div class="column" style="width:45%;">
+<div class="proof1">
+<div class="proof-title">
+<p>Null / Smaller / Reduced model</p>
+</div>
+<div class="proof-cont">
+<p><span class="math inline">\(Y = \beta_0 + \epsilon\)</span></p>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<div class="definition">
+<div class="def-title">
+<p>Alternative / Larger / Full model</p>
+</div>
+<div class="def-cont">
+<p><span class="math inline">\(Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \ldots + \beta_k X_k + \epsilon\)</span></p>
+</div>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div>
+</div>
+</section>
+<section id="overall-f-test-general-steps-for-hypothesis-test" class="level2">
+<h2 class="anchored" data-anchor-id="overall-f-test-general-steps-for-hypothesis-test">Overall F-test: general steps for hypothesis test</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<div class="highlight-container">
+<div class="highlight">
+<ol type="1">
+<li>Met underlying LINE assumptions</li>
+</ol>
+</div>
+</div>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="2" type="1">
+<li>State the null hypothesis</li>
+</ol>
+</div>
+</div>
+<span class="math display">\[\begin{align}
+H_0 &amp;: \beta_1=\beta_2= \ldots=\beta_k=0\\
+\text{vs. } H_A&amp;: \text{At least one } \beta_j\neq0, \text{for }j=1, 2, \ldots, k
+\end{align}\]</span>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="3" type="1">
+<li>Specify the significance level.</li>
+</ol>
+</div>
+</div>
+<p>Often we use <span class="math inline">\(\alpha = 0.05\)</span></p>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="4" type="1">
+<li>Specify the test statistic and its distribution under the null</li>
+</ol>
+</div>
+</div>
+<p>The test statistic is <span class="math inline">\(F\)</span>, and follows an F-distribution with numerator <span class="math inline">\(df=k\)</span> and denominator <span class="math inline">\(df=n-k-1\)</span>. (<span class="math inline">\(n\)</span> = # obversation, <span class="math inline">\(k\)</span> = # covariates)</p>
+</div><div class="column" style="width:4%;">
+
+</div><div class="column" style="width:48%;">
+<div class="highlight-container">
+<div class="highlight">
+<ol start="5" type="1">
+<li>Compute the value of the test statistic</li>
+</ol>
+</div>
+</div>
+<p>The calculated <strong>test statistic</strong> is</p>
+<p><span class="math display">\[F^ = \dfrac{\frac{SSE(R) - SSE(F)}{df_R - df_F}}{\frac{SSE(F)}{df_F}} = \frac{MSR_{full}}{MSE_{full}}\]</span></p>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="6" type="1">
+<li>Calculate the p-value</li>
+</ol>
+</div>
+</div>
+<p>We are generally calculating: <span class="math inline">\(P(F_{k, n-k-1} &gt; F)\)</span></p>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="7" type="1">
+<li>Write conclusion for hypothesis test</li>
+</ol>
+</div>
+</div>
+<ul>
+<li>Reject if: <span class="math inline">\(P(F_{k, n-k-1} &gt; F) &lt; \alpha\)</span></li>
+</ul>
+<p>We (reject/fail to reject) the null hypothesis at the <span class="math inline">\(100\alpha\%\)</span> significance level. There is (sufficient/insufficient) evidence that at least one predictor’s coefficient is not 0 (p-value = <span class="math inline">\(P(F_{1, n-2} &gt; F)\)</span>).</p>
+</div>
+</div>
+</section>
+<section id="overall-f-test-a-word-on-the-conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="overall-f-test-a-word-on-the-conclusion">Overall F-test: a word on the conclusion</h2>
+<ul>
+<li>If <span class="math inline">\(H_0\)</span> is rejected, we conclude there is sufficient evidence that at least one predictor’s coefficient is different from zero.</li>
+<li>Same as: at least one independent variable contributes significantly to the prediction of <span class="math inline">\(Y\)</span></li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>If <span class="math inline">\(H_0\)</span> is not rejected, we conclude there is insufficient evidence that at least one predictor’s coefficient is different from zero.</li>
+<li>Same as: Not enough evidence that at least one independent variable contributes significantly to the prediction of <span class="math inline">\(Y\)</span></li>
+</ul>
+</section>
+<section id="lets-think-about-our-mlr-example-for-life-expectancy" class="level2">
+<h2 class="anchored" data-anchor-id="lets-think-about-our-mlr-example-for-life-expectancy">Let’s think about our MLR example for life expectancy</h2>
+<p>Our proposed population model</p>
+<p><span class="math display">\[\text{LE} = \beta_0 + \beta_1 \text{FLR} + \beta_2 \text{FS} + \epsilon\]</span></p>
+<p>Fitted multiple regression model:</p>
+<p><span class="math display">\[\begin{aligned}
+\widehat{\text{LE}} &amp;= \widehat{\beta}_0 + \widehat{\beta}_1 \text{FLR} + \widehat{\beta}_2 \text{FS} \\
+\widehat{\text{LE}} &amp;= 33.595 + 0.157\ \text{FLR}
++ 0.008\ \text{FS}
+\end{aligned}\]</span></p>
+<p><strong>Our main question for the Overall F-test:</strong> Is the regression model containing female literacy rate and food supply useful in estimating countries’ life expectancy?</p>
+<div class="columns">
+<div class="column" style="width:5%;">
+
+</div><div class="column" style="width:45%;">
+<div class="proof1">
+<div class="proof-title">
+<p>Null / Smaller / Reduced model</p>
+</div>
+<div class="proof-cont">
+<p><span class="math inline">\(LE = \beta_0 + \epsilon\)</span></p>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<div class="definition">
+<div class="def-title">
+<p>Alternative / Larger / Full model</p>
+</div>
+<div class="def-cont">
+<p><span class="math inline">\(LE = \beta_0 + \beta_1 FLR + \beta_2 FS + \epsilon\)</span></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model">Comparing the SSY, SSR, and SSE for reduced and full model</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mod_red1 <span class="ot">=</span> <span class="fu">lm</span>(LifeExpectancyYrs <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> gapm_sub)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>aug_red1  <span class="ot">=</span> <span class="fu">augment</span>(mod_red1)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>mod_full1 <span class="ot">=</span> <span class="fu">lm</span>(LifeExpectancyYrs <span class="sc">~</span> FemaleLiteracyRate <span class="sc">+</span> FoodSupplykcPPD,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> gapm_sub)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>aug_full1  <span class="ot">=</span> <span class="fu">augment</span>(mod_full1)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>SS_df2 <span class="ot">=</span> gapm_sub <span class="sc">%&gt;%</span> <span class="fu">select</span>(LifeExpectancyYrs) <span class="sc">%&gt;%</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">SSY_diff_r1 =</span> LifeExpectancyYrs <span class="sc">-</span> <span class="fu">mean</span>(LifeExpectancyYrs),</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">SSR_diff_r1 =</span> aug_red1<span class="sc">$</span>.fitted <span class="sc">-</span> <span class="fu">mean</span>(LifeExpectancyYrs), </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">SSE_diff_r1 =</span> aug_red1<span class="sc">$</span>.resid, </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">SSY_diff_f1 =</span> LifeExpectancyYrs <span class="sc">-</span> <span class="fu">mean</span>(LifeExpectancyYrs),</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">SSR_diff_f1 =</span> aug_full1<span class="sc">$</span>.fitted <span class="sc">-</span> <span class="fu">mean</span>(LifeExpectancyYrs), </span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">SSE_diff_f1 =</span> aug_full1<span class="sc">$</span>.resid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model-1" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model-1">Comparing the SSY, SSR, and SSE for reduced and full model</h2>
+<div class="columns">
+<div class="column">
+<p><strong>Reduced / null model</strong> <span class="math display">\[LE = \beta_0 + \epsilon\]</span></p>
+<div class="columns">
+<div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10_MLR_Inf_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<p><span class="math display">\[SSY = 64.64\]</span></p>
+<p>&nbsp;</p>
+<p><span class="math display">\[SSR = 0\]</span></p>
+<p>&nbsp;</p>
+<p><span class="math display">\[SSE = 64.64\]</span></p>
+</div>
+</div>
+</div><div class="column">
+<p><strong>Full / Alternative model</strong> <span class="math display">\[LE = \beta_0 + \beta_1 FLR + \beta_2 FS + \epsilon\]</span></p>
+<div class="columns">
+<div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10_MLR_Inf_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<p><span class="math display">\[SSY = 64.64\]</span></p>
+<p>&nbsp;</p>
+<p><span class="math display">\[SSR = 36.39\]</span></p>
+<p>&nbsp;</p>
+<p><span class="math display">\[SSE = 28.25\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="poll-everywhere-question-3" class="level2">
+<h2 class="anchored" data-anchor-id="poll-everywhere-question-3">Poll Everywhere Question 3</h2>
+</section>
+<section id="so-lets-step-through-our-hypothesis-test-13" class="level2">
+<h2 class="anchored" data-anchor-id="so-lets-step-through-our-hypothesis-test-13">So let’s step through our hypothesis test (1/3)</h2>
+<div class="highlight-container">
+<div class="highlight">
+<ol type="1">
+<li>Met underlying LINE assumptions</li>
+</ol>
+</div>
+</div>
+<p>&nbsp;</p>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="2" type="1">
+<li>State the null hypothesis</li>
+</ol>
+</div>
+</div>
+<span class="math display">\[\begin{align}
+H_0 &amp;: \beta_1=\beta_2=0\\
+\text{vs. } H_A&amp;: \text{At least one } \beta_1\neq0 \text{ or } \beta_2\neq0
+\end{align}\]</span>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="3" type="1">
+<li>Specify the significance level</li>
+</ol>
+</div>
+</div>
+<p>Often we use <span class="math inline">\(\alpha = 0.05\)</span></p>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="4" type="1">
+<li>Specify the test statistic and its distribution under the null</li>
+</ol>
+</div>
+</div>
+<p>The test statistic is <span class="math inline">\(F\)</span>, and follows an F-distribution with numerator <span class="math inline">\(df=k =2\)</span> and denominator <span class="math inline">\(df=n-k-1 = 72 - 2-1=69\)</span>. (<span class="math inline">\(n\)</span> = # obversation, <span class="math inline">\(k\)</span> = # covariates)</p>
+</section>
+<section id="so-lets-step-through-our-hypothesis-test-23" class="level2">
+<h2 class="anchored" data-anchor-id="so-lets-step-through-our-hypothesis-test-23">So let’s step through our hypothesis test (2/3)</h2>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="5" type="1">
+<li>Compute the value of the test statistic / 6. Calculate the p-value</li>
+</ol>
+</div>
+</div>
+<p>The calculated <strong>test statistic</strong> is</p>
+<p><span class="math display">\[F^ = \dfrac{\frac{SSE(R) - SSE(F)}{df_R - df_F}}{\frac{SSE(F)}{df_F}}=44.443\]</span> OR use ANOVA table:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mod_red1, mod_full1) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">35</span>) <span class="sc">%&gt;%</span> <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="vdqkpkhffj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vdqkpkhffj table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#vdqkpkhffj thead, #vdqkpkhffj tbody, #vdqkpkhffj tfoot, #vdqkpkhffj tr, #vdqkpkhffj td, #vdqkpkhffj th {
+  border-style: none;
+}
+
+#vdqkpkhffj p {
+  margin: 0;
+  padding: 0;
+}
+
+#vdqkpkhffj .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 35px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#vdqkpkhffj .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#vdqkpkhffj .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#vdqkpkhffj .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#vdqkpkhffj .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vdqkpkhffj .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vdqkpkhffj .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vdqkpkhffj .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#vdqkpkhffj .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#vdqkpkhffj .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#vdqkpkhffj .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#vdqkpkhffj .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#vdqkpkhffj .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#vdqkpkhffj .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#vdqkpkhffj .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vdqkpkhffj .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#vdqkpkhffj .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#vdqkpkhffj .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#vdqkpkhffj .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vdqkpkhffj .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#vdqkpkhffj .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#vdqkpkhffj .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#vdqkpkhffj .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vdqkpkhffj .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#vdqkpkhffj .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#vdqkpkhffj .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vdqkpkhffj .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vdqkpkhffj .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#vdqkpkhffj .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vdqkpkhffj .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#vdqkpkhffj .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vdqkpkhffj .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vdqkpkhffj .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vdqkpkhffj .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vdqkpkhffj .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vdqkpkhffj .gt_left {
+  text-align: left;
+}
+
+#vdqkpkhffj .gt_center {
+  text-align: center;
+}
+
+#vdqkpkhffj .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#vdqkpkhffj .gt_font_normal {
+  font-weight: normal;
+}
+
+#vdqkpkhffj .gt_font_bold {
+  font-weight: bold;
+}
+
+#vdqkpkhffj .gt_font_italic {
+  font-style: italic;
+}
+
+#vdqkpkhffj .gt_super {
+  font-size: 65%;
+}
+
+#vdqkpkhffj .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#vdqkpkhffj .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#vdqkpkhffj .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#vdqkpkhffj .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#vdqkpkhffj .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#vdqkpkhffj .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#vdqkpkhffj .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#vdqkpkhffj .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#vdqkpkhffj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df.residual">df.residual</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="rss">rss</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sumsq">sumsq</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="term" class="gt_row gt_left">LifeExpectancyYrs ~ 1</td>
+<td headers="df.residual" class="gt_row gt_right">71.000</td>
+<td headers="rss" class="gt_row gt_right">4,589.119</td>
+<td headers="df" class="gt_row gt_right">NA</td>
+<td headers="sumsq" class="gt_row gt_right">NA</td>
+<td headers="statistic" class="gt_row gt_right">NA</td>
+<td headers="p.value" class="gt_row gt_right">NA</td></tr>
+    <tr><td headers="term" class="gt_row gt_left">LifeExpectancyYrs ~ FemaleLiteracyRate + FoodSupplykcPPD</td>
+<td headers="df.residual" class="gt_row gt_right">69.000</td>
+<td headers="rss" class="gt_row gt_right">2,005.556</td>
+<td headers="df" class="gt_row gt_right">2.000</td>
+<td headers="sumsq" class="gt_row gt_right">2,583.563</td>
+<td headers="statistic" class="gt_row gt_right">44.443</td>
+<td headers="p.value" class="gt_row gt_right">0.000</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="so-lets-step-through-our-hypothesis-test-33" class="level2">
+<h2 class="anchored" data-anchor-id="so-lets-step-through-our-hypothesis-test-33">So let’s step through our hypothesis test (3/3)</h2>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="7" type="1">
+<li>Write conclusion for hypothesis test</li>
+</ol>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>We reject the null hypothesis at the 5% significance level. There is sufficient evidence that either countries’ female literacy rate or the food supply (or both) contributes significantly to the prediction of life expectancy (p-value &lt; 0.001).</p>
+</section>
+</section>
+<section id="learning-objectives-4" class="level1">
+<h1>Learning Objectives</h1>
+<ol type="1">
+<li>Interpret MLR (population) coefficient estimates with additional variable in model</li>
+<li>Understand the use of the general F-test and interpret what it measures.</li>
+<li>Understand the context of the <strong>Overall F-test</strong>, conduct the needed hypothesis test, and interpret the results.</li>
+</ol>
+<div class="lob">
+<ol start="4" type="1">
+<li>Understand the context of the <strong>single covariate F-test</strong>, conduct the needed hypothesis test, and interpret the results.</li>
+</ol>
+</div>
+<ol start="5" type="1">
+<li>Understand the context of the <strong>group of covariates F-test</strong>, conduct the needed hypothesis test, and interpret the results.</li>
+</ol>
+<section id="covariate-subset-test-single-variable" class="level2">
+<h2 class="anchored" data-anchor-id="covariate-subset-test-single-variable">Covariate subset test: Single variable</h2>
+<p>Does the addition of one particular covariate of interest add significantly to the prediction of Y achieved by other covariates already present in the model?</p>
+<ul>
+<li>For a general population MLR model, <span class="math display">\[Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2+ \beta_j X_j +\ldots + \beta_k X_k + \epsilon\]</span></li>
+</ul>
+<p>We can create a hypothesis test for a single <span class="math inline">\(j\)</span> covariate coefficient (where <span class="math inline">\(j\)</span> can be any value <span class="math inline">\(1, 2, \ldots, k\)</span>)…</p>
+<div class="columns">
+<div class="column" style="width:5%;">
+
+</div><div class="column" style="width:45%;">
+<div class="proof1">
+<div class="proof-title">
+<p>Null <span class="math inline">\(H_0\)</span></p>
+</div>
+<div class="proof-cont">
+<p><span class="math inline">\(\beta_j=0\)</span></p>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<div class="definition">
+<div class="def-title">
+<p>Alternative <span class="math inline">\(H_1\)</span></p>
+</div>
+<div class="def-cont">
+<p><span class="math inline">\(\beta_j\neq0\)</span></p>
+</div>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:5%;">
+
+</div><div class="column" style="width:45%;">
+<div class="proof1">
+<div class="proof-title">
+<p>Null / Smaller / Reduced model</p>
+</div>
+<div class="proof-cont">
+<p><span class="math inline">\(Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \ldots + \beta_k X_k + \epsilon\)</span></p>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<div class="definition">
+<div class="def-title">
+<p>Alternative / Larger / Full model</p>
+</div>
+<div class="def-cont">
+<p><span class="math inline">\(\begin{aligned}Y = &amp;\beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_j X_j +\\ &amp;\ldots + \beta_k X_k + \epsilon \end{aligned}\)</span></p>
+</div>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div>
+</div>
+</section>
+<section id="single-covariate-f-test-general-steps-for-hypothesis-test-reference" class="level2">
+<h2 class="anchored" data-anchor-id="single-covariate-f-test-general-steps-for-hypothesis-test-reference">Single covariate F-test: general steps for hypothesis test (reference)</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<div class="highlight-container">
+<div class="highlight">
+<ol type="1">
+<li>Met underlying LINE assumptions</li>
+</ol>
+</div>
+</div>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="2" type="1">
+<li>State the null hypothesis</li>
+</ol>
+</div>
+</div>
+<span class="math display">\[\begin{align}
+H_0 &amp;: \beta_j=0\\
+\text{vs. } H_A&amp;: \beta_j\neq 0
+\end{align}\]</span>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="3" type="1">
+<li>Specify the significance level</li>
+</ol>
+</div>
+</div>
+<p>Often we use <span class="math inline">\(\alpha = 0.05\)</span></p>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="4" type="1">
+<li>Specify the test statistic and its distribution under the null</li>
+</ol>
+</div>
+</div>
+<p>The test statistic is <span class="math inline">\(F\)</span>, and follows an F-distribution with numerator <span class="math inline">\(df=k\)</span> and denominator <span class="math inline">\(df=n-k-1\)</span>. (<span class="math inline">\(n\)</span> = # obversation, <span class="math inline">\(k\)</span> = # covariates)</p>
+</div><div class="column" style="width:4%;">
+
+</div><div class="column" style="width:48%;">
+<div class="highlight-container">
+<div class="highlight">
+<ol start="5" type="1">
+<li>Compute the value of the test statistic</li>
+</ol>
+</div>
+</div>
+<p>The calculated <strong>test statistic</strong> is</p>
+<p><span class="math display">\[F^ = \dfrac{\frac{SSE(R) - SSE(F)}{df_R - df_F}}{\frac{SSE(F)}{df_F}}\]</span></p>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="6" type="1">
+<li>Calculate the p-value</li>
+</ol>
+</div>
+</div>
+<p>We are generally calculating: <span class="math inline">\(P(F_{k, n-k-1} &gt; F)\)</span></p>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="7" type="1">
+<li>Write conclusion for hypothesis test</li>
+</ol>
+</div>
+</div>
+<p>We (reject/fail to reject) the null hypothesis at the <span class="math inline">\(100\alpha\%\)</span> significance level. There is (sufficient/insufficient) evidence that predictor/covariate <span class="math inline">\(j\)</span> significantly improves the prediction of Y, given all the other covariates are in the model (p-value = <span class="math inline">\(P(F_{1, n-2} &gt; F)\)</span>).</p>
+</div>
+</div>
+</section>
+<section id="lets-think-about-our-mlr-example-for-life-expectancy-1" class="level2">
+<h2 class="anchored" data-anchor-id="lets-think-about-our-mlr-example-for-life-expectancy-1">Let’s think about our MLR example for life expectancy</h2>
+<p>Our proposed population model</p>
+<p><span class="math display">\[\text{LE} = \beta_0 + \beta_1 \text{FLR} + \beta_2 \text{FS} + \epsilon\]</span></p>
+<p>Fitted multiple regression model:</p>
+<p><span class="math display">\[\begin{aligned}
+\widehat{\text{LE}} &amp;= \widehat{\beta}_0 + \widehat{\beta}_1 \text{FLR} + \widehat{\beta}_2 \text{FS} \\
+\widehat{\text{LE}} &amp;= 33.595 + 0.157\ \text{FLR}
++ 0.008\ \text{FS}
+\end{aligned}\]</span></p>
+<p><strong>Our main question for the single covariate subset F-test:</strong> Is the regression model containing food supply improve the estimation of countries’ life expectancy, given female literacy rate is already in the model?</p>
+<div class="columns">
+<div class="column" style="width:5%;">
+
+</div><div class="column" style="width:45%;">
+<div class="proof1">
+<div class="proof-title">
+<p>Null / Smaller / Reduced model</p>
+</div>
+<div class="proof-cont">
+<p><span class="math inline">\(LE = \beta_0 + \beta_1 FLR + \epsilon\)</span></p>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<div class="definition">
+<div class="def-title">
+<p>Alternative / Larger / Full model</p>
+</div>
+<div class="def-cont">
+<p><span class="math inline">\(LE = \beta_0 + \beta_1 FLR + \beta_2 FS + \epsilon\)</span></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model-2" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model-2">Comparing the SSY, SSR, and SSE for reduced and full model</h2>
+<div class="columns">
+<div class="column">
+<p><strong>Reduced / null model</strong> <span class="math display">\[LE = \beta_0 + \beta_1 FLR + \epsilon\]</span></p>
+<div class="columns">
+<div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10_MLR_Inf_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<p><span class="math display">\[SSY = 64.64\]</span></p>
+<p>&nbsp;</p>
+<p><span class="math display">\[SSR = 27.24\]</span></p>
+<p>&nbsp;</p>
+<p><span class="math display">\[SSE = 37.39\]</span></p>
+</div>
+</div>
+</div><div class="column">
+<p><strong>Full / Alternative model</strong> <span class="math display">\[LE = \beta_0 + \beta_1 FLR + \beta_2 FS + \epsilon\]</span></p>
+<div class="columns">
+<div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10_MLR_Inf_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<p><span class="math display">\[SSY = 64.64\]</span></p>
+<p>&nbsp;</p>
+<p><span class="math display">\[SSR = 36.39\]</span></p>
+<p>&nbsp;</p>
+<p><span class="math display">\[SSE = 28.25\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="poll-everywhere-question-4" class="level2">
+<h2 class="anchored" data-anchor-id="poll-everywhere-question-4">Poll Everywhere Question 4</h2>
+</section>
+<section id="so-lets-step-through-our-hypothesis-test-13-1" class="level2">
+<h2 class="anchored" data-anchor-id="so-lets-step-through-our-hypothesis-test-13-1">So let’s step through our hypothesis test (1/3)</h2>
+<div class="highlight-container">
+<div class="highlight">
+<ol type="1">
+<li>Met underlying LINE assumptions</li>
+</ol>
+</div>
+</div>
+<p>&nbsp;</p>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="2" type="1">
+<li>State the null hypothesis</li>
+</ol>
+</div>
+</div>
+<span class="math display">\[\begin{align}
+H_0 &amp;: \beta_2=0\\
+\text{vs. } H_A&amp;: \beta_2\neq0
+\end{align}\]</span>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="3" type="1">
+<li>Specify the significance level</li>
+</ol>
+</div>
+</div>
+<p>Often we use <span class="math inline">\(\alpha = 0.05\)</span></p>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="4" type="1">
+<li>Specify the test statistic and its distribution under the null</li>
+</ol>
+</div>
+</div>
+<p>The test statistic is <span class="math inline">\(F\)</span>, and follows an F-distribution with numerator <span class="math inline">\(df=k =2\)</span> and denominator <span class="math inline">\(df=n-k-1 = 72 - 2-1=69\)</span>. (<span class="math inline">\(n\)</span> = # obversation, <span class="math inline">\(k\)</span> = # covariates)</p>
+</section>
+<section id="so-lets-step-through-our-hypothesis-test-23-1" class="level2">
+<h2 class="anchored" data-anchor-id="so-lets-step-through-our-hypothesis-test-23-1">So let’s step through our hypothesis test (2/3)</h2>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="5" type="1">
+<li>Compute the value of the test statistic / 6. Calculate the p-value</li>
+</ol>
+</div>
+</div>
+<p>The calculated <strong>test statistic</strong> is</p>
+<p><span class="math display">\[F^ = \dfrac{\frac{SSE(R) - SSE(F)}{df_R - df_F}}{\frac{SSE(F)}{df_F}}\]</span> ANOVA table:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mod_red2, mod_full2) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">35</span>) <span class="sc">%&gt;%</span> <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="iuoscxxcue" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#iuoscxxcue table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#iuoscxxcue thead, #iuoscxxcue tbody, #iuoscxxcue tfoot, #iuoscxxcue tr, #iuoscxxcue td, #iuoscxxcue th {
+  border-style: none;
+}
+
+#iuoscxxcue p {
+  margin: 0;
+  padding: 0;
+}
+
+#iuoscxxcue .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 35px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#iuoscxxcue .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#iuoscxxcue .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#iuoscxxcue .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#iuoscxxcue .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iuoscxxcue .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iuoscxxcue .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iuoscxxcue .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#iuoscxxcue .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#iuoscxxcue .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#iuoscxxcue .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#iuoscxxcue .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#iuoscxxcue .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#iuoscxxcue .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#iuoscxxcue .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#iuoscxxcue .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#iuoscxxcue .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#iuoscxxcue .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#iuoscxxcue .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iuoscxxcue .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#iuoscxxcue .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#iuoscxxcue .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#iuoscxxcue .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iuoscxxcue .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#iuoscxxcue .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#iuoscxxcue .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iuoscxxcue .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iuoscxxcue .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#iuoscxxcue .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iuoscxxcue .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#iuoscxxcue .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iuoscxxcue .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iuoscxxcue .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iuoscxxcue .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iuoscxxcue .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iuoscxxcue .gt_left {
+  text-align: left;
+}
+
+#iuoscxxcue .gt_center {
+  text-align: center;
+}
+
+#iuoscxxcue .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#iuoscxxcue .gt_font_normal {
+  font-weight: normal;
+}
+
+#iuoscxxcue .gt_font_bold {
+  font-weight: bold;
+}
+
+#iuoscxxcue .gt_font_italic {
+  font-style: italic;
+}
+
+#iuoscxxcue .gt_super {
+  font-size: 65%;
+}
+
+#iuoscxxcue .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#iuoscxxcue .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#iuoscxxcue .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#iuoscxxcue .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#iuoscxxcue .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#iuoscxxcue .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#iuoscxxcue .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#iuoscxxcue .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#iuoscxxcue div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df.residual">df.residual</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="rss">rss</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sumsq">sumsq</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="term" class="gt_row gt_left">LifeExpectancyYrs ~ FemaleLiteracyRate</td>
+<td headers="df.residual" class="gt_row gt_right">70.000</td>
+<td headers="rss" class="gt_row gt_right">2,654.875</td>
+<td headers="df" class="gt_row gt_right">NA</td>
+<td headers="sumsq" class="gt_row gt_right">NA</td>
+<td headers="statistic" class="gt_row gt_right">NA</td>
+<td headers="p.value" class="gt_row gt_right">NA</td></tr>
+    <tr><td headers="term" class="gt_row gt_left">LifeExpectancyYrs ~ FemaleLiteracyRate + FoodSupplykcPPD</td>
+<td headers="df.residual" class="gt_row gt_right">69.000</td>
+<td headers="rss" class="gt_row gt_right">2,005.556</td>
+<td headers="df" class="gt_row gt_right">1.000</td>
+<td headers="sumsq" class="gt_row gt_right">649.319</td>
+<td headers="statistic" class="gt_row gt_right">22.339</td>
+<td headers="p.value" class="gt_row gt_right">0.000</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="so-lets-step-through-our-hypothesis-test-33-1" class="level2">
+<h2 class="anchored" data-anchor-id="so-lets-step-through-our-hypothesis-test-33-1">So let’s step through our hypothesis test (3/3)</h2>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="7" type="1">
+<li>Write conclusion for hypothesis test</li>
+</ol>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>We reject the null hypothesis at the 5% significance level. There is sufficient evidence that countries’ food supply contributes significantly to the prediction of life expectancy, given that female literacy rate is already in the model (p-value &lt; 0.001).</p>
+</section>
+</section>
+<section id="learning-objectives-5" class="level1">
+<h1>Learning Objectives</h1>
+<ol type="1">
+<li>Interpret MLR (population) coefficient estimates with additional variable in model</li>
+<li>Understand the use of the general F-test and interpret what it measures.</li>
+<li>Understand the context of the <strong>Overall F-test</strong>, conduct the needed hypothesis test, and interpret the results.</li>
+<li>Understand the context of the <strong>single covariate F-test</strong>, conduct the needed hypothesis test, and interpret the results.</li>
+</ol>
+<div class="lob">
+<ol start="5" type="1">
+<li>Understand the context of the <strong>group of covariates F-test</strong>, conduct the needed hypothesis test, and interpret the results.</li>
+</ol>
+</div>
+<section id="covariate-subset-test-group-of-variables" class="level2">
+<h2 class="anchored" data-anchor-id="covariate-subset-test-group-of-variables">Covariate subset test: group of variables</h2>
+<p>Does the addition of some group of covariates of interest add significantly to the prediction of Y obtained through other independent variables already present in the model?</p>
+<ul>
+<li>For a general population MLR model, <span class="math display">\[Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2+ \ldots + \beta_k X_k + \epsilon\]</span></li>
+</ul>
+<p>We can create a hypothesis test for a group of covariate coefficients (subset of many)… <strong>For example…</strong></p>
+<div class="columns">
+<div class="column" style="width:5%;">
+
+</div><div class="column" style="width:45%;">
+<div class="proof1">
+<div class="proof-title">
+<p>Null <span class="math inline">\(H_0\)</span></p>
+</div>
+<div class="proof-cont">
+<p><span class="math inline">\(\beta_1=\beta_3 =0\)</span> (this can be any coefficients)</p>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<div class="definition">
+<div class="def-title">
+<p>Alternative <span class="math inline">\(H_1\)</span></p>
+</div>
+<div class="def-cont">
+<p>At least one <span class="math inline">\(\beta_j\neq0\)</span> (for <span class="math inline">\(j=2,3\)</span>)</p>
+</div>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:5%;">
+
+</div><div class="column" style="width:45%;">
+<div class="proof1">
+<div class="proof-title">
+<p>Null / Smaller / Reduced model</p>
+</div>
+<div class="proof-cont">
+<p><span class="math inline">\(Y = \beta_0 + \beta_2 X_2 + \epsilon\)</span></p>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<div class="definition">
+<div class="def-title">
+<p>Alternative / Larger / Full model</p>
+</div>
+<div class="def-cont">
+<p><span class="math inline">\(Y = \beta_0 + \beta_1 X + \beta_2 X + \beta_3 X_3+\epsilon\)</span></p>
+</div>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div>
+</div>
+</section>
+<section id="covariate-subset-f-test-general-steps-for-hypothesis-test-reference" class="level2">
+<h2 class="anchored" data-anchor-id="covariate-subset-f-test-general-steps-for-hypothesis-test-reference">Covariate subset F-test: general steps for hypothesis test (reference)</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<div class="highlight-container">
+<div class="highlight">
+<ol type="1">
+<li>Met underlying LINE assumptions</li>
+</ol>
+</div>
+</div>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="2" type="1">
+<li>State the null hypothesis</li>
+</ol>
+</div>
+</div>
+<p>For example:</p>
+<span class="math display">\[\begin{align}
+H_0 &amp;: \beta_1 = \beta_3 = 0\\
+\text{vs. } H_A&amp;: \text{At least one } \beta_j\neq0, \text{for }j=1,3
+\end{align}\]</span>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="3" type="1">
+<li>Specify the significance level</li>
+</ol>
+</div>
+</div>
+<p>Often we use <span class="math inline">\(\alpha = 0.05\)</span></p>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="4" type="1">
+<li>Specify the test statistic and its distribution under the null</li>
+</ol>
+</div>
+</div>
+<p>The test statistic is <span class="math inline">\(F\)</span>, and follows an F-distribution with numerator <span class="math inline">\(df=k\)</span> and denominator <span class="math inline">\(df=n-k-1\)</span>. (<span class="math inline">\(n\)</span> = # obversation, <span class="math inline">\(k\)</span> = # covariates)</p>
+</div><div class="column" style="width:4%;">
+
+</div><div class="column" style="width:48%;">
+<div class="highlight-container">
+<div class="highlight">
+<ol start="5" type="1">
+<li>Compute the value of the test statistic</li>
+</ol>
+</div>
+</div>
+<p>The calculated <strong>test statistic</strong> is</p>
+<p><span class="math display">\[F^ = \dfrac{\frac{SSE(R) - SSE(F)}{df_R - df_F}}{\frac{SSE(F)}{df_F}}\]</span></p>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="6" type="1">
+<li>Calculate the p-value</li>
+</ol>
+</div>
+</div>
+<p>We are generally calculating: <span class="math inline">\(P(F_{k, n-k-1} &gt; F)\)</span></p>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="7" type="1">
+<li>Write conclusion for hypothesis test</li>
+</ol>
+</div>
+</div>
+<p>We (reject/fail to reject) the null hypothesis at the <span class="math inline">\(100\alpha\%\)</span> significance level. There is (sufficient/insufficient) evidence that predictors/covariates <span class="math inline">\(2,3\)</span> significantly improve the prediction of Y, given all the other covariates are in the model (p-value = <span class="math inline">\(P(F_{1, n-2} &gt; F)\)</span>).</p>
+</div>
+</div>
+</section>
+<section id="we-need-to-slightly-alter-our-mlr-example-for-life-expectancy" class="level2">
+<h2 class="anchored" data-anchor-id="we-need-to-slightly-alter-our-mlr-example-for-life-expectancy">We need to slightly alter our MLR example for life expectancy</h2>
+<p>Our proposed population model to include water source percent (WS):</p>
+<p><span class="math display">\[\text{LE} = \beta_0 + \beta_1 \text{FLR} + \beta_2 \text{FS} + \beta_3 WS + \epsilon\]</span></p>
+<ul>
+<li>We don’t have a fitted multiple regression model for this yet!</li>
+</ul>
+<p><strong>Our main question for the group covariate subset F-test:</strong> Is the regression model containing food supply and water source percent improve the estimation of countries’ life expectancy, given percent female literacy rate is already in the model?</p>
+<div class="columns">
+<div class="column" style="width:5%;">
+
+</div><div class="column" style="width:45%;">
+<div class="proof1">
+<div class="proof-title">
+<p>Null / Smaller / Reduced model</p>
+</div>
+<div class="proof-cont">
+<p><span class="math inline">\(LE = \beta_0 + \beta_1 FLR + \epsilon\)</span></p>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<div class="definition">
+<div class="def-title">
+<p>Alternative / Larger / Full model</p>
+</div>
+<div class="def-cont">
+<p><span class="math inline">\(LE = \beta_0 + \beta_1 FLR + \beta_2 FS + \beta_3 WS + \epsilon\)</span></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model-3" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-the-ssy-ssr-and-sse-for-reduced-and-full-model-3">Comparing the SSY, SSR, and SSE for reduced and full model</h2>
+<div class="columns">
+<div class="column">
+<p><strong>Reduced / null model</strong> <span class="math display">\[LE = \beta_0 + \beta_1 FLR + \epsilon\]</span></p>
+<div class="columns">
+<div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10_MLR_Inf_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<p><span class="math display">\[SSY = 64.64\]</span></p>
+<p>&nbsp;</p>
+<p><span class="math display">\[SSR = 27.24\]</span></p>
+<p>&nbsp;</p>
+<p><span class="math display">\[SSE = 37.39\]</span></p>
+</div>
+</div>
+</div><div class="column">
+<p><strong>Full / Alternative model</strong> <span class="math display">\[LE = \beta_0 + \beta_1 FLR + \beta_2 FS + \beta_3 WS + \epsilon\]</span></p>
+<div class="columns">
+<div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10_MLR_Inf_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<p><span class="math display">\[SSY = 64.64\]</span></p>
+<p>&nbsp;</p>
+<p><span class="math display">\[SSR = 43.26\]</span></p>
+<p>&nbsp;</p>
+<p><span class="math display">\[SSE = 21.38\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="so-lets-step-through-our-hypothesis-test-13-2" class="level2">
+<h2 class="anchored" data-anchor-id="so-lets-step-through-our-hypothesis-test-13-2">So let’s step through our hypothesis test (1/3)</h2>
+<div class="highlight-container">
+<div class="highlight">
+<ol type="1">
+<li>Met underlying LINE assumptions</li>
+</ol>
+</div>
+</div>
+<p>&nbsp;</p>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="2" type="1">
+<li>State the null hypothesis</li>
+</ol>
+</div>
+</div>
+<span class="math display">\[\begin{align}
+H_0 &amp;: \beta_2=\beta_3=0\\
+\text{vs. } H_A&amp;: \beta_2\neq0 \text{ and/or } \beta_3\neq0
+\end{align}\]</span>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="3" type="1">
+<li>Specify the significance level</li>
+</ol>
+</div>
+</div>
+<p>Often we use <span class="math inline">\(\alpha = 0.05\)</span></p>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="4" type="1">
+<li>Specify the test statistic and its distribution under the null</li>
+</ol>
+</div>
+</div>
+<p>The test statistic is <span class="math inline">\(F\)</span>, and follows an F-distribution with numerator <span class="math inline">\(df=k =2\)</span> and denominator <span class="math inline">\(df=n-k-1 = 72 - 2-1=69\)</span>. (<span class="math inline">\(n\)</span> = # obversation, <span class="math inline">\(k\)</span> = # covariates)</p>
+</section>
+<section id="so-lets-step-through-our-hypothesis-test-23-2" class="level2">
+<h2 class="anchored" data-anchor-id="so-lets-step-through-our-hypothesis-test-23-2">So let’s step through our hypothesis test (2/3)</h2>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="5" type="1">
+<li>Compute the value of the test statistic / 6. Calculate the p-value</li>
+</ol>
+</div>
+</div>
+<p>The calculated <strong>test statistic</strong> is</p>
+<p><span class="math display">\[F^ = \dfrac{\frac{SSE(R) - SSE(F)}{df_R - df_F}}{\frac{SSE(F)}{df_F}}\]</span> ANOVA table:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mod_red3, mod_full3) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">35</span>) <span class="sc">%&gt;%</span> <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="myezsyplpk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#myezsyplpk table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#myezsyplpk thead, #myezsyplpk tbody, #myezsyplpk tfoot, #myezsyplpk tr, #myezsyplpk td, #myezsyplpk th {
+  border-style: none;
+}
+
+#myezsyplpk p {
+  margin: 0;
+  padding: 0;
+}
+
+#myezsyplpk .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 35px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#myezsyplpk .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#myezsyplpk .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#myezsyplpk .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#myezsyplpk .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#myezsyplpk .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#myezsyplpk .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#myezsyplpk .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#myezsyplpk .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#myezsyplpk .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#myezsyplpk .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#myezsyplpk .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#myezsyplpk .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#myezsyplpk .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#myezsyplpk .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#myezsyplpk .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#myezsyplpk .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#myezsyplpk .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#myezsyplpk .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#myezsyplpk .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#myezsyplpk .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#myezsyplpk .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#myezsyplpk .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#myezsyplpk .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#myezsyplpk .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#myezsyplpk .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#myezsyplpk .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#myezsyplpk .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#myezsyplpk .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#myezsyplpk .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#myezsyplpk .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#myezsyplpk .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#myezsyplpk .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#myezsyplpk .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#myezsyplpk .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#myezsyplpk .gt_left {
+  text-align: left;
+}
+
+#myezsyplpk .gt_center {
+  text-align: center;
+}
+
+#myezsyplpk .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#myezsyplpk .gt_font_normal {
+  font-weight: normal;
+}
+
+#myezsyplpk .gt_font_bold {
+  font-weight: bold;
+}
+
+#myezsyplpk .gt_font_italic {
+  font-style: italic;
+}
+
+#myezsyplpk .gt_super {
+  font-size: 65%;
+}
+
+#myezsyplpk .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#myezsyplpk .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#myezsyplpk .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#myezsyplpk .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#myezsyplpk .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#myezsyplpk .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#myezsyplpk .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#myezsyplpk .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#myezsyplpk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df.residual">df.residual</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="rss">rss</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sumsq">sumsq</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="term" class="gt_row gt_left">LifeExpectancyYrs ~ FemaleLiteracyRate</td>
+<td headers="df.residual" class="gt_row gt_right">70.000</td>
+<td headers="rss" class="gt_row gt_right">2,654.875</td>
+<td headers="df" class="gt_row gt_right">NA</td>
+<td headers="sumsq" class="gt_row gt_right">NA</td>
+<td headers="statistic" class="gt_row gt_right">NA</td>
+<td headers="p.value" class="gt_row gt_right">NA</td></tr>
+    <tr><td headers="term" class="gt_row gt_left">LifeExpectancyYrs ~ FemaleLiteracyRate + FoodSupplykcPPD + WaterSourcePrct</td>
+<td headers="df.residual" class="gt_row gt_right">68.000</td>
+<td headers="rss" class="gt_row gt_right">1,517.916</td>
+<td headers="df" class="gt_row gt_right">2.000</td>
+<td headers="sumsq" class="gt_row gt_right">1,136.959</td>
+<td headers="statistic" class="gt_row gt_right">25.467</td>
+<td headers="p.value" class="gt_row gt_right">0.000</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="so-lets-step-through-our-hypothesis-test-33-2" class="level2">
+<h2 class="anchored" data-anchor-id="so-lets-step-through-our-hypothesis-test-33-2">So let’s step through our hypothesis test (3/3)</h2>
+<div class="highlight-container">
+<div class="highlight">
+<ol start="7" type="1">
+<li>Write conclusion for hypothesis test</li>
+</ol>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>We reject the null hypothesis at the 5% significance level. There is sufficient evidence that countries’ food supply or water source (or both) contribute significantly to the prediction of life expectancy, given that female literacy rate is already in the model (p-value &lt; 0.001).</p>
+</section>
+<section id="other-ways-to-word-the-hypothesis-tests-reference" class="level2">
+<h2 class="anchored" data-anchor-id="other-ways-to-word-the-hypothesis-tests-reference">Other ways to word the hypothesis tests (reference)</h2>
+<ul>
+<li><p>Single covariate subset F-test</p>
+<ul>
+<li><span class="math inline">\(H_0:\)</span> <span class="math inline">\(X^*\)</span> does not significantly improve the prediction of <span class="math inline">\(Y\)</span>, given that <span class="math inline">\(X_1, X_2, \ldots, X_p\)</span> are already in the model</li>
+<li><span class="math inline">\(H_A:\)</span> <span class="math inline">\(X^*\)</span> significantly improves the prediction of <span class="math inline">\(Y\)</span>, given that <span class="math inline">\(X_1, X_2, \ldots, X_p\)</span> are already in the model</li>
+</ul></li>
+<li><p>Group covariate subset F-test</p>
+<ul>
+<li><span class="math inline">\(H_0:\)</span> The addition of the <span class="math inline">\(s\)</span> variables <span class="math inline">\(X_1^*, X_2^*, \ldots, X_s^*\)</span> does not significantly improve the prediction of <span class="math inline">\(Y\)</span>, given that <span class="math inline">\(X_1, X_2, \ldots, X_q\)</span> are already in the model</li>
+<li><span class="math inline">\(H_A:\)</span> The addition of the <span class="math inline">\(s\)</span> variables <span class="math inline">\(X_1^*, X_2^*, \ldots, X_s^*\)</span> significantly improves the prediction of <span class="math inline">\(Y\)</span>, given that <span class="math inline">\(X_1, X_2, \ldots, X_q\)</span> are already in the model</li>
+</ul></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -64,50 +64,6 @@ It is a good idea to try rendering your document from time to time as you go alo
 
 ### Question 1
 
-For this problem we will be using the `penguins` dataset from the `palmerpenguins` R package. We will look at the association between flipper length of penguins (measured in mm) and specific species of penguins.
-
-Description from help file:
-
-> Includes measurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.
-
-[More info about the data.](https://allisonhorst.github.io/palmerpenguins/)
-
-```{r}
-# first install the palmerpenguins package
-# install.packages("palmerpenguins")
-library(palmerpenguins)
-data(penguins)
-
-# run the command below to learn more about the variables in the penguins dataset
-# ?penguins
-```
-
-#### Part a
-
-Calculate the average flipper lengths stratified by each of the penguin species.
-
-#### Part b
-
-Make a scatterplot (with jigger) of flipper lengths by species, and include diamond-shape points for the averages of the flipper lengths for each of the species.
-
-#### Part c
-
-Write out the fitted regression equation that models the flipper length by penguin species. Use LaTeX math markup or insert an image of your equation. Do not yet insert values for the regression coefficients, i.e. use the generic coefficients $\widehat{\beta}_0, \widehat{\beta}_1$. Use Adelie as the reference level.
-
-#### Part d
-
-Run the linear regression of flipper lengths vs. species in R, and display the regression table output. Which species did R choose as the reference level, and how did you determine this?
-
-#### Part e
-
-How do we interpret each of the regression coefficients for this model? *Write out a separate interpretation for each of the coefficients.*
-
-#### Part f
-
-Calculate the mean flipper length (and the 95% CI) of penguins in the Chinstrap and Gentoo species using the `predict()` function.
-
-### Question 2
-
 A team of nutrition experts investigated the influence of protein content in diet on the relationship between age (explanatory variable) and height (outcome, in centimeters) for children. Using the dataset, `CH12Q03.xls`, answer the following questions.
 
 This question was adapted from [this textbook](https://catalog.lib.uchicago.edu/vufind/Record/7546272).
@@ -136,7 +92,7 @@ Is it possible that diet is a confounder? Note: this will depend on your results
 
 Write the fitted regression equation for our model in Part b. Write the respective regression lines for each specific diet group: protein rich and protein poor. Interpret the slope of each regression line (no need for a 95% CI here).
 
-### Question 3
+### Question 2
 
 An experiment was conducted regarding a quantitative analysis of factors found in high-density lipoprotein (HDL) in a sample of human blood serum. Three variables thought to be predictive of, or associated with, HDL measurement (Y) were the total cholesterol (X1) and total triglyceride (X2) concentrations in the sample, plus the presence or absence of a certain sticky component of the serum called sinking pre-beta or SPB (X3), coded as 0 if absent and 1 if present. Using the dataset, `CH09Q05.xls`, answer the following questions.
 

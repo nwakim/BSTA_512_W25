@@ -1,0 +1,1152 @@
+---
+title: "Lesson 5: SLR-ish: Categorical Covariates"
+author: "Meike Niederhausen and Nicky Wakim"
+title-slide-attributes:
+    data-background-color: "#213c96"
+date: "01/22/2025"
+categories: ["Week 6"]
+format: 
+  revealjs:
+    theme: "../simple_NW.scss"
+    chalkboard: true
+    slide-number: true
+    show-slide-number: all
+    width: 1955
+    height: 1100
+    footer: "Lesson 5: Categorical Covariates"
+    html-math-method: mathjax
+    highlight-style: ayu
+execute:
+  freeze: auto  # re-render only when source changes
+---
+
+```{r}
+#| label: "setup" 
+#| include: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(lubridate)
+library(janitor)
+library(here)
+library(broom)
+library(knitr)
+library(readxl)
+library(gt)
+
+# Load the data - update code if the csv file is not in the same location on your computer
+# If you need to download the file, please go to ur shared folder under Data > Slides
+gapm <- read_excel("data/Gapminder_vars_2011.xlsx", 
+                   na = "NA")  # important!!!! 
+
+gapm_sub <- gapm %>% 
+  drop_na(LifeExpectancyYrs, FemaleLiteracyRate, FoodSupplykcPPD)
+
+glimpse(gapm_sub)
+```
+
+```{r echo=FALSE}
+# Load the data - update code if the csv file is not in the same location on your computer
+gapm <- read_excel("data/gapminder_vars_2011.xlsx", 
+                   na = "NA")  # important!!!! 
+# na = "NA" is telling R that the NA's in the Excel sheet are actual missing values and not character strings
+
+# glimpse(gapm)
+# Note that life expectancy and female literacy rate have different column names in this dataset
+
+# gapm %>% tabyl(four_regions) # no missing values
+
+# Removing all rows (countries) that have 
+# a missing value for any of the variables listed in drop_na()
+gapm2 <- gapm %>% # called it gapm2_sub3 to be consistent with Day 7 notes
+  drop_na(LifeExpectancyYrs, four_regions) %>%
+  mutate(four_regions = factor(four_regions, levels = c("africa", "americas", "asia", "europe"), labels = c("Africa", "Americas", "Asia", "Europe"))) %>%
+  rename(income_levels = `World bank, 4 income groups 2017`)
+# dim(gapm)
+# dim(gapm2)
+```
+
+# Learning Objectives
+
+1.  Understand why we need a new way to code categorical variables compared to continuous variables
+2.  Write the regression equation for a categorical variable using reference cell coding
+3.  Calculate and interpret coefficients for reference cell coding
+4.  Change the reference level in a categorical variable for reference cell coding
+5.  Create new variables and interpret coefficient for ordinal / scoring coding
+
+## Why "SLR-*ish*"?
+
+- The **strict** definition of simple linear regression: only two variables that are BOTH continuous
+
+ 
+
+- Common (but kinda wrong) use of simple linear regression: only two variables with outcome continuous and predictor not specified
+
+ 
+
+- I'm including multi-level categorical covariates in SLR mostly because it's easier to learn now!
+
+
+## Let's map that to our regression analysis process
+
+::: box
+![](../img_slides/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"} ![](../img_slides/arrow2.png){.absolute top="13.5%" right="28.4%" width="155"}![](../img_slides/arrow_back4.png){.absolute top="7.5%" right="30.5%" width="820"} ![](../img_slides/arrow_down.png){.absolute top="60.5%" right="48%" width="85"}
+
+::: columns
+::: {.column width="30%"}
+::: RAP1
+::: RAP1-title
+Model Selection
+:::
+
+::: RAP1-cont
+-   Building a model
+
+-   Selecting variables
+
+-   Prediction vs interpretation
+
+-   Comparing potential models
+:::
+:::
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="30%"}
+::: RAP2
+::: RAP2-title
+Model Fitting
+:::
+
+::: RAP2-cont
+-   Find best fit line
+
+-   Using OLS in this class
+
+-   Parameter estimation
+
+-   Categorical covariates
+
+-   Interactions
+:::
+:::
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="30%"}
+::: RAP3
+::: RAP3-title
+Model Evaluation
+:::
+
+::: RAP3-cont
+-   Evaluation of model fit
+-   Testing model assumptions
+-   Residuals
+-   Transformations
+-   Influential points
+-   Multicollinearity
+:::
+:::
+:::
+:::
+:::
+
+::: RAP4
+::: RAP4-title
+Model Use (Inference)
+:::
+
+::: RAP4-cont
+::: columns
+::: {.column width="50%"}
+-   Inference for coefficients
+-   Hypothesis testing for coefficients
+:::
+
+::: {.column width="50%"}
+-   Inference for expected $Y$ given $X$
+:::
+:::
+:::
+:::
+
+# Learning Objectives
+
+::: lob
+1.  Understand why we need a new way to code categorical variables compared to continuous variables
+:::
+2.  Write the regression equation for a categorical variable using reference cell coding
+3.  Calculate and interpret coefficients for reference cell coding
+4.  Change the reference level in a categorical variable for reference cell coding
+5.  Create new variables and interpret coefficient for ordinal / scoring coding
+
+## Still looking at Gapminder Life Expectancy data
+
+-   We will look at life expectancy vs. these world regions
+
+-   [Gapminder uses four world regions](https://www.gapminder.org/fw/four-regions/)
+
+    -   Africa
+    -   The Americas
+    -   Asia
+    -   Europe
+    
+- World region is a **multi-level categorical covariate**: it has four regions 
+    
+ 
+
+- Note: I am calling the expected life expectancy $\widehat{LE}$
+  - Previously, I have written $\widehat{\text{life expectancy}}$
+
+## Linear regression with a categorical covariate (1/2)
+
+::: columns
+::: {.column width="33%"}
+Bad option for visualization:
+
+```{r fig.height=7, fig.width=7, warning=F, fig.align='center'}
+#| echo: true
+#| code-fold: true
+ggplot(gapm2, aes(x = four_regions, y = LifeExpectancyYrs)) +
+  geom_point() +
+  labs(x = "World region", 
+       y = "Country life expectancy (years)",
+       title = "Life expectancy vs. world region") +
+  theme(axis.title = element_text(size = 20), 
+        axis.text = element_text(size = 20), 
+        title = element_text(size = 20))
+```
+:::
+
+::: {.column width="33%"}
+Good option for visualization:
+
+```{r fig.height=7, fig.width=7, warning=F, fig.align='center'}
+#| echo: true
+#| code-fold: true
+ggplot(gapm2, aes(x = four_regions, y = LifeExpectancyYrs)) +
+  geom_jitter(size = 1, alpha = .6, width = 0.2) +
+  stat_summary(fun = mean, geom = "point", size = 8, shape = 18) +
+  labs(x = "World region", 
+       y = "Country life expectancy (years)",
+       title = "Life expectancy vs. world region",
+       caption = "Diamonds = region averages") +
+  theme(axis.title = element_text(size = 20), 
+        axis.text = element_text(size = 20), 
+        title = element_text(size = 20))
+```
+
+- Used `geom_jitter()`
+:::
+
+::: {.column width="33%"}
+Good option for visualization:
+
+```{r fig.height=7, fig.width=7, warning=F, fig.align='center'}
+#| echo: true
+#| code-fold: true
+ggplot(gapm2, aes(x = four_regions, y = LifeExpectancyYrs)) +
+  geom_boxplot() +
+  labs(x = "World region", 
+       y = "Country life expectancy (years)",
+       title = "Life expectancy vs. world region") +
+  theme(axis.title = element_text(size = 20), 
+        axis.text = element_text(size = 20), 
+        title = element_text(size = 20))
+```
+:::
+:::
+
+## Linear regression with a categorical covariate (2/2)
+
+::: columns
+::: {.column width="50%"}
+-   When using a categorical covariate/predictor (that is not ordered),
+
+    -   We do **NOT**, technically, find a best-fit line
+
+-   Instead we model the **means** of the outcome
+
+    -   For the different levels of the categorical variable
+
+ 
+
+-   In 511, we used Kruskal-Wallis test and our ANOVA table to test if groups means were statistically different from one another
+
+-   We can do this [using linear models](https://lindeloev.github.io/tests-as-linear/linear_tests_cheat_sheet.pdf) AND we can include other variables in the model
+:::
+
+::: {.column width="50%"}
+```{r fig.height=7, fig.width=7, warning=F, fig.align='center'}
+#| echo: false
+ggplot(gapm2, aes(x = four_regions, y = LifeExpectancyYrs)) +
+  geom_jitter(size = 1, alpha = .6, width = 0.2) +
+  stat_summary(fun = mean, geom = "point", size = 8, shape = 18) +
+  labs(x = "World region", 
+       y = "Country life expectancy (years)",
+       title = "Life expectancy vs. world region",
+       caption = "Diamonds = region averages") +
+  theme(axis.title = element_text(size = 20), 
+        axis.text = element_text(size = 20), 
+        title = element_text(size = 20))
+```
+:::
+:::
+
+## There are different ways to code categorical variables
+
+-   Reference cell coding (sometimes called dummy coding)
+    -   Compares each level of a variable to the omitted (reference) level
+-   Effect coding (sometimes called sum coding or deviation coding)
+    -   Compares deviations from the grand mean
+    -   Not covered in our class
+-   Ordinal encoding (sometimes called scoring)
+    -   Categories have a natural, even spaced ordering
+
+ 
+
+If you want to learn more about these and other coding schemes:
+
+-   [Coding Systems for Categorical Variables in Regression Analysis](https://stats.oarc.ucla.edu/spss/faq/coding-systems-for-categorical-variables-in-regression-analysis-2/)
+-   [Categorical Data Encoding Techniques](https://medium.com/aiskunks/categorical-data-encoding-techniques-d6296697a40f#:~:text=Ordinal%20Encoding%20is%20used%20when,variable%20have%20a%20Natural%20Ordering.&text=In%20this%20method%2C%20the%20categories,2%2C%20and%203%2C%20respectively.)
+-   [Coding Schemes for Categorical Variables](https://phillipalday.com/stats/coding.html)
+
+## Building the regression equation: problem with a single coefficient
+
+::: columns
+::: column
+**Previously: simple linear regression**
+
+-   Outcome $Y$ = numerical variable
+-   Predictor $X$ = numerical variable
+
+The regression (best-fit) line is: $$\widehat{Y} = \widehat{\beta}_0 + \widehat{\beta}_1 \cdot X $$
+:::
+
+::: column
+**New: what if the explanatory variable is categorical?**
+
+*Naively*, we could write: $\widehat{Y} = \widehat{\beta}_0 + \widehat{\beta}_1 \cdot X$
+
+Or, with our variables: $$\widehat{\textrm{LE}} = \widehat{\beta}_0 + \widehat{\beta}_1 \cdot \textrm{WR} $$
+
+-   But what does $\textrm{WR}$ (world regions) mean in this equation?
+
+    -   What values can it take? How do we represent each region?
+
+ 
+
+- Note: the above is WRONG
+:::
+:::
+
+## Building the regression equation: how do we map categories to means?
+
+-   If we only have world region in our model and want to map it to an expected life expectancy...
+
+::: columns
+::: {.column width="50%"}
+```{r}
+means_LE = gapm2 %>%
+  group_by(four_regions) %>%
+  summarise(mean = mean(LifeExpectancyYrs))
+```
+
+-   We want to create a function that can map each region to life expectancy
+
+    -   If in Africa: $\widehat{LE} = 61.32$ years
+
+    -   If in the Americas: $\widehat{LE} = 74.64$ years
+
+    -   If in Asia: $\widehat{LE} = 71.70$ years
+
+    -   If in Europe: $\widehat{LE} = 77.61$ years
+
+ 
+
+-   Can we make one equation for $\widehat{LE}$ by putting the "if" statements within the equation?
+:::
+
+::: {.column width="50%"}
+```{r fig.height=8, fig.width=8, warning=F, fig.align='center'}
+#| echo: false
+ggplot(gapm2, aes(x = four_regions, y = LifeExpectancyYrs)) +
+  geom_jitter(size = 1, alpha = .6, width = 0.2) +
+  stat_summary(fun = mean, geom = "point", size = 8, shape = 18) +
+  labs(x = "World region", 
+       y = "Country life expectancy (years)",
+       title = "Life expectancy vs. world region",
+       caption = "Diamonds = region averages") +
+  theme(axis.title = element_text(size = 22), 
+        axis.text = element_text(size = 22), 
+        title = element_text(size = 22))
+```
+:::
+:::
+
+## Building the regression equation: Indicator functions
+
+-   In order to represent each region in the equation, we need to introduce a new function:
+
+    -   Indicator function:
+
+    $$I(X = x) \text{ or } I(x) = 
+    \left\{
+    \begin{array}{@{}ll@{}}
+     1, & \text{if}\ X = x \\
+      0, & \text{else}
+     \end{array}\right. $$
+
+    -   This basically a binary yes/no if $X$ is a specific value $x$
+
+-   For example, if we want to identify a country as being in the Americas region, we can make:
+
+    $$I(WR = \text{Americas}) \text{ or }I(\text{Americas}) = 
+    \left\{
+    \begin{array}{@{}ll@{}}
+     1, & \text{if}\ WR = \text{Americas} \\
+      0, & \text{else}
+     \end{array}\right. $$
+
+## Poll Everywhere Question 1
+
+
+
+# Learning Objectives
+
+1.  Understand why we need a new way to code categorical variables compared to continuous variables
+
+::: lob
+2.  Write the regression equation for a categorical variable using reference cell coding
+:::
+
+3.  Calculate and interpret coefficients for reference cell coding
+4.  Change the reference level in a categorical variable for reference cell coding
+5.  Create new variables and interpret coefficient for ordinal / scoring coding
+
+## Building the regression equation: Indicators in our equation
+
+::: columns
+::: {.column width="50%"}
+$$\begin{aligned}
+\widehat{\textrm{LE}} = & `r round(means_LE$mean[1], 2)` \cdot I(\text{Africa}) + `r round(means_LE$mean[2], 2)` \cdot I(\text{Americas}) + \\ &`r round(means_LE$mean[3], 2)` \cdot I(\text{Asia}) + `r round(means_LE$mean[4], 2)` \cdot I(\text{Europe})
+\end{aligned}$$
+
+-   However, a linear regression equation still requires an intercept!
+
+    -   So one of our regions need to become our "reference" group
+    -   We'll use Africa as our reference
+    -   That means we need to adjust all the numbers
+
+$$\begin{aligned}
+\widehat{\textrm{LE}} = & `r round(means_LE$mean[1], 2)` + `r round(means_LE$mean[2]-means_LE$mean[1], 2)` \cdot I(\text{Americas}) + \\ &`r round(means_LE$mean[3]-means_LE$mean[1], 2)` \cdot I(\text{Asia}) + `r round(means_LE$mean[4]-means_LE$mean[1], 2)` \cdot I(\text{Europe}) \\
+\widehat{\textrm{LE}} = & \widehat\beta_0 + \widehat\beta_1 \cdot I(\text{Americas}) + \\ & \widehat\beta_2 \cdot I(\text{Asia}) + \widehat\beta_3 \cdot I(\text{Europe})
+\end{aligned}$$
+:::
+
+::: {.column width="50%"}
+```{r fig.height=8, fig.width=8, warning=F, fig.align='center'}
+#| echo: false
+ggplot(gapm2, aes(x = four_regions, y = LifeExpectancyYrs)) +
+  geom_jitter(size = 1, alpha = .6, width = 0.2) +
+  stat_summary(fun = mean, geom = "point", size = 8, shape = 18) +
+  labs(x = "World region", 
+       y = "Country life expectancy (years)",
+       title = "Life expectancy vs. world region",
+       caption = "Diamonds = region averages") +
+  theme(axis.title = element_text(size = 22), 
+        axis.text = element_text(size = 22), 
+        title = element_text(size = 22))
+```
+:::
+:::
+
+## Viewing the regression equation another way
+
+$$\widehat{\textrm{LE}} =  \widehat\beta_0 + \widehat\beta_1 \cdot I(\text{Americas}) + \widehat\beta_2 \cdot I(\text{Asia}) + \widehat\beta_3 \cdot I(\text{Europe})$$
+
+::: columns
+::: {.column width="60%"}
++--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
+| World region | Regression equation for WR                                                                                                                                  | Average Life Expectancy for WR                              |
++==============+=============================================================================================================================================================+=============================================================+
+| Africa       | $\begin{aligned} \widehat{\textrm{LE}} = &\widehat\beta_0 + \widehat\beta_1 \cdot 0 + \\ & \widehat\beta_2 \cdot 0 + \widehat\beta_3 \cdot 0 \end{aligned}$ | $\widehat{\textrm{LE}} = \widehat\beta_0$                   |
++--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
+| Americas     | $\begin{aligned} \widehat{\textrm{LE}} = &\widehat\beta_0 + \widehat\beta_1 \cdot 1+ \\ & \widehat\beta_2 \cdot 0 + \widehat\beta_3 \cdot 0 \end{aligned}$  | $\widehat{\textrm{LE}} = \widehat\beta_0 + \widehat\beta_1$ |
++--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
+| Asia         | $\begin{aligned} \widehat{\textrm{LE}} = &\widehat\beta_0 + \widehat\beta_1 \cdot 0 + \\ & \widehat\beta_2 \cdot 1 + \widehat\beta_3 \cdot 0 \end{aligned}$ | $\widehat{\textrm{LE}} = \widehat\beta_0 + \widehat\beta_2$ |
++--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
+| Europe       | $\begin{aligned} \widehat{\textrm{LE}} = &\widehat\beta_0 + \widehat\beta_1 \cdot 0 + \\ & \widehat\beta_2 \cdot 0 + \widehat\beta_3 \cdot 1 \end{aligned}$ | $\widehat{\textrm{LE}} = \widehat\beta_0 + \widehat\beta_3$ |
++--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
+:::
+
+::: {.column width="40%"}
+```{r fig.height=8, fig.width=8, warning=F, fig.align='center'}
+#| echo: false
+ggplot(gapm2, aes(x = four_regions, y = LifeExpectancyYrs)) +
+  geom_jitter(size = 1, alpha = .6, width = 0.2) +
+  stat_summary(fun = mean, geom = "point", size = 8, shape = 18) +
+  labs(x = "World region", 
+       y = "Country life expectancy (years)",
+       title = "Life expectancy vs. world region",
+       caption = "Diamonds = region averages") +
+  theme(axis.title = element_text(size = 22), 
+        axis.text = element_text(size = 22), 
+        title = element_text(size = 22))
+```
+:::
+:::
+
+# Learning Objectives
+
+1.  Understand why we need a new way to code categorical variables compared to continuous variables
+2.  Write the regression equation for a categorical variable using reference cell coding
+
+::: lob
+3.  Calculate and interpret coefficients for reference cell coding
+:::
+
+4.  Change the reference level in a categorical variable for reference cell coding
+5.  Create new variables and interpret coefficient for ordinal / scoring coding
+
+## Interpretation of regression equation coefficients
+
+-   Remember: expected, mean, and average are interchangeable
+
++---------------------+--------------------------------------------------------------------+
+| Coefficient         | Interpretation                                                     |
++=====================+====================================================================+
+| $\widehat{\beta}_0$ | Expected/mean/average life expectancy of Africa                    |
++---------------------+--------------------------------------------------------------------+
+| $\widehat{\beta}_1$ | Difference in mean life expectancy of the Americas and Africa -OR- |
+|                     |                                                                    |
+|                     | Mean difference in life expectancy of the Americas and Africa      |
++---------------------+--------------------------------------------------------------------+
+| $\widehat{\beta}_2$ | Difference in mean life expectancy between Asia and Africa -OR-    |
+|                     |                                                                    |
+|                     | Mean difference in life expectancy between Asia and Africa         |
++---------------------+--------------------------------------------------------------------+
+| $\widehat{\beta}_3$ | Difference in mean life expectancy between Europe and Africa -OR-  |
+|                     |                                                                    |
+|                     | Mean difference in life expectancy between Europe and Africa       |
++---------------------+--------------------------------------------------------------------+
+
+## Poll Everywhere Question 2
+
+
+
+## Regression table with `lm()` function
+
+```{r}
+#| echo: true
+model1 <- lm(LifeExpectancyYrs ~ four_regions, data = gapm2)
+tidy(model1, conf.int=T) %>% gt() %>% tab_options(table.font.size = 38) %>% 
+  fmt_number(decimals = 2)
+```
+
+$$\widehat{\textrm{LE}} = `r round(means_LE$mean[1], 2)` + `r round(means_LE$mean[2]-means_LE$mean[1], 2)` \cdot I(\text{Americas}) + `r round(means_LE$mean[3]-means_LE$mean[1], 2)` \cdot I(\text{Asia}) + `r round(means_LE$mean[4]-means_LE$mean[1], 2)` \cdot I(\text{Europe})$$
+
+-   Which world region did R choose as the reference level?
+
+-   How you would calculate the mean life expectancies of world regions using *only* the results from the regression table?
+
+## Bringing in the numbers/units/95% CI
+
++---------------------+----------------------------------------------------------------------------------------------------------------------+
+| Coefficient         | Interpretation                                                                                                       |
++=====================+======================================================================================================================+
+| $\widehat{\beta}_0$ | Average life expectancy of countries in Africa is 61.32 years (95% CI: 59.81, 62.83).                                |
++---------------------+----------------------------------------------------------------------------------------------------------------------+
+| $\widehat{\beta}_1$ | The difference in mean life expectancy between countries in the Americas and Africa is 13.32 (95% CI: 10.89, 15.74). |
++---------------------+----------------------------------------------------------------------------------------------------------------------+
+| $\widehat{\beta}_2$ | The difference in mean life expectancy between countries in the Americas and Africa is 10.38 (95% CI: 8.25, 12.51).  |
++---------------------+----------------------------------------------------------------------------------------------------------------------+
+| $\widehat{\beta}_3$ | The difference in mean life expectancy between countries in Europe and Africa is 18.52 (95% CI: 14.05, 18.52).       |
++---------------------+----------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+-   Don't forget that we can use the confidence intervals to assess whether the mean difference with Africa is significant or not
+
+## We can also use R to report each region's average life expectancy
+
+**Find the 95% CI's for the mean life expectancy for the Americas, Asia, and Europe**
+
+-   Use the base R `predict()` function (see Lesson 4 for more info)
+-   Requires specification of a `newdata` "value"
+
+```{r}
+#| echo: true
+newdata <- data.frame(four_regions = c("Africa", "Americas", "Asia", "Europe")) 
+
+```
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: true
+(pred = predict(model1, 
+                newdata=newdata, 
+                interval="confidence"))
+```
+:::
+
+::: {.column width="50%"}
+::: fact
+::: fact-title
+Interpretations
+:::
+
+::: fact-cont
+-   The average life expectancy for countries in the Americas is `r round(pred[2,1], 2)` years (95% CI: `r round(pred[2,2], 2)`, `r round(pred[2,3], 2)`).
+-   The average life expectancy for countries in Asia is `r round(pred[3,1], 2)` years (95% CI: `r round(pred[3,2], 2)`, `r round(pred[3,3], 2)`).
+-   The average life expectancy for countries in Europe is `r round(pred[4,1], 2)` years (95% CI: `r round(pred[4,2], 2)`, `r round(pred[4,3], 2)`).
+:::
+:::
+:::
+:::
+
+## Another way to look at coefficient values
+
+$$\widehat{\textrm{LE}} =  \widehat\beta_0 + \widehat\beta_1 \cdot I(\text{Americas}) +  \widehat\beta_2 \cdot I(\text{Asia}) + \widehat\beta_3 \cdot I(\text{Europe})$$
+
+```{r}
+#| echo: true
+#| code-fold: true
+
+# means of each level of `four_regions`
+gapm2_ave <- gapm2 %>% 
+  group_by(four_regions) %>% 
+  summarise(
+    life_ave = mean(LifeExpectancyYrs))
+
+# mean of `africa`
+mean_africa <- gapm2_ave %>% 
+  filter(four_regions == "Africa") %>% 
+  pull(life_ave)
+
+# differences in means between levels of `four_regions` and `africa`
+gapm2_ave_diff <- gapm2_ave %>% 
+  mutate(`Difference with Africa` = life_ave - mean_africa) %>%
+  rename(`World regions` = four_regions, 
+         `Average life expectancy` = life_ave)
+
+# At the beginning of the Rmd we loaded knitr, which is where the kable command is from
+# library(knitr)
+gapm2_ave_diff %>% kable(
+  digits = 1,
+  format = "markdown"
+  ) 
+```
+
+$$\widehat{\textrm{LE}} = `r round(means_LE$mean[1], 2)` + `r round(means_LE$mean[2]-means_LE$mean[1], 2)` \cdot I(\text{Americas}) + `r round(means_LE$mean[3]-means_LE$mean[1], 2)` \cdot I(\text{Asia}) + `r round(means_LE$mean[4]-means_LE$mean[1], 2)` \cdot I(\text{Europe})$$
+
+# 10 minute break here?
+
+# Learning Objectives
+
+1.  Understand why we need a new way to code categorical variables compared to continuous variables
+2.  Write the regression equation for a categorical variable using reference cell coding
+3.  Calculate and interpret coefficients for reference cell coding
+
+::: lob
+4.  Change the reference level in a categorical variable for reference cell coding
+:::
+
+5.  Create new variables and interpret coefficient for ordinal / scoring coding
+
+## Reference levels
+
+**Why is `Africa` not one of the variables in the regression equation?**
+
+$$\widehat{\textrm{LE}} =  \widehat\beta_0 + \widehat\beta_1 \cdot I(\text{Americas}) +  \widehat\beta_2 \cdot I(\text{Asia}) + \widehat\beta_3 \cdot I(\text{Europe})$$
+
+-   Categorical variables have to have at least 2 levels. If they have 2 levels, we call them *binary*
+
+ 
+
+-   We choose one level as our **reference level** to which all other levels of the categorical variable are compared
+
+    -   The levels $\text{Americas}, \text{Asia}, \text{Europe}$ are compared to the level $\text{Africa}$
+
+ 
+
+-   The **intercept** of the regression equation is the *mean of the outcome restricted to the reference level*
+
+    -   Recall that the intercept is the mean life expectancy of Africa, which was our reference level
+
+ 
+
+-   **If the categorical variable has** $r$ levels, then we need $r-1$ variables/coefficients to model it!
+
+## We can change the reference level to `Europe` (1/2)
+
+-   Suppose we want to compare the mean life expectancies of world regions to the $\text{Europe}$ level instead of $\text{Africa}$
+
+-   Below is the estimated regression equation for when $Africa$ is the reference level
+
+$$\widehat{\textrm{LE}} =  \widehat\beta_0 + \widehat\beta_1 \cdot I(\text{Americas}) +  \widehat\beta_2 \cdot I(\text{Asia}) + \widehat\beta_3 \cdot I(\text{Europe})$$
+
+-   Update the variables to make $Europe$ the reference level:
+
+$$\widehat{\textrm{LE}} =  \widehat\beta_0 + \widehat\beta_1 \cdot I(\text{Africa}) +  \widehat\beta_2 \cdot I(\text{Americas}) + \widehat\beta_3 \cdot I(\text{Asia})$$
+
+## We can change the reference level to `Europe` (2/2)
+
+-   Now update the coefficients of the regression equation using the output below.
+
+```{r echo=FALSE}
+mean_europe <- gapm2_ave %>% 
+  filter(four_regions == "Europe") %>% 
+  pull(life_ave)
+
+# mean_europe
+
+gapm2_ave_diff2 <- gapm2_ave %>% 
+  mutate(
+    `Difference with Europe` = life_ave - mean_europe
+  ) %>%
+  rename(`World regions` = four_regions, 
+         `Average life expectancy` = life_ave)
+
+# At the beginning of the Rmd I loaded knitr, which is where the kable command is from
+# library(knitr)
+gapm2_ave_diff2 %>% kable(
+  digits = 2,
+  format = "markdown"
+  ) 
+```
+
+```{r echo=FALSE}
+b0 <- mean_europe
+
+coeff_europe <- gapm2_ave_diff2$`Difference with Europe`
+# coeff_europe
+
+b1 <- coeff_europe[1]
+b2 <- coeff_europe[2]
+b3 <- coeff_europe[3]
+# b0; b1; b2; b3
+```
+
+$$\widehat{\textrm{LE}} = `r round(mean_europe,2)` `r round(coeff_europe[1],2)` \cdot I(\text{Africa}) `r round(coeff_europe[2],2)` \cdot I(\text{Americas}) `r round(coeff_europe[3],2)` \cdot I(\text{Asia})$$
+
+## R: Change reference level to `Europe` (1/2)
+
+-   `four_regions` data type was originally a `character` - check this with `str()`
+
+```{r}
+#| echo: true
+str(gapm$four_regions) 
+```
+
+-   In order to change the reference level, we need to convert it to data type `factor`
+
+    -   I also did this at the beginning to capitalize each region
+
+```{r}
+#| echo: true
+
+gapm_ex = gapm %>% 
+ mutate(
+   four_regions = factor(four_regions, 
+                         levels = c("africa", "americas", "asia", "europe"), 
+                         labels = c("Africa", "Americas", "Asia", "Europe"))
+   )
+str(gapm_ex$four_regions) 
+levels(gapm_ex$four_regions) # order of factor levels
+```
+
+## R: Change reference level to `Europe` (2/2)
+
+-   Now change the order of the factor levels
+-   Code below uses `fct_relevel()` from the `forcats` package that gets loaded as a part of the `tidyverse`
+-   *Any levels not mentioned will be left in their existing order, after the explicitly mentioned levels.*
+
+```{r}
+#| echo: true
+gapm2 <- gapm2 %>% 
+  mutate(
+    four_regions = fct_relevel(four_regions, "Europe")
+    )
+```
+
+- Check the order:
+```{r}
+#| echo: true
+
+levels(gapm2$four_regions)
+```
+
+## R: Run model with `Europe` as the reference level
+
+```{r}
+#| echo: true
+levels(gapm2$four_regions)
+model2 <- lm(LifeExpectancyYrs ~ four_regions, data = gapm2)
+tidy(model2) %>% gt() %>% tab_options(table.font.size = 35) %>% 
+  fmt_number(decimals = 2)
+```
+
+$$\begin{aligned}\widehat{\textrm{LE}} &=  \widehat\beta_0 + \widehat\beta_1 \cdot I(\text{Africa}) +  \widehat\beta_2 \cdot I(\text{Americas}) + \widehat\beta_3 \cdot I(\text{Asia}) \\ \widehat{\textrm{LE}} &= `r round(mean_europe,2)` `r round(coeff_europe[1],2)` \cdot I(\text{Africa}) `r round(coeff_europe[2],2)` \cdot I(\text{Americas}) `r round(coeff_europe[3],2)` \cdot I(\text{Asia}) \end{aligned}$$
+
+## Fitted values & residuals
+
+::: columns
+::: {.column width="40%"}
+Similar to as before:
+
+-   **Observed values** $Y$ are the values in the dataset
+
+-   **Fitted values** $\widehat{Y}$ are the values that ~~fall on the best-fit line for a specific value of x~~ are the *means of the outcome stratified by the categorical predictor's levels*
+
+-   **Residuals** ($\widehat{\epsilon} = Y - \widehat{Y}$) are the differences between the two
+:::
+
+::: {.column width="60%"}
+```{r fig.height=8, fig.width=8, warning=F, fig.align='center'}
+#| echo: false
+ggplot(gapm2, aes(x = four_regions, y = LifeExpectancyYrs)) +
+  geom_jitter(size = 1, alpha = .6, width = 0.2) +
+  stat_summary(fun = mean, geom = "point", size = 8, shape = 18) +
+  labs(x = "World region", 
+       y = "Country life expectancy (years)",
+       title = "Life expectancy vs. world region",
+       caption = "Diamonds = region averages") +
+  theme(axis.title = element_text(size = 20), 
+        axis.text = element_text(size = 20), 
+        title = element_text(size = 20))
+```
+:::
+:::
+
+## Fitted values are the same as the means
+
+```{r fig.height=6, fig.width=6, warning=F}
+#| echo: true
+#| fig-align: center
+
+m1_aug <- augment(model1)
+
+ggplot(m1_aug, aes(x = four_regions, y = .fitted)) + geom_point() +
+  theme(axis.text = element_text(size = 22), axis.title = element_text(size = 22))
+```
+
+
+## Residual plots (now the spread within each region)
+
+```{r fig.height=6, fig.width=6, warning=F}
+#| echo: true
+#| fig-align: center
+ggplot(m1_aug, aes(x=.resid)) + geom_histogram() + 
+  theme(axis.text = element_text(size = 22), title = element_text(size = 22))
+```
+
+## Poll Everywhere Question 3
+
+
+# Learning Objectives
+
+1.  Understand why we need a new way to code categorical variables compared to continuous variables
+2.  Write the regression equation for a categorical variable using reference cell coding
+3.  Calculate and interpret coefficients for reference cell coding
+4.  Change the reference level in a categorical variable for reference cell coding
+
+::: lob
+5.  Create new variables and interpret coefficient for ordinal / scoring coding
+:::
+
+## Let's look at life expectancy vs. four income levels
+
+-   [Gapminder discusses individual income levels](https://www.gapminder.org/fw/income-levels/)
+
+ 
+
+-   **Income levels for a country** is based on average GDP per capita, and grouped into:
+
+    -   Low income
+    
+    -   Lower middle income
+    
+    -   Upper middle income
+    
+    -   High income
+
+## Visualizing the ordinal variable, income levels
+
+::: columns
+::: {.column width="40%"}
+```{r fig.height=8, fig.width=8, warning=F, fig.align='center'}
+#| echo: false
+ggplot(gapm2, aes(x = income_levels, y = LifeExpectancyYrs)) +
+  geom_jitter(size = 1, alpha = .6, width = 0.2) +
+  stat_summary(fun = mean, geom = "point", size = 8, shape = 18) +
+  labs(x = "Income levels", 
+       y = "Country life expectancy (years)",
+       title = "Life expectancy vs. income levels",
+       caption = "Diamonds = Income level averages") +
+  theme(axis.title = element_text(size = 20), 
+        axis.text = element_text(size = 20), 
+        title = element_text(size = 20))
+```
+:::
+
+::: {.column width="60%"}
+A few changes needed:
+
+-   Put the income levels in order
+
+```{r}
+#| echo: true
+gapm2 = gapm2 %>%
+ mutate(income_levels = factor(income_levels, 
+            ordered = T, 
+            levels = c("Low income", 
+            "Lower middle income", 
+            "Upper middle income", 
+            "High income")))
+```
+
+-   Make the income levels readable
+
+    -   [How to Rotate Axis Labels in ggplot2?](https://www.r-bloggers.com/2021/09/how-to-rotate-axis-labels-in-ggplot2/)
+:::
+:::
+
+## Much better: Visualizing the ordinal variable, income levels {.smaller}
+
+::: columns
+::: {.column width="60%"}
+```{r fig.height=8, fig.width=8, warning=F, fig.align='center'}
+#| eval: false
+#| echo: true
+ggplot(gapm2, aes(x = income_levels, y = LifeExpectancyYrs)) +
+  geom_jitter(size = 1, alpha = .6, width = 0.2) +
+  stat_summary(fun = mean, geom = "point", size = 8, shape = 18) +
+  labs(x = "Income levels", 
+       y = "Country life expectancy (years)",
+       title = "Life expectancy vs. income levels",
+       caption = "Diamonds = Income level averages") +
+  theme(axis.title = element_text(size = 20), 
+        axis.text = element_text(size = 20), 
+        title = element_text(size = 20), 
+        axis.text.x=element_text(angle = 20, vjust = 1, hjust=1))
+```
+:::
+
+::: {.column width="40%"}
+```{r fig.height=8, fig.width=7, warning=F, fig.align='center'}
+#| echo: false
+ggplot(gapm2, aes(x = income_levels, y = LifeExpectancyYrs)) +
+  geom_jitter(size = 1, alpha = .6, width = 0.2) +
+  stat_summary(fun = mean, geom = "point", size = 8, shape = 18) +
+  labs(x = "Income levels", 
+       y = "Country life expectancy (years)",
+       title = "Life expectancy vs. income levels",
+       caption = "Diamonds = Income level averages") +
+  theme(axis.title = element_text(size = 20), 
+        axis.text = element_text(size = 20), 
+        title = element_text(size = 20), 
+        axis.text.x=element_text(angle = 20, vjust = 1, hjust=1))
+```
+:::
+:::
+
+## How can we code this variable?
+
+We have two options:
+
+::: columns
+::: column
+::: definition
+::: def-title
+Treat the levels as nominal, and use reference cell coding
+:::
+
+::: def-cont
+-   Like we did with world regions
+
+-   This option will not break the linearity assumption
+
+-   For $g$ categories of the variable, we will have $g-1$ coefficients to estimate
+:::
+:::
+:::
+
+::: column
+::: proof1
+::: proof-title
+Use the ordinal values to score the levels and treat as a numerical variable
+:::
+
+::: proof-cont
+-   Even if a variable is inherently ordered, we need to check that linearity holds if categories are represented as numbers
+
+-   This way of coding preserves more power in the model (less coefficients to estimate means more power)
+
+-   Only one coefficient to estimate
+:::
+:::
+:::
+:::
+
+## Some important considerations when scoring ordinal variables
+
+-   Even if a variable is inherently ordered, we need to check that linearity holds if categories are represented as numbers (more in next lessons)
+    - Linearity is an assumption of linear regression: that the relationship between X and Y is linear
+
+ 
+
+-   Assumes differences between adjacent groups are equal
+
+    -   Income levels are pre-set groups by Gapminder
+    -   Might be hard to interpret "every 1-level increase in income level"
+   
+ 
+ 
+-   Is the variable part of the main relationship that you are investigating? (even if linearity holds)
+
+    -   If yes, consider leaving as reference cell coding unless the interpretation makes sense
+    
+    -   If no, and just needed as an adjustment in your model, then power benefit of scoring might be worth it!
+
+## Check that linearity holds for income levels
+
+::: columns
+::: {.column width="40%"}
+-   Using visual assessment, linearity holds for our income levels (more in next lessons)
+
+-   We can use the ordinal encoding for income levels
+:::
+
+::: {.column width="60%"}
+```{r fig.height=8, fig.width=7.5, warning=F, fig.align='center'}
+#| echo: false
+ggplot(gapm2, aes(x = as.numeric(income_levels), y = LifeExpectancyYrs)) +
+  geom_jitter(size = 1, alpha = .6, width = 0.2) +
+  stat_summary(fun = mean, geom = "point", size = 8, shape = 18) +
+  geom_smooth(method = lm, se = FALSE) + 
+  labs(x = "Income levels", 
+       y = "Country life expectancy (years)",
+       title = "Life expectancy vs. income levels",
+       caption = "Diamonds = Income level averages") +
+  theme(axis.title = element_text(size = 20), 
+        axis.text = element_text(size = 20), 
+        title = element_text(size = 20))
+```
+:::
+:::
+
+## Poll Everywhere Question 4
+
+## Ordinal coding / Scoring
+
+-   Map each income level to a number
+
+-   Usually start at 1
+
+| Income Level        | Score |
+|---------------------|-------|
+| Low income          | 1     |
+| Lower middle income | 2     |
+| Upper middle income | 3     |
+| High income         | 4     |
+
+```{r}
+#| echo: true
+gapm2 = gapm2 %>%
+  mutate(income_num = as.numeric(income_levels))
+str(gapm2$income_num)
+```
+
+## Run the model with the scored income
+
+```{r}
+#| echo: true
+
+mod_inc2 = lm(LifeExpectancyYrs ~ income_num, data = gapm2)
+tidy(mod_inc2) %>% gt() %>% tab_options(table.font.size = 37) %>%
+  fmt_number(decimals = 2)
+```
+
+$$\begin{aligned}
+\widehat{\textrm{LE}} &=  \widehat\beta_0 + \widehat\beta_1 \cdot \text{Income level} \\
+\widehat{\textrm{LE}} &=  54.01 + 6.25 \cdot \text{Income level}
+\end{aligned}$$
+
+-   Keep in mind: We cannot calculate the expected outcome outside of the scoring values
+
+    -   For example, we cannot find the mean life expectancy for an income level of 1.5
+
+## Interpreting the model
+
+```{r}
+tidy(mod_inc2, conf.int=T) %>% gt() %>% tab_options(table.font.size = 37) %>%
+  fmt_number(decimals = 2)
+```
+
+$$\widehat{\textrm{LE}} =  54.01 + 6.25 \cdot \text{Income level}$$
+
+-   **Interpreting the intercept:** At an income level of 0, mean life expectancy is 54.01 (95% CI: 51.92, 56.10).
+
+    -   Note: this does not make sense because there is no income level of 0!
+    
+-   **Interpreting the coefficient for income:** For every 1-level increase in income level, mean life expectancy increases 6.25 years (95% CI: 5.52, 6.98).
+
+## What if life expectancy vs. income level looked like this?
+
+::: columns
+::: {.column width="50%"}
+```{r}
+set.seed(40)
+gapm2 = gapm2 %>% rowwise() %>% 
+  mutate(life_exp_sim = rnorm(1, mean = 23*log(8*(income_num-0.7)), sd=5))
+```
+
+```{r fig.height=8, fig.width=7.5, warning=F, fig.align='center'}
+#| echo: false
+ggplot(gapm2, aes(x = income_num, y = life_exp_sim)) +
+  geom_jitter(size = 1, alpha = .6, width = 0.2) +
+  stat_summary(fun = mean, geom = "point", size = 8, shape = 18) +
+  geom_smooth(method = lm, se = FALSE) + 
+  labs(x = "Income levels", 
+       y = "Country life expectancy (years)",
+       title = "Life expectancy vs. income levels",
+       caption = "Diamonds = Income level averages") +
+  theme(axis.title = element_text(size = 20), 
+        axis.text = element_text(size = 20), 
+        title = element_text(size = 20))
+```
+:::
+
+::: {.column width="50%"}
+-   No longer maintaining the linearity assumption
+-   Need to use reference cell coding
+
+ 
+
+-   We would fit the following model: 
+$$\begin{aligned}
+\textrm{LE} = & \beta_0 + \beta_1 \cdot I(\text{Lower middle income}) + \\ & \beta_2 \cdot I(\text{Upper middle income}) + \\ & \beta_3 \cdot I(\text{High income}) + \epsilon
+\end{aligned}$$
+:::
+:::
+
+## If time...
+
+[Let's walk through categorical variables that have multiple selections](https://weallcount.com/2022/10/27/4-approaches-to-multiple-race-questions/)
+
+-   So each group is not mutually exclusive
+
+-   We could make an indicator for each category, but individuals could be a part of multiple categories
+
+ 
+
+-   Also, thinking about income levels - can we combine two groups to make one??
+

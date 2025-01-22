@@ -1,0 +1,922 @@
+---
+title: "Lesson 6: SLR: Checking model assumptions"
+author: "Nicky Wakim"
+title-slide-attributes:
+    data-background-color: "#213c96"
+date: "01/27/2025"
+categories: ["Week 4"]
+format: 
+  revealjs:
+    theme: "../simple_NW.scss"
+    chalkboard: true
+    slide-number: true
+    show-slide-number: all
+    width: 1955
+    height: 1100
+    footer: "Lesson 6: SLR 4"
+    html-math-method: mathjax
+    highlight-style: ayu
+execute:
+  echo: true
+  freeze: auto  # re-render only when source changes
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r}
+#| label: "setup" 
+#| include: false
+#| message: false
+#| warning: false
+
+library(tidyverse)    
+library(openintro)
+library(janitor)
+library(rstatix)
+library(knitr)
+library(gtsummary)
+library(moderndive)
+library(gt)
+library(broom) 
+library(here) 
+library(pwr) 
+library(gridExtra) # NEW!!!
+
+# terminal: for icons
+# quarto install extension quarto-ext/fontawesome
+
+# set ggplot theme for slides 
+theme_set(theme_gray(base_size = 22))
+# theme_update(text = element_text(size=16))  # set global text size for ggplots
+
+gapm <- read_csv("data/lifeexp_femlit_2011.csv")
+```
+
+# Learning Objectives
+
+1.  Describe the model assumptions made in linear regression using
+    ordinary least squares
+
+2.  Determine if the relationship between our sampled X and Y is linear
+
+3.  Use QQ plots to determine if our fitted model holds the normality
+    assumption
+
+4.  Use residual plots to determine if our fitted model holds the
+    equality of variance assumption
+
+## Let's remind ourselves of the model that we have been working with
+
+-   We have been looking at the association between life expectancy and
+    female literacy rate
+
+-   We used OLS to find the coefficient estimates of our best-fit line
+
+::: columns
+::: {.column width="55%"}
+$$Y = \beta_0 + \beta_1 X + \epsilon$$
+
+```{r}
+#| echo: false
+
+model1 <- lm(life_expectancy_years_2011 ~
+               female_literacy_rate_2011,
+                 data = gapm)
+# Get regression table:
+tidy(model1) %>% gt() %>% 
+ tab_options(table.font.size = 40) %>%
+ fmt_number(decimals = 2)
+```
+
+```{=tex}
+\begin{aligned}
+\widehat{Y} &= \widehat\beta_0 + \widehat\beta_1 \cdot X\\
+\widehat{\text{life expectancy}} &= 50.9 + 0.232 \cdot \text{female literacy rate}
+\end{aligned}
+```
+:::
+
+::: {.column width="2%"}
+:::
+
+::: {.column width="43%"}
+```{r}
+#| fig-height: 8
+#| fig-width: 11
+#| echo: false
+
+gapm <- read_csv("data/lifeexp_femlit_2011.csv")
+ggplot(gapm, aes(x = female_literacy_rate_2011,
+                 y = life_expectancy_years_2011)) +
+  geom_point(size = 4) +
+  geom_smooth(method = "lm", se = FALSE, size = 3, colour="#F14124") +
+  labs(x = "Female literacy rate (%)", 
+       y = "Life expectancy (years)",
+       title = "Relationship between life expectancy and \n the female literacy rate in 2011") +
+    theme(axis.title = element_text(size = 30), 
+        axis.text = element_text(size = 25), 
+        title = element_text(size = 30))
+
+```
+:::
+:::
+
+## Our residuals will help us a lot in our diagnostics!
+
+::: columns
+::: {.column width="35%"}
+-   The **residuals** $\widehat\epsilon_i$ are the vertical distances
+    between
+
+    -   the observed data $(X_i, Y_i)$
+    -   the fitted values (regression line)
+        $\widehat{Y}_i = \widehat\beta_0 + \widehat\beta_1 X_i$
+:::
+
+::: {.column width="65%"}
+$$
+\widehat\epsilon_i =Y_i - \widehat{Y}_i \text{,   for } i=1, 2, ..., n
+$$
+
+```{r}
+#| message: false
+#| echo: false
+#| fig-height: 8
+#| fig-width: 11
+#| fig-align: center
+# code from https://drsimonj.svbtle.com/visualising-residuals
+
+model1 <- lm(life_expectancy_years_2011 ~ female_literacy_rate_2011,
+                 data = gapm)
+regression_points <- augment(model1)
+# summary(model1)
+# sum(model1$residuals^2)
+
+ggplot(regression_points, 
+       aes(x = female_literacy_rate_2011,
+                 y = life_expectancy_years_2011)) +
+  geom_segment(aes(
+    xend = female_literacy_rate_2011, 
+    yend = .fitted), 
+    alpha = 1, 
+    color = "#4FADF3", 
+    size = 2) +
+  geom_smooth(method = "lm", se = FALSE, color = "#F14124", size=3) +
+  # > Color adjustments made here...
+  geom_point(color = "black", size = 4) +  # Color mapped here
+  #scale_color_gradient2(low = "#213c96", mid = "white", high = "#F14124") +  # Colors to use here
+    #guides(color = "none") +
+  geom_point(aes(y = .fitted), shape = 1, size = 4) +
+labs(x = "Female literacy rate (%)", 
+       y = "Life expectancy (years)") +
+    theme(axis.title = element_text(size = 30), 
+        axis.text = element_text(size = 25), 
+        title = element_text(size = 30))  
+```
+:::
+:::
+
+# Learning Objectives
+
+::: lob
+1.  Describe the model assumptions made in linear regression using
+    ordinary least squares
+:::
+
+2.  Determine if the relationship between our sampled X and Y is linear
+
+3.  Use QQ plots to determine if our fitted model holds the normality
+    assumption
+
+4.  Use residual plots to determine if our fitted model holds the
+    equality of variance assumption
+
+## Least-squares model assumptions: LINE
+
+ 
+
+These are the model assumptions made in ordinary least squares:
+
+ 
+
+::: L
+**\[L\] Linearity** of relationship between variables
+:::
+
+::: I
+**\[I\] Independence** of the $Y$ values
+:::
+
+::: N
+**\[N\] Normality** of the $Y$'s given $X$ (residuals)
+:::
+
+::: E
+**\[E\] Equality** of variance of the residuals (homoscedasticity)
+:::
+
+## L: Linearity
+
+::: columns
+::: {.column width="35%"}
+-   The relationship between the variables is linear (a straight line):
+    -   The mean value of $Y$ given $X$, $\mu_{y|x}$ or $E[Y|X]$, is a
+        straight-line function of $X$
+
+$$\mu_{y|x} = \beta_0 + \beta_1 \cdot X$$
+:::
+
+::: {.column width="65%"}
+```{r}
+#| echo: false
+#| fig-align: center
+#| fig-height: 8
+#| fig-width: 11
+
+ggplot(gapm, aes(x = female_literacy_rate_2011,
+                 y = life_expectancy_years_2011)) +
+  geom_point(size = 3, se=FALSE) +
+  geom_smooth(method = "lm", se = FALSE, size = 2, colour="#F14124") +
+  geom_smooth(size=2) +
+  labs(x = "Female literacy rate (%)", 
+       y = "Life expectancy (years)") +
+    theme(axis.title = element_text(size = 30), 
+        axis.text = element_text(size = 30))
+```
+:::
+:::
+
+## I: Independence of observations
+
+-   The $Y$-values are statistically independent of one another
+
+-   Examples of when they are *not* independent, include
+
+    -   repeated measures (such as baseline, 3 months, 6 months)
+
+    -   data from clusters, such as different hospitals or families
+
+-   This condition is checked by reviewing the study *design* and not by
+    inspecting the data
+
+ 
+
+-   How to analyze data using regression models when the $Y$-values are
+    not independent is covered in BSTA 519 (Longitudinal data)
+
+## Poll Everywhere Question 1
+
+## N: Normality
+
+::: columns
+::: column
+-   For any fixed value of $X$, $Y$ has normal distribution.
+    -   Note: This is not about $Y$ alone, but $Y|X$
+-   Equivalently, the measurement (random) errors $\epsilon_i$ ’s
+    normally distributed
+    -   This is more often what we check
+:::
+
+::: column
+```{r}
+#| message: false
+#| echo: false
+#| fig-height: 8
+#| fig-width: 11
+#| fig-align: center
+# code from https://drsimonj.svbtle.com/visualising-residuals
+
+model1 <- lm(life_expectancy_years_2011 ~ female_literacy_rate_2011,
+                 data = gapm)
+regression_points <- augment(model1)
+# summary(model1)
+# sum(model1$residuals^2)
+
+ggplot(regression_points, 
+       aes(x = female_literacy_rate_2011,
+                 y = life_expectancy_years_2011)) +
+  geom_segment(aes(
+    xend = female_literacy_rate_2011, 
+    yend = .fitted), 
+    alpha = 1, 
+    color = "#4FADF3", 
+    size = 2) +
+  geom_smooth(method = "lm", se = FALSE, color = "#F14124", size=3) +
+  # > Color adjustments made here...
+  geom_point(color = "black", size = 4) +  # Color mapped here
+  #scale_color_gradient2(low = "#213c96", mid = "white", high = "#F14124") +  # Colors to use here
+    #guides(color = "none") +
+  geom_point(aes(y = .fitted), shape = 1, size = 4) +
+labs(x = "Female literacy rate (%)", 
+       y = "Life expectancy (years)",
+       title = "Relationship between life expectancy and \n the female literacy rate in 2011") +
+    theme(axis.title = element_text(size = 30), 
+        axis.text = element_text(size = 25), 
+        title = element_text(size = 30))  
+```
+:::
+:::
+
+## E: Equality of variance of the residuals
+
+-   The variance of $Y$ given $X$ ($\sigma_{Y|X}^2$), is the same for
+    any $X$
+
+    -   We use just $\sigma^2$ to denote the common variance
+
+-   This is also called **homoscedasticity**
+
+![](06_SLR_Diag_1/OLSassumptions-1.png){fig-align="center"}
+
+## Summary of LINE model assumptions
+
+-   $Y$ values are independent (check study design!)
+
+<br>
+
+::: columns
+::: {.column width="10%"}
+:::
+
+::: {.column width="40%"}
+The distribution of $Y$ given $X$ is
+
+-   normal
+-   with mean $\mu_{y|x} = \beta_0 + \beta_1 \cdot X$
+-   and common variance $\sigma^2$
+:::
+
+::: {.column width="40%"}
+This means that the residuals are
+
+-   normal
+-   with mean = 0
+-   and common variance $\sigma^2$
+:::
+:::
+
+## How do we determine if our model follows the LINE assumptions?
+
+::: columns
+::: column
+::: definition
+::: def-title
+**\[L\] Linearity** of relationship between variables
+:::
+
+::: def-cont
+Check if there is a linear relationship between the mean response (Y)
+and the explanatory variable (X)
+:::
+:::
+:::
+
+::: column
+::: proof1
+::: proof-title
+**\[I\] Independence** of the $Y$ values
+:::
+
+::: proof-cont
+Check that the observations are independent
+:::
+:::
+:::
+
+::: column
+::: theorem
+::: thm-title
+**\[N\] Normality** of the $Y$'s given $X$ (residuals)
+:::
+
+::: thm-cont
+Check that the responses (at each level X) are normally distributed
+
+-   Usually measured through the residuals
+:::
+:::
+:::
+
+::: column
+::: fact
+::: fact-title
+**\[E\] Equality** of variance of the residuals (homoscedasticity)
+:::
+
+::: fact-cont
+Check that the variance (or standard deviation) of the responses is
+equal for all levels of X
+
+-   Usually measured through the residuals
+:::
+:::
+:::
+:::
+
+# Learning Objectives
+
+1.  Describe the model assumptions made in linear regression using
+    ordinary least squares
+
+::: lob
+2.  Determine if the relationship between our sampled X and Y is linear
+:::
+
+3.  Use QQ plots to determine if our fitted model holds the normality
+    assumption
+
+4.  Use residual plots to determine if our fitted model holds the
+    equality of variance assumption
+
+## L: Linearity of relationship between variables
+
+::: columns
+::: {.column width="15%"}
+:::
+
+::: {.column width="70%"}
+::: hl
+Is the association between the variables **linear**?
+:::
+:::
+:::
+
+-   **Diagnostic tool:** Scatterplot of $X$ vs. $Y$
+
+```{r}
+#| echo: false
+#| fig-align: center
+
+ggplot(gapm, aes(x = female_literacy_rate_2011,
+                 y = life_expectancy_years_2011)) +
+  geom_point(size = 3, se=FALSE) +
+  geom_smooth(method = "lm", se = FALSE, size = 2, colour="#F14124") +
+  geom_smooth(size=2, se=F) +
+  labs(x = "Female literacy rate (%)", 
+       y = "Life expectancy (years)") +
+    theme(axis.title = element_text(size = 20), 
+        axis.text = element_text(size = 18))
+```
+
+## Poll Everywhere Question 2
+
+## I: Independence of the residuals ($Y$ values)
+
+-   **Are the data points independent of each other?**
+
+ 
+
+-   **Diagnostic tool:** reviewing the study *design* and not by
+    inspecting the data
+    
+# Learning Objectives
+
+1.  Describe the model assumptions made in linear regression using
+    ordinary least squares
+
+2.  Determine if the relationship between our sampled X and Y is linear
+
+::: lob
+3.  Use QQ plots to determine if our fitted model holds the normality
+    assumption
+:::
+
+4.  Use residual plots to determine if our fitted model holds the
+    equality of variance assumption
+
+## N: Normality of the residuals
+
+-   We need to check if the errors/residuals ($\epsilon_i$'s) are
+    normally distributed
+
+ 
+
+-   **Diagnostic tools:**
+
+    -   Distribution plots of residuals
+
+    -   QQ plots of residuals
+
+ 
+
+-   [Extra resource on how QQ plots are
+    made](https://www.youtube.com/watch?v=okjYjClSjOg&ab_channel=StatQuestwithJoshStarmer)
+
+## N: Extract model's residuals in R
+
+-   First extract the residuals' values from the model output using the
+    `augment()` function from the `broom` package.
+-   Get a tibble with the orginal data, as well as the residuals and
+    some other important values.
+
+```{r}
+model1 <- lm(life_expectancy_years_2011 ~ female_literacy_rate_2011, 
+                data = gapm)
+aug1 <- augment(model1) 
+
+glimpse(aug1)
+```
+
+## N: Check normality with "usual" distribution plots
+
+Note that below I save each figure as an object, and then combine them
+together in one row of output using `grid.arrange()` from the
+`gridExtra` package
+
+```{r}
+#| fig.height: 4.0
+#| fig.width: 12.0
+#| fig.align: center
+
+hist1 <- ggplot(aug1, aes(x = .resid)) + geom_histogram()
+
+density1 <- ggplot(aug1, aes(x = .resid)) + geom_density()
+
+box1 <- ggplot(aug1, aes(x = .resid)) + geom_boxplot()
+
+grid.arrange(hist1, density1, box1, nrow = 1)
+```
+
+## N: Normal QQ plots (QQ = quantile-quantile)
+
+-   It can be tricky to eyeball with a histogram or density plot whether
+    the residuals are normal or not
+-   QQ plots are often used to help with this
+
+::: columns
+::: {.column width="60%"}
+-   *Vertical axis*: **data quantiles**
+    -   data points are sorted in order and
+    -   assigned quantiles based on how many data points there are
+-   *Horizontal axis*: **theoretical quantiles**
+    -   mean and standard deviation (SD) calculated from the data points
+    -   theoretical quantiles are calculated for each point, assuming
+        the data are modeled by a normal distribution with the mean and
+        SD of the data
+
+ 
+
+-   **Data are approximately normal if points fall on a line.**
+:::
+
+::: {.column width="40%"}
+```{r}
+#| fig.width: 7.5
+#| fig.height: 7
+#| fig.align: center
+#| echo: false
+
+ggplot(aug1, aes(sample = .resid)) + 
+  stat_qq() +     # points
+  stat_qq_line() + # line
+  theme(axis.title = element_text(size = 30), 
+        axis.text = element_text(size = 30)) +
+  labs(x = "Theoretical quantiles", 
+       y = "Data quantiles")
+```
+:::
+:::
+
+## N: Examples of Normal QQ plots (from $n=100$ observations)
+
+::: columns
+::: {.column width="8%"}
+:::
+
+::: {.column width="22%"}
+Normal
+:::
+
+::: {.column width="24%"}
+Uniform
+:::
+
+::: {.column width="24%"}
+T
+:::
+
+::: {.column width="22%"}
+Skewed
+:::
+:::
+
+```{r}
+#| echo: false
+
+obs = 100
+normal = data.frame( x = rnorm(obs) )
+uniform = data.frame( x = runif(obs) )
+t = data.frame( x = rt(obs, df = 3) )
+skewed = data.frame( x  = rlnorm(obs) )
+```
+
+```{r}
+#| echo: false
+#| fig-width: 20
+#| fig-align: center
+
+norm_h = ggplot(data=normal) + geom_histogram(aes(x))
+unif_h = ggplot(data=uniform) + geom_histogram(aes(x))
+t_h = ggplot(data=t) + geom_histogram(aes(x))
+skewed_h = ggplot(data=skewed) + geom_histogram(aes(x))
+
+grid.arrange(norm_h, unif_h, t_h, skewed_h, nrow = 1)
+```
+
+```{r}
+#| echo: false
+#| fig-width: 20
+#| fig-align: center
+
+norm_qq = ggplot(normal, aes(sample = x)) + stat_qq() + stat_qq_line()
+unif_qq = ggplot(uniform, aes(sample = x)) + stat_qq() + stat_qq_line()
+t_qq = ggplot(t, aes(sample = x)) + stat_qq() + stat_qq_line()
+skewed_qq = ggplot(skewed, aes(sample = x)) + stat_qq() + stat_qq_line()
+
+grid.arrange(norm_qq, unif_qq, t_qq, skewed_qq, nrow = 1)
+```
+
+ 
+
+## N: Examples of Normal QQ plots (from $n=10$ observations)
+
+::: columns
+::: {.column width="8%"}
+:::
+
+::: {.column width="22%"}
+Normal
+:::
+
+::: {.column width="24%"}
+Uniform
+:::
+
+::: {.column width="24%"}
+T
+:::
+
+::: {.column width="22%"}
+Skewed
+:::
+:::
+
+```{r}
+#| echo: false
+
+obs = 10
+normal = data.frame( x = rnorm(obs) )
+uniform = data.frame( x = runif(obs) )
+t = data.frame( x = rt(obs, df = 3) )
+skewed = data.frame( x  = rlnorm(obs) )
+```
+
+```{r}
+#| echo: false
+#| fig-width: 20
+#| fig-align: center
+
+norm_h = ggplot(data=normal) + geom_histogram(aes(x))
+unif_h = ggplot(data=uniform) + geom_histogram(aes(x))
+t_h = ggplot(data=t) + geom_histogram(aes(x))
+skewed_h = ggplot(data=skewed) + geom_histogram(aes(x))
+
+grid.arrange(norm_h, unif_h, t_h, skewed_h, nrow = 1)
+```
+
+```{r}
+#| echo: false
+#| fig-width: 20
+#| fig-align: center
+
+norm_qq = ggplot(normal, aes(sample = x)) + stat_qq() + stat_qq_line()
+unif_qq = ggplot(uniform, aes(sample = x)) + stat_qq() + stat_qq_line()
+t_qq = ggplot(t, aes(sample = x)) + stat_qq() + stat_qq_line()
+skewed_qq = ggplot(skewed, aes(sample = x)) + stat_qq() + stat_qq_line()
+
+grid.arrange(norm_qq, unif_qq, t_qq, skewed_qq, nrow = 1)
+```
+
+## N: Examples of Normal QQ plots (from $n=1000$ observations)
+
+::: columns
+::: {.column width="8%"}
+:::
+
+::: {.column width="22%"}
+Normal
+:::
+
+::: {.column width="24%"}
+Uniform
+:::
+
+::: {.column width="24%"}
+T
+:::
+
+::: {.column width="22%"}
+Skewed
+:::
+:::
+
+```{r}
+#| echo: false
+
+obs = 1000
+normal = data.frame( x = rnorm(obs) )
+uniform = data.frame( x = runif(obs) )
+t = data.frame( x = rt(obs, df = 3) )
+skewed = data.frame( x  = rlnorm(obs) )
+```
+
+```{r}
+#| echo: false
+#| fig-width: 20
+#| fig-align: center
+
+norm_h = ggplot(data=normal) + geom_histogram(aes(x))
+unif_h = ggplot(data=uniform) + geom_histogram(aes(x))
+t_h = ggplot(data=t) + geom_histogram(aes(x))
+skewed_h = ggplot(data=skewed) + geom_histogram(aes(x))
+
+grid.arrange(norm_h, unif_h, t_h, skewed_h, nrow = 1)
+```
+
+```{r}
+#| echo: false
+#| fig-width: 20
+#| fig-align: center
+
+norm_qq = ggplot(normal, aes(sample = x)) + stat_qq() + stat_qq_line()
+unif_qq = ggplot(uniform, aes(sample = x)) + stat_qq() + stat_qq_line()
+t_qq = ggplot(t, aes(sample = x)) + stat_qq() + stat_qq_line()
+skewed_qq = ggplot(skewed, aes(sample = x)) + stat_qq() + stat_qq_line()
+
+grid.arrange(norm_qq, unif_qq, t_qq, skewed_qq, nrow = 1)
+```
+
+## N: We can compare the QQ plots: model vs. theoretical
+
+::: columns
+::: column
+-   Residuals from Life Expectancy vs. Female Literacy Rate Regression
+
+```{r}
+#| fig.align: center
+#| fig.width: 6.0
+#| fig.height: 6.0
+
+ggplot(aug1, 
+      aes(sample = .resid)) + 
+  stat_qq() + 
+  stat_qq_line() 
+```
+:::
+
+::: column
+-   Simulated QQ plot of Normal Residuals with $n = 80$
+
+```{r}
+#| fig.align: center
+#| fig.width: 6.0
+#| fig.height: 6.0
+
+ggplot() +
+  stat_qq(aes(
+    sample = rnorm(80))) + 
+  geom_abline(
+    intercept = 0, slope = 1, 
+    color = "blue")
+```
+:::
+:::
+
+## N: Shapiro-Wilk Test of Normality
+
+-   Goodness-of-fit test for the normal distribution: Is there evidence
+    that our residuals are from a normal distribution?
+
+-   Hypothesis test:
+
+$$\begin{aligned}
+H_0 & : \text{data are from a normally distributed population} \\
+H_1 & : \text{data are NOT from a normally distributed population}
+\end{aligned}$$
+
+::: columns
+::: column
+```{r}
+shapiro.test(aug1$.resid)
+```
+:::
+
+::: column
+::: theorem
+::: thm-title
+Conclusion
+:::
+
+::: thm-cont
+Reject the null. Data are not from a normal distribution.
+:::
+:::
+:::
+:::
+
+# Learning Objectives
+
+1.  Describe the model assumptions made in linear regression using
+    ordinary least squares
+
+2.  Determine if the relationship between our sampled X and Y is linear
+
+3.  Use QQ plots to determine if our fitted model holds the normality
+    assumption
+
+::: lob
+4.  Use residual plots to determine if our fitted model holds the
+    equality of variance assumption
+:::
+
+## E: Equality of variance of the residuals {.nostretch}
+
+-   Homoscedasticity: How do we determine if the variance across X
+    values is constant?
+-   Diagnostic tool: **residual plot**
+
+![](06_SLR_Diag_1/resid-plots.png){fig-align="center" width="1000"}
+
+## E: Creating a residual plot
+
+::: columns
+::: {.column width="60%"}
+-   $x$ = explanatory variable from regression model
+    -   (or the fitted values for a multiple regression)
+-   $y$ = residuals from regression model
+
+```{r}
+#| label: resids_plot
+#| fig-show: hide
+
+ggplot(aug1, 
+       aes(x = female_literacy_rate_2011, 
+           y = .resid)) + 
+  geom_point(size = 2) +
+  geom_abline( intercept = 0, slope = 0,
+    size = 2, color = "#FF8021") +
+  labs(title = "Residual plot") +
+  theme(axis.title = element_text(size = 30), 
+        axis.text = element_text(size = 30))
+  
+```
+:::
+
+::: {.column width="40%"}
+```{r}
+#| ref.label: resids_plot
+#| echo: false
+#| fig-height: 7
+#| fig-width: 7
+#| fig-align: center
+
+```
+:::
+:::
+
+## `autoplot()` can be a helpful tool
+
+```{r}
+#| fig-width: 8
+#| fig-align: center
+
+library(ggfortify)
+autoplot(model1) + theme(text=element_text(size=14))
+```
+
+## Summary of the assumptions and their diagnostic tool
+
++----------------+---------------------------------+-------------------------+
+| Assumption     | What needs to hold?             | Diagnostic tool         |
++:===============+:================================+:========================+
+| Linearity      | -   Relationship between $X$    | -   Scatterplot of $Y$  |
+|                |     and $Y$ is linear           |     vs. $X$             |
+| $\text{}$      |                                 |                         |
+|                |                                 | $\text{}$               |
++----------------+---------------------------------+-------------------------+
+| Independence   | -   Observations are            | -   Study design        |
+|                |     independent from each other |                         |
+| $\text{}$      |                                 | $\text{}$               |
++----------------+---------------------------------+-------------------------+
+| Normality      | -   Residuals (and thus $Y|X$)  | -   QQ plot of          |
+|                |     are normally distributed    |     residuals           |
+| $\text{}$      |                                 |                         |
+|                |                                 | -   Distribution of     |
+|                |                                 |     residuals           |
++----------------+---------------------------------+-------------------------+
+| Equality of    | -   Variance of residuals (and  | -   Residual plot       |
+| variance       |     thus $Y|X$) is same across  |                         |
+|                |     $X$ values                  | $\text{}$               |
+| $\text{}$      |     (homoscedasticity)          |                         |
++----------------+---------------------------------+-------------------------+

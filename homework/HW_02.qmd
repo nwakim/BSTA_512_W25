@@ -34,7 +34,8 @@ Homework is ready! 1/21/25
 
 ## Directions
 
--   [Download the `.qmd` file here.](https://github.com/nwakim/W2024_BSTA_512/blob/main/homework/HW2.qmd)
+
+-   [Download the `.qmd` file here.](https://github.com/nwakim/BSTA_512_W25/blob/main/homework/HW_02.qmd)
 
 -   You will need to download the datasets. Use [this link to download](https://ohsuitg-my.sharepoint.com/:f:/r/personal/wakim_ohsu_edu/Documents/Teaching/Classes/W2024_BSTA_512_612/Student_files/Data/Homework?csf=1&web=1&e=QEsqb9) the homework datasets needed in this assignment. If you do not want to make changes to the paths set in this document, then make sure the files are stored in a folder named "data" that is housed in the same location as this homework `.qmd` file.
 

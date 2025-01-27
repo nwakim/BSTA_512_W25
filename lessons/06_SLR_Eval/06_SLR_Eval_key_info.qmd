@@ -10,5 +10,8 @@ editor_options:
 
 ## Announcements
 
+- If you finish an exit ticket before the start of class I will give you a 0 for that day
+- Exit ticket today: question on homework/lab due date
+  - Thursday or Friday
 
 ## Key Dates

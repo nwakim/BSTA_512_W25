@@ -1,9 +1,9 @@
 ---
-title: "Lesson 5: SLR: More inference + Evaluation"
+title: "Lesson 6: SLR: More inference"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
-date: "01/22/2025"
+date: "01/27/2025"
 categories: ["Week 1"]
 format: 
   revealjs:
@@ -13,7 +13,7 @@ format:
     show-slide-number: all
     width: 1955
     height: 1100
-    footer: "Lesson 5: SLR 3"
+    footer: "Lesson 6: SLR 3"
     html-math-method: mathjax
     highlight-style: ayu
 execute:
@@ -79,11 +79,11 @@ reg_table = tidy(model1) %>% gt() %>%
 
 2.  Using the F-test, determine if there is enough evidence that
     population slope $\beta_1$ is not 0
+    
+3.  Using the F-test, determine if there is enough evidence for association between an outcome and a categorical variable
 
-3.  Calculate and interpret the coefficient of determination
+4.  Calculate and interpret the coefficient of determination
 
-4.  Describe the model assumptions made in linear regression using
-    ordinary least squares
 
 ## So far in our regression example...
 
@@ -100,6 +100,10 @@ reg_table = tidy(model1) %>% gt() %>%
 -   Estimate variance of the residuals
 -   Inference for slope & intercept: CI, p-value
 -   Confidence bands of regression line for mean value of Y\|X
+
+**Lesson 5: Categorical Covariates**
+
+-   Inference for different categories
 :::
 
 ::: {.column width="2%"}
@@ -123,15 +127,16 @@ ggplot(gapm, aes(x = FemaleLiteracyRate,
         title = element_text(size = 30))
 
 ```
-:::
-:::
 
 ```{=tex}
 \begin{aligned}
 \widehat{Y} &= \widehat\beta_0 + \widehat\beta_1 \cdot X\\
-\widehat{\text{life expectancy}} &= 50.9 + 0.232 \cdot \text{female literacy rate}
+\widehat{\text{LE}} &= 50.9 + 0.232 \cdot \text{FLR}
 \end{aligned}
 ```
+:::
+:::
+
 
 ```{css, echo=FALSE}
 .reveal code {
@@ -237,11 +242,11 @@ Model Use (Inference)
 
 2.  Using the F-test, determine if there is enough evidence that
     population slope $\beta_1$ is not 0
+    
+3.  Using the F-test, determine if there is enough evidence for association between an outcome and a categorical variable
 
-3.  Calculate and interpret the coefficient of determination
+4.  Calculate and interpret the coefficient of determination
 
-4.  Describe the model assumptions made in linear regression using
-    ordinary least squares
 
 ## Getting to the F-test
 
@@ -404,8 +409,7 @@ ANOVA table:
 
 ```{r}
 # Fit regression model:
-model1 <- lm(LifeExpectancyYrs ~ FemaleLiteracyRate,
-             data = gapm)
+model1 <- gapm %>% lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate)
 
 anova(model1)
 anova(model1) %>% tidy() %>% gt() %>%
@@ -422,11 +426,11 @@ anova(model1) %>% tidy() %>% gt() %>%
 2.  Using the F-test, determine if there is enough evidence that
     population slope $\beta_1$ is not 0
 :::
+    
+3.  Using the F-test, determine if there is enough evidence for association between an outcome and a categorical variable
 
-3.  Calculate and interpret the coefficient of determination
+4.  Calculate and interpret the coefficient of determination
 
-4.  Describe the model assumptions made in linear regression using
-    ordinary least squares
 
 ## What is the F statistic testing?
 
@@ -436,7 +440,7 @@ $$F = \frac{MSR}{MSE}$$
 
 $$E(MSE)=\sigma^2\ \text{and}\ E(MSR) = \sigma^2 + \beta_1^2\sum_{i=1}^n (X_i- \overline{X})^2$$
 
--   Recall that $\sigma^2$ is the variance of the residuals
+-   Recall that $\sigma^2$ is the variance of the population residuals
 -   Thus if
     -   $\beta_1 = 0$, then
         $F \approx \frac{\widehat{\sigma}^2}{\widehat{\sigma}^2} = 1$
@@ -768,18 +772,409 @@ This is true when we use the F-test for a single coefficient!
     population slope $\beta_1$ is not 0
 
 ::: lob
-3.  Calculate and interpret the coefficient of determination
+3.  Using the F-test, determine if there is enough evidence for association between an outcome and a categorical variable
 :::
 
-4.  Describe the model assumptions made in linear regression using
-    ordinary least squares
+4.  Calculate and interpret the coefficient of determination
+
+
+## Testing association between continuous outcome and categorical variable
+
+- Before we used the F-test (or t-test) to determine association between two continuous variables
+- We CANNOT use the t-test to determine association between a continuous outcome and a multi-level categorical variable
+- We CAN use the F-test to do this!
+
+ 
+
+- We can use the t-test or F-test for a categorical variable with only 2 levels
+
+## Poll Everywhere Question 3
+    
+## Building a very important toolkit: three types of tests
+
+::: fact
+::: fact-title
+Overall test (in a couple classes)
+:::
+
+::: fact-cont
+Does at least one of the covariates/predictors contribute significantly to the prediction of Y?
+:::
+:::
+
+::: example
+::: ex-title
+Test for addition of a single variable (covariate subset test)
+:::
+
+::: ex-cont
+Does the addition of one particular covariate add significantly to the prediction of Y achieved by other covariates already present in the model?
+:::
+:::
+
+::: proposition
+::: prop-title
+Test for addition of group of variables (covariate subset test) (in a couple classes)
+:::
+
+::: prop-cont
+Does the addition of some group of covariates add significantly to the prediction of Y achieved by other covariates already present in the model?
+:::
+:::
+
+## When running a F-test for linear models...
+
+-   We need to define a larger, full model (more parameters)
+-   We need to define a smaller, reduced model (fewer parameters)
+-   Use the F-statistic to decide whether or not we reject the smaller model
+    -   The F-statistic compares the SSE of each model to determine if the full model explains a significant amount of additional variance
+
+::: columns
+::: {.column width="30%"}
+ 
+
+$$
+F = \dfrac{\frac{SSE(R) - SSE(F)}{df_R - df_F}}{\frac{SSE(F)}{df_F}}
+$$
+:::
+
+::: {.column width="70%"}
+-   $SSE(R) \geq SSE(F)$
+-   Numerator measures difference in **unexplained** variation between the models
+    -   Big difference = added parameters greatly reduce the unexplained variation (increase explained variation)
+    -   Smaller difference = added parameters don't reduce the unexplained variation
+-   Take ratio of difference to the unexplained variation in the full model
+:::
+:::
+
+## We can extend our look at the F-test
+
+We can create a hypothesis test for more than one coefficient at a time...
+
+::: columns
+::: {.column width="17%"}
+:::
+
+::: {.column width="33%"}
+::: proof1
+::: proof-title
+Null $H_0$
+:::
+
+::: proof-cont
+$\beta_1=\beta_2=0$
+:::
+:::
+:::
+
+::: {.column width="33%"}
+::: definition
+::: def-title
+Alternative $H_1$
+:::
+
+::: def-cont
+$\beta_1\neq0$ and/or $\beta_2\neq0$
+:::
+:::
+:::
+:::
+
+in a slightly different way...
+
+::: columns
+::: {.column width="17%"}
+:::
+
+::: {.column width="33%"}
+::: proof1
+::: proof-title
+Null model
+:::
+
+::: proof-cont
+-   $Y = \beta_0 + \epsilon$
+-   Smaller (reduced) model
+:::
+:::
+:::
+
+::: {.column width="33%"}
+::: definition
+::: def-title
+Alternative\* model
+:::
+
+::: def-cont
+-   $Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \epsilon$
+-   Larger (full) model
+:::
+:::
+:::
+:::
+
+\*This is **not quite** the alternative, but if we reject the null, then this is the model we move forward with
+
+## Let's say we want to test the association between life expectancy and world region
+
+```{r}
+#| echo: false
+means_LE = gapm %>%
+  group_by(four_regions) %>%
+  summarise(mean = mean(LifeExpectancyYrs))
+```
+
+::: columns
+::: {.column width="50%"}
+
+$$\begin{aligned}
+\widehat{\textrm{LE}} = & `r round(means_LE$mean[1], 2)` + `r round(means_LE$mean[2]-means_LE$mean[1], 2)` \cdot I(\text{Americas}) + \\ &`r round(means_LE$mean[3]-means_LE$mean[1], 2)` \cdot I(\text{Asia}) + `r round(means_LE$mean[4]-means_LE$mean[1], 2)` \cdot I(\text{Europe}) \\
+\widehat{\textrm{LE}} = & \widehat\beta_0 + \widehat\beta_1 \cdot I(\text{Americas}) + \\ & \widehat\beta_2 \cdot I(\text{Asia}) + \widehat\beta_3 \cdot I(\text{Europe})
+\end{aligned}$$
+
+- We need to figure out if the model with world region explains significantly more variation than the model without world region!
+:::
+
+::: {.column width="50%"}
+```{r fig.height=8, fig.width=8, warning=F, fig.align='center'}
+#| echo: false
+ggplot(gapm, aes(x = four_regions, y = LifeExpectancyYrs)) +
+  geom_jitter(size = 1, alpha = .6, width = 0.2) +
+  stat_summary(fun = mean, geom = "point", size = 8, shape = 18) +
+  labs(x = "World region", 
+       y = "Country life expectancy (years)",
+       title = "Life expectancy vs. world region",
+       caption = "Diamonds = region averages") +
+  theme(axis.title = element_text(size = 22), 
+        axis.text = element_text(size = 22), 
+        title = element_text(size = 22))
+```
+:::
+:::
+
+
+## F-test: general steps for hypothesis test for $j$-level categorical variable
+
+::: columns
+::: {.column width="48%"}
+::: highlight-container
+::: highlight
+1.  For today's class, we are assuming that we have met the underlying
+    assumptions
+:::
+:::
+
+::: highlight-container
+::: highlight
+2.  State the null hypothesis.
+:::
+:::
+
+Often, we are curious if the coefficient is 0 or not:
+
+```{=tex}
+\begin{align}
+H_0 :& \beta_1 = ... = \beta_j = 0\\
+\text{vs. } H_A:& \beta_1 \neq 0 \text{ and/or } \\
+&\beta_2 \neq 0 ... \text{ and/or } \beta_j \neq 0
+\end{align}
+```
+::: highlight-container
+::: highlight
+3.  Specify the significance level.
+:::
+:::
+
+Often we use $\alpha = 0.05$
+
+::: highlight-container
+::: highlight
+4.  Specify the test statistic and its distribution under the null
+:::
+:::
+
+The test statistic is $F$, and follows an F-distribution with numerator
+$df=1$ and denominator $df=n-(k+1)$.
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+::: highlight-container
+::: highlight
+5.  Compute the value of the test statistic
+:::
+:::
+
+The calculated **test statistic** for $\widehat\beta_1$ is
+
+$$F = \frac{MSR}{MSE}$$
+
+::: highlight-container
+::: highlight
+6.  Calculate the p-value
+:::
+:::
+
+We are generally calculating: $P(F_{1, n-(j+1)} > F)$
+
+::: highlight-container
+::: highlight
+7.  Write conclusion for hypothesis test
+:::
+:::
+
+-   Reject: $P(F_{1, n-(j+1)} > F) < \alpha$
+
+We (reject/fail to reject) the null hypothesis that the slope is 0 at
+the $100\alpha\%$ significiance level. There is
+(sufficient/insufficient) evidence that there is significant association
+between ($Y$) and ($X$) (p-value = $P(F_{1, n-(j+1)} > F)$).
+:::
+:::
+
+## Life expectancy example: hypothesis test for world region
+
+-   Steps 1-4 are setting up our hypothesis test: not much change from
+    the general steps
+
+::: highlight-container
+::: highlight
+1.  For today's class, we are assuming that we have met the underlying
+    assumptions
+:::
+:::
+
+::: highlight-container
+::: highlight
+2.  State the null hypothesis.
+:::
+:::
+
+We are testing if the slope is 0 or not:
+
+```{=tex}
+\begin{align}
+H_0 :& \beta_1 = \beta_2 = \beta_3 0\\
+\text{vs. } H_A:& \beta_1 \neq 0 \text{ and/or } \beta_2 \neq 0 \text{ and/or } \beta_3 \neq 0
+\end{align}
+```
+::: highlight-container
+::: highlight
+3.  Specify the significance level.
+:::
+:::
+
+Often we use $\alpha = 0.05$
+
+::: highlight-container
+::: highlight
+4.  Specify the test statistic and its distribution under the null
+:::
+:::
+
+::: columns
+::: {.column width="70%"}
+The test statistic is $F$, and follows an F-distribution with numerator
+$df=j$ and denominator $df=n-(j+1) = 80-(3+1)$.
+:::
+
+::: {.column width="30%"}
+```{r}
+nobs(model1)
+```
+:::
+:::
+
+## Life expectancy example: hypothesis test for world region (2/4) 
+::: highlight-container
+::: highlight
+5.  Compute the value of the test statistic
+:::
+:::
+
+```{r}
+model2 <- gapm %>% lm(formula = LifeExpectancyYrs ~ four_regions)
+anova(model2) %>% tidy() %>% gt() %>% tab_options(table.font.size = 40)
+```
+
+```{r}
+#| echo: false
+anova_wr = anova(model2) %>% tidy()
+```
+
+-   **Option 1:** Calculate the test statistic using the values in the
+    ANOVA table
+
+$$F = \frac{MSR}{MSE} = \frac{`r anova_wr$meansq[1]`}{`r anova_wr$meansq[2]`} = `r anova_wr$statistic[1]`$$
+
+-   **Option 2:** Get the test statistic value (F) from the ANOVA table
+
+::: hl
+I tend to skip this step because I can do it all with step 6
+:::
+
+## Life expectancy example: hypothesis test for population **slope** $\beta_1$ (3/4)
+
+::: highlight-container
+::: highlight
+6.  Calculate the p-value
+:::
+:::
+
+-   As per Step 4, test statistic $F$ can be modeled by a
+    $F$-distribution with $df1 = 3$ and $df2 = n-4$.
+
+    -   We had 80 countries' data, so $n=80$
+
+-   **Option 1:** Use `pf()` and our calculated test statistic
+
+```{r}
+# p-value is ALWAYS the right tail for F-test
+pf(33.5331, df1 = 3, df2 = 76, lower.tail = FALSE)
+```
+
+-   **Option 2:** Use the ANOVA table
+
+```{r}
+anova(model2) %>% tidy() %>% gt() %>%
+  tab_options(table.font.size = 40)
+```
+
+## Life expectancy example: hypothesis test for population **slope** $\beta_1$ (4/4)
+
+::: highlight-container
+::: highlight
+7.  Write conclusion for the hypothesis test
+:::
+:::
+
+We reject the null hypothesis that all three coefficients are equal to 0 at the $5\%$
+significance level. There is sufficient evidence that there is
+association between female life expectancy and the country's world region (p-value \< 0.0001).
+
+
+# Learning Objectives
+
+1.  Identify different sources of variation in an Analysis of Variance
+    (ANOVA) table
+
+2.  Using the F-test, determine if there is enough evidence that
+    population slope $\beta_1$ is not 0
+    
+3.  Using the F-test, determine if there is enough evidence for association between an outcome and a categorical variable
+
+::: lob
+4.  Calculate and interpret the coefficient of determination
+:::
 
 ## Correlation coefficient from 511
 
 ::: columns
 ::: {.column width="45%"}
 Correlation coefficient $r$ can tell us about the strength of a
-relationship
+relationship **between two continuous variables**
 
 -   If $r = -1$, then there is a perfect negative linear relationship
     between $X$ and $Y$
@@ -795,11 +1190,11 @@ relationship.
 :::
 
 ::: {.column width="55%"}
-![](05_SLR_Eval/corr_coef.png){fig-align="center" width="878"}
+![](../img_slides/corr_coef.png){fig-align="center" width="878"}
 :::
 :::
 
-## Correlation coefficient
+## Correlation coefficient ($r$ or $R$)
 
 ::: columns
 ::: column
@@ -851,7 +1246,7 @@ $$R^2 = \frac{SSR}{SSY} = \frac{SSY - SSE}{SSY}$$
 -   $R^2$ is called the **coefficient of determination**.
 -   **Interpretation**: The proportion of variation in the $Y$ values explained by the
         regression model
--   $R^2$ measures the strength of the linear relationship between $X$
+-   $R^2$ measures the strength of the **linear** relationship between $X$
     and $Y$:
     -   $R^2 = \pm 1$: Perfect relationship
         -   Happens when $SSE = 0$, i.e. no error, all points on the
@@ -863,19 +1258,22 @@ $$R^2 = \frac{SSR}{SSY} = \frac{SSY - SSE}{SSY}$$
 
 ## Life expectancy example: correlation coeffiicent $r$ and coefficient of determination $R^2$
 
-::: columns
-::: {.column width="75%"}
 ```{r}
-(r = cor(x = gapm$LifeExpectancyYrs, 
-    y = gapm$FemaleLiteracyRate,
-    use =  "complete.obs"))
-r^2
-(sum_m1 = summary(model1)) # for R^2 value
-sum_m1$r.squared
+(r = cor(x = gapm$LifeExpectancyYrs, y = gapm$FemaleLiteracyRate, 
+         use =  "complete.obs"))
+```
+::: columns
+::: {.column width="78%"}
+```{r}
+summary(model1) # for R^2 value
 ```
 :::
 
-::: {.column width="25%"}
+::: {.column width="22%"}
+
+```{r}
+r^2
+```
    
 
 ::: fact
@@ -908,243 +1306,6 @@ independent variable.
 :::
 
 ::: {.column width="63%"}
-![](05_SLR_Eval/anscombe.png){fig-align="center"}
-:::
-:::
-
-# Learning Objectives
-
-1.  Identify different sources of variation in an Analysis of Variance
-    (ANOVA) table
-
-2.  Using the F-test, determine if there is enough evidence that
-    population slope $\beta_1$ is not 0
-
-3.  Calculate and interpret the coefficient of determination
-
-::: lob
-4.  Describe the model assumptions made in linear regression using
-    ordinary least squares
-:::
-
-## Least-squares model assumptions: LINE
-
- 
-
-These are the model assumptions made in ordinary least squares:
-
- 
-
-::: L
-**\[L\] Linearity** of relationship between variables
-:::
-
-::: I
-**\[I\] Independence** of the $Y$ values
-:::
-
-::: N
-**\[N\] Normality** of the $Y$'s given $X$ (residuals)
-:::
-
-::: E
-**\[E\] Equality** of variance of the residuals (homoscedasticity)
-:::
-
-## L: Linearity
-
-::: columns
-::: {.column width="35%"}
--   The relationship between the variables is linear (a straight line):
-    -   The mean value of $Y$ given $X$, $\mu_{y|x}$ or $E[Y|X]$, is a
-        straight-line function of $X$
-
-$$\mu_{y|x} = \beta_0 + \beta_1 \cdot X$$
-:::
-
-::: {.column width="65%"}
-```{r}
-#| echo: false
-#| fig-align: center
-#| fig-height: 8
-#| fig-width: 11
-
-ggplot(gapm, aes(x = FemaleLiteracyRate,
-                 y = LifeExpectancyYrs)) +
-  geom_point(size = 3, se=FALSE) +
-  geom_smooth(method = "lm", se = FALSE, size = 2, colour="#F14124") +
-  geom_smooth(size=2) +
-  labs(x = "Female literacy rate (%)", 
-       y = "Life expectancy (years)") +
-    theme(axis.title = element_text(size = 30), 
-        axis.text = element_text(size = 30))
-```
-:::
-:::
-
-## I: Independence of observations
-
--   The $Y$-values are statistically independent of one another
-
--   Examples of when they are *not* independent, include
-
-    -   repeated measures (such as baseline, 3 months, 6 months)
-
-    -   data from clusters, such as different hospitals or families
-
--   This condition is checked by reviewing the study *design* and not by
-    inspecting the data
-
- 
-
--   How to analyze data using regression models when the $Y$-values are
-    not independent is covered in BSTA 519 (Longitudinal data)
-
-## Poll Everywhere Question 3
-
-## N: Normality
-
-::: columns
-::: column
--   For any fixed value of $X$, $Y$ has normal distribution.
-    -   Note: This is not about $Y$ alone, but $Y|X$
--   Equivalently, the measurement (random) errors $\epsilon_i$ ’s
-    normally distributed
-    -   This is more often what we check
-:::
-
-::: column
-```{r}
-#| message: false
-#| echo: false
-#| fig-height: 8
-#| fig-width: 11
-#| fig-align: center
-# code from https://drsimonj.svbtle.com/visualising-residuals
-
-model1 <- lm(LifeExpectancyYrs ~ FemaleLiteracyRate,
-                 data = gapm)
-regression_points <- augment(model1)
-# summary(model1)
-# sum(model1$residuals^2)
-
-ggplot(regression_points, 
-       aes(x = FemaleLiteracyRate,
-                 y = LifeExpectancyYrs)) +
-  geom_segment(aes(
-    xend = FemaleLiteracyRate, 
-    yend = .fitted), 
-    alpha = 1, 
-    color = "#4FADF3", 
-    size = 2) +
-  geom_smooth(method = "lm", se = FALSE, color = "#F14124", size=3) +
-  # > Color adjustments made here...
-  geom_point(color = "black", size = 4) +  # Color mapped here
-  #scale_color_gradient2(low = "#213c96", mid = "white", high = "#F14124") +  # Colors to use here
-    #guides(color = "none") +
-  geom_point(aes(y = .fitted), shape = 1, size = 4) +
-labs(x = "Female literacy rate (%)", 
-       y = "Life expectancy (years)",
-       title = "Relationship between life expectancy and \n the female literacy rate in 2011") +
-    theme(axis.title = element_text(size = 30), 
-        axis.text = element_text(size = 25), 
-        title = element_text(size = 30))  
-```
-:::
-:::
-
-## E: Equality of variance of the residuals
-
--   The variance of $Y$ given $X$ ($\sigma_{Y|X}^2$), is the same for
-    any $X$
-
-    -   We use just $\sigma^2$ to denote the common variance
-
--   This is also called **homoscedasticity**
-
-![](06_SLR_Diag_1/OLSassumptions-1.png){fig-align="center"}
-
-## Summary of LINE model assumptions
-
--   $Y$ values are independent (check study design!)
-
-<br>
-
-::: columns
-::: {.column width="10%"}
-:::
-
-::: {.column width="40%"}
-The distribution of $Y$ given $X$ is
-
--   normal
--   with mean $\mu_{y|x} = \beta_0 + \beta_1 \cdot X$
--   and common variance $\sigma^2$
-:::
-
-::: {.column width="40%"}
-This means that the residuals are
-
--   normal
--   with mean = 0
--   and common variance $\sigma^2$
-:::
-:::
-
-## How do we determine if our model follows the LINE assumptions?
-
-::: columns
-::: column
-::: definition
-::: def-title
-**\[L\] Linearity** of relationship between variables
-:::
-
-::: def-cont
-Check if there is a linear relationship between the mean response (Y)
-and the explanatory variable (X)
-:::
-:::
-:::
-
-::: column
-::: proof1
-::: proof-title
-**\[I\] Independence** of the $Y$ values
-:::
-
-::: proof-cont
-Check that the observations are independent
-:::
-:::
-:::
-
-::: column
-::: theorem
-::: thm-title
-**\[N\] Normality** of the $Y$'s given $X$ (residuals)
-:::
-
-::: thm-cont
-Check that the responses (at each level X) are normally distributed
-
--   Usually measured through the residuals
-:::
-:::
-:::
-
-::: column
-::: fact
-::: fact-title
-**\[E\] Equality** of variance of the residuals (homoscedasticity)
-:::
-
-::: fact-cont
-Check that the variance (or standard deviation) of the responses is
-equal for all levels of X
-
--   Usually measured through the residuals
-:::
-:::
+![](../img_slides/anscombe.png){fig-align="center"}
 :::
 :::

@@ -5716,7 +5716,7 @@
     "href": "lessons/07_SLR_Assumptions/07_SLR_Assumptions_key_info.html#key-dates",
     "title": "Key Info and Announcements",
     "section": "Key Dates",
-    "text": "Key Dates"
+    "text": "Key Dates\n\nHomework 2 due on Friday!!"
   },
   {
     "objectID": "lessons/06_SLR_Eval/06_SLR_Eval.html",
@@ -7327,5 +7327,19 @@
     "title": "Lesson 6: SLR: Checking model assumptions",
     "section": "E: Equality of variance of the residuals",
     "text": "E: Equality of variance of the residuals\n\nHomoscedasticity: How do we determine if the variance across X values is constant?\nDiagnostic tool: residual plot"
+  },
+  {
+    "objectID": "lessons/07_SLR_Assumptions/07_SLR_Assumptions_key_info.html",
+    "href": "lessons/07_SLR_Assumptions/07_SLR_Assumptions_key_info.html",
+    "title": "Key Info and Announcements",
+    "section": "",
+    "text": "From exit ticket at 11:15am on 1/28, everyone either voted for Friday or “no preference”\n\nHW and labs will be due on Friday now!!\nIncluding HW 2!"
+  },
+  {
+    "objectID": "lessons/07_SLR_Assumptions/07_SLR_Assumptions_key_info.html#announcements",
+    "href": "lessons/07_SLR_Assumptions/07_SLR_Assumptions_key_info.html#announcements",
+    "title": "Key Info and Announcements",
+    "section": "",
+    "text": "From exit ticket at 11:15am on 1/28, everyone either voted for Friday or “no preference”\n\nHW and labs will be due on Friday now!!\nIncluding HW 2!"
   }
 ]

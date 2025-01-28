@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Your name here!!!">
-<meta name="description" content="Due: Thursday February 13, 2025 at 11pm">
+<meta name="description" content="Due: Friday February 14, 2025 at 11pm">
 
 <title>Linear Models - Homework 3</title>
 <style>
@@ -4567,7 +4567,7 @@ vertical-align: -.125em;
 
 <div>
   <div class="description">
-    Due: Thursday February 13, 2025 at 11pm
+    Due: Friday February 14, 2025 at 11pm
   </div>
 </div>
 
@@ -4585,7 +4585,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">January 21, 2025</p>
+      <p class="date-modified">January 28, 2025</p>
     </div>
   </div>
     
@@ -4610,17 +4610,12 @@ Caution
 <section id="directions" class="level2">
 <h2 class="anchored" data-anchor-id="directions">Directions</h2>
 <ul>
-<li><p><a href="https://github.com/nwakim/W2024_BSTA_512/blob/main/homework/HW3.qmd">Download the <code>.qmd</code> file here.</a></p></li>
-<li><p>You will need to download the datasets. Use <a href="https://ohsuitg-my.sharepoint.com/:f:/r/personal/wakim_ohsu_edu/Documents/Teaching/Classes/W2024_BSTA_512_612/Student_files/Data/Homework?csf=1&amp;web=1&amp;e=QEsqb9">this link to download</a> the homework datasets needed in this assignment. If you do not want to make changes to the paths set in this document, then make sure the files are stored in a folder named “data” that is housed in the same location as this homework <code>.qmd</code> file.</p></li>
-<li><p>Please upload your homework to <a href="https://sakai.ohsu.edu/portal/site/BSTA-512-1-AB-W24/tool/961ec5ef-d7f9-4518-be16-25f7af3d6be4">Sakai</a>. <strong>Upload both your <code>.qmd</code> code file and the rendered <code>.html</code> file</strong></p>
-<ul>
-<li><p><strong>Please rename you homework as <code>Lastname_Firstinitial_HW0.qmd</code>. This will help organize the homeworks when the TAs grade them.</strong></p></li>
-<li><p><strong>Please also add the following line under <code>subtitle: &quot;BSTA 512/612&quot;</code>: <code>author: First-name Last-name</code> with your first and last name so it is attached to the viewable document.</strong></p></li>
-</ul></li>
-<li><p>For each question, make sure to include all code and resulting output in the html file to support your answers.</p></li>
+<li><p><a href="https://github.com/nwakim/BSTA_512_W25/blob/main/homework/HW_03.qmd">Download the <code>.qmd</code> file here.</a></p></li>
+<li><p>You will need to download the datasets. Use <a href="https://ohsuitg-my.sharepoint.com/:f:/g/personal/wakim_ohsu_edu/EtimsrgruwZOvhVqgx31g0MBwLSTj2L53ilK_ZIw9-vucA?e=sBvCNu">this link to download</a> the HW1 datasets needed in this assignment. If you do not want to make changes to the paths set in this document, then make sure the files are stored in a folder named “data” that is housed in the same location as your HW1 <code>.qmd</code> file.</p></li>
+<li><p>Please upload your homework to Sakai. <strong>Upload both your <code>.qmd</code> code file and the rendered <code>.html</code> file</strong></p></li>
+<li><p>For each question, make sure to include all code and resulting output in the html file to support your answers</p></li>
 <li><p>Show the work of your calculations using R code within a code chunk. Make sure that both your code and output are visible in the rendered html file. This is the default setting.</p></li>
-<li><p>If you are computing something by hand, you may take a picture of your work and insert the image in this file. You may also use LaTeX to write it inline.</p></li>
-<li><p>Write all answers in complete sentences as if communicating the results to a collaborator. This means including a sentence summarizing results in the context of the research study.</p></li>
+<li><p>Write all answers in complete sentences as if communicating the results to a collaborator.</p></li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -4632,7 +4627,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>It is a good idea to try rendering your document from time to time as you go along! Note that rendering automatically saves your qmd file and rendering frequently helps you catch your errors more quickly.</p>
+<p>It is a good idea to try rendering your document from time to time as you go along! Note that rendering automatically saves your <code>.qmd</code> file and rendering frequently helps you catch your errors more quickly.</p>
 </div>
 </div>
 </section>
@@ -4650,20 +4645,20 @@ Tip
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">LOGDOSE =</span> <span class="fu">md</span>(<span class="st">&quot;**Log10 Dose (X)**&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="qcblzcewua" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qcblzcewua table {
+<div id="lkbowhmqvl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lkbowhmqvl table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#qcblzcewua thead, #qcblzcewua tbody, #qcblzcewua tfoot, #qcblzcewua tr, #qcblzcewua td, #qcblzcewua th {
+#lkbowhmqvl thead, #lkbowhmqvl tbody, #lkbowhmqvl tfoot, #lkbowhmqvl tr, #lkbowhmqvl td, #lkbowhmqvl th {
 border-style: none;
 }
-#qcblzcewua p {
+#lkbowhmqvl p {
 margin: 0;
 padding: 0;
 }
-#qcblzcewua .gt_table {
+#lkbowhmqvl .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -4688,11 +4683,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#qcblzcewua .gt_caption {
+#lkbowhmqvl .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#qcblzcewua .gt_title {
+#lkbowhmqvl .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -4703,7 +4698,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#qcblzcewua .gt_subtitle {
+#lkbowhmqvl .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -4714,7 +4709,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#qcblzcewua .gt_heading {
+#lkbowhmqvl .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -4725,12 +4720,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#qcblzcewua .gt_bottom_border {
+#lkbowhmqvl .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#qcblzcewua .gt_col_headings {
+#lkbowhmqvl .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4744,7 +4739,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#qcblzcewua .gt_col_heading {
+#lkbowhmqvl .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4763,7 +4758,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#qcblzcewua .gt_column_spanner_outer {
+#lkbowhmqvl .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4774,13 +4769,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#qcblzcewua .gt_column_spanner_outer:first-child {
+#lkbowhmqvl .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#qcblzcewua .gt_column_spanner_outer:last-child {
+#lkbowhmqvl .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#qcblzcewua .gt_column_spanner {
+#lkbowhmqvl .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -4791,10 +4786,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#qcblzcewua .gt_spanner_row {
+#lkbowhmqvl .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#qcblzcewua .gt_group_heading {
+#lkbowhmqvl .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4819,7 +4814,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#qcblzcewua .gt_empty_group_heading {
+#lkbowhmqvl .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -4833,13 +4828,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#qcblzcewua .gt_from_md > :first-child {
+#lkbowhmqvl .gt_from_md > :first-child {
 margin-top: 0;
 }
-#qcblzcewua .gt_from_md > :last-child {
+#lkbowhmqvl .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#qcblzcewua .gt_row {
+#lkbowhmqvl .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4857,7 +4852,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#qcblzcewua .gt_stub {
+#lkbowhmqvl .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4869,7 +4864,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#qcblzcewua .gt_stub_row_group {
+#lkbowhmqvl .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4882,13 +4877,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#qcblzcewua .gt_row_group_first td {
+#lkbowhmqvl .gt_row_group_first td {
 border-top-width: 2px;
 }
-#qcblzcewua .gt_row_group_first th {
+#lkbowhmqvl .gt_row_group_first th {
 border-top-width: 2px;
 }
-#qcblzcewua .gt_summary_row {
+#lkbowhmqvl .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -4897,14 +4892,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#qcblzcewua .gt_first_summary_row {
+#lkbowhmqvl .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#qcblzcewua .gt_first_summary_row.thick {
+#lkbowhmqvl .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#qcblzcewua .gt_last_summary_row {
+#lkbowhmqvl .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4913,7 +4908,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#qcblzcewua .gt_grand_summary_row {
+#lkbowhmqvl .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -4922,7 +4917,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#qcblzcewua .gt_first_grand_summary_row {
+#lkbowhmqvl .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4931,7 +4926,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#qcblzcewua .gt_last_grand_summary_row_top {
+#lkbowhmqvl .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4940,10 +4935,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#qcblzcewua .gt_striped {
+#lkbowhmqvl .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#qcblzcewua .gt_table_body {
+#lkbowhmqvl .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4951,7 +4946,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#qcblzcewua .gt_footnotes {
+#lkbowhmqvl .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4964,7 +4959,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#qcblzcewua .gt_footnote {
+#lkbowhmqvl .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -4972,7 +4967,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#qcblzcewua .gt_sourcenotes {
+#lkbowhmqvl .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4985,64 +4980,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#qcblzcewua .gt_sourcenote {
+#lkbowhmqvl .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#qcblzcewua .gt_left {
+#lkbowhmqvl .gt_left {
 text-align: left;
 }
-#qcblzcewua .gt_center {
+#lkbowhmqvl .gt_center {
 text-align: center;
 }
-#qcblzcewua .gt_right {
+#lkbowhmqvl .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#qcblzcewua .gt_font_normal {
+#lkbowhmqvl .gt_font_normal {
 font-weight: normal;
 }
-#qcblzcewua .gt_font_bold {
+#lkbowhmqvl .gt_font_bold {
 font-weight: bold;
 }
-#qcblzcewua .gt_font_italic {
+#lkbowhmqvl .gt_font_italic {
 font-style: italic;
 }
-#qcblzcewua .gt_super {
+#lkbowhmqvl .gt_super {
 font-size: 65%;
 }
-#qcblzcewua .gt_footnote_marks {
+#lkbowhmqvl .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#qcblzcewua .gt_asterisk {
+#lkbowhmqvl .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#qcblzcewua .gt_indent_1 {
+#lkbowhmqvl .gt_indent_1 {
 text-indent: 5px;
 }
-#qcblzcewua .gt_indent_2 {
+#lkbowhmqvl .gt_indent_2 {
 text-indent: 10px;
 }
-#qcblzcewua .gt_indent_3 {
+#lkbowhmqvl .gt_indent_3 {
 text-indent: 15px;
 }
-#qcblzcewua .gt_indent_4 {
+#lkbowhmqvl .gt_indent_4 {
 text-indent: 20px;
 }
-#qcblzcewua .gt_indent_5 {
+#lkbowhmqvl .gt_indent_5 {
 text-indent: 25px;
 }
-#qcblzcewua .katex-display {
+#lkbowhmqvl .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#qcblzcewua div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#lkbowhmqvl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>

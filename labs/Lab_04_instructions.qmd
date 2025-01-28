@@ -2,9 +2,8 @@
 title: "Lab 4 Instructions"
 author: "Nicky Wakim"
 subtitle: "BSTA 512/612"
-description: "Due: March 14, 2024 at 11pm"
+description: "Due: March 14, 2025 at 11pm"
 date-modified: "today"
-date: "3/14/2024"
 categories: [""]
 format: 
   html:
@@ -24,7 +23,7 @@ execute:
 
 ::: callout-caution
 
-Read to go ! (3/8/2024)
+Needs to be worked on!
 
 :::
 

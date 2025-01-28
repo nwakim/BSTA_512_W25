@@ -301,7 +301,7 @@ labs(x = "Female literacy rate (%)",
 
 $$ \begin{aligned}
 Y_i - \overline{Y} & = (Y_i - \widehat{Y}_i) + (\widehat{Y}_i- \overline{Y})\\
-\text{Total unexplained variation} & = \text{Residual variation after regression} + \text{Variation explained by regression}
+\text{Total variation} & = \text{Residual variation after regression} + \text{Variation explained by regression}
 \end{aligned}$$
 
 ## More on the equation
@@ -312,7 +312,7 @@ $$Y_i - \overline{Y} = (Y_i - \widehat{Y}_i) + (\widehat{Y}_i- \overline{Y})$$
 
 -   $Y_i - \overline{Y}$ = the deviation of $Y_i$ around the mean
     $\overline{Y}$
-    -   (the **total** amount deviation unexplained at $X_i$ ).
+    -   (the **total** amount deviation)
 -   $Y_i - \widehat{Y}_i$ = the deviation of the observation $Y$ around the
     fitted regression line
     -   (the amount deviation **unexplained** by the regression at $X_i$
@@ -346,14 +346,14 @@ $$Y_i - \overline{Y} = (Y_i - \widehat{Y}_i) + (\widehat{Y}_i- \overline{Y})$$
 
 $$ \begin{aligned}
 Y_i - \overline{Y} & = (Y_i - \widehat{Y}_i) + (\widehat{Y}_i- \overline{Y})\\
-\text{Total unexplained variation} & = \text{Variation due to regression} + \text{Residual variation after regression}
+\text{Total variation} & = \text{Variation explained by regression} + \text{Residual variation after regression}
 \end{aligned}$$
 
 $$\begin{aligned}
 \sum_{i=1}^n (Y_i - \overline{Y})^2 & = \sum_{i=1}^n (\widehat{Y}_i- \overline{Y})^2 + \sum_{i=1}^n (Y_i - \widehat{Y}_i)^2 \\
 SSY & = SSR + SSE 
 \end{aligned}$$
-$$\text{Total Sum of Squares} = \text{Sum of Squares due to Regression} + \text{Sum of Squares due to Error (residuals)}$$
+$$\text{Total Sum of Squares} = \text{Sum of Squares explained by Regression} + \text{Sum of Squares due to Error (residuals)}$$
 
 ::: columns
 ::: {.column width="9%"}
@@ -379,7 +379,7 @@ $$\begin{aligned}
 \sum_{i=1}^n (Y_i - \overline{Y})^2 & = \sum_{i=1}^n (\widehat{Y}_i- \overline{Y})^2 + \sum_{i=1}^n (Y_i - \widehat{Y}_i)^2 \\
 SSY & = SSR + SSE 
 \end{aligned}$$
-$$\text{Total Sum of Squares} = \text{Sum of Squares due to Regression} + \text{Sum of Squares due to Error (residuals)}$$
+$$\text{Total Sum of Squares} = \text{Sum of Squares explained by Regression} + \text{Sum of Squares due to Error (residuals)}$$
 
 ::: columns
 ::: {.column width="9%"}

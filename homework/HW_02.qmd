@@ -2,7 +2,7 @@
 title: "Homework 2"
 subtitle: "BSTA 512/612"
 author: "Your name here - update this!!!!"
-description: "Due: Thursday January 30, 2024"
+description: "Due: Friday January 31, 2024"
 date-modified: "today"
 format: 
   html:
@@ -37,20 +37,18 @@ Homework is ready! 1/21/25
 
 -   [Download the `.qmd` file here.](https://github.com/nwakim/BSTA_512_W25/blob/main/homework/HW_02.qmd)
 
--   You will need to download the datasets. Use [this link to download](https://ohsuitg-my.sharepoint.com/:f:/r/personal/wakim_ohsu_edu/Documents/Teaching/Classes/W2024_BSTA_512_612/Student_files/Data/Homework?csf=1&web=1&e=QEsqb9) the homework datasets needed in this assignment. If you do not want to make changes to the paths set in this document, then make sure the files are stored in a folder named "data" that is housed in the same location as this homework `.qmd` file.
+-   You will need to download the datasets. Use [this link to download](https://ohsuitg-my.sharepoint.com/:f:/g/personal/wakim_ohsu_edu/EtimsrgruwZOvhVqgx31g0MBwLSTj2L53ilK_ZIw9-vucA?e=sBvCNu) the HW1 datasets needed in this assignment. If you do not want to make changes to the paths set in this document, then make sure the files are stored in a folder named "data" that is housed in the same location as your HW1 `.qmd` file.
 
--   Please upload your homework to [Sakai](https://sakai.ohsu.edu/portal/site/BSTA-512-1-AB-W24/tool/961ec5ef-d7f9-4518-be16-25f7af3d6be4). **Upload both your `.qmd` code file and the rendered `.html` file**
+-   Please upload your homework to Sakai. **Upload both your `.qmd` code file and the rendered `.html` file**
 
--   For each question, make sure to include all code and resulting output in the html file to support your answers.
+-   For each question, make sure to include all code and resulting output in the html file to support your answers
 
 -   Show the work of your calculations using R code within a code chunk. Make sure that both your code and output are visible in the rendered html file. This is the default setting.
 
--   If you are computing something by hand, you may take a picture of your work and insert the image in this file. You may also use LaTeX to write it inline.
-
--   Write all answers in complete sentences as if communicating the results to a collaborator. This means including a sentence summarizing results in the context of the research study.
+-   Write all answers in complete sentences as if communicating the results to a collaborator.
 
 ::: callout-tip
-It is a good idea to try rendering your document from time to time as you go along! Note that rendering automatically saves your qmd file and rendering frequently helps you catch your errors more quickly.
+It is a good idea to try rendering your document from time to time as you go along! Note that rendering automatically saves your `.qmd` file and rendering frequently helps you catch your errors more quickly.
 :::
 
 ## Questions

@@ -2,9 +2,8 @@
 title: "Lab 3 Instructions"
 author: "Nicky Wakim"
 subtitle: "BSTA 512/612"
-description: "Due: March 3, 2024 at 11pm"
+description: "Due: February 28, 2025 at 11pm"
 date-modified: "today"
-date: "3/3/2024"
 categories: [""]
 format: 
   html:

@@ -1,5 +1,5 @@
 ---
-title: "Lesson 6: SLR: Checking model assumptions"
+title: "Lesson 7: SLR: Checking model assumptions"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
@@ -13,7 +13,7 @@ format:
     show-slide-number: all
     width: 1955
     height: 1100
-    footer: "Lesson 6: SLR 4"
+    footer: "Lesson 7: SLR 4"
     html-math-method: mathjax
     highlight-style: ayu
 execute:
@@ -48,7 +48,7 @@ library(readxl)
 # quarto install extension quarto-ext/fontawesome
 
 # set ggplot theme for slides 
-theme_set(theme_gray(base_size = 22))
+theme_set(theme_bw(base_size = 22))
 # theme_update(text = element_text(size=16))  # set global text size for ggplots
 ```
 
@@ -63,243 +63,6 @@ gapm <- gapm1 %>% drop_na(LifeExpectancyYrs, FemaleLiteracyRate)
 
 # Learning Objectives
 
-1.  Identify different sources of variation in an Analysis of Variance
-    (ANOVA) table
-
-2.  Using the F-test, determine if there is enough evidence that
-    population slope $\beta_1$ is not 0
-
-3.  Calculate and interpret the coefficient of determination
-
-::: lob
-4.  Describe the model assumptions made in linear regression using
-    ordinary least squares
-:::
-
-## Least-squares model assumptions: LINE
-
- 
-
-These are the model assumptions made in ordinary least squares:
-
- 
-
-::: L
-**\[L\] Linearity** of relationship between variables
-:::
-
-::: I
-**\[I\] Independence** of the $Y$ values
-:::
-
-::: N
-**\[N\] Normality** of the $Y$'s given $X$ (residuals)
-:::
-
-::: E
-**\[E\] Equality** of variance of the residuals (homoscedasticity)
-:::
-
-## L: Linearity
-
-::: columns
-::: {.column width="35%"}
--   The relationship between the variables is linear (a straight line):
-    -   The mean value of $Y$ given $X$, $\mu_{y|x}$ or $E[Y|X]$, is a
-        straight-line function of $X$
-
-$$\mu_{y|x} = \beta_0 + \beta_1 \cdot X$$
-:::
-
-::: {.column width="65%"}
-```{r}
-#| echo: false
-#| fig-align: center
-#| fig-height: 8
-#| fig-width: 11
-
-ggplot(gapm, aes(x = FemaleLiteracyRate,
-                 y = LifeExpectancyYrs)) +
-  geom_point(size = 3, se=FALSE) +
-  geom_smooth(method = "lm", se = FALSE, size = 2, colour="#F14124") +
-  geom_smooth(size=2) +
-  labs(x = "Female literacy rate (%)", 
-       y = "Life expectancy (years)") +
-    theme(axis.title = element_text(size = 30), 
-        axis.text = element_text(size = 30))
-```
-:::
-:::
-
-## I: Independence of observations
-
--   The $Y$-values are statistically independent of one another
-
--   Examples of when they are *not* independent, include
-
-    -   repeated measures (such as baseline, 3 months, 6 months)
-
-    -   data from clusters, such as different hospitals or families
-
--   This condition is checked by reviewing the study *design* and not by
-    inspecting the data
-
- 
-
--   How to analyze data using regression models when the $Y$-values are
-    not independent is covered in BSTA 519 (Longitudinal data)
-
-## Poll Everywhere Question 3
-
-## N: Normality
-
-::: columns
-::: column
--   For any fixed value of $X$, $Y$ has normal distribution.
-    -   Note: This is not about $Y$ alone, but $Y|X$
--   Equivalently, the measurement (random) errors $\epsilon_i$ ’s
-    normally distributed
-    -   This is more often what we check
-:::
-
-::: column
-```{r}
-#| message: false
-#| echo: false
-#| fig-height: 8
-#| fig-width: 11
-#| fig-align: center
-# code from https://drsimonj.svbtle.com/visualising-residuals
-
-model1 <- gapm %>% lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate)
-
-regression_points <- augment(model1)
-# summary(model1)
-# sum(model1$residuals^2)
-
-ggplot(regression_points, 
-       aes(x = FemaleLiteracyRate,
-                 y = LifeExpectancyYrs)) +
-  geom_segment(aes(
-    xend = FemaleLiteracyRate, 
-    yend = .fitted), 
-    alpha = 1, 
-    color = "#4FADF3", 
-    size = 2) +
-  geom_smooth(method = "lm", se = FALSE, color = "#F14124", size=3) +
-  # > Color adjustments made here...
-  geom_point(color = "black", size = 4) +  # Color mapped here
-  #scale_color_gradient2(low = "#213c96", mid = "white", high = "#F14124") +  # Colors to use here
-    #guides(color = "none") +
-  geom_point(aes(y = .fitted), shape = 1, size = 4) +
-labs(x = "Female literacy rate (%)", 
-       y = "Life expectancy (years)",
-       title = "Relationship between life expectancy and \n the female literacy rate in 2011") +
-    theme(axis.title = element_text(size = 30), 
-        axis.text = element_text(size = 25), 
-        title = element_text(size = 30))  
-```
-:::
-:::
-
-## E: Equality of variance of the residuals
-
--   The variance of $Y$ given $X$ ($\sigma_{Y|X}^2$), is the same for
-    any $X$
-
-    -   We use just $\sigma^2$ to denote the common variance
-
--   This is also called **homoscedasticity**
-
-![](06_SLR_Diag_1/OLSassumptions-1.png){fig-align="center"}
-
-## Summary of LINE model assumptions
-
--   $Y$ values are independent (check study design!)
-
-<br>
-
-::: columns
-::: {.column width="10%"}
-:::
-
-::: {.column width="40%"}
-The distribution of $Y$ given $X$ is
-
--   normal
--   with mean $\mu_{y|x} = \beta_0 + \beta_1 \cdot X$
--   and common variance $\sigma^2$
-:::
-
-::: {.column width="40%"}
-This means that the residuals are
-
--   normal
--   with mean = 0
--   and common variance $\sigma^2$
-:::
-:::
-
-## How do we determine if our model follows the LINE assumptions?
-
-::: columns
-::: column
-::: definition
-::: def-title
-**\[L\] Linearity** of relationship between variables
-:::
-
-::: def-cont
-Check if there is a linear relationship between the mean response (Y)
-and the explanatory variable (X)
-:::
-:::
-:::
-
-::: column
-::: proof1
-::: proof-title
-**\[I\] Independence** of the $Y$ values
-:::
-
-::: proof-cont
-Check that the observations are independent
-:::
-:::
-:::
-
-::: column
-::: theorem
-::: thm-title
-**\[N\] Normality** of the $Y$'s given $X$ (residuals)
-:::
-
-::: thm-cont
-Check that the responses (at each level X) are normally distributed
-
--   Usually measured through the residuals
-:::
-:::
-:::
-
-::: column
-::: fact
-::: fact-title
-**\[E\] Equality** of variance of the residuals (homoscedasticity)
-:::
-
-::: fact-cont
-Check that the variance (or standard deviation) of the responses is
-equal for all levels of X
-
--   Usually measured through the residuals
-:::
-:::
-:::
-:::
-
-# Learning Objectives
-
 1.  Describe the model assumptions made in linear regression using
     ordinary least squares
 
@@ -311,17 +74,17 @@ equal for all levels of X
 4.  Use residual plots to determine if our fitted model holds the
     equality of variance assumption
 
-## Let's remind ourselves of the model that we have been working with
+## Let's remind ourselves of one model we have been working with
 
--   We have been looking at the association between life expectancy and
-    female literacy rate
+-   We have been looking at the association between life expectancy and female literacy rate
 
 -   We used OLS to find the coefficient estimates of our best-fit line
 
 ::: columns
 ::: {.column width="55%"}
-$$Y = \beta_0 + \beta_1 X + \epsilon$$
+Population model: $$Y = \beta_0 + \beta_1 X + \epsilon$$
 
+Estimated model:
 ```{r}
 #| echo: false
 
@@ -337,7 +100,7 @@ tidy(model1) %>% gt() %>%
 ```{=tex}
 \begin{aligned}
 \widehat{Y} &= \widehat\beta_0 + \widehat\beta_1 \cdot X\\
-\widehat{\text{life expectancy}} &= 50.9 + 0.232 \cdot \text{female literacy rate}
+\widehat{\text{LE}} &= 50.9 + 0.232 \cdot \text{FLR}
 \end{aligned}
 ```
 :::
@@ -367,7 +130,7 @@ ggplot(gapm, aes(x = FemaleLiteracyRate,
 :::
 :::
 
-## Our residuals will help us a lot in our diagnostics!
+## Our residuals will help us a lot in our diagnostics and assumptions!
 
 ::: columns
 ::: {.column width="35%"}
@@ -454,12 +217,16 @@ These are the model assumptions made in ordinary least squares:
 :::
 
 ::: N
-**\[N\] Normality** of the $Y$'s given $X$ (residuals)
+**\[N\] Normality** of the $Y$'s given $X$ (or residuals)
 :::
 
 ::: E
 **\[E\] Equality** of variance of the residuals (homoscedasticity)
 :::
+
+ 
+
+**Note:** These assumptions are baked into the *population model*. We look at the *population parameters* when we discuss these assumptions, but we use the *estimated model* with our data to check *if the assumptions are held up*. 
 
 ## L: Linearity
 
@@ -572,7 +339,7 @@ labs(x = "Female literacy rate (%)",
 
 -   This is also called **homoscedasticity**
 
-![](06_SLR_Diag_1/OLSassumptions-1.png){fig-align="center"}
+![](../img_slides/OLSassumptions-1.png){fig-align="center"}
 
 ## Summary of LINE model assumptions
 
@@ -585,7 +352,7 @@ labs(x = "Female literacy rate (%)",
 :::
 
 ::: {.column width="40%"}
-The distribution of $Y$ given $X$ is
+The distribution of [$Y$ given $X$]{style="color:#34AC8B"} is
 
 -   normal
 -   with mean $\mu_{y|x} = \beta_0 + \beta_1 \cdot X$
@@ -593,13 +360,39 @@ The distribution of $Y$ given $X$ is
 :::
 
 ::: {.column width="40%"}
-This means that the residuals are
+This means that the [residuals]{style="color:#FF8021"} are
 
 -   normal
 -   with mean = 0
 -   and common variance $\sigma^2$
 :::
+
+::: {.column width="10%"}
 :::
+
+:::
+
+
+In mathematical form: \
+
+
+::: columns
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="40%"}
+$Y|X \overset{\text{i.i.d.}}{\sim} N(\beta_0 + \beta_1X, \sigma^2)$
+:::
+
+::: {.column width="40%"}
+$\epsilon \overset{\text{i.i.d.}}{\sim} N(0, \sigma^2)$
+:::
+
+::: {.column width="10%"}
+:::
+:::
+
 
 ## How do we determine if our model follows the LINE assumptions?
 
@@ -763,7 +556,7 @@ aug1 <- augment(model1)
 glimpse(aug1)
 ```
 
-## N: Check normality with "usual" distribution plots
+## N: Check normality with distribution plots of residuals (1/2)
 
 Note that below I save each figure as an object, and then combine them
 together in one row of output using `grid.arrange()` from the
@@ -782,6 +575,21 @@ box1 <- ggplot(aug1, aes(x = .resid)) + geom_boxplot()
 
 grid.arrange(hist1, density1, box1, nrow = 1)
 ```
+
+## N: Check normality with distribution plots of residuals (2/2)
+
+- So do these plots of the residuals look normal?
+
+```{r}
+#| fig.height: 4.0
+#| fig.width: 12.0
+#| fig.align: center
+
+grid.arrange(hist1, density1, box1, nrow = 1)
+```
+
+- My assessment: Looks like our residuals could be normal if we did not have those values around -20
+
 
 ## N: Normal QQ plots (QQ = quantile-quantile)
 
@@ -859,6 +667,7 @@ skewed = data.frame( x  = rlnorm(obs) )
 ```{r}
 #| echo: false
 #| fig-width: 20
+#| fig-height: 4
 #| fig-align: center
 
 norm_h = ggplot(data=normal) + geom_histogram(aes(x))
@@ -872,6 +681,7 @@ grid.arrange(norm_h, unif_h, t_h, skewed_h, nrow = 1)
 ```{r}
 #| echo: false
 #| fig-width: 20
+#| fig-height: 4.5
 #| fig-align: center
 
 norm_qq = ggplot(normal, aes(sample = x)) + stat_qq() + stat_qq_line()
@@ -882,7 +692,6 @@ skewed_qq = ggplot(skewed, aes(sample = x)) + stat_qq() + stat_qq_line()
 grid.arrange(norm_qq, unif_qq, t_qq, skewed_qq, nrow = 1)
 ```
 
- 
 
 ## N: Examples of Normal QQ plots (from $n=10$ observations)
 
@@ -920,6 +729,7 @@ skewed = data.frame( x  = rlnorm(obs) )
 ```{r}
 #| echo: false
 #| fig-width: 20
+#| fig-height: 4
 #| fig-align: center
 
 norm_h = ggplot(data=normal) + geom_histogram(aes(x))
@@ -933,6 +743,7 @@ grid.arrange(norm_h, unif_h, t_h, skewed_h, nrow = 1)
 ```{r}
 #| echo: false
 #| fig-width: 20
+#| fig-height: 4.5
 #| fig-align: center
 
 norm_qq = ggplot(normal, aes(sample = x)) + stat_qq() + stat_qq_line()
@@ -979,6 +790,7 @@ skewed = data.frame( x  = rlnorm(obs) )
 ```{r}
 #| echo: false
 #| fig-width: 20
+#| fig-height: 4
 #| fig-align: center
 
 norm_h = ggplot(data=normal) + geom_histogram(aes(x))
@@ -992,6 +804,7 @@ grid.arrange(norm_h, unif_h, t_h, skewed_h, nrow = 1)
 ```{r}
 #| echo: false
 #| fig-width: 20
+#| fig-height: 4.5
 #| fig-align: center
 
 norm_qq = ggplot(normal, aes(sample = x)) + stat_qq() + stat_qq_line()
@@ -1006,7 +819,7 @@ grid.arrange(norm_qq, unif_qq, t_qq, skewed_qq, nrow = 1)
 
 ::: columns
 ::: column
--   Residuals from Life Expectancy vs. Female Literacy Rate Regression
+-   QQ plot from Life Expectancy vs. Female Literacy Rate Regression
 
 ```{r}
 #| fig.align: center
@@ -1091,7 +904,7 @@ Reject the null. Data are not from a normal distribution.
     values is constant?
 -   Diagnostic tool: **residual plot**
 
-![](06_SLR_Diag_1/resid-plots.png){fig-align="center" width="1000"}
+![](../img_slides/resid-plots.png){fig-align="center" width="1000"}
 
 ## E: Creating a residual plot
 
@@ -1165,3 +978,15 @@ autoplot(model1) + theme(text=element_text(size=14))
 |                |     $X$ values                  | $\text{}$               |
 | $\text{}$      |     (homoscedasticity)          |                         |
 +----------------+---------------------------------+-------------------------+
+
+## We didn't really go over our options when these assumptions do not hold
+
+- We will consider this more once we get into multiple linear regression
+- For now, with SLR, when assumptions do not hold, I conclude we need to add more variables in the model
+
+ 
+
+- Another note: I did not make these plots very presentable
+  - Axes were left with whatever names were given to them
+  - These plots are usually just for us! 
+  - Not really something that you include in a formal report

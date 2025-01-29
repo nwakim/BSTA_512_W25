@@ -12,7 +12,7 @@
 
   <meta name="author" content="Nicky Wakim">
   <meta name="dcterms.date" content="2025-01-27">
-  <title>Linear Models - Lesson 6: SLR: Checking model assumptions</title>
+  <title>Linear Models - Lesson 7: SLR: Checking model assumptions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -393,7 +393,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-color="#213c96" class="quarto-title-block center">
-  <h1 class="title">Lesson 6: SLR: Checking model assumptions</h1>
+  <h1 class="title">Lesson 7: SLR: Checking model assumptions</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -409,15 +409,557 @@ Nicky Wakim
 <section id="learning-objectives" class="title-slide slide level1 center">
 <h1>Learning Objectives</h1>
 <ol type="1">
-<li><p>Identify different sources of variation in an Analysis of Variance (ANOVA) table</p></li>
-<li><p>Using the F-test, determine if there is enough evidence that population slope <span class="math inline">\(\beta_1\)</span> is not 0</p></li>
-<li><p>Calculate and interpret the coefficient of determination</p></li>
+<li><p>Describe the model assumptions made in linear regression using ordinary least squares</p></li>
+<li><p>Determine if the relationship between our sampled X and Y is linear</p></li>
+<li><p>Use QQ plots to determine if our fitted model holds the normality assumption</p></li>
+<li><p>Use residual plots to determine if our fitted model holds the equality of variance assumption</p></li>
 </ol>
+</section>
+<section id="lets-remind-ourselves-of-one-model-we-have-been-working-with" class="slide level2">
+<h2>Let’s remind ourselves of one model we have been working with</h2>
+<ul>
+<li><p>We have been looking at the association between life expectancy and female literacy rate</p></li>
+<li><p>We used OLS to find the coefficient estimates of our best-fit line</p></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:55%;">
+<p>Population model: <span class="math display">\[Y = \beta_0 + \beta_1 X + \epsilon\]</span></p>
+<p>Estimated model:</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="xnkxoblvgt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xnkxoblvgt table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#xnkxoblvgt thead, #xnkxoblvgt tbody, #xnkxoblvgt tfoot, #xnkxoblvgt tr, #xnkxoblvgt td, #xnkxoblvgt th {
+  border-style: none;
+}
+
+#xnkxoblvgt p {
+  margin: 0;
+  padding: 0;
+}
+
+#xnkxoblvgt .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 40px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xnkxoblvgt .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#xnkxoblvgt .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xnkxoblvgt .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xnkxoblvgt .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xnkxoblvgt .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xnkxoblvgt .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xnkxoblvgt .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xnkxoblvgt .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xnkxoblvgt .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xnkxoblvgt .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xnkxoblvgt .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xnkxoblvgt .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#xnkxoblvgt .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#xnkxoblvgt .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xnkxoblvgt .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xnkxoblvgt .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xnkxoblvgt .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xnkxoblvgt .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xnkxoblvgt .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#xnkxoblvgt .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#xnkxoblvgt .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#xnkxoblvgt .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xnkxoblvgt .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#xnkxoblvgt .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#xnkxoblvgt .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xnkxoblvgt .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xnkxoblvgt .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xnkxoblvgt .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xnkxoblvgt .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xnkxoblvgt .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xnkxoblvgt .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xnkxoblvgt .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xnkxoblvgt .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xnkxoblvgt .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xnkxoblvgt .gt_left {
+  text-align: left;
+}
+
+#xnkxoblvgt .gt_center {
+  text-align: center;
+}
+
+#xnkxoblvgt .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xnkxoblvgt .gt_font_normal {
+  font-weight: normal;
+}
+
+#xnkxoblvgt .gt_font_bold {
+  font-weight: bold;
+}
+
+#xnkxoblvgt .gt_font_italic {
+  font-style: italic;
+}
+
+#xnkxoblvgt .gt_super {
+  font-size: 65%;
+}
+
+#xnkxoblvgt .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#xnkxoblvgt .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#xnkxoblvgt .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#xnkxoblvgt .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#xnkxoblvgt .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xnkxoblvgt .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xnkxoblvgt .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#xnkxoblvgt .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#xnkxoblvgt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="std.error">std.error</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="term" class="gt_row gt_left">(Intercept)</td>
+<td headers="estimate" class="gt_row gt_right">50.93</td>
+<td headers="std.error" class="gt_row gt_right">2.66</td>
+<td headers="statistic" class="gt_row gt_right">19.14</td>
+<td headers="p.value" class="gt_row gt_right">0.00</td></tr>
+    <tr><td headers="term" class="gt_row gt_left">FemaleLiteracyRate</td>
+<td headers="estimate" class="gt_row gt_right">0.23</td>
+<td headers="std.error" class="gt_row gt_right">0.03</td>
+<td headers="statistic" class="gt_row gt_right">7.38</td>
+<td headers="p.value" class="gt_row gt_right">0.00</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<span class="math display">\[\begin{aligned}
+\widehat{Y} &amp;= \widehat\beta_0 + \widehat\beta_1 \cdot X\\
+\widehat{\text{LE}} &amp;= 50.9 + 0.232 \cdot \text{FLR}
+\end{aligned}\]</span>
+</div><div class="column" style="width:2%;">
+
+</div><div class="column" style="width:43%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-4-1.png" width="1056"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="our-residuals-will-help-us-a-lot-in-our-diagnostics-and-assumptions" class="slide level2">
+<h2>Our residuals will help us a lot in our diagnostics and assumptions!</h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<ul>
+<li><p>The <strong>residuals</strong> <span class="math inline">\(\widehat\epsilon_i\)</span> are the vertical distances between</p>
+<ul>
+<li>the observed data <span class="math inline">\((X_i, Y_i)\)</span></li>
+<li>the fitted values (regression line) <span class="math inline">\(\widehat{Y}_i = \widehat\beta_0 + \widehat\beta_1 X_i\)</span></li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:65%;">
+<p><span class="math display">\[
+\widehat\epsilon_i =Y_i - \widehat{Y}_i \text{, &nbsp; for } i=1, 2, ..., n
+\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-5-1.png" width="1056"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="learning-objectives-1" class="title-slide slide level1 center">
+<h1>Learning Objectives</h1>
 <div class="lob">
-<ol start="4" type="1">
+<ol type="1">
 <li>Describe the model assumptions made in linear regression using ordinary least squares</li>
 </ol>
 </div>
+<ol start="2" type="1">
+<li><p>Determine if the relationship between our sampled X and Y is linear</p></li>
+<li><p>Use QQ plots to determine if our fitted model holds the normality assumption</p></li>
+<li><p>Use residual plots to determine if our fitted model holds the equality of variance assumption</p></li>
+</ol>
 </section>
 <section id="least-squares-model-assumptions-line" class="slide level2">
 <h2>Least-squares model assumptions: LINE</h2>
@@ -431,11 +973,13 @@ Nicky Wakim
 <p><strong>[I] Independence</strong> of the <span class="math inline">\(Y\)</span> values</p>
 </div>
 <div class="N">
-<p><strong>[N] Normality</strong> of the <span class="math inline">\(Y\)</span>’s given <span class="math inline">\(X\)</span> (residuals)</p>
+<p><strong>[N] Normality</strong> of the <span class="math inline">\(Y\)</span>’s given <span class="math inline">\(X\)</span> (or residuals)</p>
 </div>
 <div class="E">
 <p><strong>[E] Equality</strong> of variance of the residuals (homoscedasticity)</p>
 </div>
+<p>&nbsp;</p>
+<p><strong>Note:</strong> These assumptions are baked into the <em>population model</em>. We look at the <em>population parameters</em> when we discuss these assumptions, but we use the <em>estimated model</em> with our data to check <em>if the assumptions are held up</em>.</p>
 </section>
 <section id="l-linearity" class="slide level2">
 <h2>L: Linearity</h2>
@@ -453,7 +997,7 @@ Nicky Wakim
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-3-1.png" width="1056"></p>
+<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-6-1.png" width="1056"></p>
 </figure>
 </div>
 </div>
@@ -477,8 +1021,8 @@ Nicky Wakim
 <li>How to analyze data using regression models when the <span class="math inline">\(Y\)</span>-values are not independent is covered in BSTA 519 (Longitudinal data)</li>
 </ul>
 </section>
-<section id="poll-everywhere-question-3" class="slide level2">
-<h2>Poll Everywhere Question 3</h2>
+<section id="poll-everywhere-question-1" class="slide level2">
+<h2>Poll Everywhere Question 1</h2>
 </section>
 <section id="n-normality" class="slide level2">
 <h2>N: Normality</h2>
@@ -499,7 +1043,7 @@ Nicky Wakim
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-4-1.png" width="1056"></p>
+<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-7-1.png" width="1056"></p>
 </figure>
 </div>
 </div>
@@ -517,7 +1061,7 @@ Nicky Wakim
 <li><p>This is also called <strong>homoscedasticity</strong></p></li>
 </ul>
 
-<img data-src="06_SLR_Diag_1/OLSassumptions-1.png" class="r-stretch quarto-figure-center"></section>
+<img data-src="../img_slides/OLSassumptions-1.png" class="r-stretch quarto-figure-center"></section>
 <section id="summary-of-line-model-assumptions" class="slide level2">
 <h2>Summary of LINE model assumptions</h2>
 <ul>
@@ -528,19 +1072,34 @@ Nicky Wakim
 <div class="column" style="width:10%;">
 
 </div><div class="column" style="width:40%;">
-<p>The distribution of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span> is</p>
+<p>The distribution of <span style="color:#34AC8B"><span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span></span> is</p>
 <ul>
 <li>normal</li>
 <li>with mean <span class="math inline">\(\mu_{y|x} = \beta_0 + \beta_1 \cdot X\)</span></li>
 <li>and common variance <span class="math inline">\(\sigma^2\)</span></li>
 </ul>
 </div><div class="column" style="width:40%;">
-<p>This means that the residuals are</p>
+<p>This means that the <span style="color:#FF8021">residuals</span> are</p>
 <ul>
 <li>normal</li>
 <li>with mean = 0</li>
 <li>and common variance <span class="math inline">\(\sigma^2\)</span></li>
 </ul>
+</div><div class="column" style="width:10%;">
+
+</div>
+</div>
+<p>In mathematical form:<br>
+</p>
+<div class="columns">
+<div class="column" style="width:10%;">
+
+</div><div class="column" style="width:40%;">
+<p><span class="math inline">\(Y|X \overset{\text{i.i.d.}}{\sim} N(\beta_0 + \beta_1X, \sigma^2)\)</span></p>
+</div><div class="column" style="width:40%;">
+<p><span class="math inline">\(\epsilon \overset{\text{i.i.d.}}{\sim} N(0, \sigma^2)\)</span></p>
+</div><div class="column" style="width:10%;">
+
 </div>
 </div>
 </section>
@@ -593,735 +1152,7 @@ Nicky Wakim
 </div>
 </section></section>
 <section>
-<section id="learning-objectives-1" class="title-slide slide level1 center">
-<h1>Learning Objectives</h1>
-<ol type="1">
-<li><p>Describe the model assumptions made in linear regression using ordinary least squares</p></li>
-<li><p>Determine if the relationship between our sampled X and Y is linear</p></li>
-<li><p>Use QQ plots to determine if our fitted model holds the normality assumption</p></li>
-<li><p>Use residual plots to determine if our fitted model holds the equality of variance assumption</p></li>
-</ol>
-</section>
-<section id="lets-remind-ourselves-of-the-model-that-we-have-been-working-with" class="slide level2">
-<h2>Let’s remind ourselves of the model that we have been working with</h2>
-<ul>
-<li><p>We have been looking at the association between life expectancy and female literacy rate</p></li>
-<li><p>We used OLS to find the coefficient estimates of our best-fit line</p></li>
-</ul>
-<div class="columns">
-<div class="column" style="width:55%;">
-<p><span class="math display">\[Y = \beta_0 + \beta_1 X + \epsilon\]</span></p>
-<div class="cell">
-<div class="cell-output-display">
-
-<div id="lkagdxrdtn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lkagdxrdtn table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#lkagdxrdtn thead, #lkagdxrdtn tbody, #lkagdxrdtn tfoot, #lkagdxrdtn tr, #lkagdxrdtn td, #lkagdxrdtn th {
-  border-style: none;
-}
-
-#lkagdxrdtn p {
-  margin: 0;
-  padding: 0;
-}
-
-#lkagdxrdtn .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 40px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#lkagdxrdtn .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#lkagdxrdtn .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#lkagdxrdtn .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#lkagdxrdtn .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#lkagdxrdtn .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#lkagdxrdtn .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#lkagdxrdtn .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#lkagdxrdtn .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#lkagdxrdtn .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#lkagdxrdtn .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#lkagdxrdtn .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#lkagdxrdtn .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#lkagdxrdtn .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#lkagdxrdtn .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#lkagdxrdtn .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#lkagdxrdtn .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#lkagdxrdtn .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#lkagdxrdtn .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#lkagdxrdtn .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#lkagdxrdtn .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#lkagdxrdtn .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#lkagdxrdtn .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#lkagdxrdtn .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#lkagdxrdtn .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#lkagdxrdtn .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#lkagdxrdtn .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#lkagdxrdtn .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#lkagdxrdtn .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#lkagdxrdtn .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#lkagdxrdtn .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#lkagdxrdtn .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#lkagdxrdtn .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#lkagdxrdtn .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#lkagdxrdtn .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#lkagdxrdtn .gt_left {
-  text-align: left;
-}
-
-#lkagdxrdtn .gt_center {
-  text-align: center;
-}
-
-#lkagdxrdtn .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#lkagdxrdtn .gt_font_normal {
-  font-weight: normal;
-}
-
-#lkagdxrdtn .gt_font_bold {
-  font-weight: bold;
-}
-
-#lkagdxrdtn .gt_font_italic {
-  font-style: italic;
-}
-
-#lkagdxrdtn .gt_super {
-  font-size: 65%;
-}
-
-#lkagdxrdtn .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#lkagdxrdtn .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#lkagdxrdtn .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#lkagdxrdtn .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#lkagdxrdtn .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#lkagdxrdtn .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#lkagdxrdtn .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#lkagdxrdtn .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#lkagdxrdtn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="std.error">std.error</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="term" class="gt_row gt_left">(Intercept)</td>
-<td headers="estimate" class="gt_row gt_right">50.93</td>
-<td headers="std.error" class="gt_row gt_right">2.66</td>
-<td headers="statistic" class="gt_row gt_right">19.14</td>
-<td headers="p.value" class="gt_row gt_right">0.00</td></tr>
-    <tr><td headers="term" class="gt_row gt_left">FemaleLiteracyRate</td>
-<td headers="estimate" class="gt_row gt_right">0.23</td>
-<td headers="std.error" class="gt_row gt_right">0.03</td>
-<td headers="statistic" class="gt_row gt_right">7.38</td>
-<td headers="p.value" class="gt_row gt_right">0.00</td></tr>
-  </tbody>
-  
-  
-</table>
-</div>
-</div>
-</div>
-<span class="math display">\[\begin{aligned}
-\widehat{Y} &amp;= \widehat\beta_0 + \widehat\beta_1 \cdot X\\
-\widehat{\text{life expectancy}} &amp;= 50.9 + 0.232 \cdot \text{female literacy rate}
-\end{aligned}\]</span>
-</div><div class="column" style="width:2%;">
-
-</div><div class="column" style="width:43%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-6-1.png" width="1056"></p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="our-residuals-will-help-us-a-lot-in-our-diagnostics" class="slide level2">
-<h2>Our residuals will help us a lot in our diagnostics!</h2>
-<div class="columns">
-<div class="column" style="width:35%;">
-<ul>
-<li><p>The <strong>residuals</strong> <span class="math inline">\(\widehat\epsilon_i\)</span> are the vertical distances between</p>
-<ul>
-<li>the observed data <span class="math inline">\((X_i, Y_i)\)</span></li>
-<li>the fitted values (regression line) <span class="math inline">\(\widehat{Y}_i = \widehat\beta_0 + \widehat\beta_1 X_i\)</span></li>
-</ul></li>
-</ul>
-</div><div class="column" style="width:65%;">
-<p><span class="math display">\[
-\widehat\epsilon_i =Y_i - \widehat{Y}_i \text{, &nbsp; for } i=1, 2, ..., n
-\]</span></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-7-1.png" width="1056"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section></section>
-<section>
 <section id="learning-objectives-2" class="title-slide slide level1 center">
-<h1>Learning Objectives</h1>
-<div class="lob">
-<ol type="1">
-<li>Describe the model assumptions made in linear regression using ordinary least squares</li>
-</ol>
-</div>
-<ol start="2" type="1">
-<li><p>Determine if the relationship between our sampled X and Y is linear</p></li>
-<li><p>Use QQ plots to determine if our fitted model holds the normality assumption</p></li>
-<li><p>Use residual plots to determine if our fitted model holds the equality of variance assumption</p></li>
-</ol>
-</section>
-<section id="least-squares-model-assumptions-line-1" class="slide level2">
-<h2>Least-squares model assumptions: LINE</h2>
-<p>&nbsp;</p>
-<p>These are the model assumptions made in ordinary least squares:</p>
-<p>&nbsp;</p>
-<div class="L">
-<p><strong>[L] Linearity</strong> of relationship between variables</p>
-</div>
-<div class="I">
-<p><strong>[I] Independence</strong> of the <span class="math inline">\(Y\)</span> values</p>
-</div>
-<div class="N">
-<p><strong>[N] Normality</strong> of the <span class="math inline">\(Y\)</span>’s given <span class="math inline">\(X\)</span> (residuals)</p>
-</div>
-<div class="E">
-<p><strong>[E] Equality</strong> of variance of the residuals (homoscedasticity)</p>
-</div>
-</section>
-<section id="l-linearity-1" class="slide level2">
-<h2>L: Linearity</h2>
-<div class="columns">
-<div class="column" style="width:35%;">
-<ul>
-<li>The relationship between the variables is linear (a straight line):
-<ul>
-<li>The mean value of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span>, <span class="math inline">\(\mu_{y|x}\)</span> or <span class="math inline">\(E[Y|X]\)</span>, is a straight-line function of <span class="math inline">\(X\)</span></li>
-</ul></li>
-</ul>
-<p><span class="math display">\[\mu_{y|x} = \beta_0 + \beta_1 \cdot X\]</span></p>
-</div><div class="column" style="width:65%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-8-1.png" width="1056"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="i-independence-of-observations-1" class="slide level2">
-<h2>I: Independence of observations</h2>
-<ul>
-<li><p>The <span class="math inline">\(Y\)</span>-values are statistically independent of one another</p></li>
-<li><p>Examples of when they are <em>not</em> independent, include</p>
-<ul>
-<li><p>repeated measures (such as baseline, 3 months, 6 months)</p></li>
-<li><p>data from clusters, such as different hospitals or families</p></li>
-</ul></li>
-<li><p>This condition is checked by reviewing the study <em>design</em> and not by inspecting the data</p></li>
-</ul>
-<p>&nbsp;</p>
-<ul>
-<li>How to analyze data using regression models when the <span class="math inline">\(Y\)</span>-values are not independent is covered in BSTA 519 (Longitudinal data)</li>
-</ul>
-</section>
-<section id="poll-everywhere-question-1" class="slide level2">
-<h2>Poll Everywhere Question 1</h2>
-</section>
-<section id="n-normality-1" class="slide level2">
-<h2>N: Normality</h2>
-<div class="columns">
-<div class="column">
-<ul>
-<li>For any fixed value of <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span> has normal distribution.
-<ul>
-<li>Note: This is not about <span class="math inline">\(Y\)</span> alone, but <span class="math inline">\(Y|X\)</span></li>
-</ul></li>
-<li>Equivalently, the measurement (random) errors <span class="math inline">\(\epsilon_i\)</span> ’s normally distributed
-<ul>
-<li>This is more often what we check</li>
-</ul></li>
-</ul>
-</div><div class="column">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-9-1.png" width="1056"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="e-equality-of-variance-of-the-residuals-1" class="slide level2">
-<h2>E: Equality of variance of the residuals</h2>
-<ul>
-<li><p>The variance of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span> (<span class="math inline">\(\sigma_{Y|X}^2\)</span>), is the same for any <span class="math inline">\(X\)</span></p>
-<ul>
-<li>We use just <span class="math inline">\(\sigma^2\)</span> to denote the common variance</li>
-</ul></li>
-<li><p>This is also called <strong>homoscedasticity</strong></p></li>
-</ul>
-
-<img data-src="06_SLR_Diag_1/OLSassumptions-1.png" class="r-stretch quarto-figure-center"></section>
-<section id="summary-of-line-model-assumptions-1" class="slide level2">
-<h2>Summary of LINE model assumptions</h2>
-<ul>
-<li><span class="math inline">\(Y\)</span> values are independent (check study design!)</li>
-</ul>
-<p><br></p>
-<div class="columns">
-<div class="column" style="width:10%;">
-
-</div><div class="column" style="width:40%;">
-<p>The distribution of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span> is</p>
-<ul>
-<li>normal</li>
-<li>with mean <span class="math inline">\(\mu_{y|x} = \beta_0 + \beta_1 \cdot X\)</span></li>
-<li>and common variance <span class="math inline">\(\sigma^2\)</span></li>
-</ul>
-</div><div class="column" style="width:40%;">
-<p>This means that the residuals are</p>
-<ul>
-<li>normal</li>
-<li>with mean = 0</li>
-<li>and common variance <span class="math inline">\(\sigma^2\)</span></li>
-</ul>
-</div>
-</div>
-</section>
-<section id="how-do-we-determine-if-our-model-follows-the-line-assumptions-1" class="slide level2">
-<h2>How do we determine if our model follows the LINE assumptions?</h2>
-<div class="columns">
-<div class="column">
-<div class="definition">
-<div class="def-title">
-<p><strong>[L] Linearity</strong> of relationship between variables</p>
-</div>
-<div class="def-cont">
-<p>Check if there is a linear relationship between the mean response (Y) and the explanatory variable (X)</p>
-</div>
-</div>
-</div><div class="column">
-<div class="proof1">
-<div class="proof-title">
-<p><strong>[I] Independence</strong> of the <span class="math inline">\(Y\)</span> values</p>
-</div>
-<div class="proof-cont">
-<p>Check that the observations are independent</p>
-</div>
-</div>
-</div><div class="column">
-<div class="theorem">
-<div class="thm-title">
-<p><strong>[N] Normality</strong> of the <span class="math inline">\(Y\)</span>’s given <span class="math inline">\(X\)</span> (residuals)</p>
-</div>
-<div class="thm-cont">
-<p>Check that the responses (at each level X) are normally distributed</p>
-<ul>
-<li>Usually measured through the residuals</li>
-</ul>
-</div>
-</div>
-</div><div class="column">
-<div class="fact">
-<div class="fact-title">
-<p><strong>[E] Equality</strong> of variance of the residuals (homoscedasticity)</p>
-</div>
-<div class="fact-cont">
-<p>Check that the variance (or standard deviation) of the responses is equal for all levels of X</p>
-<ul>
-<li>Usually measured through the residuals</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="learning-objectives-3" class="title-slide slide level1 center">
 <h1>Learning Objectives</h1>
 <ol type="1">
 <li>Describe the model assumptions made in linear regression using ordinary least squares</li>
@@ -1351,7 +1182,7 @@ Nicky Wakim
 <li><strong>Diagnostic tool:</strong> Scatterplot of <span class="math inline">\(X\)</span> vs.&nbsp;<span class="math inline">\(Y\)</span></li>
 </ul>
 
-<img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="poll-everywhere-question-2" class="slide level2">
 <h2>Poll Everywhere Question 2</h2>
 </section>
@@ -1366,7 +1197,7 @@ Nicky Wakim
 </ul>
 </section></section>
 <section>
-<section id="learning-objectives-4" class="title-slide slide level1 center">
+<section id="learning-objectives-3" class="title-slide slide level1 center">
 <h1>Learning Objectives</h1>
 <ol type="1">
 <li><p>Describe the model assumptions made in linear regression using ordinary least squares</p></li>
@@ -1425,8 +1256,8 @@ $ .std.resid         &lt;dbl&gt; 0.48238134, 0.58332052, -0.59972251, 0.47579667
 </div>
 </div>
 </section>
-<section id="n-check-normality-with-usual-distribution-plots" class="slide level2">
-<h2>N: Check normality with “usual” distribution plots</h2>
+<section id="n-check-normality-with-distribution-plots-of-residuals-12" class="slide level2">
+<h2>N: Check normality with distribution plots of residuals (1/2)</h2>
 <p>Note that below I save each figure as an object, and then combine them together in one row of output using <code>grid.arrange()</code> from the <code>gridExtra</code> package</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>hist1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(aug1, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span>
@@ -1438,7 +1269,20 @@ $ .std.resid         &lt;dbl&gt; 0.48238134, 0.58332052, -0.59972251, 0.47579667
 <span id="cb3-7"><a href="#cb3-7"></a><span class="fu">grid.arrange</span>(hist1, density1, box1, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-12-1.png" width="1152" class="r-stretch quarto-figure-center"></section>
+<img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-10-1.png" width="1152" class="r-stretch quarto-figure-center"></section>
+<section id="n-check-normality-with-distribution-plots-of-residuals-22" class="slide level2">
+<h2>N: Check normality with distribution plots of residuals (2/2)</h2>
+<ul>
+<li>So do these plots of the residuals look normal?</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">grid.arrange</span>(hist1, density1, box1, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-11-1.png" width="1152" class="r-stretch quarto-figure-center"><ul>
+<li>My assessment: Looks like our residuals could be normal if we did not have those values around -20</li>
+</ul>
+</section>
 <section id="n-normal-qq-plots-qq-quantile-quantile" class="slide level2">
 <h2>N: Normal QQ plots (QQ = quantile-quantile)</h2>
 <ul>
@@ -1468,7 +1312,7 @@ $ .std.resid         &lt;dbl&gt; 0.48238134, 0.58332052, -0.59972251, 0.47579667
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-13-1.png" width="720"></p>
+<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-12-1.png" width="720"></p>
 </figure>
 </div>
 </div>
@@ -1495,7 +1339,7 @@ $ .std.resid         &lt;dbl&gt; 0.48238134, 0.58332052, -0.59972251, 0.47579667
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-15-1.png" width="1920"></p>
+<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-14-1.png" width="1920"></p>
 </figure>
 </div>
 </div>
@@ -1504,12 +1348,11 @@ $ .std.resid         &lt;dbl&gt; 0.48238134, 0.58332052, -0.59972251, 0.47579667
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-16-1.png" width="1920"></p>
+<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-15-1.png" width="1920"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>&nbsp;</p>
 </section>
 <section id="n-examples-of-normal-qq-plots-from-n10-observations" class="slide level2">
 <h2>N: Examples of Normal QQ plots (from <span class="math inline">\(n=10\)</span> observations)</h2>
@@ -1530,7 +1373,7 @@ $ .std.resid         &lt;dbl&gt; 0.48238134, 0.58332052, -0.59972251, 0.47579667
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-18-1.png" width="1920"></p>
+<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-17-1.png" width="1920"></p>
 </figure>
 </div>
 </div>
@@ -1539,7 +1382,7 @@ $ .std.resid         &lt;dbl&gt; 0.48238134, 0.58332052, -0.59972251, 0.47579667
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-19-1.png" width="1920"></p>
+<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-18-1.png" width="1920"></p>
 </figure>
 </div>
 </div>
@@ -1564,7 +1407,7 @@ $ .std.resid         &lt;dbl&gt; 0.48238134, 0.58332052, -0.59972251, 0.47579667
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-21-1.png" width="1920"></p>
+<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-20-1.png" width="1920"></p>
 </figure>
 </div>
 </div>
@@ -1573,7 +1416,7 @@ $ .std.resid         &lt;dbl&gt; 0.48238134, 0.58332052, -0.59972251, 0.47579667
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-22-1.png" width="1920"></p>
+<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-21-1.png" width="1920"></p>
 </figure>
 </div>
 </div>
@@ -1584,17 +1427,17 @@ $ .std.resid         &lt;dbl&gt; 0.48238134, 0.58332052, -0.59972251, 0.47579667
 <div class="columns">
 <div class="column">
 <ul>
-<li>Residuals from Life Expectancy vs.&nbsp;Female Literacy Rate Regression</li>
+<li>QQ plot from Life Expectancy vs.&nbsp;Female Literacy Rate Regression</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">ggplot</span>(aug1, </span>
-<span id="cb4-2"><a href="#cb4-2"></a>      <span class="fu">aes</span>(<span class="at">sample =</span> .resid)) <span class="sc">+</span> </span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span> </span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">stat_qq_line</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggplot</span>(aug1, </span>
+<span id="cb5-2"><a href="#cb5-2"></a>      <span class="fu">aes</span>(<span class="at">sample =</span> .resid)) <span class="sc">+</span> </span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span> </span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">stat_qq_line</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-23-1.png" width="576"></p>
+<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-22-1.png" width="576"></p>
 </figure>
 </div>
 </div>
@@ -1604,16 +1447,16 @@ $ .std.resid         &lt;dbl&gt; 0.48238134, 0.58332052, -0.59972251, 0.47579667
 <li>Simulated QQ plot of Normal Residuals with <span class="math inline">\(n = 80\)</span></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">stat_qq</span>(<span class="fu">aes</span>(</span>
-<span id="cb5-3"><a href="#cb5-3"></a>    <span class="at">sample =</span> <span class="fu">rnorm</span>(<span class="dv">80</span>))) <span class="sc">+</span> </span>
-<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">geom_abline</span>(</span>
-<span id="cb5-5"><a href="#cb5-5"></a>    <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, </span>
-<span id="cb5-6"><a href="#cb5-6"></a>    <span class="at">color =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">stat_qq</span>(<span class="fu">aes</span>(</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="at">sample =</span> <span class="fu">rnorm</span>(<span class="dv">80</span>))) <span class="sc">+</span> </span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">geom_abline</span>(</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, </span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="at">color =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-24-1.png" width="576"></p>
+<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-23-1.png" width="576"></p>
 </figure>
 </div>
 </div>
@@ -1634,7 +1477,7 @@ H_1 &amp; : \text{data are NOT from a normally distributed population}
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">shapiro.test</span>(aug1<span class="sc">$</span>.resid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">shapiro.test</span>(aug1<span class="sc">$</span>.resid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Shapiro-Wilk normality test
@@ -1656,7 +1499,7 @@ W = 0.90575, p-value = 2.148e-05</code></pre>
 </div>
 </section></section>
 <section>
-<section id="learning-objectives-5" class="title-slide slide level1 center">
+<section id="learning-objectives-4" class="title-slide slide level1 center">
 <h1>Learning Objectives</h1>
 <ol type="1">
 <li><p>Describe the model assumptions made in linear regression using ordinary least squares</p></li>
@@ -1669,7 +1512,7 @@ W = 0.90575, p-value = 2.148e-05</code></pre>
 </ol>
 </div>
 </section>
-<section id="e-equality-of-variance-of-the-residuals-2" class="slide level2 nostretch">
+<section id="e-equality-of-variance-of-the-residuals-1" class="slide level2 nostretch">
 <h2>E: Equality of variance of the residuals</h2>
 <ul>
 <li>Homoscedasticity: How do we determine if the variance across X values is constant?</li>
@@ -1677,7 +1520,7 @@ W = 0.90575, p-value = 2.148e-05</code></pre>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="06_SLR_Diag_1/resid-plots.png" width="1000"></p>
+<p><img data-src="../img_slides/resid-plots.png" width="1000"></p>
 </figure>
 </div>
 </section>
@@ -1693,22 +1536,22 @@ W = 0.90575, p-value = 2.148e-05</code></pre>
 <li><span class="math inline">\(y\)</span> = residuals from regression model</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(aug1, </span>
-<span id="cb8-2"><a href="#cb8-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> FemaleLiteracyRate, </span>
-<span id="cb8-3"><a href="#cb8-3"></a>           <span class="at">y =</span> .resid)) <span class="sc">+</span> </span>
-<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">geom_abline</span>( <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">0</span>,</span>
-<span id="cb8-6"><a href="#cb8-6"></a>    <span class="at">size =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"#FF8021"</span>) <span class="sc">+</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Residual plot"</span>) <span class="sc">+</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>), </span>
-<span id="cb8-9"><a href="#cb8-9"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(aug1, </span>
+<span id="cb9-2"><a href="#cb9-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> FemaleLiteracyRate, </span>
+<span id="cb9-3"><a href="#cb9-3"></a>           <span class="at">y =</span> .resid)) <span class="sc">+</span> </span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">geom_abline</span>( <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">0</span>,</span>
+<span id="cb9-6"><a href="#cb9-6"></a>    <span class="at">size =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"#FF8021"</span>) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Residual plot"</span>) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>), </span>
+<span id="cb9-9"><a href="#cb9-9"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-27-1.png" width="672"></p>
+<p><img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-26-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1719,11 +1562,11 @@ W = 0.90575, p-value = 2.148e-05</code></pre>
 <section id="autoplot-can-be-a-helpful-tool" class="slide level2">
 <h2><code>autoplot()</code> can be a helpful tool</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">library</span>(ggfortify)</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">autoplot</span>(model1) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">library</span>(ggfortify)</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">autoplot</span>(model1) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-28-1.png" width="768" class="r-stretch quarto-figure-center"></section>
+<img data-src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-27-1.png" width="768" class="r-stretch quarto-figure-center"></section>
 <section id="summary-of-the-assumptions-and-their-diagnostic-tool" class="slide level2">
 <h2>Summary of the assumptions and their diagnostic tool</h2>
 <table style="width:99%;">
@@ -1786,9 +1629,25 @@ W = 0.90575, p-value = 2.148e-05</code></pre>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="we-didnt-really-go-over-our-options-when-these-assumptions-do-not-hold" class="slide level2">
+<h2>We didn’t really go over our options when these assumptions do not hold</h2>
+<ul>
+<li>We will consider this more once we get into multiple linear regression</li>
+<li>For now, with SLR, when assumptions do not hold, I conclude we need to add more variables in the model</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>Another note: I did not make these plots very presentable
+<ul>
+<li>Axes were left with whatever names were given to them</li>
+<li>These plots are usually just for us!</li>
+<li>Not really something that you include in a formal report</li>
+</ul></li>
+</ul>
 
 <div class="footer footer-default">
-<p>Lesson 6: SLR 4</p>
+<p>Lesson 7: SLR 4</p>
 </div>
 </section></section>
     </div>

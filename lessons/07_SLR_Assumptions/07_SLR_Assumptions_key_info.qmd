@@ -4,6 +4,7 @@ date-modified: "today"
 format: 
   html:
     link-external-newwindow: true
+  pdf: default 
 editor_options: 
   chunk_output_type: console
 ---
@@ -13,6 +14,11 @@ editor_options:
 - From exit ticket at 11:15am on 1/28, everyone either voted for Friday or "no preference"
   - HW and labs will be due on Friday now!!
   - Including HW 2!
+- Make sure you are turning in your HW
+  - Even HW 0! Some people have not turned it in
+  - There is no late penalty!
+  
+## Homework / Lab Review
 
 ## Key Dates
 

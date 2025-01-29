@@ -1,6 +1,6 @@
 ---
 title: "Muddy Points"
-subtitle: "Lesson"
+subtitle: "Lesson 6: SLR: More inference"
 date-modified: "today"
 format: 
   html:
@@ -9,3 +9,61 @@ editor_options:
   chunk_output_type: console
 ---
 
+## Muddy Points from 2025
+
+### 1. I was wondering when you should use variance versus deviation...
+
+This is a very good question! I was using them a little loosely in today's class. Deviation refers to a single observation's (i's) difference between values. So the **deviation** between the best fit line and an observation is $Y_i - \widehat{Y_i}$. We often call this specific deviation the residual or error. 
+
+Variation refers to the entire sample. We calculate the variation by summing the squared deviations. It will give us a sense of how the sample, as a whole, is spread.
+
+### 2. "F statistic > 1 is more evidence". . . what does that mean?
+
+More evidence... that the model explains the variation more than it does not. The larger the F statistic gets (once already > 1), the more and more evidence that the model explains a big portion of the total variation! Always remember that the F statistic measures the portion of explain to unexplained variation!
+
+### 3. Why do we need to include the confidence interval when asked to interpret coefficients in a model? To see that our model is statistically significant (doesn't contain the value 0)?
+
+We do not always need to come to a conclusion on the statistical significance. The confidence interval provides a lot of good information about the spread of the data. A coefficient estimate like 10 might seem really powerful, but once you see that the confidence interval spans from 1 to 19 (even though significant!), you might be less inclined to really broadcast the 10 alone. Remember, statistically significant just means there's evidence that it is not 0, not that we have evidence that it is 10. 
+
+My tangent: that's why I get so frustrated when I read news articles or hear people reporting things like "you are 10x more likely to get blah." Yeah, 10 is a scary big number, but I want to know if that 10 has a confidence interval of 9 to 11 or 1 to 19. It changes things and let's me know the quality of the data they were working with!
+
+### 4. is there a correlation for categorical variables?
+
+Unfortunately no. It only works for two continuous variables
+
+### 5. What does it mean, in the null hypothesis, that our Beta1 I(america) + Beta2 I(asia) + Beta 3I(europe) equal zero? is that saying they laay exactly on the line of best fit?
+
+Be careful! It did NOT say "+" The null hypothesis is that all the coefficients are 0. That $\beta_1 = \beta_2 = \beta_3 = 0$. This is just quicker to write than $\beta_1 = 0, \beta_2 = 0, \beta_3 = 0$.
+
+The null hypothesis is saying that there is no difference between the reference group and all the other groups. Basically that no matter what group, the mean outcome is the same. 
+
+### 6. Also: how do we set up the model to determine the difference in means between successive levels of an ordinal variable (1-2, 2-3, etc.?)
+
+For ordinal variables you can find the mean outcome for each level, then subtract them from each other. For example, mean life expectancy for low income would be $E(LE|X=1) = \widehat{\beta_0} + \widehat{\beta_1}(1)$ and mean life expectancy for upper middle income would be $E(LE|X=3) = \widehat{\beta_0} + \widehat{\beta_1}(2)$. And then we can just take the difference: $E(LE|X=3) - E(LE|X=1)$. 
+
+The trick is in the confidence intervals! We need to find the standard error for the difference in expected values! We can start with the variance:
+
+$$
+\begin{aligned}
+Var \big( E(LE|X=3) - & E(LE|X=1) \big)\\
+= & Var \big( \widehat{\beta_0} + \widehat{\beta_1}(3) - \widehat{\beta_0} - \widehat{\beta_1}(1) \big)\\
+= & Var \big( \widehat{\beta_1}(3) - \widehat{\beta_1}(1) \big)\\
+= & Var \big( \widehat{\beta_1}(3-1) \big) \\
+= & Var \big( 2 \widehat{\beta_1} \big) \\
+= & 4 Var \big( \widehat{\beta_1} \big) 
+\end{aligned}
+$$ 
+
+From there we know the standard error of $\beta_1$ and can calculated the confidence interval. 
+
+## Muddy Points from 2024
+
+### 7. What is the relationship between the ANOVA for linear regression and ANOVA for group differences?
+
+### 8. The limitations of the different tests, like an F statistic vs. t-test
+
+### 9. unexplained vs the explained
+
+### 10. Changing the confidence level in `tidy()`
+
+[Here is a good site about the input!](https://broom.tidymodels.org/reference/tidy.lm.html) Looks like we would use `conf.level` to change 95% confidence interval to some other percent.

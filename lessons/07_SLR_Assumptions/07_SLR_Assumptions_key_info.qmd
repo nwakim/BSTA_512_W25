@@ -17,8 +17,19 @@ editor_options:
 - Make sure you are turning in your HW
   - Even HW 0! Some people have not turned it in
   - There is no late penalty!
+- For muddy points, it's helpful if you have exact questions along with the muddy point.
+  - For example, from Monday I received a lot of "F test." 
   
-## Homework / Lab Review
+## Homework 1 Review
+
+- Check your feedback!! 
+- Question 6: regression with age and weight
+  - The dry weight is our outcome! It is important to always use `Y ~ X` in the `lm()` function!
+  - Stating the population simple linear regression model = writing it out using $\beta$s and stuff
+- Question 4: The choice of an alternative hypothesis should depend primarily on (choose all that apply). Explain your reasoning.
+  - When creating the hypothesis tests, you should not use the data collected to determine the test
+  - Your alternative should be formed from prior work/research
+- Population models should either be written like $E(Y|X) = \beta_0 + \beta_1 X$ or $Y = \beta_0 + \beta_1 X + \epsilon$
 
 ## Key Dates
 

@@ -3,7 +3,7 @@ title: "Lesson 7: SLR: Checking model assumptions"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
-date: "01/27/2025"
+date: "01/29/2025"
 categories: ["Week 4"]
 format: 
   revealjs:

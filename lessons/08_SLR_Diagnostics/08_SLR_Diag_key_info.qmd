@@ -12,6 +12,12 @@ editor_options:
 
 - Moved some of the lab vs. homework dates around - please update your schedule!
   - Mostly because I wanted you to have a week between Lab 4 and the poster!
+- HW 2 submissions
+  - I had a cross link on my HW 2 page
+  - Some of you did some HW 3 problems in HW 2 and missed some HW 2 problems
+    - I'll make a note on HW 3 - you need to do those HW 2 problems in HW 3 instead
+- Anything else?
+  
 
 ## Key Dates
 

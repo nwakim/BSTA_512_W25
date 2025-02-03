@@ -415,6 +415,84 @@ Nicky Wakim
 <li><p>Use residual plots to determine if our fitted model holds the equality of variance assumption</p></li>
 </ol>
 </section>
+<section id="process-of-regression-data-analysis" class="slide level2">
+<h2>Process of regression data analysis</h2>
+<div class="box">
+<p><img data-src="../img_slides/arrow2.png" class="absolute" style="top: 13.5%; right: 62.1%; width: 155px; "> <img data-src="../img_slides/arrow2.png" class="absolute" style="top: 13.5%; right: 28.4%; width: 155px; "><img data-src="../img_slides/arrow_back4.png" class="absolute" style="top: 7.5%; right: 30.5%; width: 820px; "> <img data-src="../img_slides/arrow_down.png" class="absolute" style="top: 60.5%; right: 48%; width: 85px; "></p>
+<div class="columns">
+<div class="column" style="width:30%;">
+<div class="RAP1">
+<div class="RAP1-title">
+<p>Model Selection</p>
+</div>
+<div class="RAP1-cont">
+<ul>
+<li><p>Building a model</p></li>
+<li><p>Selecting variables</p></li>
+<li><p>Prediction vs interpretation</p></li>
+<li><p>Comparing potential models</p></li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:4%;">
+
+</div><div class="column" style="width:30%;">
+<div class="RAP2">
+<div class="RAP2-title">
+<p>Model Fitting</p>
+</div>
+<div class="RAP2-cont">
+<ul>
+<li><p>Find best fit line</p></li>
+<li><p>Using OLS in this class</p></li>
+<li><p>Parameter estimation</p></li>
+<li><p>Categorical covariates</p></li>
+<li><p>Interactions</p></li>
+</ul>
+</div>
+</div>
+</div><div class="column" style="width:4%;">
+
+</div><div class="column" style="width:30%;">
+<div class="RAP3">
+<div class="RAP3-title">
+<p>Model Evaluation</p>
+</div>
+<div class="RAP3-cont">
+<ul>
+<li>Evaluation of model fit</li>
+<li>Testing model assumptions</li>
+<li>Residuals</li>
+<li>Transformations</li>
+<li>Influential points</li>
+<li>Multicollinearity</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="RAP4">
+<div class="RAP4-title">
+<p>Model Use (Inference)</p>
+</div>
+<div class="RAP4-cont">
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Inference for coefficients</li>
+<li>Hypothesis testing for coefficients</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Inference for expected <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span></li>
+<li>Prediction of new <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="lets-remind-ourselves-of-one-model-we-have-been-working-with" class="slide level2">
 <h2>Let’s remind ourselves of one model we have been working with</h2>
 <ul>
@@ -428,23 +506,23 @@ Nicky Wakim
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="santzccfnz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#santzccfnz table {
+<div id="scafgvrxyq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#scafgvrxyq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#santzccfnz thead, #santzccfnz tbody, #santzccfnz tfoot, #santzccfnz tr, #santzccfnz td, #santzccfnz th {
+#scafgvrxyq thead, #scafgvrxyq tbody, #scafgvrxyq tfoot, #scafgvrxyq tr, #scafgvrxyq td, #scafgvrxyq th {
   border-style: none;
 }
 
-#santzccfnz p {
+#scafgvrxyq p {
   margin: 0;
   padding: 0;
 }
 
-#santzccfnz .gt_table {
+#scafgvrxyq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -470,12 +548,12 @@ Nicky Wakim
   border-left-color: #D3D3D3;
 }
 
-#santzccfnz .gt_caption {
+#scafgvrxyq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#santzccfnz .gt_title {
+#scafgvrxyq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -487,7 +565,7 @@ Nicky Wakim
   border-bottom-width: 0;
 }
 
-#santzccfnz .gt_subtitle {
+#scafgvrxyq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -499,7 +577,7 @@ Nicky Wakim
   border-top-width: 0;
 }
 
-#santzccfnz .gt_heading {
+#scafgvrxyq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -511,13 +589,13 @@ Nicky Wakim
   border-right-color: #D3D3D3;
 }
 
-#santzccfnz .gt_bottom_border {
+#scafgvrxyq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#santzccfnz .gt_col_headings {
+#scafgvrxyq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -532,7 +610,7 @@ Nicky Wakim
   border-right-color: #D3D3D3;
 }
 
-#santzccfnz .gt_col_heading {
+#scafgvrxyq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -552,7 +630,7 @@ Nicky Wakim
   overflow-x: hidden;
 }
 
-#santzccfnz .gt_column_spanner_outer {
+#scafgvrxyq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -564,15 +642,15 @@ Nicky Wakim
   padding-right: 4px;
 }
 
-#santzccfnz .gt_column_spanner_outer:first-child {
+#scafgvrxyq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#santzccfnz .gt_column_spanner_outer:last-child {
+#scafgvrxyq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#santzccfnz .gt_column_spanner {
+#scafgvrxyq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -584,11 +662,11 @@ Nicky Wakim
   width: 100%;
 }
 
-#santzccfnz .gt_spanner_row {
+#scafgvrxyq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#santzccfnz .gt_group_heading {
+#scafgvrxyq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -614,7 +692,7 @@ Nicky Wakim
   text-align: left;
 }
 
-#santzccfnz .gt_empty_group_heading {
+#scafgvrxyq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -629,15 +707,15 @@ Nicky Wakim
   vertical-align: middle;
 }
 
-#santzccfnz .gt_from_md > :first-child {
+#scafgvrxyq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#santzccfnz .gt_from_md > :last-child {
+#scafgvrxyq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#santzccfnz .gt_row {
+#scafgvrxyq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -656,7 +734,7 @@ Nicky Wakim
   overflow-x: hidden;
 }
 
-#santzccfnz .gt_stub {
+#scafgvrxyq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -669,7 +747,7 @@ Nicky Wakim
   padding-right: 5px;
 }
 
-#santzccfnz .gt_stub_row_group {
+#scafgvrxyq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -683,15 +761,15 @@ Nicky Wakim
   vertical-align: top;
 }
 
-#santzccfnz .gt_row_group_first td {
+#scafgvrxyq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#santzccfnz .gt_row_group_first th {
+#scafgvrxyq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#santzccfnz .gt_summary_row {
+#scafgvrxyq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -701,16 +779,16 @@ Nicky Wakim
   padding-right: 5px;
 }
 
-#santzccfnz .gt_first_summary_row {
+#scafgvrxyq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#santzccfnz .gt_first_summary_row.thick {
+#scafgvrxyq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#santzccfnz .gt_last_summary_row {
+#scafgvrxyq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -720,7 +798,7 @@ Nicky Wakim
   border-bottom-color: #D3D3D3;
 }
 
-#santzccfnz .gt_grand_summary_row {
+#scafgvrxyq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -730,7 +808,7 @@ Nicky Wakim
   padding-right: 5px;
 }
 
-#santzccfnz .gt_first_grand_summary_row {
+#scafgvrxyq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -740,7 +818,7 @@ Nicky Wakim
   border-top-color: #D3D3D3;
 }
 
-#santzccfnz .gt_last_grand_summary_row_top {
+#scafgvrxyq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -750,11 +828,11 @@ Nicky Wakim
   border-bottom-color: #D3D3D3;
 }
 
-#santzccfnz .gt_striped {
+#scafgvrxyq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#santzccfnz .gt_table_body {
+#scafgvrxyq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -763,7 +841,7 @@ Nicky Wakim
   border-bottom-color: #D3D3D3;
 }
 
-#santzccfnz .gt_footnotes {
+#scafgvrxyq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -777,7 +855,7 @@ Nicky Wakim
   border-right-color: #D3D3D3;
 }
 
-#santzccfnz .gt_footnote {
+#scafgvrxyq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -786,7 +864,7 @@ Nicky Wakim
   padding-right: 5px;
 }
 
-#santzccfnz .gt_sourcenotes {
+#scafgvrxyq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -800,7 +878,7 @@ Nicky Wakim
   border-right-color: #D3D3D3;
 }
 
-#santzccfnz .gt_sourcenote {
+#scafgvrxyq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -808,72 +886,72 @@ Nicky Wakim
   padding-right: 5px;
 }
 
-#santzccfnz .gt_left {
+#scafgvrxyq .gt_left {
   text-align: left;
 }
 
-#santzccfnz .gt_center {
+#scafgvrxyq .gt_center {
   text-align: center;
 }
 
-#santzccfnz .gt_right {
+#scafgvrxyq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#santzccfnz .gt_font_normal {
+#scafgvrxyq .gt_font_normal {
   font-weight: normal;
 }
 
-#santzccfnz .gt_font_bold {
+#scafgvrxyq .gt_font_bold {
   font-weight: bold;
 }
 
-#santzccfnz .gt_font_italic {
+#scafgvrxyq .gt_font_italic {
   font-style: italic;
 }
 
-#santzccfnz .gt_super {
+#scafgvrxyq .gt_super {
   font-size: 65%;
 }
 
-#santzccfnz .gt_footnote_marks {
+#scafgvrxyq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#santzccfnz .gt_asterisk {
+#scafgvrxyq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#santzccfnz .gt_indent_1 {
+#scafgvrxyq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#santzccfnz .gt_indent_2 {
+#scafgvrxyq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#santzccfnz .gt_indent_3 {
+#scafgvrxyq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#santzccfnz .gt_indent_4 {
+#scafgvrxyq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#santzccfnz .gt_indent_5 {
+#scafgvrxyq .gt_indent_5 {
   text-indent: 25px;
 }
 
-#santzccfnz .katex-display {
+#scafgvrxyq .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#santzccfnz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#scafgvrxyq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>

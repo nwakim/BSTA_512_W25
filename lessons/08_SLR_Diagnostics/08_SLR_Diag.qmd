@@ -1,9 +1,9 @@
 ---
-title: "Lesson 7: SLR: Model Evaluation and Diagnostics"
+title: "Lesson 8: SLR: Model Diagnostics"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
-date: "01/29/2025"
+date: "02/3/2025"
 format: 
   revealjs:
     theme: "../simple_NW.scss"
@@ -12,7 +12,7 @@ format:
     show-slide-number: all
     width: 1955
     height: 1100
-    footer: "Lesson 7: SLR 5"
+    footer: "Lesson 8: SLR 5"
     html-math-method: mathjax
     highlight-style: ayu
 execute:
@@ -50,9 +50,16 @@ library(broom.helpers)
 
 knitr::opts_chunk$set(echo = TRUE, fig.height=3, fig.width=5,
                       message = FALSE, warning = FALSE)
-gapm <- read_csv(here("./data/lifeexp_femlit_2011.csv"))
-
 ```
+
+```{r}
+#| include: false
+#| message: false
+#| warning: false
+gapm1 <- read_excel(here("data/Gapminder_vars_2011.xlsx"), na = "NA") 
+gapm <- gapm1 %>% drop_na(LifeExpectancyYrs, FemaleLiteracyRate)
+```
+
 
 # Learning Objectives
 
@@ -64,6 +71,101 @@ gapm <- read_csv(here("./data/lifeexp_femlit_2011.csv"))
 
 3.  Implement a model with data transformations and determine if it
     improves the model fit.
+    
+```{css, echo=FALSE}
+.reveal code {
+  max-height: 100% !important;
+}
+```
+
+## Process of regression data analysis
+
+::: box
+![](../img_slides/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"} ![](../img_slides/arrow2.png){.absolute top="13.5%" right="28.4%" width="155"}![](../img_slides/arrow_back4.png){.absolute top="7.5%" right="30.5%" width="820"} ![](../img_slides/arrow_down.png){.absolute top="60.5%" right="48%" width="85"}
+
+::: columns
+::: {.column width="30%"}
+::: RAP1
+::: RAP1-title
+Model Selection
+:::
+
+::: RAP1-cont
+-   Building a model
+
+-   Selecting variables
+
+-   Prediction vs interpretation
+
+-   Comparing potential models
+:::
+:::
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="30%"}
+::: RAP2
+::: RAP2-title
+Model Fitting
+:::
+
+::: RAP2-cont
+-   Find best fit line
+
+-   Using OLS in this class
+
+-   Parameter estimation
+
+-   Categorical covariates
+
+-   Interactions
+:::
+:::
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="30%"}
+::: RAP3
+::: RAP3-title
+Model Evaluation
+:::
+
+::: RAP3-cont
+-   Evaluation of model fit
+-   Testing model assumptions
+-   Residuals
+-   Transformations
+-   Influential points
+-   Multicollinearity
+:::
+:::
+:::
+:::
+:::
+
+::: RAP4
+::: RAP4-title
+Model Use (Inference)
+:::
+
+::: RAP4-cont
+::: columns
+::: {.column width="50%"}
+-   Inference for coefficients
+-   Hypothesis testing for coefficients
+:::
+
+::: {.column width="50%"}
+-   Inference for expected $Y$ given $X$
+-   Prediction of new $Y$ given $X$
+:::
+:::
+:::
+:::
 
 ## Let's remind ourselves of the model that we have been working with
 
@@ -79,8 +181,8 @@ $$Y = \beta_0 + \beta_1 X + \epsilon$$
 ```{r}
 #| echo: false
 
-model1 <- lm(life_expectancy_years_2011 ~
-               female_literacy_rate_2011,
+model1 <- lm(LifeExpectancyYrs ~
+               FemaleLiteracyRate,
                  data = gapm)
 # Get regression table:
 tidy(model1) %>% gt() %>% 
@@ -105,9 +207,8 @@ tidy(model1) %>% gt() %>%
 #| fig-width: 11
 #| echo: false
 
-gapm <- read_csv(here("./data/lifeexp_femlit_2011.csv"))
-ggplot(gapm, aes(x = female_literacy_rate_2011,
-                 y = life_expectancy_years_2011)) +
+ggplot(gapm, aes(x = FemaleLiteracyRate,
+                 y = LifeExpectancyYrs)) +
   geom_point(size = 4) +
   geom_smooth(method = "lm", se = FALSE, size = 3, colour="#F14124") +
   labs(x = "Female literacy rate (%)", 
@@ -148,17 +249,17 @@ $$
 #| fig-align: center
 # code from https://drsimonj.svbtle.com/visualising-residuals
 
-model1 <- lm(life_expectancy_years_2011 ~ female_literacy_rate_2011,
+model1 <- lm(LifeExpectancyYrs ~ FemaleLiteracyRate,
                  data = gapm)
 regression_points <- augment(model1)
 # summary(model1)
 # sum(model1$residuals^2)
 
 ggplot(regression_points, 
-       aes(x = female_literacy_rate_2011,
-                 y = life_expectancy_years_2011)) +
+       aes(x = FemaleLiteracyRate,
+                 y = LifeExpectancyYrs)) +
   geom_segment(aes(
-    xend = female_literacy_rate_2011, 
+    xend = FemaleLiteracyRate, 
     yend = .fitted), 
     alpha = 1, 
     color = "#4FADF3", 
@@ -271,7 +372,7 @@ equal for all levels of X
 3.  Implement a model with data transformations and determine if it
     improves the model fit.
 
-## Influential points
+## Types of influential points
 
 ::: columns
 ::: column
@@ -283,14 +384,14 @@ equal for all levels of X
 ::: fact-cont
 -   An observation ($X_i, Y_i$) whose response $Y_i$ does not follow the
     general trend of the rest of the data
+    
+![](../img_slides/outliers.png){fig-align="center" width="450"}
 :::
 :::
 
  
 
  
-
-![](07_SLR_Diag_2/outliers.png){fig-align="center" width="450"}
 :::
 
 ::: column
@@ -304,30 +405,47 @@ equal for all levels of X
     value
 -   $X_i$ can be an extremely high or low value compared to the rest of
     the observations
+
+![](../img_slides/high_leverage.png){fig-align="center" width="450"}
+:::
+:::
 :::
 :::
 
-![](07_SLR_Diag_2/high_leverage.png){fig-align="center" width="450"}
-:::
-:::
+## Tools to measure influential points
+
+- Internally standardized residual (outlier)
+
+ 
+
+- Leverage (high leverage point)
+
+ 
+
+- Cook's distance (overall influence, both)
+
+## Poll Everywhere Question 1
 
 ## Outliers
 
+::: columns
+::: {.column width="60%"}
 -   An observation ($X_i, Y_i$) whose response $Y_i$ does not follow the
     general trend of the rest of the data
+    
+ 
 
 -   How do we determine if a point is an outlier?
 
     -   Scatterplot of $Y$ vs. $X$
     -   Followed by evaluation of its residual (and standardized
         residual)
-
- 
-
--   Use the internally standardized residual (aka studentized residual)
-    to determine if an observation is an outlier
-
-## Poll Everywhere Question 1
+          - Typically use the **internally standardized residual** (aka studentized residual)
+:::
+::: {.column width="40%"}
+![](../img_slides/poll_ev_q2.png){fig-align="center" width="500"}
+:::
+:::
 
 ## Identifying outliers
 
@@ -390,7 +508,7 @@ ggplot(data = aug1) +
 :::
 :::
 
-## Countries that are outliers ($|r_i| > 2$)
+## Countries that are outliers ($|r_i| > 3$)
 
 -   We can identify the countries that are outliers
 
@@ -399,28 +517,59 @@ ggplot(data = aug1) +
 
 # names(gapm)
 # names(aug1)
-gapm = gapm %>% mutate(.rownames = 1:n() %>% as.character())
 ```
 
 ```{r}
 #| echo: false
 
 aug1 = left_join(aug1, gapm, 
-                 by = c(".rownames",
-                        "life_expectancy_years_2011", 
-                        "female_literacy_rate_2011"))
+                 by = c("LifeExpectancyYrs", 
+                        "FemaleLiteracyRate"))
 aug1 = aug1 %>%
-  relocate(country, .after = .rownames) %>%
-  relocate(.std.resid, .after = female_literacy_rate_2011)
+  relocate(country, .before = LifeExpectancyYrs) %>%
+  relocate(.std.resid, .after = FemaleLiteracyRate)
 ```
 
 ```{r}
 aug1 %>% 
-  filter(abs(.std.resid) > 2)
+  filter(abs(.std.resid) > 3)
+```
+
+## Visual: Countries that are outliers ($|r_i| > 3$)
+
+Label only countries with large internally standardized residuals:
+
+```{r}
+#| fig-align: center
+
+ggplot(aug1, aes(x = FemaleLiteracyRate, y = LifeExpectancyYrs,
+                 label = country)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "darkgreen") +
+  geom_text(aes(label = ifelse(abs(.std.resid) > 3, as.character(country), ''))) +
+  geom_vline(xintercept = mean(aug1$FemaleLiteracyRate), color = "grey") +
+  geom_hline(yintercept = mean(aug1$LifeExpectancyYrs), color = "grey")
+```
+
+## What does the model look like without outliers?
+
+Sensitivity analysis removing countries that are outliers
+
+```{r}
+aug1_no_out <- aug1 %>% filter(abs(.std.resid) <= 3) 
+
+model1_no_out <- aug1_no_out %>% 
+  lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate)
+tidy(model1_no_out) %>% gt() %>% # Without outliers
+ tab_options(table.font.size = 40) %>% fmt_number(decimals = 3)
+tidy(model1) %>% gt() %>% # With outliers
+ tab_options(table.font.size = 40) %>% fmt_number(decimals = 3)
 ```
 
 ## High leverage observations
-
+    
+::: columns
+::: {.column width="60%"}
 -   An observation ($X_i, Y_i$) whose response $X_i$ is considered
     "extreme" compared to the other values of $X$
 
@@ -429,10 +578,24 @@ aug1 %>%
 -   How do we determine if a point has high leverage?
 
     -   Scatterplot of $Y$ vs. $X$
-    -   Calculating the leverage of each observation
+    -   Calculating the **leverage** of each observation
+:::
+::: {.column width="40%"}
+![](../img_slides/poll_ev_q2.png){fig-align="center" width="500"}
+:::
+:::
+
 
 ## Leverage $h_i$
 
+::: definition
+::: def-title
+Leverage
+:::
+::: def-cont
+Measure of the distance between the x value ($X_i$) for the data point ($i$) and the mean of the x values ($\overline{X}$) for all $n$ data points
+:::
+:::
 -   Values of leverage are: $0 \leq h_i \leq 1$
 -   We flag an observation if the leverage is "high"
     -   Different sources will define "high" differently
@@ -444,11 +607,6 @@ aug1 %>%
     -   PennState site uses $h_i > 3p/n$ where $p$ = number of
         regression coefficients
 
-```{r}
-aug1 = aug1 %>% relocate(.hat, .after = female_literacy_rate_2011)
-aug1 %>% arrange(desc(.hat))
-```
-
 ## Countries with high leverage ($h_i > 4/n$)
 
 -   We can look at the countries that have high leverage
@@ -458,31 +616,31 @@ aug1 %>% arrange(desc(.hat))
 
 # names(gapm)
 # names(aug1)
-gapm = gapm %>% mutate(.rownames = 1:n() %>% as.character())
+#gapm = gapm %>% mutate(.rownames = 1:n() %>% as.character())
 ```
 
 ```{r}
-aug1 %>% 
-  filter(.hat > 4/80) %>%
-  arrange(desc(.hat))
+aug1 = aug1 %>% relocate(.hat, .after = FemaleLiteracyRate)
+
+aug1 %>% filter(.hat > 4/80) %>% arrange(desc(.hat))
 ```
 
 ## Poll Everywhere Question 2
 
-## Countries with high leverage ($h_i > 4/n$)
+## Visual: Countries with high leverage ($h_i > 4/n$)
 
 Label only countries with large leverage:
 
 ```{r}
 #| fig-align: center
 
-ggplot(aug1, aes(x = female_literacy_rate_2011, y = life_expectancy_years_2011,
+ggplot(aug1, aes(x = FemaleLiteracyRate, y = LifeExpectancyYrs,
                  label = country)) +
   geom_point() +
   geom_smooth(method = "lm", color = "darkgreen") +
-  geom_text(aes(label = ifelse(.hat > 0.05, as.character(country), ''))) +
-  geom_vline(xintercept = mean(aug1$female_literacy_rate_2011), color = "grey") +
-  geom_hline(yintercept = mean(aug1$life_expectancy_years_2011), color = "grey")
+  geom_text(aes(label = ifelse(.hat > 4/80, as.character(country), ''))) +
+  geom_vline(xintercept = mean(aug1$FemaleLiteracyRate), color = "grey") +
+  geom_hline(yintercept = mean(aug1$LifeExpectancyYrs), color = "grey")
 ```
 
 ## What does the model look like without the high leverage points?
@@ -490,27 +648,14 @@ ggplot(aug1, aes(x = female_literacy_rate_2011, y = life_expectancy_years_2011,
 Sensitivity analysis removing countries with high leverage
 
 ```{r}
-#| echo: false
-ID_low_leverage <- aug1 %>% 
-  filter(.hat <= 0.05) %>% 
-  pull(country)
-#ID_low_leverage %>% head()
-#length(ID_low_leverage)
+aug1_lowlev <- aug1 %>% filter(.hat <= 4/80)
 
-aug1_lowlev <- aug1 %>% 
-  filter(country %in% ID_low_leverage)
-#dim(aug1_lowlev)
-```
-
-```{r}
-model1_lowlev <- lm(life_expectancy_years_2011 ~ female_literacy_rate_2011,
-                    data = aug1_lowlev)
+model1_lowlev <- aug1_lowlev %>% 
+  lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate)
 tidy(model1_lowlev) %>% gt() %>% # Without high-leverage points
- tab_options(table.font.size = 40) %>%
- fmt_number(decimals = 3)
+ tab_options(table.font.size = 40) %>% fmt_number(decimals = 3)
 tidy(model1) %>% gt() %>% # With high leverage points
- tab_options(table.font.size = 40) %>%
- fmt_number(decimals = 3)
+ tab_options(table.font.size = 40) %>% fmt_number(decimals = 3)
 ```
 
 ## Cook's distance
@@ -545,47 +690,34 @@ and $r_i$ is the studentized residual
 :::
 
 ```{r}
-aug1 = aug1 %>% relocate(.cooksd, .after = female_literacy_rate_2011)
+aug1 = aug1 %>% relocate(.cooksd, .after = FemaleLiteracyRate)
 aug1 %>% arrange(desc(.cooksd))
 ```
 
 ## Plotting Cook's Distance
 
+- `plot(model)` shows figures similar to `autoplot()`
+  - 4th plot is Cook's distance (not available in `autoplot()`)
 ```{r fig.height=4}
 #| fig-align: center
 
-# plot(model) shows figures similar to autoplot()
-# adds on Cook's distance though
 plot(model1, which = 4)
 ```
 
-## Model without those 4 points: QQ Plot, Residual plot
+## What does the model look like without the high Cook's distance points?
+
+Sensitivity analysis removing countries with high Cook's distance
 
 ```{r}
-#| echo: false
-ID_low_cd <- aug1 %>% 
-  filter(.cooksd <= 0.04) %>% 
-  pull(country)
-#ID_low_leverage %>% head()
-#length(ID_low_leverage)
-
-aug1_lowcd <- aug1 %>% 
-  filter(country %in% ID_low_cd)
-#dim(aug1_lowlev)
+aug1_lowcd <- aug1 %>% filter(.cooksd <= 0.04)
+model1_lowcd <- aug1_lowcd %>% lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate)
+tidy(model1_lowcd) %>% gt() %>% # Without high Cook's distance points
+ tab_options(table.font.size = 40) %>% fmt_number(decimals = 3)
+tidy(model1) %>% gt() %>% # With high Cook's distance points
+ tab_options(table.font.size = 40) %>% fmt_number(decimals = 3)
 ```
 
-```{r}
-model1_lowcd <- lm(life_expectancy_years_2011 ~ female_literacy_rate_2011,
-                    data = aug1_lowcd)
-tidy(model1_lowcd) %>% gt() %>% # Without high-leverage points
- tab_options(table.font.size = 40) %>%
- fmt_number(decimals = 3)
-tidy(model1) %>% gt() %>% # With high leverage points
- tab_options(table.font.size = 40) %>%
- fmt_number(decimals = 3)
-```
-
-## Model without those 4 points: QQ Plot, Residual plot
+## Model without those 4 points: QQ Plot, Residual plot {visibility="hidden"}
 
 ::: columns
 ::: column
@@ -614,7 +746,7 @@ ggplot(aug1_lowcd, aes(sample = .resid)) +
 #| fig.align: center
 #| echo: false
 ggplot(aug1_lowcd, 
-       aes(x = female_literacy_rate_2011, 
+       aes(x = FemaleLiteracyRate, 
            y = .resid)) + 
   geom_point(size = 2) +
   geom_abline( intercept = 0, slope = 0,
@@ -669,11 +801,14 @@ I am okay with this!
     improves the model fit.
 
 ## How do we deal with influential points?
+    
+-   If an observation is influential, **we perform a sensitivity analysis**:
+    - We took out the influential points we identified then reran the model
+    - Often, you'll see that the "influential points" have not drastically changed your estimates
+        - A change in sign (for example: positive slope to negative slope)
+        - A really large increase (think more than 2x the original value)
 
--   It's always weird to be using numbers to help you diagnose an issue,
-    but the issue kinda gets unresolved
-
--   If an observation is influential, we can check data errors:
+-   If an observation is influential, **we check data errors**:
 
     -   Was there a data entry or collection problem?
 
@@ -681,44 +816,54 @@ I am okay with this!
         within the population (or gives you cause to redefine your
         population)
 
--   If an observation is influential, we can check our model:
+-   If an observation is influential, **we check our model**:
 
     -   Did you leave out any important predictors?
 
     -   Should you consider adding some interaction terms?
 
     -   Is there any nonlinearity that needs to be modeled?
+    
+## Important note on influential observations
+
+-   It's always weird to be using numbers to help you diagnose an issue,
+    but the issue kinda gets unresolved
+
+ 
 
 -   Basically, deleting an observation should be justified outside of
     the numbers!
 
     -   If it's an honest data point, then it's giving us important
         information!
+        
+ 
 
 -   [A really well thought out explanation from
     StackExchange](https://stats.stackexchange.com/questions/81058/how-to-handle-leverage-values)
+    
+    
 
-## When we have detected problems in our model...
+## Checking our model
 
--   We have talked about influential points
--   We have talked about identifying issues with our LINE assumptions
+-   An observation **may be** influential if the model is not correctly specified
+    -   We may also see issues with the LINE assumptions
 
-What are our options once we have identified issues in our linear
-regression model?
+-   What are our options to specify the model "correctly?"
 
--   See if we need to add predictors to our model
+    -   See if we need to add predictors to our model
 
-    -   Nicky's thought for our life expectancy example
+        -   Nicky's thought for our life expectancy example
 
--   Try a transformation if there is an issue with linearity or
+    -   Try a transformation if there is an issue with linearity or
     normality
 
--   Try a transformation if there is unequal variance
+    -   Try a transformation if there is unequal variance
 
--   Try a weighted least squares approach if unequal variance (might be
+    -   Try a weighted least squares approach if unequal variance (might be
     lesson at end of course)
 
--   Try a robust estimation procedure if we have a lot of outlier issues
+    -   Try a robust estimation procedure if we have a lot of outlier issues
     (outside scope of class)
 
 # Learning Objectives
@@ -751,7 +896,7 @@ regression model?
 
     -   It can also bring in or reduce outliers
 
--   We can transform the dependent ($Y$) variable of the independent
+-   We can transform the dependent ($Y$) variable and/or the independent
     ($X$) variable
 
     -   Usually we want to try transforming the $X$ first
@@ -806,56 +951,31 @@ regression model?
 ## Poll Everywhere Question 3
 
 
-## Transform dependent variable?
-
-```{r}
-#| fig-align: center
-ggplot(gapm, aes(x = life_expectancy_years_2011)) +
-  geom_histogram()
-```
-
-## `gladder()` of life expectancy
-
-```{r fig.width=7, fig.height=5}
-#| fig-align: center
-gladder(gapm$life_expectancy_years_2011)
-```
-
-## `ladder()` of life expectancy {visibility="hidden"}
-
-::: columns
-::: {.column width="40%"}
--   `ladder()` output tests various transformations of the data for
-    normality
--   Shapiro-Wilkes test is used to assess for normality
-    -   $H_0$: data are from a normal population
-    -   $H_A$: data are NOT from a normal population
-:::
-
-::: {.column width="60%"}
-```{r}
-#| fig-align: center
-ladder(gapm$life_expectancy_years_2011) %>% 
-  gt() %>%
-  tab_options(table.font.size = 40) %>%
-  fmt_number(decimals = 3)
-```
-:::
-:::
-
 ## Transform independent variable?
 
+::: columns
+::: column
 ```{r}
-#| fig-align: center
-ggplot(gapm, aes(x = female_literacy_rate_2011)) +
+#| out-width: 100%
+
+ggplot(gapm, 
+       aes(x = FemaleLiteracyRate)) +
   geom_histogram()
 ```
+:::
+::: column
+
+- Looks like more spread on the left side
+- Use powers greater than 1 
+  - $FLR^2$ and $FLR^3$
+:::
+:::
 
 ## `gladder()` of female literacy rate
 
 ```{r fig.width=7, fig.height=5}
 #| fig-align: center
-gladder(gapm$female_literacy_rate_2011)
+gladder(gapm$FemaleLiteracyRate)
 ```
 
 ## `ladder()` of female literacy rate {visibility="hidden"}
@@ -872,7 +992,58 @@ gladder(gapm$female_literacy_rate_2011)
 ::: {.column width="60%"}
 ```{r}
 #| fig-align: center
-ladder(gapm$female_literacy_rate_2011) %>% 
+ladder(gapm$FemaleLiteracyRate) %>% 
+  gt() %>%
+  tab_options(table.font.size = 40) %>%
+  fmt_number(decimals = 3)
+```
+:::
+:::
+
+## Transform dependent variable?
+
+::: columns
+::: column
+
+```{r}
+#| out-width: 100%
+
+ggplot(gapm, 
+       aes(x = LifeExpectancyYrs)) +
+  geom_histogram()
+```
+:::
+::: column
+
+- Looks like more spread on the left side as well
+- Use powers greater than 1 
+  - $LE^2$ and $LE^3$
+  
+:::
+:::
+
+## `gladder()` of life expectancy
+
+```{r fig.width=7, fig.height=5}
+#| fig-align: center
+gladder(gapm$LifeExpectancyYrs)
+```
+
+## `ladder()` of life expectancy {visibility="hidden"}
+
+::: columns
+::: {.column width="40%"}
+-   `ladder()` output tests various transformations of the data for
+    normality
+-   Shapiro-Wilkes test is used to assess for normality
+    -   $H_0$: data are from a normal population
+    -   $H_A$: data are NOT from a normal population
+:::
+
+::: {.column width="60%"}
+```{r}
+#| fig-align: center
+ladder(gapm$LifeExpectancyYrs) %>% 
   gt() %>%
   tab_options(table.font.size = 40) %>%
   fmt_number(decimals = 3)
@@ -882,13 +1053,13 @@ ladder(gapm$female_literacy_rate_2011) %>%
 
 ## Tips
 
--   Recall, assessing our LINE assumptions are not on $Y$ alone!!
+-   Recall, assessing our LINE assumptions are not on $Y$ alone!! (it's $Y|X$)
 
     -   We can use `gladder()` to get a sense of what our
         transformations will do to the data, but we need to check with
         our residuals again!!
 
--   Transformations usually work better if all values are positive (or
+-   Transformations usually work better if **all values** are positive (or
     negative)
 
 -   If observation has a 0, then we cannot perform certain
@@ -898,8 +1069,8 @@ ladder(gapm$female_literacy_rate_2011) %>%
 
     -   We might take the $log(X+1)$ if $X$ includes a 0 value
 
--   When we make cubic or sqaure transformations, we MUST include the
-    original $X$
+-   When we make cubic or square transformations, we MUST include the
+    original $X$ in the model
 
     -   We do not do this for $Y$ though
 
@@ -910,12 +1081,12 @@ ladder(gapm$female_literacy_rate_2011) %>%
 
 ```{r}
 gapm <- gapm %>% 
-  mutate(LE_2 = life_expectancy_years_2011^2,
-         LE_3 = life_expectancy_years_2011^3,
-         FLR_2 = female_literacy_rate_2011^2,
-         FLR_3 = female_literacy_rate_2011^3)
+  mutate(LE_2 = LifeExpectancyYrs^2,
+         LE_3 = LifeExpectancyYrs^3,
+         FLR_2 = FemaleLiteracyRate^2,
+         FLR_3 = FemaleLiteracyRate^3)
 
-glimpse(gapm)
+colnames(gapm)
 ```
 
 ## We are going to compare a few different models with transformations
@@ -938,21 +1109,21 @@ We are going to call life expectancy $LE$ and female literacy rate $FLR$
 ```{r fig.width=10, fig.height=5}
 #| echo: false
 
-plot_m1 <- ggplot(gapm, aes(x = female_literacy_rate_2011,
-                 y = life_expectancy_years_2011)) +
+plot_m1 <- ggplot(gapm, aes(x = FemaleLiteracyRate,
+                 y = LifeExpectancyYrs)) +
   geom_point() +
   geom_smooth() +
   geom_smooth(method = "lm", color = "darkgreen") +
   labs(title = "Mod1: LE ~ FLR")
 
-plot_m2 <- ggplot(gapm, aes(x = female_literacy_rate_2011,
+plot_m2 <- ggplot(gapm, aes(x = FemaleLiteracyRate,
                  y = LE_2)) +
   geom_point() +
   geom_smooth() +
   geom_smooth(method = "lm", color = "darkgreen") +
   labs(title = "Mod2: LE^2 ~ FLR")
 
-plot_m3 <- ggplot(gapm, aes(x = female_literacy_rate_2011,
+plot_m3 <- ggplot(gapm, aes(x = FemaleLiteracyRate,
                  y = LE_3)) +
   geom_point() +
   geom_smooth() +
@@ -960,14 +1131,14 @@ plot_m3 <- ggplot(gapm, aes(x = female_literacy_rate_2011,
   labs(title = "Mod3: LE^3 ~ FLR")
 
 plot_m4 <- ggplot(gapm, aes(x = FLR_2,
-                 y = life_expectancy_years_2011)) +
+                 y = LifeExpectancyYrs)) +
   geom_point() +
   geom_smooth() +
   geom_smooth(method = "lm", color = "darkgreen") +
   labs(title = "Mod4: LE ~ FLR + FLR^2")
 
 plot_m5 <- ggplot(gapm, aes(x = FLR_3,
-                 y = life_expectancy_years_2011)) +
+                 y = LifeExpectancyYrs)) +
   geom_point() +
   geom_smooth() +
   geom_smooth(method = "lm", color = "darkgreen") +
@@ -992,7 +1163,7 @@ grid.arrange(plot_m1, plot_m2, plot_m3,
 **Model 2:** $LE^2 = \beta_0 + \beta_1 FLR + \epsilon$
 
 ```{r}
-model2 <- lm(LE_2 ~ female_literacy_rate_2011,
+model2 <- lm(LE_2 ~ FemaleLiteracyRate,
              data = gapm)
 ```
 
@@ -1008,7 +1179,7 @@ $LE^3 = \beta_0 + \beta_1 FLR + \beta_2 FLR^2 +\beta_3 FLR^3 +\epsilon$
 
 ```{r}
 model6 <- lm(LE_3 ~ 
-               female_literacy_rate_2011 + FLR_2 + FLR_3,
+               FemaleLiteracyRate + FLR_2 + FLR_3,
              data = gapm)
 ```
 
@@ -1023,7 +1194,7 @@ tidy(model6) %>% gt() %>%
 #| echo: false
 aug2 <- augment(model2)
 aug6 <- augment(model6)
-model3 <- lm(LE_3 ~ female_literacy_rate_2011,
+model3 <- lm(LE_3 ~ FemaleLiteracyRate,
              data = gapm)
 
 aug3 <- augment(model3)
@@ -1031,8 +1202,8 @@ aug3 <- augment(model3)
 
 ```{r}
 #| echo: false
-model4 <- lm(life_expectancy_years_2011 ~ 
-               female_literacy_rate_2011 + FLR_2,
+model4 <- lm(LifeExpectancyYrs ~ 
+               FemaleLiteracyRate + FLR_2,
              data = gapm)
 
 aug4 <- augment(model4)
@@ -1052,8 +1223,8 @@ plot(model4, which = 5)
 
 ```{r}
 #| echo: false
-model5 <- lm(life_expectancy_years_2011 ~ 
-               female_literacy_rate_2011 + FLR_2 + FLR_3,
+model5 <- lm(LifeExpectancyYrs ~ 
+               FemaleLiteracyRate + FLR_2 + FLR_3,
              data = gapm)
 
 aug5 <- augment(model5)
@@ -1123,18 +1294,23 @@ par(mfrow=c(1,1))  # set back to the standard 1 row x 1 column
 
 ## Summary of transformations
 
--   If the model without the transformation is blatantly violating a
-    LINE assumption
+-   If the model without the transformation is **blatantly violating a
+    LINE assumption**
     
     -   Then a transformation is a good idea
+    -   If transformations do not help, then keep it untransformed
 
--   If the model without a transformation is not following the LINE assumptions very well, but is mostly okay
+ 
+
+-   If the model without a transformation is **not following the LINE assumptions very well, but is mostly okay**
 
     -   Then try to avoid a transformation
     -   Think about what predictors might need to be added
     -   Especially if you keep seeing the same points as influential
     
--   If interpretability is important in your final work, then transformations are not a great solution
+ 
+
+-   If **interpretability** is important in your final work, then **transformations are not a great solution**
 
 ## Models comparison {visibility="hidden"}
 
@@ -1211,9 +1387,8 @@ loglog_plot
 Model 2: $LE^2 = \beta_0 + \beta_1 FLR + \epsilon$
 
 ```{r}
-model2 <- lm(LE_2 ~ female_literacy_rate_2011,
+model2 <- lm(LE_2 ~ FemaleLiteracyRate,
              data = gapm)
-
 tidy(model2) %>% gt()
 ```
 
@@ -1232,9 +1407,8 @@ plot(model2, which = 5)
 Model 3: $LE^3 \sim FLR$
 
 ```{r}
-model3 <- lm(LE_3 ~ female_literacy_rate_2011,
+model3 <- lm(LE_3 ~ FemaleLiteracyRate,
              data = gapm)
-
 tidy(model3) %>% gt()
 ```
 
@@ -1253,10 +1427,9 @@ plot(model3, which = 5)
 Model 4: $LE \sim FLR + FLR^2$
 
 ```{r}
-model4 <- lm(life_expectancy_years_2011 ~ 
-               female_literacy_rate_2011 + FLR_2,
+model4 <- lm(LifeExpectancyYrs ~ 
+               FemaleLiteracyRate + FLR_2,
              data = gapm)
-
 tidy(model4) %>% gt()
 ```
 
@@ -1277,10 +1450,9 @@ plot(model4, which = 5)
 Model 5: $LE \sim FLR + FLR^2 + FLR^3$
 
 ```{r}
-model5 <- lm(life_expectancy_years_2011 ~ 
-               female_literacy_rate_2011 + FLR_2 + FLR_3,
+model5 <- lm(LifeExpectancyYrs ~ 
+               FemaleLiteracyRate + FLR_2 + FLR_3,
              data = gapm)
-
 tidy(model5) %>% gt()
 ```
 
@@ -1300,9 +1472,8 @@ Model 6: $LE^3 \sim FLR + FLR^2 + FLR^3$
 
 ```{r}
 model6 <- lm(LE_3 ~ 
-               female_literacy_rate_2011 + FLR_2 + FLR_3,
+               FemaleLiteracyRate + FLR_2 + FLR_3,
              data = gapm)
-
 tidy(model6) %>% gt()
 ```
 

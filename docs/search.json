@@ -11,7 +11,7 @@
     "href": "homework.html",
     "title": "Homework",
     "section": "",
-    "text": "Homework\nAssignment\nAssignment due (@11pm)\nAnswers\nSolutions (.qmd)\nSolutions (.html)*\n\n\n\n\n0\n\n1/9\n\n\n\n\n\n1\n\n1/23\n\n\n\n\n\n2\n\n1/31\n\n\n\n\n\n3\n\n2/14\n\n\n\n\n\n4\n\n2/21\n\n\n\n\n\n5\n\n3/7\n*Please note that you need to download the .html file to see the LaTeX math properly."
+    "text": "Homework\nAssignment\nAssignment due (@11pm)\nAnswers\nSolutions (.qmd)\nSolutions (.html)*\n\n\n\n\n0\n\n1/9\n\n\n\n\n\n1\n\n1/23\n\n\n\n\n\n2\n\n1/31\n\n\n\n\n\n3\n\n2/14\n\n\n\n\n\n4\n\n2/28\n\n\n\n\n\n5\n\n3/14\n*Please note that you need to download the .html file to see the LaTeX math properly."
   },
   {
     "objectID": "homework.html#file-naming",
@@ -32,7 +32,7 @@
     "href": "schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Week\nDate\nLes-son\nTopic\nTB 1\nTB 2\nKey Info\nSlides HTML\nSlides PDF\nSlides Notes\nExit tix\nRecord-ing\nMuddy Points\n\n\n\n\n1\n1/6\n0\nWelcome\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\nReview\n\n\n\n\n\n\n\n\n\n\n\n\n1/8\n2\nData and File Management\n\n\n\n\n\n\n\n\n\n\n\n\n1/9\n\nHW 0 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n1/13\n3\nSimple Linear Regression\n3.1-3.2, 3.4\n4.1-4.2\n\n\n\n\n\n\n\n\n\n\n1/15\n4\nSLR: Inference and Prediction\n3.3\n4.3, 4.5-4.7\n\n\n\n\n\n\n\n\n\n\n1/16\n\nLab 1 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n1/20\n\nNo Class, MLKJ Day\n\n\n\n\n\n\n\n\n\n\n\n\n1/22\n5\nSLR: Categorical Covariates\n3.8-3.9\n4.4\n\n\n\n\n\n\n\n\n\n\n1/23\n\nHW 1 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n1/27\n6\nSLR: More inference\n6.10\nNA\n\n\n\n\n\n\n\n\n\n\n1/29\n7\nSLR: Checking model assumptions\n5.1-5.2\n5.13-5.17\n\n\n\n\n\n\n\n\n\n\n1/31\n\nHW 2 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n2/3\n8\nSLR: Diagnostics\n\n\n\n\n\n\n\n\n\n\n\n\n2/5\n9\nMultiple Linear Regression\n\n\n\n\n\n\n\n\n\n\n\n\n2/7\n\nLab 2 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n2/10\n10\nMLR: Inference\n\n\n\n\n\n\n\n\n\n\n\n\n2/12\n\nCatch-up day\n\n\n\n\n\n\n\n\n\n\n\n\n2/14\n\nHW 3 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n2/17\n\nNo Class, President’s Day\n\n\n\n\n\n\n\n\n\n\n\n\n2/19\n11\nInteractions, Part 1\n\n\n\n\n\n\n\n\n\n\n\n\n2/21\n\nHW 4 due 11pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n2/24\n12\nInteractions, Part 2\n\n\n\n\n\n\n\n\n\n\n\n\n2/26\n13\nModel Selection\n\n\n\n\n\n\n\n\n\n\n\n\n2/28\n\nLab 3 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n3/3\n14\nPurposeful Selection\n\n\n\n\n\n\n\n\n\n\n\n\n3/5\n15\nMLR: Diagnostics\n\n\n\n\n\n\n\n\n\n\n\n\n3/7\n\nHW 5 due 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n3/10\n\nCatch-up day\n\n\n\n\n\n\n\n\n\n\n\n\n3/12\n\nCatch-up day\n\n\n\n\n\n\n\n\n\n\n\n\n3/14\n\nLab 4 due 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n3/17\n\nProject Day!!\n\n\n\n\n\n\n\n\n\n\n\n\n3/17\n\nProject due 11pm"
+    "text": "Week\nDate\nLes-son\nTopic\nTB 1\nTB 2\nKey Info\nSlides HTML\nSlides PDF\nSlides Notes\nExit tix\nRecord-ing\nMuddy Points\n\n\n\n\n1\n1/6\n0\nWelcome\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\nReview\n\n\n\n\n\n\n\n\n\n\n\n\n1/8\n2\nData and File Management\n\n\n\n\n\n\n\n\n\n\n\n\n1/9\n\nHW 0 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n1/13\n3\nSimple Linear Regression\n3.1-3.2, 3.4\n4.1-4.2\n\n\n\n\n\n\n\n\n\n\n1/15\n4\nSLR: Inference and Prediction\n3.3\n4.3, 4.5-4.7\n\n\n\n\n\n\n\n\n\n\n1/16\n\nLab 1 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n1/20\n\nNo Class, MLKJ Day\n\n\n\n\n\n\n\n\n\n\n\n\n1/22\n5\nSLR: Categorical Covariates\n3.8-3.9\n4.4\n\n\n\n\n\n\n\n\n\n\n1/23\n\nHW 1 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n1/27\n6\nSLR: More inference\n6.10\nNA\n\n\n\n\n\n\n\n\n\n\n1/29\n7\nSLR: Checking model assumptions\n5.1-5.2\n5.13-5.17\n\n\n\n\n\n\n\n\n\n\n1/31\n\nHW 2 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n2/3\n8\nSLR: Diagnostics\n\n\n\n\n\n\n\n\n\n\n\n\n2/5\n9\nMultiple Linear Regression\n\n\n\n\n\n\n\n\n\n\n\n\n2/7\n\nLab 2 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n2/10\n10\nMLR: Inference\n\n\n\n\n\n\n\n\n\n\n\n\n2/12\n\nCatch-up day\n\n\n\n\n\n\n\n\n\n\n\n\n2/14\n\nHW 3 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n2/17\n\nNo Class, President’s Day\n\n\n\n\n\n\n\n\n\n\n\n\n2/19\n11\nInteractions, Part 1\n\n\n\n\n\n\n\n\n\n\n\n\n2/21\n\nLab 3 due @ 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n2/24\n12\nInteractions, Part 2\n\n\n\n\n\n\n\n\n\n\n\n\n2/26\n13\nModel Selection\n\n\n\n\n\n\n\n\n\n\n\n\n2/28\n\nHW 4 due 11pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n3/3\n14\nPurposeful Selection\n\n\n\n\n\n\n\n\n\n\n\n\n3/5\n15\nMLR: Diagnostics\n\n\n\n\n\n\n\n\n\n\n\n\n3/7\n\nLab 4 due 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n3/10\n\nCatch-up day\n\n\n\n\n\n\n\n\n\n\n\n\n3/12\n\nCatch-up day\n\n\n\n\n\n\n\n\n\n\n\n\n3/14\n\nHW 5 due 11 pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n3/17\n\nProject Day!!\n\n\n\n\n\n\n\n\n\n\n\n\n3/17\n\nProject due 11pm"
   },
   {
     "objectID": "syllabus.html#description",
@@ -172,7 +172,7 @@
     "href": "project.html#labs",
     "title": "Project Central",
     "section": "Labs",
-    "text": "Labs\n\n\n\nLab\nDue Date\nTopics\n\n\n\n\nLab 1\n1/16\nExploring the question\n\n\nLab 2\n2/7\nExploring the data\n\n\nLab 3\n2/28\nA little more data exploration + Fitting and interpreting a model\n\n\nLab 4\n3/14\nBuilding a model\n\n\n\n\nHelp with BMI variable"
+    "text": "Labs\n\n\n\nLab\nDue Date\nTopics\n\n\n\n\nLab 1\n1/16\nExploring the question\n\n\nLab 2\n2/7\nExploring the data\n\n\nLab 3\n2/21\nA little more data exploration + Fitting and interpreting a model\n\n\nLab 4\n3/7\nBuilding a model\n\n\n\n\nHelp with BMI variable"
   },
   {
     "objectID": "project.html#report",
@@ -5966,198 +5966,198 @@
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#lets-remind-ourselves-of-the-model-that-we-have-been-working-with",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#lets-remind-ourselves-of-the-model-that-we-have-been-working-with",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
-    "section": "",
-    "text": "We have been looking at the association between life expectancy and female literacy rate\nWe used OLS to find the coefficient estimates of our best-fit line\n\n\n\n\\[Y = \\beta_0 + \\beta_1 X + \\epsilon\\]\n\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n50.93\n2.66\n19.14\n0.00\n    female_literacy_rate_2011\n0.23\n0.03\n7.38\n0.00\n  \n  \n  \n\n\n\n\n\\[\\begin{aligned}\n\\widehat{Y} &= \\widehat\\beta_0 + \\widehat\\beta_1 \\cdot X\\\\\n\\widehat{\\text{life expectancy}} &= 50.9 + 0.232 \\cdot \\text{female literacy rate}\n\\end{aligned}\\]"
+    "title": "Lesson 8: SLR: Model Diagnostics",
+    "section": "Let’s remind ourselves of the model that we have been working with",
+    "text": "Let’s remind ourselves of the model that we have been working with\n\nWe have been looking at the association between life expectancy and female literacy rate\nWe used OLS to find the coefficient estimates of our best-fit line\n\n\n\n\\[Y = \\beta_0 + \\beta_1 X + \\epsilon\\]\n\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n50.93\n2.66\n19.14\n0.00\n    FemaleLiteracyRate\n0.23\n0.03\n7.38\n0.00\n  \n  \n  \n\n\n\n\n\\[\\begin{aligned}\n\\widehat{Y} &= \\widehat\\beta_0 + \\widehat\\beta_1 \\cdot X\\\\\n\\widehat{\\text{life expectancy}} &= 50.9 + 0.232 \\cdot \\text{female literacy rate}\n\\end{aligned}\\]"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#our-residuals-will-help-us-a-lot-in-our-diagnostics",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#our-residuals-will-help-us-a-lot-in-our-diagnostics",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
-    "section": "",
-    "text": "The residuals \\(\\widehat\\epsilon_i\\) are the vertical distances between\n\nthe observed data \\((X_i, Y_i)\\)\nthe fitted values (regression line) \\(\\widehat{Y}_i = \\widehat\\beta_0 + \\widehat\\beta_1 X_i\\)\n\n\n\n\\[\n\\widehat\\epsilon_i =Y_i - \\widehat{Y}_i \\text{,   for } i=1, 2, ..., n\n\\]"
+    "title": "Lesson 8: SLR: Model Diagnostics",
+    "section": "Our residuals will help us a lot in our diagnostics!",
+    "text": "Our residuals will help us a lot in our diagnostics!\n\n\n \n\nThe residuals \\(\\widehat\\epsilon_i\\) are the vertical distances between\n\nthe observed data \\((X_i, Y_i)\\)\nthe fitted values (regression line) \\(\\widehat{Y}_i = \\widehat\\beta_0 + \\widehat\\beta_1 X_i\\)\n\n\n\n\\[\n\\widehat\\epsilon_i =Y_i - \\widehat{Y}_i \\text{,   for } i=1, 2, ..., n\n\\]"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#augment-getting-extra-information-on-the-fitted-model",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#augment-getting-extra-information-on-the-fitted-model",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
-    "section": "",
-    "text": "Run model1 through augment() (model1 is input)\n\nSo we assigned model1 as the output of the lm() function (model1 is output)\n\nWill give us values about each observation in the context of the fitted regression model\n\ncook’s distance (.cooksd), fitted value (.fitted, \\(\\widehat{Y}_i\\)), leverage (.hat), residual (.resid), standardized residuals (.std.resid)\n\n\n\naug1 &lt;- augment(model1) \nglimpse(aug1)\n\nRows: 80\nColumns: 9\n$ .rownames                  &lt;chr&gt; \"1\", \"2\", \"5\", \"6\", \"7\", \"8\", \"14\", \"22\", \"…\n$ life_expectancy_years_2011 &lt;dbl&gt; 56.7, 76.7, 60.9, 76.9, 76.0, 73.8, 71.0, 7…\n$ female_literacy_rate_2011  &lt;dbl&gt; 13.0, 95.7, 58.6, 99.4, 97.9, 99.5, 53.4, 9…\n$ .fitted                    &lt;dbl&gt; 53.94643, 73.14897, 64.53453, 74.00809, 73.…\n$ .resid                     &lt;dbl&gt; 2.7535654, 3.5510294, -3.6345319, 2.8919074…\n$ .hat                       &lt;dbl&gt; 0.13628996, 0.01768176, 0.02645854, 0.02077…\n$ .sigma                     &lt;dbl&gt; 6.172684, 6.168414, 6.167643, 6.172935, 6.1…\n$ .cooksd                    &lt;dbl&gt; 1.835891e-02, 3.062372e-03, 4.887448e-03, 2…\n$ .std.resid                 &lt;dbl&gt; 0.48238134, 0.58332052, -0.59972251, 0.4757…\n\n\nRDocumentation on the augment() function."
+    "title": "Lesson 8: SLR: Model Diagnostics",
+    "section": "augment(): getting extra information on the fitted model",
+    "text": "augment(): getting extra information on the fitted model\n\nRun model1 through augment() (model1 is input)\n\nSo we assigned model1 as the output of the lm() function (model1 is output)\n\nWill give us values about each observation in the context of the fitted regression model\n\ncook’s distance (.cooksd), fitted value (.fitted, \\(\\widehat{Y}_i\\)), leverage (.hat), residual (.resid), standardized residuals (.std.resid)\n\n\n\naug1 &lt;- augment(model1) \nglimpse(aug1)\n\nRows: 80\nColumns: 8\n$ LifeExpectancyYrs  &lt;dbl&gt; 56.7, 76.7, 60.9, 76.9, 76.0, 73.8, 71.0, 76.9, 58.…\n$ FemaleLiteracyRate &lt;dbl&gt; 13.0, 95.7, 58.6, 99.4, 97.9, 99.5, 53.4, 96.7, 85.…\n$ .fitted            &lt;dbl&gt; 53.94643, 73.14897, 64.53453, 74.00809, 73.65980, 7…\n$ .resid             &lt;dbl&gt; 2.7535654, 3.5510294, -3.6345319, 2.8919074, 2.3402…\n$ .hat               &lt;dbl&gt; 0.13628996, 0.01768176, 0.02645854, 0.02077123, 0.0…\n$ .sigma             &lt;dbl&gt; 6.172684, 6.168414, 6.167643, 6.172935, 6.176043, 6…\n$ .cooksd            &lt;dbl&gt; 1.835891e-02, 3.062372e-03, 4.887448e-03, 2.400993e…\n$ .std.resid         &lt;dbl&gt; 0.48238134, 0.58332052, -0.59972251, 0.47579667, 0.…\n\n\nRDocumentation on the augment() function."
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#revisiting-our-line-assumptions",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#revisiting-our-line-assumptions",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
-    "section": "",
-    "text": "[L] Linearity of relationship between variables\n\n\nCheck if there is a linear relationship between the mean response (Y) and the explanatory variable (X)\n\n\n\n\n\n[I] Independence of the \\(Y\\) values\n\n\nCheck that the observations are independent\n\n\n\n\n\n[N] Normality of the \\(Y\\)’s given \\(X\\) (residuals)\n\n\nCheck that the responses (at each level X) are normally distributed\n\nUsually measured through the residuals\n\n\n\n\n\n\n[E] Equality of variance of the residuals (homoscedasticity)\n\n\nCheck that the variance (or standard deviation) of the responses is equal for all levels of X\n\nUsually measured through the residuals"
+    "title": "Lesson 8: SLR: Model Diagnostics",
+    "section": "Revisiting our LINE assumptions",
+    "text": "Revisiting our LINE assumptions\n\n\n\n\n[L] Linearity of relationship between variables\n\n\nCheck if there is a linear relationship between the mean response (Y) and the explanatory variable (X)\n\n\n\n\n\n[I] Independence of the \\(Y\\) values\n\n\nCheck that the observations are independent\n\n\n\n\n\n[N] Normality of the \\(Y\\)’s given \\(X\\) (residuals)\n\n\nCheck that the responses (at each level X) are normally distributed\n\nUsually measured through the residuals\n\n\n\n\n\n\n[E] Equality of variance of the residuals (homoscedasticity)\n\n\nCheck that the variance (or standard deviation) of the responses is equal for all levels of X\n\nUsually measured through the residuals"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#influential-points",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#influential-points",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Influential points",
-    "text": "Influential points\n\n\n\n\nOutliers\n\n\n\nAn observation (\\(X_i, Y_i\\)) whose response \\(Y_i\\) does not follow the general trend of the rest of the data\n\n\n\n \n \n\n\n\n\n\n\n\n\nHigh leverage observations\n\n\n\nAn observation (\\(X_i, Y_i\\)) whose predictor \\(X_i\\) has an extreme value\n\\(X_i\\) can be an extremely high or low value compared to the rest of the observations"
+    "text": "Influential points\n\n\n\n\nOutliers\n\n\n\nAn observation (\\(X_i, Y_i\\)) whose response \\(Y_i\\) does not follow the general trend of the rest of the data\n\n\n\n\n\n\n\n\n \n \n\n\n\nHigh leverage observations\n\n\n\nAn observation (\\(X_i, Y_i\\)) whose predictor \\(X_i\\) has an extreme value\n\\(X_i\\) can be an extremely high or low value compared to the rest of the observations"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#outliers",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#outliers",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Outliers",
-    "text": "Outliers\n\nAn observation (\\(X_i, Y_i\\)) whose response \\(Y_i\\) does not follow the general trend of the rest of the data\nHow do we determine if a point is an outlier?\n\nScatterplot of \\(Y\\) vs. \\(X\\)\nFollowed by evaluation of its residual (and standardized residual)\n\n\n \n\nUse the internally standardized residual (aka studentized residual) to determine if an observation is an outlier"
+    "text": "Outliers\n\n\n\nAn observation (\\(X_i, Y_i\\)) whose response \\(Y_i\\) does not follow the general trend of the rest of the data\n\n \n\nHow do we determine if a point is an outlier?\n\nScatterplot of \\(Y\\) vs. \\(X\\)\nFollowed by evaluation of its residual (and standardized residual)\n\nTypically use the internally standardized residual (aka studentized residual)"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#poll-everywhere-question-1",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#poll-everywhere-question-1",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Poll Everywhere Question 1",
     "text": "Poll Everywhere Question 1"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#identifying-outliers",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#identifying-outliers",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Identifying outliers",
     "text": "Identifying outliers\n\n\n\n\nInternally standardized residual\n\n\n\\[\nr_i = \\frac{\\widehat\\epsilon_i}{\\sqrt{\\widehat\\sigma^2(1-h_{ii})}}\n\\]\n\n\n\n\nWe flag an observation if the standardized residual is “large”\n\nDifferent sources will define “large” differently\nPennState site uses \\(|r_i| &gt; 3\\)\nautoplot() shows the 3 observations with the highest standardized residuals\nOther sources use \\(|r_i| &gt; 2\\), which is a little more conservative\n\n\n\n\n\n\n \n\nggplot(data = aug1) + \n  geom_histogram(aes(x = .std.resid))"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#countries-that-are-outliers-r_i-2",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#countries-that-are-outliers-r_i-2",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Countries that are outliers (\\(|r_i| > 2\\))",
-    "text": "Countries that are outliers (\\(|r_i| &gt; 2\\))\n\nWe can identify the countries that are outliers\n\n\naug1 %&gt;% \n  filter(abs(.std.resid) &gt; 2)\n\n# A tibble: 4 × 10\n  .rownames country     life_expectancy_year…¹ female_literacy_rate…² .std.resid\n  &lt;chr&gt;     &lt;chr&gt;                        &lt;dbl&gt;                  &lt;dbl&gt;      &lt;dbl&gt;\n1 33        Central Af…                   48                     44.2      -2.20\n2 152       South Afri…                   55.8                   92.2      -2.71\n3 161       Swaziland                     48.9                   87.3      -3.65\n4 187       Zimbabwe                      51.9                   80.1      -2.89\n# ℹ abbreviated names: ¹​life_expectancy_years_2011, ²​female_literacy_rate_2011\n# ℹ 5 more variables: .fitted &lt;dbl&gt;, .resid &lt;dbl&gt;, .hat &lt;dbl&gt;, .sigma &lt;dbl&gt;,\n#   .cooksd &lt;dbl&gt;"
+    "text": "Countries that are outliers (\\(|r_i| &gt; 2\\))\n\nWe can identify the countries that are outliers\n\n\naug1 %&gt;% \n  filter(abs(.std.resid) &gt; 3)\n\n# A tibble: 1 × 24\n  country  LifeExpectancyYrs FemaleLiteracyRate .std.resid .fitted .resid   .hat\n  &lt;chr&gt;                &lt;dbl&gt;              &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 Swazila…              48.9               87.3      -3.65    71.2  -22.3 0.0133\n# ℹ 17 more variables: .sigma &lt;dbl&gt;, .cooksd &lt;dbl&gt;, CO2emissions &lt;dbl&gt;,\n#   ElectricityUsePP &lt;dbl&gt;, FoodSupplykcPPD &lt;dbl&gt;, IncomePP &lt;dbl&gt;,\n#   population &lt;dbl&gt;, WaterSourcePrct &lt;dbl&gt;, geo &lt;chr&gt;, four_regions &lt;chr&gt;,\n#   eight_regions &lt;chr&gt;, six_regions &lt;chr&gt;, members_oecd_g77 &lt;chr&gt;,\n#   Latitude &lt;dbl&gt;, Longitude &lt;dbl&gt;, `World bank region` &lt;chr&gt;,\n#   `World bank, 4 income groups 2017` &lt;chr&gt;"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#high-leverage-observations",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#high-leverage-observations",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "High leverage observations",
-    "text": "High leverage observations\n\nAn observation (\\(X_i, Y_i\\)) whose response \\(X_i\\) is considered “extreme” compared to the other values of \\(X\\)\n\n \n\nHow do we determine if a point has high leverage?\n\nScatterplot of \\(Y\\) vs. \\(X\\)\nCalculating the leverage of each observation"
+    "text": "High leverage observations\n\n\n\nAn observation (\\(X_i, Y_i\\)) whose response \\(X_i\\) is considered “extreme” compared to the other values of \\(X\\)\n\n \n\nHow do we determine if a point has high leverage?\n\nScatterplot of \\(Y\\) vs. \\(X\\)\nCalculating the leverage of each observation"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#leverage-h_i",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#leverage-h_i",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Leverage \\(h_i\\)",
-    "text": "Leverage \\(h_i\\)\n\nValues of leverage are: \\(0 \\leq h_i \\leq 1\\)\nWe flag an observation if the leverage is “high”\n\nDifferent sources will define “high” differently\nSome textbooks use \\(h_i &gt; 4/n\\) where \\(n\\) = sample size\nSome people suggest \\(h_i &gt; 6/n\\)\nPennState site uses \\(h_i &gt; 3p/n\\) where \\(p\\) = number of regression coefficients\n\n\n\naug1 = aug1 %&gt;% relocate(.hat, .after = female_literacy_rate_2011)\naug1 %&gt;% arrange(desc(.hat))\n\n# A tibble: 80 × 10\n   .rownames country        life_expectancy_year…¹ female_literacy_rate…²   .hat\n   &lt;chr&gt;     &lt;chr&gt;                           &lt;dbl&gt;                  &lt;dbl&gt;  &lt;dbl&gt;\n 1 1         Afghanistan                      56.7                   13   0.136 \n 2 104       Mali                             60                     24.6 0.0980\n 3 34        Chad                             57                     25.4 0.0956\n 4 146       Sierra Leone                     55.7                   32.6 0.0757\n 5 62        Gambia                           66                     41.9 0.0540\n 6 70        Guinea-Bissau                    56.2                   42.1 0.0536\n 7 33        Central Afric…                   48                     44.2 0.0493\n 8 118       Nepal                            68.7                   46.7 0.0446\n 9 42        Cote d'Ivoire                    56.9                   47.6 0.0430\n10 169       Togo                             59.6                   48   0.0422\n# ℹ 70 more rows\n# ℹ abbreviated names: ¹​life_expectancy_years_2011, ²​female_literacy_rate_2011\n# ℹ 5 more variables: .std.resid &lt;dbl&gt;, .fitted &lt;dbl&gt;, .resid &lt;dbl&gt;,\n#   .sigma &lt;dbl&gt;, .cooksd &lt;dbl&gt;"
+    "text": "Leverage \\(h_i\\)\n\n\nLeverage\n\n\nMeasure of the distance between the x value (\\(X_i\\)) for the data point (\\(i\\)) and the mean of the x values (\\(\\overline{X}\\)) for all \\(n\\) data points\n\n\n\nValues of leverage are: \\(0 \\leq h_i \\leq 1\\)\nWe flag an observation if the leverage is “high”\n\nDifferent sources will define “high” differently\nSome textbooks use \\(h_i &gt; 4/n\\) where \\(n\\) = sample size\nSome people suggest \\(h_i &gt; 6/n\\)\nPennState site uses \\(h_i &gt; 3p/n\\) where \\(p\\) = number of regression coefficients"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#countries-with-high-leverage-h_i-4n",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#countries-with-high-leverage-h_i-4n",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Countries with high leverage (\\(h_i > 4/n\\))",
-    "text": "Countries with high leverage (\\(h_i &gt; 4/n\\))\n\nWe can look at the countries that have high leverage\n\n\naug1 %&gt;% \n  filter(.hat &gt; 4/80) %&gt;%\n  arrange(desc(.hat))\n\n# A tibble: 6 × 10\n  .rownames country       life_expectancy_years_…¹ female_literacy_rate…²   .hat\n  &lt;chr&gt;     &lt;chr&gt;                            &lt;dbl&gt;                  &lt;dbl&gt;  &lt;dbl&gt;\n1 1         Afghanistan                       56.7                   13   0.136 \n2 104       Mali                              60                     24.6 0.0980\n3 34        Chad                              57                     25.4 0.0956\n4 146       Sierra Leone                      55.7                   32.6 0.0757\n5 62        Gambia                            66                     41.9 0.0540\n6 70        Guinea-Bissau                     56.2                   42.1 0.0536\n# ℹ abbreviated names: ¹​life_expectancy_years_2011, ²​female_literacy_rate_2011\n# ℹ 5 more variables: .std.resid &lt;dbl&gt;, .fitted &lt;dbl&gt;, .resid &lt;dbl&gt;,\n#   .sigma &lt;dbl&gt;, .cooksd &lt;dbl&gt;"
+    "text": "Countries with high leverage (\\(h_i &gt; 4/n\\))\n\nWe can look at the countries that have high leverage\n\n\naug1 = aug1 %&gt;% relocate(.hat, .after = FemaleLiteracyRate)\n\naug1 %&gt;% filter(.hat &gt; 4/80) %&gt;% arrange(desc(.hat))\n\n# A tibble: 6 × 24\n  country  LifeExpectancyYrs FemaleLiteracyRate   .hat .std.resid .fitted .resid\n  &lt;chr&gt;                &lt;dbl&gt;              &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1 Afghani…              56.7               13   0.136      0.482     53.9  2.75 \n2 Mali                  60                 24.6 0.0980     0.576     56.6  3.36 \n3 Chad                  57                 25.4 0.0956     0.0298    56.8  0.174\n4 Sierra …              55.7               32.6 0.0757    -0.474     58.5 -2.80 \n5 Gambia                66                 41.9 0.0540     0.894     60.7  5.34 \n6 Guinea-…              56.2               42.1 0.0536    -0.754     60.7 -4.50 \n# ℹ 17 more variables: .sigma &lt;dbl&gt;, .cooksd &lt;dbl&gt;, CO2emissions &lt;dbl&gt;,\n#   ElectricityUsePP &lt;dbl&gt;, FoodSupplykcPPD &lt;dbl&gt;, IncomePP &lt;dbl&gt;,\n#   population &lt;dbl&gt;, WaterSourcePrct &lt;dbl&gt;, geo &lt;chr&gt;, four_regions &lt;chr&gt;,\n#   eight_regions &lt;chr&gt;, six_regions &lt;chr&gt;, members_oecd_g77 &lt;chr&gt;,\n#   Latitude &lt;dbl&gt;, Longitude &lt;dbl&gt;, `World bank region` &lt;chr&gt;,\n#   `World bank, 4 income groups 2017` &lt;chr&gt;"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#poll-everywhere-question-2",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#poll-everywhere-question-2",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Poll Everywhere Question 2",
     "text": "Poll Everywhere Question 2"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#countries-with-high-leverage-h_i-4n-1",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#countries-with-high-leverage-h_i-4n-1",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Countries with high leverage (\\(h_i > 4/n\\))",
-    "text": "Countries with high leverage (\\(h_i &gt; 4/n\\))\nLabel only countries with large leverage:\n\nggplot(aug1, aes(x = female_literacy_rate_2011, y = life_expectancy_years_2011,\n                 label = country)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", color = \"darkgreen\") +\n  geom_text(aes(label = ifelse(.hat &gt; 0.05, as.character(country), ''))) +\n  geom_vline(xintercept = mean(aug1$female_literacy_rate_2011), color = \"grey\") +\n  geom_hline(yintercept = mean(aug1$life_expectancy_years_2011), color = \"grey\")"
+    "text": "Countries with high leverage (\\(h_i &gt; 4/n\\))\nLabel only countries with large leverage:\n\nggplot(aug1, aes(x = FemaleLiteracyRate, y = LifeExpectancyYrs,\n                 label = country)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", color = \"darkgreen\") +\n  geom_text(aes(label = ifelse(.hat &gt; 0.05, as.character(country), ''))) +\n  geom_vline(xintercept = mean(aug1$FemaleLiteracyRate), color = \"grey\") +\n  geom_hline(yintercept = mean(aug1$LifeExpectancyYrs), color = \"grey\")"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#what-does-the-model-look-like-without-the-high-leverage-points",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#what-does-the-model-look-like-without-the-high-leverage-points",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "What does the model look like without the high leverage points?",
-    "text": "What does the model look like without the high leverage points?\nSensitivity analysis removing countries with high leverage\n\nmodel1_lowlev &lt;- lm(life_expectancy_years_2011 ~ female_literacy_rate_2011,\n                    data = aug1_lowlev)\ntidy(model1_lowlev) %&gt;% gt() %&gt;% # Without high-leverage points\n tab_options(table.font.size = 40) %&gt;%\n fmt_number(decimals = 3)\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n49.563\n3.888\n12.746\n0.000\n    female_literacy_rate_2011\n0.247\n0.044\n5.562\n0.000\n  \n  \n  \n\n\n\ntidy(model1) %&gt;% gt() %&gt;% # With high leverage points\n tab_options(table.font.size = 40) %&gt;%\n fmt_number(decimals = 3)\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n50.928\n2.660\n19.143\n0.000\n    female_literacy_rate_2011\n0.232\n0.031\n7.377\n0.000"
+    "text": "What does the model look like without the high leverage points?\nSensitivity analysis removing countries with high leverage\n\naug1_lowlev &lt;- aug1 %&gt;% filter(.hat &lt;= 4/80)\n\nmodel1_lowlev &lt;- aug1_lowlev %&gt;% \n  lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate)\ntidy(model1_lowlev) %&gt;% gt() %&gt;% # Without high-leverage points\n tab_options(table.font.size = 40) %&gt;% fmt_number(decimals = 3)\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n49.563\n3.888\n12.746\n0.000\n    FemaleLiteracyRate\n0.247\n0.044\n5.562\n0.000\n  \n  \n  \n\n\n\ntidy(model1) %&gt;% gt() %&gt;% # With high leverage points\n tab_options(table.font.size = 40) %&gt;% fmt_number(decimals = 3)\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n50.928\n2.660\n19.143\n0.000\n    FemaleLiteracyRate\n0.232\n0.031\n7.377\n0.000"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#cooks-distance",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#cooks-distance",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Cook’s distance",
     "text": "Cook’s distance\n\nMeasures the overall influence of an observation\n\n \n\nAttempts to measure how much influence a single observation has over the fitted model\n\nMeasures how all fitted values change when the \\(ith\\) observation is removed from the model\nCombines leverage and outlier information"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#identifying-points-with-high-cooks-distance",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#identifying-points-with-high-cooks-distance",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Identifying points with high Cook’s distance",
-    "text": "Identifying points with high Cook’s distance\n\n\nThe Cook’s distance for the \\(i^{th}\\) observation is\n\\[d_i = \\frac{h_i}{2(1-h_i)} \\cdot r_i^2\\] where \\(h_i\\) is the leverage and \\(r_i\\) is the studentized residual\n\n\nAnother rule for Cook’s distance that is not strict:\n\nInvestigate observations that have \\(d_i &gt; 1\\)\n\nCook’s distance values are already in the augment tibble: .cooksd\n\n\n\n\naug1 = aug1 %&gt;% relocate(.cooksd, .after = female_literacy_rate_2011)\naug1 %&gt;% arrange(desc(.cooksd))\n\n# A tibble: 80 × 10\n   .rownames country       life_expectancy_year…¹ female_literacy_rate…² .cooksd\n   &lt;chr&gt;     &lt;chr&gt;                          &lt;dbl&gt;                  &lt;dbl&gt;   &lt;dbl&gt;\n 1 33        Central Afri…                   48                     44.2  0.126 \n 2 161       Swaziland                       48.9                   87.3  0.0903\n 3 152       South Africa                    55.8                   92.2  0.0577\n 4 187       Zimbabwe                        51.9                   80.1  0.0531\n 5 114       Morocco                         73.8                   57.6  0.0350\n 6 118       Nepal                           68.7                   46.7  0.0311\n 7 14        Bangladesh                      71                     53.4  0.0280\n 8 23        Botswana                        58.9                   85.6  0.0249\n 9 54        Equatorial G…                   61.4                   91.1  0.0231\n10 62        Gambia                          66                     41.9  0.0228\n# ℹ 70 more rows\n# ℹ abbreviated names: ¹​life_expectancy_years_2011, ²​female_literacy_rate_2011\n# ℹ 5 more variables: .hat &lt;dbl&gt;, .std.resid &lt;dbl&gt;, .fitted &lt;dbl&gt;,\n#   .resid &lt;dbl&gt;, .sigma &lt;dbl&gt;"
+    "text": "Identifying points with high Cook’s distance\n\n\nThe Cook’s distance for the \\(i^{th}\\) observation is\n\\[d_i = \\frac{h_i}{2(1-h_i)} \\cdot r_i^2\\] where \\(h_i\\) is the leverage and \\(r_i\\) is the studentized residual\n\n\nAnother rule for Cook’s distance that is not strict:\n\nInvestigate observations that have \\(d_i &gt; 1\\)\n\nCook’s distance values are already in the augment tibble: .cooksd\n\n\n\n\naug1 = aug1 %&gt;% relocate(.cooksd, .after = FemaleLiteracyRate)\naug1 %&gt;% arrange(desc(.cooksd))\n\n# A tibble: 80 × 24\n   country        LifeExpectancyYrs FemaleLiteracyRate .cooksd   .hat .std.resid\n   &lt;chr&gt;                      &lt;dbl&gt;              &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n 1 Central Afric…              48                 44.2  0.126  0.0493     -2.20 \n 2 Swaziland                   48.9               87.3  0.0903 0.0133     -3.65 \n 3 South Africa                55.8               92.2  0.0577 0.0154     -2.71 \n 4 Zimbabwe                    51.9               80.1  0.0531 0.0126     -2.89 \n 5 Morocco                     73.8               57.6  0.0350 0.0277      1.57 \n 6 Nepal                       68.7               46.7  0.0311 0.0446      1.15 \n 7 Bangladesh                  71                 53.4  0.0280 0.0335      1.27 \n 8 Botswana                    58.9               85.6  0.0249 0.0129     -1.95 \n 9 Equatorial Gu…              61.4               91.1  0.0231 0.0148     -1.75 \n10 Gambia                      66                 41.9  0.0228 0.0540      0.894\n# ℹ 70 more rows\n# ℹ 18 more variables: .fitted &lt;dbl&gt;, .resid &lt;dbl&gt;, .sigma &lt;dbl&gt;,\n#   CO2emissions &lt;dbl&gt;, ElectricityUsePP &lt;dbl&gt;, FoodSupplykcPPD &lt;dbl&gt;,\n#   IncomePP &lt;dbl&gt;, population &lt;dbl&gt;, WaterSourcePrct &lt;dbl&gt;, geo &lt;chr&gt;,\n#   four_regions &lt;chr&gt;, eight_regions &lt;chr&gt;, six_regions &lt;chr&gt;,\n#   members_oecd_g77 &lt;chr&gt;, Latitude &lt;dbl&gt;, Longitude &lt;dbl&gt;,\n#   `World bank region` &lt;chr&gt;, `World bank, 4 income groups 2017` &lt;chr&gt;"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#plotting-cooks-distance",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#plotting-cooks-distance",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Plotting Cook’s Distance",
-    "text": "Plotting Cook’s Distance\n\n# plot(model) shows figures similar to autoplot()\n# adds on Cook's distance though\nplot(model1, which = 4)"
+    "text": "Plotting Cook’s Distance\n\nplot(model) shows figures similar to autoplot()\n\n4th plot is Cook’s distance (not available in autoplot())\n\n\n\nplot(model1, which = 4)"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#model-without-those-4-points-qq-plot-residual-plot",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#model-without-those-4-points-qq-plot-residual-plot",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Model without those 4 points: QQ Plot, Residual plot",
-    "text": "Model without those 4 points: QQ Plot, Residual plot\n\nmodel1_lowcd &lt;- lm(life_expectancy_years_2011 ~ female_literacy_rate_2011,\n                    data = aug1_lowcd)\ntidy(model1_lowcd) %&gt;% gt() %&gt;% # Without high-leverage points\n tab_options(table.font.size = 40) %&gt;%\n fmt_number(decimals = 3)\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n52.388\n2.078\n25.208\n0.000\n    female_literacy_rate_2011\n0.226\n0.024\n9.208\n0.000\n  \n  \n  \n\n\n\ntidy(model1) %&gt;% gt() %&gt;% # With high leverage points\n tab_options(table.font.size = 40) %&gt;%\n fmt_number(decimals = 3)\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n50.928\n2.660\n19.143\n0.000\n    female_literacy_rate_2011\n0.232\n0.031\n7.377\n0.000"
+    "text": "Model without those 4 points: QQ Plot, Residual plot\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nI am okay with this!\n\nAnd don’t forget: we may want more variables in our model!\nYou do not need to produce plots with the influential points taken out"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#model-without-those-4-points-qq-plot-residual-plot-1",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#model-without-those-4-points-qq-plot-residual-plot-1",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Model without those 4 points: QQ Plot, Residual plot",
     "text": "Model without those 4 points: QQ Plot, Residual plot\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nI am okay with this!\n\nAnd don’t forget: we may want more variables in our model!\nYou do not need to produce plots with the influential points taken out"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#summary-of-how-we-identify-influential-points",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#summary-of-how-we-identify-influential-points",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Summary of how we identify influential points",
     "text": "Summary of how we identify influential points\n\nUse scatterplot of \\(Y\\) vs. \\(X\\) to see if any points fall outside of range we expect\nUse standardized residuals, leverage, and Cook’s distance to further identify those points\nLook at the models run with and without the identified points to check for drastic changes\n\nLook at QQ plot and residuals to see if assumptions hold without those points\nLook at coefficient estimates to see if they change in sign and large magnitude\n\n\n \n\nNext: how to handle? It’s a little wishy washy"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#how-do-we-deal-with-influential-points",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#how-do-we-deal-with-influential-points",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "How do we deal with influential points?",
-    "text": "How do we deal with influential points?\n\nIt’s always weird to be using numbers to help you diagnose an issue, but the issue kinda gets unresolved\nIf an observation is influential, we can check data errors:\n\nWas there a data entry or collection problem?\nIf you have reason to believe that the observation does not hold within the population (or gives you cause to redefine your population)\n\nIf an observation is influential, we can check our model:\n\nDid you leave out any important predictors?\nShould you consider adding some interaction terms?\nIs there any nonlinearity that needs to be modeled?\n\nBasically, deleting an observation should be justified outside of the numbers!\n\nIf it’s an honest data point, then it’s giving us important information!\n\nA really well thought out explanation from StackExchange"
+    "text": "How do we deal with influential points?\n\nIf an observation is influential, we perform a sensitivity analysis:\n\nWe took out the influential points we identified then reran the model\nOften, you’ll see that the “influential points” have not drastically changed your estimates\n\nA change in sign (for example: positive slope to negative slope)\nA really large increase (think more than 2x the original value)\n\n\nIf an observation is influential, we check data errors:\n\nWas there a data entry or collection problem?\nIf you have reason to believe that the observation does not hold within the population (or gives you cause to redefine your population)\n\nIf an observation is influential, we check our model:\n\nDid you leave out any important predictors?\nShould you consider adding some interaction terms?\nIs there any nonlinearity that needs to be modeled?"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#when-we-have-detected-problems-in-our-model",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#when-we-have-detected-problems-in-our-model",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "When we have detected problems in our model…",
     "text": "When we have detected problems in our model…\n\nWe have talked about influential points\nWe have talked about identifying issues with our LINE assumptions\n\nWhat are our options once we have identified issues in our linear regression model?\n\nSee if we need to add predictors to our model\n\nNicky’s thought for our life expectancy example\n\nTry a transformation if there is an issue with linearity or normality\nTry a transformation if there is unequal variance\nTry a weighted least squares approach if unequal variance (might be lesson at end of course)\nTry a robust estimation procedure if we have a lot of outlier issues (outside scope of class)"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#transformations",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#transformations",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Transformations",
-    "text": "Transformations\n\nWhen we have issues with our LINE (mostly linearity, normality, or equality of variance) assumptions\n\nWe can use transformations to improve the fit of the model\n\nTransformations can…\n\nMake the relationship more linear\nMake the residuals more normal\n“Stabilize” the variance so that it is more constant\nIt can also bring in or reduce outliers\n\nWe can transform the dependent (\\(Y\\)) variable of the independent (\\(X\\)) variable\n\nUsually we want to try transforming the \\(X\\) first\n\n\n \n\nRequires trial and error!!\nMajor drawback: interpreting the model becomes harder!"
+    "text": "Transformations\n\nWhen we have issues with our LINE (mostly linearity, normality, or equality of variance) assumptions\n\nWe can use transformations to improve the fit of the model\n\nTransformations can…\n\nMake the relationship more linear\nMake the residuals more normal\n“Stabilize” the variance so that it is more constant\nIt can also bring in or reduce outliers\n\nWe can transform the dependent (\\(Y\\)) variable and/or the independent (\\(X\\)) variable\n\nUsually we want to try transforming the \\(X\\) first\n\n\n \n\nRequires trial and error!!\nMajor drawback: interpreting the model becomes harder!"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#common-transformations",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#common-transformations",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Common transformations",
     "text": "Common transformations\n\nTukey’s transformation (power) ladder\n\nUse R’s gladder() command from the describedata package\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPower p\n-3\n-2\n-1\n-1/2\n0\n1/2\n1\n2\n3\n\n\n\n\n\n\\(\\frac{1}{x^3}\\)\n\\(\\frac{1}{x^2}\\)\n\\(\\frac{1}{x}\\)\n\\(\\frac{1}{\\sqrt{x}}\\)\n\\(\\log(x)\\)\n\\(\\sqrt{x}\\)\n\\(x\\)\n\\(x^2\\)\n\\(x^3\\)\n\n\n\n\n\n\nHow to use the power ladder for the general distribution shape\n\nIf data are skewed left, we need to compress smaller values towards the rest of the data\n\nGo “up” ladder to transformations with power &gt; 1\n\nIf data are skewed right, we need to compress larger values towards the rest of the data\n\nGo “down” ladder to transformations with power &lt; 1\n\n\n\n\n\nHow to use the power ladder for heteroscedasticity\n\nIf higher \\(X\\) values have more spread\n\nCompress larger values towards the rest of the data\nGo “down” ladder to transformations with power &lt; 1\n\nIf lower \\(X\\) values have more spread\n\nCompress smaller values towards the rest of the data\nGo “up” ladder to transformations with power &gt; 1"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#poll-everywhere-question-3",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#poll-everywhere-question-3",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Poll Everywhere Question 3",
     "text": "Poll Everywhere Question 3"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#transform-dependent-variable",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#transform-dependent-variable",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Transform dependent variable?",
-    "text": "Transform dependent variable?\n\nggplot(gapm, aes(x = life_expectancy_years_2011)) +\n  geom_histogram()"
+    "text": "Transform dependent variable?\n\n\n\nggplot(gapm, \n       aes(x = LifeExpectancyYrs)) +\n  geom_histogram()\n\n\n\n\n\n\nLooks like more spread on the left side as well\nUse powers greater than 1\n\n\\(LE^2\\) and \\(LE^3\\)"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#gladder-of-life-expectancy",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#gladder-of-life-expectancy",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "gladder() of life expectancy",
-    "text": "gladder() of life expectancy\n\ngladder(gapm$life_expectancy_years_2011)"
+    "text": "gladder() of life expectancy\n\ngladder(gapm$LifeExpectancyYrs)"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#ladder-of-life-expectancy",
@@ -6169,16 +6169,16 @@
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#transform-independent-variable",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#transform-independent-variable",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Transform independent variable?",
-    "text": "Transform independent variable?\n\nggplot(gapm, aes(x = female_literacy_rate_2011)) +\n  geom_histogram()"
+    "text": "Transform independent variable?\n\n\n\nggplot(gapm, \n       aes(x = FemaleLiteracyRate)) +\n  geom_histogram()\n\n\n\n\n\n\nLooks like more spread on the left side\nUse powers greater than 1\n\n\\(FLR^2\\) and \\(FLR^3\\)"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#gladder-of-female-literacy-rate",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#gladder-of-female-literacy-rate",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "gladder() of female literacy rate",
-    "text": "gladder() of female literacy rate\n\ngladder(gapm$female_literacy_rate_2011)"
+    "text": "gladder() of female literacy rate\n\ngladder(gapm$FemaleLiteracyRate)"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#ladder-of-female-literacy-rate",
@@ -6190,65 +6190,65 @@
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#tips",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#tips",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Tips",
-    "text": "Tips\n\nRecall, assessing our LINE assumptions are not on \\(Y\\) alone!!\n\nWe can use gladder() to get a sense of what our transformations will do to the data, but we need to check with our residuals again!!\n\nTransformations usually work better if all values are positive (or negative)\nIf observation has a 0, then we cannot perform certain transformations\nLog function only defined for positive values\n\nWe might take the \\(log(X+1)\\) if \\(X\\) includes a 0 value\n\nWhen we make cubic or sqaure transformations, we MUST include the original \\(X\\)\n\nWe do not do this for \\(Y\\) though"
+    "text": "Tips\n\nRecall, assessing our LINE assumptions are not on \\(Y\\) alone!! (it’s \\(Y|X\\))\n\nWe can use gladder() to get a sense of what our transformations will do to the data, but we need to check with our residuals again!!\n\nTransformations usually work better if all values are positive (or negative)\nIf observation has a 0, then we cannot perform certain transformations\nLog function only defined for positive values\n\nWe might take the \\(log(X+1)\\) if \\(X\\) includes a 0 value\n\nWhen we make cubic or square transformations, we MUST include the original \\(X\\) in the model\n\nWe do not do this for \\(Y\\) though"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#add-quadratic-and-cubic-transformations-to-dataset",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#add-quadratic-and-cubic-transformations-to-dataset",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Add quadratic and cubic transformations to dataset",
-    "text": "Add quadratic and cubic transformations to dataset\n\nHelpful to make a new variable with the transformation in your dataset\n\n\ngapm &lt;- gapm %&gt;% \n  mutate(LE_2 = life_expectancy_years_2011^2,\n         LE_3 = life_expectancy_years_2011^3,\n         FLR_2 = female_literacy_rate_2011^2,\n         FLR_3 = female_literacy_rate_2011^3)\n\nglimpse(gapm)\n\nRows: 188\nColumns: 8\n$ country                    &lt;chr&gt; \"Afghanistan\", \"Albania\", \"Algeria\", \"Andor…\n$ life_expectancy_years_2011 &lt;dbl&gt; 56.7, 76.7, 76.7, 82.6, 60.9, 76.9, 76.0, 7…\n$ female_literacy_rate_2011  &lt;dbl&gt; 13.0, 95.7, NA, NA, 58.6, 99.4, 97.9, 99.5,…\n$ .rownames                  &lt;chr&gt; \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\"…\n$ LE_2                       &lt;dbl&gt; 3214.89, 5882.89, 5882.89, 6822.76, 3708.81…\n$ LE_3                       &lt;dbl&gt; 182284.3, 451217.7, 451217.7, 563560.0, 225…\n$ FLR_2                      &lt;dbl&gt; 169.00, 9158.49, NA, NA, 3433.96, 9880.36, …\n$ FLR_3                      &lt;dbl&gt; 2197.0, 876467.5, NA, NA, 201230.1, 982107.…"
+    "text": "Add quadratic and cubic transformations to dataset\n\nHelpful to make a new variable with the transformation in your dataset\n\n\ngapm &lt;- gapm %&gt;% \n  mutate(LE_2 = LifeExpectancyYrs^2,\n         LE_3 = LifeExpectancyYrs^3,\n         FLR_2 = FemaleLiteracyRate^2,\n         FLR_3 = FemaleLiteracyRate^3)\n\ncolnames(gapm)\n\n [1] \"country\"                          \"CO2emissions\"                    \n [3] \"ElectricityUsePP\"                 \"FoodSupplykcPPD\"                 \n [5] \"IncomePP\"                         \"LifeExpectancyYrs\"               \n [7] \"FemaleLiteracyRate\"               \"population\"                      \n [9] \"WaterSourcePrct\"                  \"geo\"                             \n[11] \"four_regions\"                     \"eight_regions\"                   \n[13] \"six_regions\"                      \"members_oecd_g77\"                \n[15] \"Latitude\"                         \"Longitude\"                       \n[17] \"World bank region\"                \"World bank, 4 income groups 2017\"\n[19] \"LE_2\"                             \"LE_3\"                            \n[21] \"FLR_2\"                            \"FLR_3\""
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#we-are-going-to-compare-a-few-different-models-with-transformations",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#we-are-going-to-compare-a-few-different-models-with-transformations",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "We are going to compare a few different models with transformations",
     "text": "We are going to compare a few different models with transformations\nWe are going to call life expectancy \\(LE\\) and female literacy rate \\(FLR\\)\n\nModel 1: \\(LE = \\beta_0 + \\beta_1 FLR + \\epsilon\\)\nModel 2: \\(LE^2 = \\beta_0 + \\beta_1 FLR + \\epsilon\\)\nModel 3: \\(LE^3 = \\beta_0 + \\beta_1 FLR + \\epsilon\\)\nModel 4: \\(LE = \\beta_0 + \\beta_1 FLR + \\beta_2 FLR^2 +\\epsilon\\)\nModel 5: \\(LE = \\beta_0 + \\beta_1 FLR + \\beta_2 FLR^2 +\\beta_3 FLR^3 +\\epsilon\\)\nModel 6: \\(LE^3 = \\beta_0 + \\beta_1 FLR + \\beta_2 FLR^2 +\\beta_3 FLR^3 +\\epsilon\\)"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#poll-everywhere-question-4",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#poll-everywhere-question-4",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Poll Everywhere Question 4",
     "text": "Poll Everywhere Question 4"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#compare-scatterplots-does-linearity-improve",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#compare-scatterplots-does-linearity-improve",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Compare Scatterplots: does linearity improve?",
     "text": "Compare Scatterplots: does linearity improve?"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#run-models-with-transformations-examples",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#run-models-with-transformations-examples",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Run models with transformations: examples",
-    "text": "Run models with transformations: examples\nModel 2: \\(LE^2 = \\beta_0 + \\beta_1 FLR + \\epsilon\\)\n\nmodel2 &lt;- lm(LE_2 ~ female_literacy_rate_2011,\n             data = gapm)\n\n\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n2,401.272\n352.070\n6.820\n0.000\n    female_literacy_rate_2011\n31.174\n4.166\n7.484\n0.000\n  \n  \n  \n\n\n\n\nModel 6: \\(LE^3 = \\beta_0 + \\beta_1 FLR + \\beta_2 FLR^2 +\\beta_3 FLR^3 +\\epsilon\\)\n\nmodel6 &lt;- lm(LE_3 ~ \n               female_literacy_rate_2011 + FLR_2 + FLR_3,\n             data = gapm)\n\n\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n67,691.796\n149,056.945\n0.454\n0.651\n    female_literacy_rate_2011\n8,092.133\n8,473.154\n0.955\n0.343\n    FLR_2\n−128.596\n147.876\n−0.870\n0.387\n    FLR_3\n0.840\n0.794\n1.059\n0.293"
+    "text": "Run models with transformations: examples\nModel 2: \\(LE^2 = \\beta_0 + \\beta_1 FLR + \\epsilon\\)\n\nmodel2 &lt;- lm(LE_2 ~ FemaleLiteracyRate,\n             data = gapm)\n\n\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n2,401.272\n352.070\n6.820\n0.000\n    FemaleLiteracyRate\n31.174\n4.166\n7.484\n0.000\n  \n  \n  \n\n\n\n\nModel 6: \\(LE^3 = \\beta_0 + \\beta_1 FLR + \\beta_2 FLR^2 +\\beta_3 FLR^3 +\\epsilon\\)\n\nmodel6 &lt;- lm(LE_3 ~ \n               FemaleLiteracyRate + FLR_2 + FLR_3,\n             data = gapm)\n\n\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n67,691.796\n149,056.945\n0.454\n0.651\n    FemaleLiteracyRate\n8,092.133\n8,473.154\n0.955\n0.343\n    FLR_2\n−128.596\n147.876\n−0.870\n0.387\n    FLR_3\n0.840\n0.794\n1.059\n0.293"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#normal-q-q-plots-comparison",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#normal-q-q-plots-comparison",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Normal Q-Q plots comparison",
     "text": "Normal Q-Q plots comparison"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#residual-plots-comparison",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#residual-plots-comparison",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Residual plots comparison",
     "text": "Residual plots comparison"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#summary-of-transformations",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#summary-of-transformations",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Summary of transformations",
-    "text": "Summary of transformations\n\nIf the model without the transformation is blatantly violating a LINE assumption\n\nThen a transformation is a good idea\n\nIf the model without a transformation is not following the LINE assumptions very well, but is mostly okay\n\nThen try to avoid a transformation\nThink about what predictors might need to be added\nEspecially if you keep seeing the same points as influential\n\nIf interpretability is important in your final work, then transformations are not a great solution"
+    "text": "Summary of transformations\n\nIf the model without the transformation is blatantly violating a LINE assumption\n\nThen a transformation is a good idea\nIf transformations do not help, then keep it untransformed\n\n\n \n\nIf the model without a transformation is not following the LINE assumptions very well, but is mostly okay\n\nThen try to avoid a transformation\nThink about what predictors might need to be added\nEspecially if you keep seeing the same points as influential\n\n\n \n\nIf interpretability is important in your final work, then transformations are not a great solution"
   },
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#models-comparison",
@@ -6274,9 +6274,9 @@
   {
     "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#reference-all-run-models",
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#reference-all-run-models",
-    "title": "Lesson 7: SLR: Model Evaluation and Diagnostics",
+    "title": "Lesson 8: SLR: Model Diagnostics",
     "section": "Reference: all run models",
-    "text": "Reference: all run models\n\n\nModel 2: \\(LE^2 = \\beta_0 + \\beta_1 FLR + \\epsilon\\)\n\nmodel2 &lt;- lm(LE_2 ~ female_literacy_rate_2011,\n             data = gapm)\n\ntidy(model2) %&gt;% gt()\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n2401.27207\n352.069818\n6.820443\n1.726640e-09\n    female_literacy_rate_2011\n31.17351\n4.165624\n7.483514\n9.352191e-11\n  \n  \n  \n\n\n\n\nModel 3: \\(LE^3 \\sim FLR\\)\n\nmodel3 &lt;- lm(LE_3 ~ female_literacy_rate_2011,\n             data = gapm)\n\ntidy(model3) %&gt;% gt()\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n95453.189\n35631.6898\n2.678885\n9.005716e-03\n    female_literacy_rate_2011\n3166.481\n421.5875\n7.510853\n8.285324e-11\n  \n  \n  \n\n\n\n\nModel 4: \\(LE \\sim FLR + FLR^2\\)\n\nmodel4 &lt;- lm(life_expectancy_years_2011 ~ \n               female_literacy_rate_2011 + FLR_2,\n             data = gapm)\n\ntidy(model4) %&gt;% gt()\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n57.030875456\n6.282845592\n9.07723652\n8.512585e-14\n    female_literacy_rate_2011\n0.019348795\n0.201021963\n0.09625215\n9.235704e-01\n    FLR_2\n0.001578649\n0.001472592\n1.07202008\n2.870595e-01\n  \n  \n  \n\n\n\n\n\nModel 5: \\(LE \\sim FLR + FLR^2 + FLR^3\\)\n\nmodel5 &lt;- lm(life_expectancy_years_2011 ~ \n               female_literacy_rate_2011 + FLR_2 + FLR_3,\n             data = gapm)\n\ntidy(model5) %&gt;% gt()\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n4.732796e+01\n1.117939e+01\n4.2335001\n6.373341e-05\n    female_literacy_rate_2011\n6.517986e-01\n6.354934e-01\n1.0256576\n3.083065e-01\n    FLR_2\n-9.952763e-03\n1.109080e-02\n-0.8973895\n3.723451e-01\n    FLR_3\n6.245016e-05\n5.953283e-05\n1.0490038\n2.975008e-01\n  \n  \n  \n\n\n\n\nModel 6: \\(LE^3 \\sim FLR + FLR^2 + FLR^3\\)\n\nmodel6 &lt;- lm(LE_3 ~ \n               female_literacy_rate_2011 + FLR_2 + FLR_3,\n             data = gapm)\n\ntidy(model6) %&gt;% gt()\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n67691.7963283\n1.490569e+05\n0.4541338\n0.6510268\n    female_literacy_rate_2011\n8092.1325988\n8.473154e+03\n0.9550320\n0.3425895\n    FLR_2\n-128.5960879\n1.478757e+02\n-0.8696230\n0.3872447\n    FLR_3\n0.8404736\n7.937625e-01\n1.0588477\n0.2930229"
+    "text": "Reference: all run models\n\n\nModel 2: \\(LE^2 = \\beta_0 + \\beta_1 FLR + \\epsilon\\)\n\nmodel2 &lt;- lm(LE_2 ~ FemaleLiteracyRate,\n             data = gapm)\ntidy(model2) %&gt;% gt()\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n2401.27207\n352.069818\n6.820443\n1.726640e-09\n    FemaleLiteracyRate\n31.17351\n4.165624\n7.483514\n9.352191e-11\n  \n  \n  \n\n\n\n\nModel 3: \\(LE^3 \\sim FLR\\)\n\nmodel3 &lt;- lm(LE_3 ~ FemaleLiteracyRate,\n             data = gapm)\ntidy(model3) %&gt;% gt()\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n95453.189\n35631.6898\n2.678885\n9.005716e-03\n    FemaleLiteracyRate\n3166.481\n421.5875\n7.510853\n8.285324e-11\n  \n  \n  \n\n\n\n\nModel 4: \\(LE \\sim FLR + FLR^2\\)\n\nmodel4 &lt;- lm(LifeExpectancyYrs ~ \n               FemaleLiteracyRate + FLR_2,\n             data = gapm)\ntidy(model4) %&gt;% gt()\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n57.030875456\n6.282845592\n9.07723652\n8.512585e-14\n    FemaleLiteracyRate\n0.019348795\n0.201021963\n0.09625215\n9.235704e-01\n    FLR_2\n0.001578649\n0.001472592\n1.07202008\n2.870595e-01\n  \n  \n  \n\n\n\n\n\nModel 5: \\(LE \\sim FLR + FLR^2 + FLR^3\\)\n\nmodel5 &lt;- lm(LifeExpectancyYrs ~ \n               FemaleLiteracyRate + FLR_2 + FLR_3,\n             data = gapm)\ntidy(model5) %&gt;% gt()\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n4.732796e+01\n1.117939e+01\n4.2335001\n6.373341e-05\n    FemaleLiteracyRate\n6.517986e-01\n6.354934e-01\n1.0256576\n3.083065e-01\n    FLR_2\n-9.952763e-03\n1.109080e-02\n-0.8973895\n3.723451e-01\n    FLR_3\n6.245016e-05\n5.953283e-05\n1.0490038\n2.975008e-01\n  \n  \n  \n\n\n\n\nModel 6: \\(LE^3 \\sim FLR + FLR^2 + FLR^3\\)\n\nmodel6 &lt;- lm(LE_3 ~ \n               FemaleLiteracyRate + FLR_2 + FLR_3,\n             data = gapm)\ntidy(model6) %&gt;% gt()\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n67691.7963283\n1.490569e+05\n0.4541338\n0.6510268\n    FemaleLiteracyRate\n8092.1325988\n8.473154e+03\n0.9550320\n0.3425895\n    FLR_2\n-128.5960879\n1.478757e+02\n-0.8696230\n0.3872447\n    FLR_3\n0.8404736\n7.937625e-01\n1.0588477\n0.2930229\n  \n  \n  \n\n\n\n\n\n\n\n\nLesson 8: SLR 5"
   },
   {
     "objectID": "lessons/10_MLR_Inf/10_MLR_Inf.html",
@@ -6885,7 +6885,7 @@
     "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag_key_info.html#key-dates",
     "title": "Key Info and Announcements",
     "section": "Key Dates",
-    "text": "Key Dates"
+    "text": "Key Dates\n\nLab 2 due 2/7\nHomework 3 due 2/14\nLab 3 due 2/21"
   },
   {
     "objectID": "lessons/06_SLR_Eval/06_SLR_Eval_key_info.html",
@@ -7474,5 +7474,117 @@
     "title": "Muddy Points",
     "section": "Muddy Points from Winter 2024",
     "text": "Muddy Points from Winter 2024\n\n1. Equality of the residuals - what’s the bias refer in a residual plot? Is that suggesting a non linear relationship between two variables?\nHere is the plot that this question is referring to:\n\n\n\n\n\nThe answer is already in the question! The residual plot can also be used to look at linearity! The above plots that say “biased” mean they do not follow the linearity assumption.\n\n\n2. QQ Plot: What is it? And can you explain the axes, meaning of “quantiles”, and why assuming normality would result in a straight line?\nI cannot answer this question better than this video! They go through a smaller dataset of gene expression values and how to make a QQ plot from the data. Remember, our QQ plot is of our residual values!!\n\n\n3. I’m still a little confused on how to determine if a dataset has a normal distribution. Feels like a subjective decision.\nFirst thing that I want to address: when we are talking about normality, we are not determining if the dataset follows a normal distribution. We are determining if the fitted model violates the normality assumption that we need to use in our population model. We do this by seeing if the fitted residuals follow a normal distribution. I just want to draw attention to this. There is very particular language being used here.\nSecond thing… Yes! These diagnostic tools are somewhat subjective. You are welcome to use the Shapiro-Wilk test every time you look at a QQ plot! I realize a test with a conclusion might feel more objective and comfortable as we are learning about the model diagnostics. I suggest trying to make a conclusion visually with a QQ plot, then see if it matches the Shapiro-Wilk test. Remember, even in the Shapiro-Wilk test, the null hypothesis is that the fitted residuals come from a normal distribution. So we have to work to disprove that. You can come to the QQ plot with that same prior. If the QQ plot gives blantent evidence that the fitted residuals are not normally distributed, then we violate the assumption.\nWe’ll keep practicing! As we keep going through regression, we’ll realize that model building is very much an art! There is no one answer in statistics!\n\n\n4. What are the small nuances in interpreting the normality through a QQ plot?\nThanks for this question! This helped me realize that I was not articulating very well some of my more subconscious thoughts in a QQ plot.\nBelow are the distribution samples ant their QQ plots from lecture:\n\n\n\n\n\nI drew red, blue and green lines to bracket certain areas of the plots. I basically start by looking within the red brackets. Do all the points seem to stay close to the black line? If this doesn’t hold for the red bracketed area, then I would say our fitted residuals are not normal. Then I look at the area from the red lines to the blue lines. This is less definite, but if the points don’t seem to stay close to the black line, then I’d say our fitted residuals are not normal. Then I’d look at the are between the blue and green line. If the points aren’t close to the black line, then I am likely okay with it and would NOT make the conclusion that the fitted residuals are NOT normal. Notice, that I am not saying I call them normal. They seem to not violate the normal assumption.\nExtra note: The t-distribution is similar to a normal, but it includes larger tails. This is to adjust the normal distribution when our sample size of data is small. However, our assumption aims for fitted residuals to follow a normal distribution. We can be a little more flexible with the QQ plot when we have a smaller sample size, but we should not aim for a t-distribution. Both the normal and t-distribution samples “passed” my normality assessment.\nWe can check out the example:\n\n\n\n\n\nIn this example, I would say that the fitted residuals violate the normal assumption. Notice that we have points off the black line between the red and blue lines. And even within the red lines, we have some curve. This is okay for our example! That’s because we have not yet included other (likely needed) variables in the model. And what does that mean? The other variables in the model will help explain MORE variance in our Y, which would alter the fitted residuals!!\nDraw the red, blue, and green lines on the other QQ plot slides. See what you find, especially when we have different sample sizes!"
+  },
+  {
+    "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag_key_info.html",
+    "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag_key_info.html",
+    "title": "Key Info and Announcements",
+    "section": "",
+    "text": "Moved some of the lab vs. homework dates around - please update your schedule!\n\nMostly because I wanted you to have a week between Lab 4 and the poster!"
+  },
+  {
+    "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag_key_info.html#announcements",
+    "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag_key_info.html#announcements",
+    "title": "Key Info and Announcements",
+    "section": "",
+    "text": "Moved some of the lab vs. homework dates around - please update your schedule!\n\nMostly because I wanted you to have a week between Lab 4 and the poster!"
+  },
+  {
+    "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#process-of-regression-data-analysis",
+    "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#process-of-regression-data-analysis",
+    "title": "Lesson 8: SLR: Model Diagnostics",
+    "section": "Process of regression data analysis",
+    "text": "Process of regression data analysis\n\n  \n\n\n\n\nModel Selection\n\n\n\nBuilding a model\nSelecting variables\nPrediction vs interpretation\nComparing potential models\n\n\n\n\n\n\n\n\nModel Fitting\n\n\n\nFind best fit line\nUsing OLS in this class\nParameter estimation\nCategorical covariates\nInteractions\n\n\n\n\n\n\n\n\nModel Evaluation\n\n\n\nEvaluation of model fit\nTesting model assumptions\nResiduals\nTransformations\nInfluential points\nMulticollinearity\n\n\n\n\n\n\n\n\nModel Use (Inference)\n\n\n\n\n\nInference for coefficients\nHypothesis testing for coefficients\n\n\n\nInference for expected \\(Y\\) given \\(X\\)\nPrediction of new \\(Y\\) given \\(X\\)"
+  },
+  {
+    "objectID": "lessons/07_SLR_Assumptions/07_SLR_Assumptions.html#process-of-regression-data-analysis",
+    "href": "lessons/07_SLR_Assumptions/07_SLR_Assumptions.html#process-of-regression-data-analysis",
+    "title": "Lesson 7: SLR: Checking model assumptions",
+    "section": "Process of regression data analysis",
+    "text": "Process of regression data analysis\n\n  \n\n\n\n\nModel Selection\n\n\n\nBuilding a model\nSelecting variables\nPrediction vs interpretation\nComparing potential models\n\n\n\n\n\n\n\n\nModel Fitting\n\n\n\nFind best fit line\nUsing OLS in this class\nParameter estimation\nCategorical covariates\nInteractions\n\n\n\n\n\n\n\n\nModel Evaluation\n\n\n\nEvaluation of model fit\nTesting model assumptions\nResiduals\nTransformations\nInfluential points\nMulticollinearity\n\n\n\n\n\n\n\n\nModel Use (Inference)\n\n\n\n\n\nInference for coefficients\nHypothesis testing for coefficients\n\n\n\nInference for expected \\(Y\\) given \\(X\\)\nPrediction of new \\(Y\\) given \\(X\\)"
+  },
+  {
+    "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#types-of-influential-points",
+    "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#types-of-influential-points",
+    "title": "Lesson 8: SLR: Model Diagnostics",
+    "section": "Types of influential points",
+    "text": "Types of influential points\n\n\n\n\nOutliers\n\n\n\nAn observation (\\(X_i, Y_i\\)) whose response \\(Y_i\\) does not follow the general trend of the rest of the data\n\n\n\n\n\n\n\n\n \n \n\n\n\nHigh leverage observations\n\n\n\nAn observation (\\(X_i, Y_i\\)) whose predictor \\(X_i\\) has an extreme value\n\\(X_i\\) can be an extremely high or low value compared to the rest of the observations"
+  },
+  {
+    "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#countries-that-are-outliers-r_i-2-1",
+    "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#countries-that-are-outliers-r_i-2-1",
+    "title": "Lesson 8: SLR: Model Diagnostics",
+    "section": "Countries that are outliers (\\(|r_i| > 2\\))",
+    "text": "Countries that are outliers (\\(|r_i| &gt; 2\\))\nLabel only countries with large leverage:\n\nggplot(aug1, aes(x = FemaleLiteracyRate, y = LifeExpectancyYrs,\n                 label = country)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", color = \"darkgreen\") +\n  geom_text(aes(label = ifelse(abs(.std.resid) &gt; 3, as.character(country), ''))) +\n  geom_vline(xintercept = mean(aug1$FemaleLiteracyRate), color = \"grey\") +\n  geom_hline(yintercept = mean(aug1$LifeExpectancyYrs), color = \"grey\")"
+  },
+  {
+    "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#visual-countries-with-high-leverage-h_i-4n",
+    "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#visual-countries-with-high-leverage-h_i-4n",
+    "title": "Lesson 8: SLR: Model Diagnostics",
+    "section": "Visual: Countries with high leverage (\\(h_i > 4/n\\))",
+    "text": "Visual: Countries with high leverage (\\(h_i &gt; 4/n\\))\nLabel only countries with large leverage:\n\nggplot(aug1, aes(x = FemaleLiteracyRate, y = LifeExpectancyYrs,\n                 label = country)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", color = \"darkgreen\") +\n  geom_text(aes(label = ifelse(.hat &gt; 4/80, as.character(country), ''))) +\n  geom_vline(xintercept = mean(aug1$FemaleLiteracyRate), color = \"grey\") +\n  geom_hline(yintercept = mean(aug1$LifeExpectancyYrs), color = \"grey\")"
+  },
+  {
+    "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#countries-that-are-outliers-r_i-3",
+    "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#countries-that-are-outliers-r_i-3",
+    "title": "Lesson 8: SLR: Model Diagnostics",
+    "section": "Countries that are outliers (\\(|r_i| > 3\\))",
+    "text": "Countries that are outliers (\\(|r_i| &gt; 3\\))\n\nWe can identify the countries that are outliers\n\n\naug1 %&gt;% \n  filter(abs(.std.resid) &gt; 3)\n\n# A tibble: 1 × 24\n  country  LifeExpectancyYrs FemaleLiteracyRate .std.resid .fitted .resid   .hat\n  &lt;chr&gt;                &lt;dbl&gt;              &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 Swazila…              48.9               87.3      -3.65    71.2  -22.3 0.0133\n# ℹ 17 more variables: .sigma &lt;dbl&gt;, .cooksd &lt;dbl&gt;, CO2emissions &lt;dbl&gt;,\n#   ElectricityUsePP &lt;dbl&gt;, FoodSupplykcPPD &lt;dbl&gt;, IncomePP &lt;dbl&gt;,\n#   population &lt;dbl&gt;, WaterSourcePrct &lt;dbl&gt;, geo &lt;chr&gt;, four_regions &lt;chr&gt;,\n#   eight_regions &lt;chr&gt;, six_regions &lt;chr&gt;, members_oecd_g77 &lt;chr&gt;,\n#   Latitude &lt;dbl&gt;, Longitude &lt;dbl&gt;, `World bank region` &lt;chr&gt;,\n#   `World bank, 4 income groups 2017` &lt;chr&gt;"
+  },
+  {
+    "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#visual-countries-that-are-outliers-r_i-3",
+    "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#visual-countries-that-are-outliers-r_i-3",
+    "title": "Lesson 8: SLR: Model Diagnostics",
+    "section": "Visual: Countries that are outliers (\\(|r_i| > 3\\))",
+    "text": "Visual: Countries that are outliers (\\(|r_i| &gt; 3\\))\nLabel only countries with large internally standardized residuals:\n\nggplot(aug1, aes(x = FemaleLiteracyRate, y = LifeExpectancyYrs,\n                 label = country)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", color = \"darkgreen\") +\n  geom_text(aes(label = ifelse(abs(.std.resid) &gt; 3, as.character(country), ''))) +\n  geom_vline(xintercept = mean(aug1$FemaleLiteracyRate), color = \"grey\") +\n  geom_hline(yintercept = mean(aug1$LifeExpectancyYrs), color = \"grey\")"
+  },
+  {
+    "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#what-does-the-model-look-like-without-outliers",
+    "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#what-does-the-model-look-like-without-outliers",
+    "title": "Lesson 8: SLR: Model Diagnostics",
+    "section": "What does the model look like without outliers?",
+    "text": "What does the model look like without outliers?\nSensitivity analysis removing countries that are outliers\n\naug1_no_out &lt;- aug1 %&gt;% filter(abs(.std.resid) &lt;= 3) \n\nmodel1_no_out &lt;- aug1_no_out %&gt;% \n  lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate)\ntidy(model1_no_out) %&gt;% gt() %&gt;% # Without outliers\n tab_options(table.font.size = 40) %&gt;% fmt_number(decimals = 3)\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n50.937\n2.438\n20.896\n0.000\n    FemaleLiteracyRate\n0.236\n0.029\n8.164\n0.000\n  \n  \n  \n\n\n\ntidy(model1) %&gt;% gt() %&gt;% # With outliers\n tab_options(table.font.size = 40) %&gt;% fmt_number(decimals = 3)\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n50.928\n2.660\n19.143\n0.000\n    FemaleLiteracyRate\n0.232\n0.031\n7.377\n0.000"
+  },
+  {
+    "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#tools-to-measure-influential-points",
+    "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#tools-to-measure-influential-points",
+    "title": "Lesson 8: SLR: Model Diagnostics",
+    "section": "Tools to measure influential points",
+    "text": "Tools to measure influential points\n\nInternally standardized residual (outlier)\n\n \n\nLeverage (high leverage point)\n\n \n\nCook’s distance (overall influence, both)"
+  },
+  {
+    "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#model-without-observations-with-high-cooks-distance",
+    "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#model-without-observations-with-high-cooks-distance",
+    "title": "Lesson 8: SLR: Model Diagnostics",
+    "section": "Model without observations with high Cook’s distance",
+    "text": "Model without observations with high Cook’s distance\n\nmodel1_lowcd &lt;- lm(LifeExpectancyYrs ~ FemaleLiteracyRate,\n                    data = aug1_lowcd)\ntidy(model1_lowcd) %&gt;% gt() %&gt;% # Without high-leverage points\n tab_options(table.font.size = 40) %&gt;%\n fmt_number(decimals = 3)\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n52.388\n2.078\n25.208\n0.000\n    FemaleLiteracyRate\n0.226\n0.024\n9.208\n0.000\n  \n  \n  \n\n\n\ntidy(model1) %&gt;% gt() %&gt;% # With high leverage points\n tab_options(table.font.size = 40) %&gt;%\n fmt_number(decimals = 3)\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n50.928\n2.660\n19.143\n0.000\n    FemaleLiteracyRate\n0.232\n0.031\n7.377\n0.000"
+  },
+  {
+    "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#what-does-the-model-look-like-without-the-high-cooks-distance-points",
+    "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#what-does-the-model-look-like-without-the-high-cooks-distance-points",
+    "title": "Lesson 8: SLR: Model Diagnostics",
+    "section": "What does the model look like without the high Cook’s distance points?",
+    "text": "What does the model look like without the high Cook’s distance points?\nSensitivity analysis removing countries with high Cook’s distance\n\naug1_lowcd &lt;- aug1 %&gt;% filter(.cooksd &lt;= 0.04)\nmodel1_lowcd &lt;- aug1_lowcd %&gt;% lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate)\ntidy(model1_lowcd) %&gt;% gt() %&gt;% # Without high Cook's distance points\n tab_options(table.font.size = 40) %&gt;% fmt_number(decimals = 3)\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n52.388\n2.078\n25.208\n0.000\n    FemaleLiteracyRate\n0.226\n0.024\n9.208\n0.000\n  \n  \n  \n\n\n\ntidy(model1) %&gt;% gt() %&gt;% # With high Cook's distance points\n tab_options(table.font.size = 40) %&gt;% fmt_number(decimals = 3)\n\n\n\n\n\n  \n    \n      term\n      estimate\n      std.error\n      statistic\n      p.value\n    \n  \n  \n    (Intercept)\n50.928\n2.660\n19.143\n0.000\n    FemaleLiteracyRate\n0.232\n0.031\n7.377\n0.000"
+  },
+  {
+    "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#a-note-from-nicky",
+    "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#a-note-from-nicky",
+    "title": "Lesson 8: SLR: Model Diagnostics",
+    "section": "A note from Nicky",
+    "text": "A note from Nicky\n\nIt’s always weird to be using numbers to help you diagnose an issue, but the issue kinda gets unresolved\nBasically, deleting an observation should be justified outside of the numbers!\n\nIf it’s an honest data point, then it’s giving us important information!\n\nA really well thought out explanation from StackExchange"
+  },
+  {
+    "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#important-note-on-influential-observations",
+    "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#important-note-on-influential-observations",
+    "title": "Lesson 8: SLR: Model Diagnostics",
+    "section": "Important note on influential observations",
+    "text": "Important note on influential observations\n\nIt’s always weird to be using numbers to help you diagnose an issue, but the issue kinda gets unresolved\n\n \n\nBasically, deleting an observation should be justified outside of the numbers!\n\nIf it’s an honest data point, then it’s giving us important information!\n\n\n \n\nA really well thought out explanation from StackExchange"
+  },
+  {
+    "objectID": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#checking-our-model",
+    "href": "lessons/08_SLR_Diagnostics/08_SLR_Diag.html#checking-our-model",
+    "title": "Lesson 8: SLR: Model Diagnostics",
+    "section": "Checking our model",
+    "text": "Checking our model\n\nAn observation may be influential if the model is not correctly specified\n\nWe may also see issues with the LINE assumptions\n\nWhat are our options to specify the model “correctly?”\n\nSee if we need to add predictors to our model\n\nNicky’s thought for our life expectancy example\n\nTry a transformation if there is an issue with linearity or normality\nTry a transformation if there is unequal variance\nTry a weighted least squares approach if unequal variance (might be lesson at end of course)\nTry a robust estimation procedure if we have a lot of outlier issues (outside scope of class)"
   }
 ]

@@ -1,6 +1,6 @@
 ---
 title: "Muddy Points"
-subtitle: "Lesson"
+subtitle: "Lesson 8: SLR Model Diagnostics"
 date-modified: "today"
 format: 
   html:
@@ -8,4 +8,27 @@ format:
 editor_options: 
   chunk_output_type: console
 ---
+
+## Muddy Points from Winter 2025
+
+### 1. using `gladder()`
+
+### 2. When going “up” or “down” the ladder, do we include all the items on the way (I.e., add squared and cubed if we want to get to cubed) or just the one we want in our model?
+
+I suggest trying all the ones on the way. This is why I like `gladder()`. Instead of making a choice on going "up" or "down," we can look at all the plots and see how each transformation will help us make the variable more normally distributed.
+
+### 3. Transformations - in 'real life', would you try transforming X alone, Y alone, and X and Y together? Or was that just an example for today's lesson?
+
+Yes, that is a good order of things! We will talk more about the reasoning for X first when we get to multiple linear regression. The main point is that transforming our covariates (X's) will not impact the linear relationship between other X's and the outcome (Y). If we transform Y first, then we need to make sure all X's have maintained their linear relationship with the transformed Y. 
+
+### 4. Why do we care about transforming data, especially if it is not recommended to use it when explaining to audience?
+
+There are cases where the LINE assumptions are blatantly broken. When there are obvious issues, especially with linearity, then we need to make a transformation. 
+
+Some fields typically use transformations because of known properties of the data. For example, gene expression data are often log-transformed. In this case, there is heteroscedasticity inherent in the data that needs to be fixed (giving it homoscedasticity).
+
+### 5. Are outliers and high leverage points synonymous with one another? I get the general gist that they are values far away from X_bar, but what is the difference between the two?
+
+They are NOT synonymous. Only high leverage points are observations far from $\overline{X}$. Outliers are observations that do not follow the general trend of the other observations. This means an outlier can be right at $\overline{X}$, but have a Y-value falls very far from the $\widehat{Y}$ line. 
+
 

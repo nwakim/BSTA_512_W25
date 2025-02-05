@@ -1,10 +1,9 @@
 ---
-title: "Lesson 8: Introduction to Multiple Linear Regression (MLR)"
+title: "Lesson 9: Introduction to Multiple Linear Regression (MLR)"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
-date: "02/03/2025"
-categories: ["Week 5"]
+date: "02/05/2025"
 format: 
   revealjs:
     theme: "../simple_NW.scss"
@@ -13,7 +12,7 @@ format:
     show-slide-number: all
     width: 1955
     height: 1100
-    footer: "Lesson 8: MLR 1"
+    footer: "Lesson 9: MLR Intro"
     html-math-method: mathjax
     highlight-style: ayu
 execute:
@@ -52,11 +51,17 @@ library(ggiraphExtra)   # for ggPredict() command
 
 # Learning Objectives
 
-1.  Understand equations and visualizations that helps us build multiple linear regression model.
+1.  Understand the population multiple linear regression model through equations and visuals.
 2.  Fit MLR model (in `R`) and understand the difference between fitted regression plane and regression lines.
-3.  Identify the population multiple linear regression model and define statistics language for key notation.
+3.  Interpret MLR (population) coefficient estimates with additional variable in model
 4.  Based off of previous SLR work, understand how the population MLR is estimated.
-5.  Interpret MLR (population) coefficient estimates with additional variable in model
+
+
+```{css, echo=FALSE}
+.reveal code {
+  max-height: 100% !important;
+}
+```
 
 ## Reminder of what we learned in the context of SLR
 
@@ -114,7 +119,7 @@ Model Evaluation/Diagnostics
 ## Let's map that to our regression analysis process
 
 ::: box
-![](images/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"} ![](images/arrow2.png){.absolute top="13.5%" right="28.4%" width="155"}![](images/arrow_back4.png){.absolute top="7.5%" right="30.5%" width="820"} ![](images/arrow_down.png){.absolute top="60.5%" right="48%" width="85"}
+![](../img_slides/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"} ![](../img_slides/arrow2.png){.absolute top="13.5%" right="28.4%" width="155"}![](../img_slides/arrow_back4.png){.absolute top="7.5%" right="30.5%" width="820"} ![](../img_slides/arrow_down.png){.absolute top="60.5%" right="48%" width="85"}
 
 ::: columns
 ::: {.column width="30%"}
@@ -201,18 +206,17 @@ Model Use (Inference)
 
 ## 
 
-![](08_MLR_Intro/all_mod_wrong.jpg){fig-align="center"}
+![](../img_slides/all_mod_wrong.jpg){fig-align="center"}
 
 # Learning Objectives
 
 ::: lob
-1.  Understand equations and visualizations that helps us build multiple linear regression model.
+1.  Understand the population multiple linear regression model through equations and visuals.
 :::
 
 2.  Fit MLR model (in `R`) and understand the difference between fitted regression plane and regression lines.
-3.  Identify the population multiple linear regression model and define statistics language for key notation.
+3.  Interpret MLR (population) coefficient estimates with additional variable in model
 4.  Based off of previous SLR work, understand how the population MLR is estimated.
-5.  Interpret MLR (population) coefficient estimates with additional variable in model
 
 ## Simple Linear Regression vs. Multiple Linear Regression
 
@@ -259,6 +263,40 @@ $$
 
 -   The models have similar "LINE" assumptions and follow the same general diagnostic procedure
 
+## Population multiple regression model
+
+::: heq
+$$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2+ \ldots + \beta_k X_k + \epsilon$$
+:::
+
+or on the individual (observation) level:
+
+$$y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2}+ \ldots + \beta_k x_{ik} + \epsilon_i,\ \ \text{for}\ i = 1, 2, \ldots, n$$
+
+::: columns
+::: column
+#### Observable sample data
+
+-   $Y$ is our dependent variable
+
+    -   Aka outcome or response variable
+
+-   $X_1, X_2, \ldots, X_k$ are our $k$ independent variables
+
+    -   Aka predictors or covariates
+:::
+
+::: column
+#### Unobservable population parameters
+
+-   $\beta_0, \beta_1, \beta_2, \ldots, \beta_k$ are **unknown** population **parameters**
+    -   From our sample, we find the population parameter estimates: $\widehat{\beta}_0, \widehat{\beta}_1, \widehat{\beta}_2, \ldots, \widehat{\beta}_k$
+-   $\epsilon$ is the random error
+    -   And is still normally distributed
+    -   $\epsilon \sim N(0, \sigma^2)$ where $\sigma^2$ is the population parameter of the variance
+:::
+:::
+
 ## Going back to our life expectancy example
 
 -   Let's say many other variables were measured for each country, including food supply
@@ -267,24 +305,25 @@ $$
 
 -   In SLR, we only had one predictor and one outcome in the model:
 
-    -   [**Life expectancy**](https://www.gapminder.org/data/documentation/gd004/) = the average number of years a newborn child would live if current mortality patterns were to stay the same.
+    -   Outcome: [**Life expectancy**](https://www.gapminder.org/data/documentation/gd004/) = the average number of years a newborn child would live if current mortality patterns were to stay the same.
 
-    -   [**Adult literacy rate**](http://data.uis.unesco.org/) is the percentage of people ages 15 and above who can, with understanding, read and write a short, simple statement on their everyday life.
+    -   Predictor: [**Adult literacy rate**](http://data.uis.unesco.org/)(predictor) is the percentage of people ages 15 and above who can, with understanding, read and write a short, simple statement on their everyday life.
 
  
 
 -   Do we think adult female literacy rate is going to explain a lot of the variance of life expectancy between countries?
 
-## Loading the (new-*ish*) data
+## Loading the data
 
 ```{r}
-# Load the data - update code if the csv file is not in the same location on your computer
-# If you need to download the file, please go to ur shared folder under Data > Slides
+# Load the data - update code if the file is not in the same location
+# on your computer
 gapm <- read_excel("data/Gapminder_vars_2011.xlsx", 
                    na = "NA")  # important!!!! 
 
 gapm_sub <- gapm %>% 
   drop_na(LifeExpectancyYrs, FemaleLiteracyRate, FoodSupplykcPPD)
+  # above drops rows with NAs in any of the three variables
 
 glimpse(gapm_sub)
 ```
@@ -379,7 +418,7 @@ grid.arrange(plot_LE_FLR, plot_LE_FS, plot_FLR_FS,
 :::
 
 ::: {.column width="50%"}
-```{r fig.height=9, fig.width=9, warning=F}
+```{r fig.height=8, fig.width=8, warning=F}
 #| echo: false
 #| fig-align: center
 # plotly package is require for plot_ly function, which is loaded at beginning of Rmd 
@@ -406,35 +445,40 @@ dim3_scatter
 
 # Learning Objectives
 
-1.  Understand equations and visualizations that helps us build multiple linear regression model.
+1.  Understand the population multiple linear regression model through equations and visuals.
 
 ::: lob
 2.  Fit MLR model (in `R`) and understand the difference between fitted regression plane and regression lines.
 :::
 
-3.  Identify the population multiple linear regression model and define statistics language for key notation.
+3.  Interpret MLR (population) coefficient estimates with additional variable in model
 4.  Based off of previous SLR work, understand how the population MLR is estimated.
-5.  Interpret MLR (population) coefficient estimates with additional variable in model
 
 ## How do we fit a multiple linear regression model in R?
 
 New population model for example:
 
-$$\text{Life expectancy} = \beta_0 + \beta_1 \text{Female literacy rate} + \beta_2 \text{Food supply} + \epsilon$$
+$$\text{LE} = \beta_0 + \beta_1 \text{FLR} + \beta_2 \text{FS} + \epsilon$$
 
 ```{r}
 # Fit regression model:
-mr1 <- lm(LifeExpectancyYrs ~ FemaleLiteracyRate + FoodSupplykcPPD, 
-          data = gapm_sub)
+mr1 <- gapm_sub %>% 
+  lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate + FoodSupplykcPPD)
 tidy(mr1, conf.int=T) %>% gt() %>% tab_options(table.font.size = 35) %>% fmt_number(decimals = 3)
+```
+
+```{r}
+#| echo: false
+
+mr1_tidy = tidy(mr1, conf.int=T)
 ```
 
 Fitted multiple regression model:
 
 $$\begin{aligned}
-\widehat{\text{Life expectancy}} &= \widehat{\beta}_0 + \widehat{\beta}_1 \text{Female literacy rate} + \widehat{\beta}_2 \text{Food supply} \\
-\widehat{\text{Life expectancy}} &= 33.595 + 0.157\ \text{Female literacy rate} 
-+ 0.008\ \text{Food supply}
+\widehat{\text{LE}} &= \widehat{\beta}_0 + \widehat{\beta}_1 \text{FLR} + \widehat{\beta}_2 \text{FS} \\
+\widehat{\text{LE}} &= `r round(mr1_tidy$estimate[1], 3)` + `r round(mr1_tidy$estimate[2], 3)` \ \text{FLR} 
++ `r round(mr1_tidy$estimate[3], 3)`\ \text{FS}
 \end{aligned}$$
 
 ## Don't forget `summary()` to extract information!
@@ -459,8 +503,8 @@ summary(mr1)
 ```{r fig.height=10, fig.width=10, echo=F, warning=FALSE}
 #| fig-align: center
 # setup hideous grid required by plotly
-mr1 <- lm(LifeExpectancyYrs ~ FemaleLiteracyRate + FoodSupplykcPPD, 
-          data = gapm_sub)
+mr1 <- gapm_sub %>% 
+  lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate + FoodSupplykcPPD)
 x_grid <- seq(from = min(gapm_sub$FemaleLiteracyRate, na.rm = TRUE), 
               to = max(gapm_sub$FemaleLiteracyRate, na.rm = TRUE), 
               length = 100)
@@ -511,9 +555,9 @@ plot_ly() %>%
 ## Regression lines for varying values of food supply
 
 $$\begin{aligned}
-\widehat{\text{Life expectancy}} &= \widehat{\beta}_0 + \widehat{\beta}_1 \text{Female literacy rate} + \widehat{\beta}_2 \text{Food supply} \\
-\widehat{\text{Life expectancy}} &= 33.595 + 0.157 \text{ Female literacy rate} 
-+ 0.008 \text{ Food supply}
+\widehat{\text{LE}} &= \widehat{\beta}_0 + \widehat{\beta}_1 \text{FLR} + \widehat{\beta}_2 \text{FS} \\
+\widehat{\text{LE}} &= `r round(mr1_tidy$estimate[1], 3)` + `r round(mr1_tidy$estimate[2], 3)` \ \text{FLR} 
++ `r round(mr1_tidy$estimate[3], 3)`\ \text{FS}
 \end{aligned}$$
 
 ::: columns
@@ -543,13 +587,13 @@ $$\begin{aligned}
  
 
 $$\begin{aligned}
-\widehat{\text{LE}} &= 33.595 + 0.157\ \text{FLR} 
-+ 0.008\ \text{FS}\\
-\widehat{\text{LE}} &= 33.595 + 0.157\ \text{FLR} 
-+ 0.008\cdot 3000 \\
-\widehat{\text{LE}} &= 33.595 + 0.157\ \text{FLR} 
-+ 24 \\
-\widehat{\text{LE}} &= 57.6 + 0.157\ \text{FLR}
+\widehat{\text{LE}} &= `r round(mr1_tidy$estimate[1], 3)` + `r round(mr1_tidy$estimate[2], 3)` \ \text{FLR} 
++ `r round(mr1_tidy$estimate[3], 3)`\ \text{FS}\\
+\widehat{\text{LE}} &= `r round(mr1_tidy$estimate[1], 3)` + `r round(mr1_tidy$estimate[2], 3)` \ \text{FLR} 
++ `r round(mr1_tidy$estimate[3], 3)`\cdot 3000\\
+\widehat{\text{LE}} &= `r round(mr1_tidy$estimate[1], 3)` + `r round(mr1_tidy$estimate[2], 3)` \ \text{FLR}
++ `r round(mr1_tidy$estimate[3]*3000, 3)` \\
+\widehat{\text{LE}} &= `r round(mr1_tidy$estimate[1] + mr1_tidy$estimate[3]*3000, 3)` + `r round(mr1_tidy$estimate[2], 3)` \ \text{FLR}
 \end{aligned}$$
 :::
 
@@ -568,61 +612,222 @@ $$\begin{aligned}
 
 # Learning Objectives
 
-1.  Understand equations and visualizations that helps us build multiple linear regression model.
+1.  Understand the population multiple linear regression model through equations and visuals.
 2.  Fit MLR model (in `R`) and understand the difference between fitted regression plane and regression lines.
 
 ::: lob
-3.  Identify the population multiple linear regression model and define statistics language for key notation.
+3.  Interpret MLR (population) coefficient estimates with additional variable in model
 :::
 
 4.  Based off of previous SLR work, understand how the population MLR is estimated.
-5.  Interpret MLR (population) coefficient estimates with additional variable in model
 
-## Population multiple regression model
+## Interpreting the estimated population coefficients
 
-::: heq
-$$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2+ \ldots + \beta_k X_k + \epsilon$$
+-   For a population model: $$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2+ \epsilon$$
+    -   Where $X_1$ and $X_2$ are continuous variables
+    -   No need to specify $Y$ because it required to be continuous in linear regression
+
+::: columns
+::: {.column width="33%"}
+::: fact
+::: fact-title
+General interpretation for $\widehat{\beta}_0$
 :::
 
-or on the individual (observation) level:
+::: fact-cont
+The expected $Y$-variable is ($\widehat\beta_0$ units) when the $X_1$-variable is 0 $X_1$-units and $X_2$-variable is 0 $X_1$-units (95% CI: LB, UB).
+:::
+:::
+:::
 
-$$y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2}+ \ldots + \beta_k x_{ik} + \epsilon_i,\ \ \text{for}\ i = 1, 2, \ldots, n$$
+::: {.column width="33%"}
+::: definition
+::: def-title
+General interpretation for $\widehat{\beta}_1$
+:::
+
+::: def-cont
+For every increase of 1 $X_1$-unit in the $X_1$-variable, adjusting/controlling for $X_2$-variable, there is an expected increase/decrease of $|\widehat\beta_1|$ units in the $Y$-variable (95%: LB, UB).
+:::
+:::
+:::
+
+::: {.column width="33%"}
+::: proof1
+::: proof-title
+General interpretation for $\widehat{\beta}_2$
+:::
+
+::: proof-cont
+For every increase of 1 $X_2$-unit in the $X_2$-variable, adjusting/controlling for $X_1$-variable, there is an expected increase/decrease of $|\widehat\beta_2|$ units in the $Y$-variable (95%: LB, UB).
+:::
+:::
+:::
+:::
+
+
+## Interpreting the estimated population coefficient: $\widehat{\beta}_0$ {#color-slide1}
+
+```{css, echo=FALSE}
+#color-slide1 h2 {
+ color: #34AC8B;
+}
+```
+
+- For an estimated model: $\widehat{Y} = \widehat{\beta}_0 + \widehat{\beta}_1 X_2 + \widehat{\beta}_2 X_2$
+
+$$\begin{aligned}
+\widehat{Y} = &\widehat{\beta}_0 + \widehat{\beta}_1 0 + \widehat{\beta}_2 0\\
+\widehat{Y} = &\widehat{\beta}_0 \\
+\end{aligned}$$
+
+**Interpretation:** The expected $Y$-variable is ($\widehat\beta_0$ units) when the $X_1$-variable is 0 $X_1$-units and $X_2$-variable is 0 $X_1$-units (95% CI: LB, UB).
+
+## Interpreting the estimated population coefficient: $\widehat{\beta}_1$ {#color-slide2}
+
+```{css, echo=FALSE}
+#color-slide2 h2 {
+ color: #4FADF3;
+}
+```
+
+- We will use: $x_{1a}$ and $x_{1b} = x_{1a} + 1$, with the implication that $\Delta{x_1} = x_{1b} - x_{1a} = 1$
+
+- Our goal is to get to a statement with $\widehat{\beta}_1$ alone:
+
+$$\begin{aligned}
+\widehat{Y}|x_{1a} = &\widehat{\beta}_0 + \widehat{\beta}_1 x_{1a} + \widehat{\beta}_2 X_2\\
+\widehat{Y}|x_{1b} = &\widehat{\beta}_0 + \widehat{\beta}_1 x_{1b} + \widehat{\beta}_2 X_2\\
+\widehat{Y}|x_{1b} - \widehat{Y}|x_{1a} = & \bigg[\widehat{\beta}_0 + \widehat{\beta}_1 x_{1b} + \widehat{\beta}_2 X_2\bigg] - \bigg[\widehat{\beta}_0 + \widehat{\beta}_1 x_{1a} + \widehat{\beta}_2 X_2\bigg] \\
+\widehat{Y}|x_{1b} - \widehat{Y}|x_{1a} = &  \widehat{\beta}_1 x_{1b} - \widehat{\beta}_1 x_{1a}\\
+\widehat{Y}|x_{1b} - \widehat{Y}|x_{1a} = &  \widehat{\beta}_1 (x_{1b} - x_{1a})\\
+\widehat{Y}|x_{1b} - \widehat{Y}|x_{1a} = &  \widehat{\beta}_1\\
+\end{aligned}$$
+
+**Interpretation:** For every increase of 1 $X_1$-unit in the $X_1$-variable, adjusting/controlling for $X_2$-variable, there is an expected increase/decrease of $|\widehat\beta_1|$ units in the $Y$-variable (95%: LB, UB).
+
+
+## Interpreting the estimated population coefficient: $\widehat{\beta}_2$ {#color-slide3}
+
+```{css, echo=FALSE}
+#color-slide3 h2 {
+ color: #FF8021;
+}
+```
+
+- We can so the same for $X_2$: $x_{2a}$ and $x_{2b} = x_{2a} + 1$, with the implication that $\Delta{x_2} = x_{2b} - x_{2a} = 1$
+
+- Our goal is to get to a statement with $\widehat{\beta}_1$ alone:
+
+$$\begin{aligned}
+\widehat{Y}|x_{2a} = &\widehat{\beta}_0 + \widehat{\beta}_1 x_{1a} + \widehat{\beta}_2 X_2\\
+\widehat{Y}|x_{2b} = &\widehat{\beta}_0 + \widehat{\beta}_1 x_{1b} + \widehat{\beta}_2 X_2\\
+\widehat{Y}|x_{2b} - \widehat{Y}|x_{2a} = & \bigg[\widehat{\beta}_0 + \widehat{\beta}_1 X_1 + \widehat{\beta}_2 x_{2b} \bigg] - \bigg[\widehat{\beta}_0 + \widehat{\beta}_1 X_1 + \widehat{\beta}_2 x_{2a}\bigg] \\
+\widehat{Y}|x_{2b} - \widehat{Y}|x_{2a} = &  \widehat{\beta}_2 x_{2b} - \widehat{\beta}_2 x_{2a}\\
+\widehat{Y}|x_{2b} - \widehat{Y}|x_{2a} = &  \widehat{\beta}_2 (x_{2b} - x_{2a})\\
+\widehat{Y}|x_{2b} - \widehat{Y}|x_{2a} = &  \widehat{\beta}_2\\
+\end{aligned}$$
+
+**Interpretation:** For every increase of 1 $X_2$-unit in the $X_2$-variable, adjusting/controlling for $X_1$-variable, there is an expected increase/decrease of $|\widehat\beta_2|$ units in the $Y$-variable (95%: LB, UB).
+
+
+## Poll Everywhere Question 3
+
+## Getting these interpretations from our regression table
+
+We fit the regression model in R and printed the regression table:
+
+```{r}
+mr1 <- lm(LifeExpectancyYrs ~ FemaleLiteracyRate + FoodSupplykcPPD, 
+          data = gapm_sub)
+```
+
+```{r}
+#| echo: false
+tidy(mr1, conf.int=T) %>% gt() %>% tab_options(table.font.size = 30) %>% fmt_number(decimals = 3)
+```
+
+Fitted multiple regression model: $\widehat{\text{LE}} = 33.595 + 0.157 \text{ FLR} + 0.008 \text{ FS}$
+
+::: columns
+::: {.column width="33%"}
+::: fact
+::: fact-title
+Interpretation for $\widehat{\beta}_0$
+:::
+
+::: fact-cont
+The average life expectancy is 33.595 years when the female literacy rate is 0% and food supply is 0 kcal PPD (95% CI: 24.674, 41.517).
+:::
+:::
+:::
+
+::: {.column width="33%"}
+::: definition
+::: def-title
+Interpretation for $\widehat{\beta}_1$
+:::
+
+::: def-cont
+For every 1% increase in the female literacy rate, adjusting for food supply, there is an expected increase of 0.157 years in the life expectancy (95%: 0.093, 0.221).
+:::
+:::
+:::
+
+::: {.column width="33%"}
+::: proof1
+::: proof-title
+Interpretation for $\widehat{\beta}_2$
+:::
+
+::: proof-cont
+For every 1 kcal PPD increase in the food supply, adjusting for female literacy rate, there is an expected increase of 0.008 years in life expectancy (95%: 0.005, 0.012).
+:::
+:::
+:::
+:::
+
+## What we need in our interpretations of coefficients (reference)
 
 ::: columns
 ::: column
-#### Observable sample data
+-   Units of Y
 
--   $Y$ is our dependent variable
+-   Units of X
 
-    -   Aka outcome or response variable
+-   If discussing intercept: Mean or average or expected before Y
 
--   $X_1, X_2, \ldots, X_k$ are our $k$ independent variables
+-   If discussing coefficient for continuous covariate: Mean or average or expected before difference, increase, or decrease
 
-    -   Aka predictors or covariates
+    -   OR: Mean or average or expected before Y
+    -   NOT: predicted
+    -   Only need before difference or Y!!
+
+-   Confidence interval
 :::
 
 ::: column
-#### Unobservable population parameters
+-   If other covariates in the model
 
--   $\beta_0, \beta_1, \beta_2, \ldots, \beta_k$ are **unknown** population **parameters**
-    -   From our sample, we find the population parameter estimates: $\widehat{\beta}_0, \widehat{\beta}_1, \widehat{\beta}_2, \ldots, \widehat{\beta}_k$
--   $\epsilon$ is the random error
-    -   And is still normally distributed
-    -   $\epsilon \sim N(0, \sigma^2)$ where $\sigma^2$ is the population parameter of the variance
+    -   Discussing intercept: Must state that variables are equal to 0
+
+        -   or at their centered value if centered!
+
+    -   Discussing coefficient for covariate: Must state "adjusting for all other variables", "Controlling for all other variables", or "Holding all other variables constant"
+
+        -   If only one other variable in the model, then replace "all other variables" with the single variable name
 :::
 :::
 
 # Learning Objectives
 
-1.  Understand equations and visualizations that helps us build multiple linear regression model.
+1.  Understand the population multiple linear regression model through equations and visuals.
 2.  Fit MLR model (in `R`) and understand the difference between fitted regression plane and regression lines.
-3.  Identify the population multiple linear regression model and define statistics language for key notation.
+3.  Interpret MLR (population) coefficient estimates with additional variable in model
 
 ::: lob
 4.  Based off of previous SLR work, understand how the population MLR is estimated.
 :::
-
-5.  Interpret MLR (population) coefficient estimates with additional variable in model
 
 ## How do we estimate the model parameters?
 
@@ -641,7 +846,7 @@ SSE & = \displaystyle\sum^n_{i=1} (Y_i - \widehat{\beta}_0 -\widehat{\beta}_1 X_
 
 -   The equations for calculating the $\boldsymbol{\widehat{\beta}}$ values is best done using matrix notation (not required for our class)
 
--   We will be using R to get the coefficients instead of the equation (already did this a few slides back!)
+-   We will be using `R` to get the coefficients instead of the equation (already did this a few slides back!)
 
 -   How we have represented the population regression model: $$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2+ \ldots + \beta_k X_k + \epsilon$$
 
@@ -653,6 +858,10 @@ $$\begin{aligned}
 \boldsymbol{Y} &= \boldsymbol{X}\boldsymbol{\beta} + \boldsymbol{\epsilon} \\
 \boldsymbol{Y}_{n \times 1}& = \boldsymbol{X}_{n \times (k+1)}\boldsymbol{\beta}_{(k+1)\times 1} + \boldsymbol{\epsilon}_{n \times 1}
 \end{aligned}$$
+
+- $\boldsymbol{X}$ is often called the design matrix
+  - Each row represents an individual 
+  - Each column represents a covariate
 :::
 
 ::: {.column width="20%"}
@@ -741,28 +950,33 @@ $$\sigma^2_{Y|X_1, X_2, \ldots, X_k} = Var(Y|X_1, X_2, \ldots, X_k) = \sigma^2$$
 
 ## Summary of the LINE assumptions
 
--   Equivalently, the residuals are independently and identically distributed (iid):
+-   Equivalently, the **residuals** are independently and identically distributed (iid):
     -   normal
     -   with mean 0 and
     -   constant variance $\sigma^2$
 
+ 
+    
+- Residuals are still $\widehat{\epsilon}_i=Y_i - \widehat{Y}_i$ for each observation
+  - It's just that $\widehat{Y}_i$ is now calculated with many covariates ($X_1, X_2, \ldots, X_k$)
+
 ## Variation: Explained vs. Unexplained
 
 $$\begin{aligned}
-\sum_{i=1}^n (Y_i - \bar{Y})^2 &= \sum_{i=1}^n (\widehat{Y}_i- \bar{Y})^2 + \sum_{i=1}^n (Y_i - \widehat{Y}_i)^2 \\
+\sum_{i=1}^n (Y_i - \overline{Y})^2 &= \sum_{i=1}^n (\widehat{Y}_i- \overline{Y})^2 + \sum_{i=1}^n (Y_i - \widehat{Y}_i)^2 \\
 SSY &= SSR + SSE
 \end{aligned}$$
 
--   $Y_i - \bar{Y}$ = the deviation of $Y_i$ around the mean $\bar{Y}$
-    -   (the **total** amount deviation unexplained at $X_{i1},\ldots,X_{ik}$ ).
--   $\widehat{Y}_i- \bar{Y}$ = the deviation of the fitted value $\widehat{Y}_i$ around the mean $\bar{Y}$
-    -   (the amount deviation **explained** by the regression at $X_{i1},\ldots,X_{ik}$ ).
+-   $Y_i - \overline{Y}$ = the deviation of $Y_i$ around the mean $\overline{Y}$
+    -   the **total** amount deviation
+-   $\widehat{Y}_i- \overline{Y}$ = the deviation of the fitted value $\widehat{Y}_i$ around the mean $\overline{Y}$
+    -   the amount deviation **explained** by the regression at $X_{i1},\ldots,X_{ik}$
 -   $Y_i - \widehat{Y}_i$ = the deviation of the observation $Y$ around the fitted regression line
-    -   (the amount deviation **unexplained** by the regression at $X_{i1},\ldots,X_{ik}$ ).
+    -   the amount deviation **unexplained** by the regression at $X_{i1},\ldots,X_{ik}$
 
-## Poll Everywhere Question 3
+## Poll Everywhere Question 4
 
-## Building the ANOVA table
+## Building the ANOVA table {visibility="hidden"}
 
 ANOVA table ($k$ = \# of predictors, $n$ = \# of observations)
 
@@ -773,7 +987,7 @@ ANOVA table ($k$ = \# of predictors, $n$ = \# of observations)
 ::: {.column width="84%"}
 | Variation Source | df      | SS    | MS                        | test statistic        | p-value                 |
 |------------|------------|------------|------------|------------|------------|
-| Regression       | $k$     | $SSR$ | $MSR = \frac{SSR}{k}$     | $F = \frac{MSR}{MSE}$ | $F \sim F_{(k, n-k-1)}$ |
+| Regression       | $k$     | $SSR$ | $MSR = \frac{SSR}{k}$     | $F = \frac{MSR}{MSE}$ | $P(F_{(k, n-k-1)}>F)$ |
 | Error            | $n-k-1$ | $SSE$ | $MSE = \frac{SSE}{n-k-1}$ |                       |                         |
 | Total            | $n-1$   | $SSY$ |                           |                       |                         |
 :::
@@ -782,195 +996,204 @@ ANOVA table ($k$ = \# of predictors, $n$ = \# of observations)
  
 
 ```{r}
+#| eval: false
+#| echo: false
 anova(mr1) %>% tidy() %>% gt() %>%
    tab_options(table.font.size = 40) %>% fmt_number(decimals = 3)
 ```
 
-# Learning Objectives
+## SLR: Another way to think of SSY, SSR, and SSE
 
-1.  Understand equations and visualizations that helps us build multiple linear regression model.
-2.  Fit MLR model (in `R`) and understand the difference between fitted regression plane and regression lines.
-3.  Identify the population multiple linear regression model and define statistics language for key notation.
-4.  Based off of previous SLR work, understand how the population MLR is estimated.
+-   Let's create a data frame of each component within the SS's
 
-::: lob
-5.  Interpret MLR (population) coefficient estimates with additional variable in model
-:::
+    -   Deviation in SSY: $Y_i - \overline{Y}$
+    -   Deviation in SSR: $\widehat{Y}_i- \overline{Y}$
+    -   Deviation in SSE: $Y_i - \widehat{Y}_i$
 
-## Interpreting the estimated population coefficients
-
--   For a population model: $$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2+ \epsilon$$
-    -   Where $X_1$ and $X_2$ are continuous variables
-    -   No need to specify $Y$ because it required to be continuous in linear regression
-
-::: columns
-::: {.column width="33%"}
-::: fact
-::: fact-title
-General interpretation for $\widehat{\beta}_0$
-:::
-
-::: fact-cont
-The expected $Y$-variable is ($\widehat\beta_0$ units) when the $X_1$-variable is 0 $X_1$-units and $X_2$-variable is 0 $X_1$-units (95% CI: LB, UB).
-:::
-:::
-:::
-
-::: {.column width="33%"}
-::: definition
-::: def-title
-General interpretation for $\widehat{\beta}_1$
-:::
-
-::: def-cont
-For every increase of 1 $X_1$-unit in the $X_1$-variable, adjusting/controlling for $X_2$-variable, there is an expected increase/decrease of $|\widehat\beta_1|$ units in the $Y$-variable (95%: LB, UB).
-:::
-:::
-:::
-
-::: {.column width="33%"}
-::: proof1
-::: proof-title
-General interpretation for $\widehat{\beta}_2$
-:::
-
-::: proof-cont
-For every increase of 1 $X_2$-unit in the $X_2$-variable, adjusting/controlling for $X_1$-variable, there is an expected increase/decrease of $|\widehat\beta_2|$ units in the $Y$-variable (95%: LB, UB).
-:::
-:::
-:::
-:::
-
-## Poll Everywhere Question 4
-
-## Getting these interpretations from our regression table
-
-We fit the regression model in R and printed the regression table:
+-   Using our simple linear regression model as an example:
 
 ```{r}
-mr1 <- lm(LifeExpectancyYrs ~ FemaleLiteracyRate + FoodSupplykcPPD, 
-          data = gapm_sub)
+slr1 <- gapm_sub %>% 
+  lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate)
+aug_slr1 = augment(slr1)
+SS_dev_slr = gapm_sub %>% select(LifeExpectancyYrs) %>%
+  mutate(SSY_dev = LifeExpectancyYrs - mean(LifeExpectancyYrs),
+         y_hat = aug_slr1$.fitted, 
+         SSR_dev = y_hat - mean(LifeExpectancyYrs), 
+         SSE_dev = aug_slr1$.resid)
 ```
 
+## *SLR*: Plot the components of each sum of squares
+
 ```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: "Code to make the below plots"
+
+SSY_plot = ggplot(SS_dev_slr, aes(SSY_dev)) + geom_histogram() + xlim(-30, 30) + ylim(0, 35) + xlab(expression(Y[i] - bar(Y)))
+SSR_plot = ggplot(SS_dev_slr, aes(SSR_dev)) + geom_histogram() + xlim(-30, 30) + ylim(0, 35) +xlab(expression(hat(Y)[i] - bar(Y)))
+SSE_plot = ggplot(SS_dev_slr, aes(SSE_dev)) + geom_histogram() + xlim(-30, 30) + ylim(0, 35) + xlab(expression(Y[i] - hat(Y)[i]))
+grid.arrange(SSY_plot, SSR_plot, SSE_plot, nrow = 3)
+```
+
+::: columns
+::: column
+```{r}
+#| fig-align: right
+#| fig-width: 6
+#| fig-height: 8
 #| echo: false
-tidy(mr1, conf.int=T) %>% gt() %>% tab_options(table.font.size = 30) %>% fmt_number(decimals = 3)
+
+SSY_plot_slr = ggplot(SS_dev_slr, aes(SSY_dev)) + geom_histogram() + xlim(-30, 30) + ylim(0, 35) + xlab(expression(Y[i] - bar(Y))) + theme(axis.title.x = element_text(size = 22))
+SSR_plot_slr = ggplot(SS_dev_slr, aes(SSR_dev)) + geom_histogram() + xlim(-30, 30) + ylim(0, 35) +xlab(expression(hat(Y)[i] - bar(Y))) + theme(axis.title.x = element_text(size = 22))
+SSE_plot_slr = ggplot(SS_dev_slr, aes(SSE_dev)) + geom_histogram() + xlim(-30, 30) + ylim(0, 35) + xlab(expression(Y[i] - hat(Y)[i])) + theme(axis.title.x = element_text(size = 22))
+grid.arrange(SSY_plot_slr, SSR_plot_slr, SSE_plot_slr, nrow = 3)
+```
+:::
+
+::: column
+$$SSY = \sum_{i=1}^n (Y_i - \overline{Y})^2 = `r round(var(SS_dev_slr$SSY_dev), 2)`$$ 
+
+ 
+
+$$SSR = \sum_{i=1}^n (\widehat{Y}_i- \overline{Y})^2 = `r round(var(SS_dev_slr$SSR_dev), 2)`$$
+
+ 
+
+$$SSE =\sum_{i=1}^n (Y_i - \widehat{Y}_i)^2 = `r round(var(SS_dev_slr$SSE_dev), 2)`$$
+:::
+:::
+
+## *MLR:* Another way to think of SSY, SSR, and SSE
+
+-   Let's create a data frame of each component within the SS's
+
+    -   Deviation in SSY: $Y_i - \overline{Y}$
+    -   Deviation in SSR: $\widehat{Y}_i- \overline{Y}$
+    -   Deviation in SSE: $Y_i - \widehat{Y}_i$
+
+-   Using our simple linear regression model as an example:
+
+```{r}
+mr1 <- gapm_sub %>% 
+  lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate + FoodSupplykcPPD)
+aug_mlr1 = augment(mr1)
+SS_df = gapm_sub %>% select(LifeExpectancyYrs) %>%
+  mutate(SSY_dev = LifeExpectancyYrs - mean(LifeExpectancyYrs),
+         y_hat = aug_mlr1$.fitted, 
+         SSR_dev = y_hat - mean(LifeExpectancyYrs), 
+         SSE_dev = aug_mlr1$.resid)
 ```
 
-Fitted multiple regression model: $\widehat{\text{LE}} = 33.595 + 0.157 \text{ FLR} + 0.008 \text{ FS}$
+## *MLR:* Plot the components of each sum of squares
+
+```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: "Code to make the below plots"
+
+SSY_plot = ggplot(SS_df, aes(SSY_dev)) + geom_histogram() + xlim(-30, 30) + ylim(0, 35) + xlab(expression(Y[i] - bar(Y)))
+SSR_plot = ggplot(SS_df, aes(SSR_dev)) + geom_histogram() + xlim(-30, 30) + ylim(0, 35) +xlab(expression(hat(Y)[i] - bar(Y)))
+SSE_plot = ggplot(SS_df, aes(SSE_dev)) + geom_histogram() + xlim(-30, 30) + ylim(0, 35) + xlab(expression(Y[i] - hat(Y)[i]))
+grid.arrange(SSY_plot, SSR_plot, SSE_plot, nrow = 3)
+```
 
 ::: columns
-::: {.column width="33%"}
-::: fact
-::: fact-title
-Interpretation for $\widehat{\beta}_0$
+::: column
+```{r}
+#| fig-align: right
+#| fig-width: 6
+#| fig-height: 8
+#| echo: false
+
+SSY_plot = ggplot(SS_df, aes(SSY_dev)) + geom_histogram() + xlim(-30, 30) + ylim(0, 35) + xlab(expression(Y[i] - bar(Y))) + theme(axis.title.x = element_text(size = 22))
+SSR_plot = ggplot(SS_df, aes(SSR_dev)) + geom_histogram() + xlim(-30, 30) + ylim(0, 35) +xlab(expression(hat(Y)[i] - bar(Y))) + theme(axis.title.x = element_text(size = 22))
+SSE_plot = ggplot(SS_df, aes(SSE_dev)) + geom_histogram() + xlim(-30, 30) + ylim(0, 35) + xlab(expression(Y[i] - hat(Y)[i])) + theme(axis.title.x = element_text(size = 22))
+grid.arrange(SSY_plot, SSR_plot, SSE_plot, nrow = 3)
+```
 :::
 
-::: fact-cont
-The expected life expectancy is 33.595 years when the female literacy rate is 0% and food supply is 0 0 kcal PPD (95% CI: 24.674, 41.517).
-:::
-:::
-:::
+::: column
+$$SSY = \sum_{i=1}^n (Y_i - \overline{Y})^2 = `r round(var(SS_df$SSY_dev), 2)`$$ 
 
-::: {.column width="33%"}
-::: definition
-::: def-title
-Interpretation for $\widehat{\beta}_1$
-:::
+ 
 
-::: def-cont
-For every 1% increase in the female literacy rate, adjusting for food supply, there is an expected increase of 0.157 years in the life expectancy (95%: 0.093, 0.221).
-:::
-:::
-:::
+$$SSR = \sum_{i=1}^n (\widehat{Y}_i- \overline{Y})^2 = `r round(var(SS_df$SSR_dev), 2)`$$
 
-::: {.column width="33%"}
-::: proof1
-::: proof-title
-Interpretation for $\widehat{\beta}_2$
-:::
+ 
 
-::: proof-cont
-For every 1 kcal PPD increase in the food supply, adjusting for female literacy rate, there is an expected increase of 0.008 years in life expectancy (95%: 0.005, 0.012).
-:::
-:::
+$$SSE =\sum_{i=1}^n (Y_i - \widehat{Y}_i)^2 = `r round(var(SS_df$SSE_dev), 2)`$$
 :::
 :::
 
-## Let's just examine the general interpretation vs. the example {.smaller}
+## What did you notice in the plots?
 
 ::: columns
-::: {.column width="33%"}
-::: fact
-::: fact-title
-General interpretation for $\widehat{\beta}_0$
-:::
-
-::: fact-cont
-The expected $Y$-variable is ($\widehat\beta_0$ units) when the $X_1$-variable is 0 $X_1$-units and $X_2$-variable is 0 $X_1$-units (95% CI: LB, UB).
+::: {.column width="50%"}
+::: L1
+Simple Linear Regression
 :::
 :::
-:::
-
-::: {.column width="33%"}
-::: definition
-::: def-title
-General interpretation for $\widehat{\beta}_1$
-:::
-
-::: def-cont
-For every increase of 1 $X_1$-unit in the $X_1$-variable, adjusting/controlling for $X_2$-variable, there is an expected increase/decrease of $|\widehat\beta_1|$ units in the $Y$-variable (95%: LB, UB).
-:::
-:::
-:::
-
-::: {.column width="33%"}
-::: proof1
-::: proof-title
-General interpretation for $\widehat{\beta}_2$
-:::
-
-::: proof-cont
-For every increase of 1 $X_2$-unit in the $X_2$-variable, adjusting/controlling for $X_1$-variable, there is an expected increase/decrease of $|\widehat\beta_2|$ units in the $Y$-variable (95%: LB, UB).
-:::
+::: {.column width="50%"}
+::: E1
+Multiple Linear Regression
 :::
 :::
 :::
 
 ::: columns
-::: {.column width="33%"}
-::: fact
-::: fact-title
-Interpretation for $\widehat{\beta}_0$
+::: {.column width="35%"}
+```{r}
+#| fig-align: center
+#| fig-width: 6
+#| fig-height: 8
+#| echo: false
+
+grid.arrange(SSY_plot_slr, SSR_plot_slr, SSE_plot_slr, nrow = 3)
+```
 :::
 
-::: fact-cont
-The expected life expectancy is 33.595 years when the female literacy rate is 0% and food supply is 0 0 kcal PPD (95% CI: 24.674, 41.517).
+::: {.column width="15%"}
+$$SSY = `r round(var(SS_dev_slr$SSY_dev), 2)`$$ 
+
+ 
+
+ 
+
+$$SSR = `r round(var(SS_dev_slr$SSR_dev), 2)`$$
+
+ 
+
+ 
+
+$$SSE =`r round(var(SS_dev_slr$SSE_dev), 2)`$$
 :::
+
+::: {.column width="35%"}
+```{r}
+#| fig-align: center
+#| fig-width: 6
+#| fig-height: 8
+#| echo: false
+
+grid.arrange(SSY_plot, SSR_plot, SSE_plot, nrow = 3)
+```
+:::
+::: {.column width="15%"}
+$$SSY = `r round(var(SS_df$SSY_dev), 2)`$$ 
+
+ 
+
+ 
+
+$$SSR = `r round(var(SS_df$SSR_dev), 2)`$$
+
+ 
+
+ 
+
+$$SSE =`r round(var(SS_df$SSE_dev), 2)`$$
 :::
 :::
 
-::: {.column width="33%"}
-::: definition
-::: def-title
-Interpretation for $\widehat{\beta}_1$
-:::
-
-::: def-cont
-For every 1% increase in the female literacy rate, adjusting for food supply, there is an expected increase of 0.157 years in the life expectancy (95%: 0.093, 0.221).
-:::
-:::
-:::
-
-::: {.column width="33%"}
-::: proof1
-::: proof-title
-Interpretation for $\widehat{\beta}_2$
-:::
-
-::: proof-cont
-For every 1 kcal PPD increase in the food supply, adjusting for female literacy rate, there is an expected increase of 0.008 years in life expectancy (95%: 0.005, 0.012).
-:::
-:::
-:::
-:::
+- Next class: we can determine if model fit is better by comparing the SSE's of different models

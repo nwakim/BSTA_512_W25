@@ -1,9 +1,9 @@
 ---
-title: "Lesson 9: MLR: Inference + F-test"
+title: "Lesson 10: MLR: Inference + F-test"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
-date: "02/05/2025"
+date: "02/10/2025"
 categories: ["Week 5"]
 format: 
   revealjs:
@@ -13,7 +13,7 @@ format:
     show-slide-number: all
     width: 1955
     height: 1100
-    footer: "Lesson 9: MLR 2"
+    footer: "Lesson 10: MLR 2"
     html-math-method: mathjax
     highlight-style: ayu
 execute:

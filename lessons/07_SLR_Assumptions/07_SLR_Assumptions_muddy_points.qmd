@@ -11,6 +11,63 @@ editor_options:
 
 ## Muddy Points from Winter 2025
 
+### 1. Probably understanding the independence of residuals
+
+This is just tied to how the study is set up. We are basically saying that our study design does not make our observations inherently correlated to one another.
+
+For example, let's think of a study measuring 5 adults' height every month over a year. We have 12 height measurements for each adult. Since most adults' heights will not change over their adulthood, those measurements are probably pretty close to one another. However, the 5 sets of measurements for each adult are probably different. We cannot assume that all 60 (5x12) measurements are independent from each other. Each adult's 12 measurements will be highly correlated with one another. Thus, we do not have independent outcomes in this study. 
+
+### 2. Residual variance across X values, what conclusions can we draw from residual plot?
+
+For the most part, we will focus on investigating homoscedasticity (equal variance) from the residual plots. We track across the X-axis, and make sure that the spread of the data looks pretty even across x-values. 
+
+### 3. How to add prediction bands to plots?
+
+This is within the `geom_smooth()` function in our ggplot code.
+
+```{r}
+#| include: false
+#| message: false
+#| warning: false
+
+library(readxl)
+library(here)
+library(tidyverse)
+
+gapm1 <- read_excel(here("data/Gapminder_vars_2011.xlsx"), na = "NA") 
+gapm <- gapm1 %>% drop_na(LifeExpectancyYrs, FemaleLiteracyRate)
+```
+
+Here is the plot without bands:
+```{r}
+#| warning: false
+#| code-line-numbers: "4"
+
+ggplot(gapm, aes(x = FemaleLiteracyRate,
+                 y = LifeExpectancyYrs)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, colour="#F14124") + # <1>
+  labs(x = "Female literacy rate (%)", 
+       y = "Life expectancy (years)")
+
+```
+1. `se = FALSE` tells R to omit the bands
+
+Here is the plot with bands:
+```{r}
+#| warning: false
+#| code-line-numbers: "4"
+
+ggplot(gapm, aes(x = FemaleLiteracyRate,
+                 y = LifeExpectancyYrs)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = TRUE, colour="#F14124") + # <1>
+  labs(x = "Female literacy rate (%)", 
+       y = "Life expectancy (years)")
+
+```
+1. `se = TRUE` tells R to show the bands
+
 ## Muddy Points from Winter 2024
 
 ### 1. Equality of the residuals - what’s the bias refer in a residual plot? Is that suggesting a non linear relationship between two variables?

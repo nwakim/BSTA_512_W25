@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -119,7 +153,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#muddy-points-from-winter-2025" id="toc-muddy-points-from-winter-2025" class="nav-link active" data-scroll-target="#muddy-points-from-winter-2025">Muddy Points from Winter 2025</a></li>
+  <li><a href="#muddy-points-from-winter-2025" id="toc-muddy-points-from-winter-2025" class="nav-link active" data-scroll-target="#muddy-points-from-winter-2025">Muddy Points from Winter 2025</a>
+  <ul class="collapse">
+  <li><a href="#probably-understanding-the-independence-of-residuals" id="toc-probably-understanding-the-independence-of-residuals" class="nav-link" data-scroll-target="#probably-understanding-the-independence-of-residuals">1. Probably understanding the independence of residuals</a></li>
+  <li><a href="#residual-variance-across-x-values-what-conclusions-can-we-draw-from-residual-plot" id="toc-residual-variance-across-x-values-what-conclusions-can-we-draw-from-residual-plot" class="nav-link" data-scroll-target="#residual-variance-across-x-values-what-conclusions-can-we-draw-from-residual-plot">2. Residual variance across X values, what conclusions can we draw from residual plot?</a></li>
+  <li><a href="#how-to-add-prediction-bands-to-plots" id="toc-how-to-add-prediction-bands-to-plots" class="nav-link" data-scroll-target="#how-to-add-prediction-bands-to-plots">3. How to add prediction bands to plots?</a></li>
+  </ul></li>
   <li><a href="#muddy-points-from-winter-2024" id="toc-muddy-points-from-winter-2024" class="nav-link" data-scroll-target="#muddy-points-from-winter-2024">Muddy Points from Winter 2024</a>
   <ul class="collapse">
   <li><a href="#equality-of-the-residuals---whats-the-bias-refer-in-a-residual-plot-is-that-suggesting-a-non-linear-relationship-between-two-variables" id="toc-equality-of-the-residuals---whats-the-bias-refer-in-a-residual-plot-is-that-suggesting-a-non-linear-relationship-between-two-variables" class="nav-link" data-scroll-target="#equality-of-the-residuals---whats-the-bias-refer-in-a-residual-plot-is-that-suggesting-a-non-linear-relationship-between-two-variables">1. Equality of the residuals - what’s the bias refer in a residual plot? Is that suggesting a non linear relationship between two variables?</a></li>
@@ -148,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 3, 2025</p>
+      <p class="date-modified">February 4, 2025</p>
     </div>
   </div>
     
@@ -159,6 +198,59 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="muddy-points-from-winter-2025" class="level2">
 <h2 class="anchored" data-anchor-id="muddy-points-from-winter-2025">Muddy Points from Winter 2025</h2>
+<section id="probably-understanding-the-independence-of-residuals" class="level3">
+<h3 class="anchored" data-anchor-id="probably-understanding-the-independence-of-residuals">1. Probably understanding the independence of residuals</h3>
+<p>This is just tied to how the study is set up. We are basically saying that our study design does not make our observations inherently correlated to one another.</p>
+<p>For example, let’s think of a study measuring 5 adults’ height every month over a year. We have 12 height measurements for each adult. Since most adults’ heights will not change over their adulthood, those measurements are probably pretty close to one another. However, the 5 sets of measurements for each adult are probably different. We cannot assume that all 60 (5x12) measurements are independent from each other. Each adult’s 12 measurements will be highly correlated with one another. Thus, we do not have independent outcomes in this study.</p>
+</section>
+<section id="residual-variance-across-x-values-what-conclusions-can-we-draw-from-residual-plot" class="level3">
+<h3 class="anchored" data-anchor-id="residual-variance-across-x-values-what-conclusions-can-we-draw-from-residual-plot">2. Residual variance across X values, what conclusions can we draw from residual plot?</h3>
+<p>For the most part, we will focus on investigating homoscedasticity (equal variance) from the residual plots. We track across the X-axis, and make sure that the spread of the data looks pretty even across x-values.</p>
+</section>
+<section id="how-to-add-prediction-bands-to-plots" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-add-prediction-bands-to-plots">3. How to add prediction bands to plots?</h3>
+<p>This is within the <code>geom_smooth()</code> function in our ggplot code.</p>
+<p>Here is the plot without bands:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="fu">ggplot</span>(gapm, <span class="fu">aes</span>(<span class="at">x =</span> FemaleLiteracyRate,</span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a>                 <span class="at">y =</span> LifeExpectancyYrs)) <span class="sc">+</span></span>
+<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-4" class="code-annotation-target"><a href="#annotated-cell-1-4"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">colour=</span><span class="st">"#F14124"</span>) <span class="sc">+</span></span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Female literacy rate (%)"</span>, </span>
+<span id="annotated-cell-1-6"><a href="#annotated-cell-1-6"></a>       <span class="at">y =</span> <span class="st">"Life expectancy (years)"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-annotation="1" data-code-cell="annotated-cell-1" data-code-lines="4"><code>se = FALSE</code> tells R to omit the bands</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output-display">
+<p><img src="07_SLR_Assumptions_muddy_points_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Here is the plot with bands:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1"></a><span class="fu">ggplot</span>(gapm, <span class="fu">aes</span>(<span class="at">x =</span> FemaleLiteracyRate,</span>
+<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2"></a>                 <span class="at">y =</span> LifeExpectancyYrs)) <span class="sc">+</span></span>
+<span id="annotated-cell-2-3"><a href="#annotated-cell-2-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-4" class="code-annotation-target"><a href="#annotated-cell-2-4"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">colour=</span><span class="st">"#F14124"</span>) <span class="sc">+</span></span>
+<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Female literacy rate (%)"</span>, </span>
+<span id="annotated-cell-2-6"><a href="#annotated-cell-2-6"></a>       <span class="at">y =</span> <span class="st">"Life expectancy (years)"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-annotation="1" data-code-cell="annotated-cell-2" data-code-lines="4"><code>se = TRUE</code> tells R to show the bands</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output-display">
+<p><img src="07_SLR_Assumptions_muddy_points_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
 </section>
 <section id="muddy-points-from-winter-2024" class="level2">
 <h2 class="anchored" data-anchor-id="muddy-points-from-winter-2024">Muddy Points from Winter 2024</h2>

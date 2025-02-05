@@ -13,6 +13,10 @@ editor_options:
 
 ### 1. using `gladder()`
 
+`gladder` will show you what the transformation of a single variable looks like. We can use it as a visual assessment to determine which transformations we might want to try for a variable. 
+
+I showed it for both FLR and LE. Note that I did it for each variable separately! Then I decided LE and FLR, separately, might benefit from a squared or cubed transformation.
+
 ### 2. When going “up” or “down” the ladder, do we include all the items on the way (I.e., add squared and cubed if we want to get to cubed) or just the one we want in our model?
 
 I suggest trying all the ones on the way. This is why I like `gladder()`. Instead of making a choice on going "up" or "down," we can look at all the plots and see how each transformation will help us make the variable more normally distributed.

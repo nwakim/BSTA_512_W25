@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
 }
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+}
+pre.numberSource { margin-left: 3em; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -4515,6 +4549,7 @@ vertical-align: -.125em;
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a>
   <ul class="collapse">
   <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-1-1" id="toc-question-1-1" class="nav-link" data-scroll-target="#question-1-1">Question 1</a></li>
   <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
   </ul></li>
   </ul>
@@ -4549,7 +4584,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">January 28, 2025</p>
+      <p class="date-modified">February 6, 2025</p>
     </div>
   </div>
     
@@ -4600,10 +4635,55 @@ Tip
 <h2 class="anchored" data-anchor-id="questions">Questions</h2>
 <section id="question-1" class="level3">
 <h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
-<p>A team of nutrition experts investigated the influence of protein content in diet on the relationship between age (explanatory variable) and height (outcome, in centimeters) for children. Using the dataset, <code>CH12Q03.xls</code>, answer the following questions.</p>
-<p>This question was adapted from <a href="https://catalog.lib.uchicago.edu/vufind/Record/7546272">this textbook</a>.</p>
+<p>This question uses the same dataset as HW 2, question 1 and HW 3, question 4.</p>
+<p>This question is based on data collected as part of an observational study of patients who suffered from stroke.</p>
+<p>Dataset: The main goal was to study various psychological factors: optimism, fatalism, depression, spirituality, and their relationship with stroke severity and other health outcomes among the study participants. Data were collected using questionnaires during a baseline interview and also medical chart review. More information about this study can be found in the article <a href="https://pubmed.ncbi.nlm.nih.gov/21940963/">Fatalism, optimism, spirituality, depressive symptoms and stroke outcome: a population based analysis</a>.</p>
+<p>The dataset that you will work with is called <code>completedata.sas7bdat</code>. The two variables we are interested in are:</p>
+<ul>
+<li><p>Covariate 1: <code>Fatalism</code> (larger values indicate that the individual feels less control of their life)</p>
+<ul>
+<li>Potential scores range from 8 to 40</li>
+</ul></li>
+<li><p>Covariate 2: <code>Optimism</code> (larger values indicate that the individual feels higher levels of optimism)</p>
+<ul>
+<li>Potential scores range from 6 to 24</li>
+</ul></li>
+<li><p>Covariate 3: <code>Spirituality</code> (larger values indicate that the individual has more belief in a higher power)</p>
+<ul>
+<li>Potential scores range from 2 to 8</li>
+</ul></li>
+<li><p>Outcome: <code>Depression</code> (larger values imply increased depression)</p>
+<ul>
+<li>Potential scores range from 0 to 27</li>
+</ul></li>
+</ul>
+<p>For our homework purposes we will assume each variable is continuous.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dep_df <span class="ot">=</span> <span class="fu">read_sas</span>(<span class="fu">here</span>(<span class="st">&quot;./data/completedata.sas7bdat&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="part-a" class="level4">
 <h4 class="anchored" data-anchor-id="part-a">Part a</h4>
+<p>Fit the regression model with all the covariates (Fatalism, Optimism, Spirituality), display the regression table, and write out the fitted regression line.</p>
+</section>
+<section id="part-e" class="level4">
+<h4 class="anchored" data-anchor-id="part-e">Part e</h4>
+<p>Does at least one of the covariates contribute significantly to the prediction of Depression? (Note: this is an overall test. Please follow the hypothesis test steps. To complete step 4-6, simply output your ANOVA table.)</p>
+</section>
+<section id="part-f" class="level4">
+<h4 class="anchored" data-anchor-id="part-f">Part f</h4>
+<p>Does the addition of Spirituality add significantly to the prediction of Depression achieved by Fatalism and Optimism?</p>
+</section>
+<section id="part-g" class="level4">
+<h4 class="anchored" data-anchor-id="part-g">Part g</h4>
+<p>Does the addition of Spirituality and Optimism add significantly to the prediction of Depression achieved by Fatalism?</p>
+</section>
+</section>
+<section id="question-1-1" class="level3">
+<h3 class="anchored" data-anchor-id="question-1-1">Question 1</h3>
+<p>A team of nutrition experts investigated the influence of protein content in diet on the relationship between age (explanatory variable) and height (outcome, in centimeters) for children. Using the dataset, <code>CH12Q03.xls</code>, answer the following questions.</p>
+<p>This question was adapted from <a href="https://catalog.lib.uchicago.edu/vufind/Record/7546272">this textbook</a>.</p>
+<section id="part-a-1" class="level4">
+<h4 class="anchored" data-anchor-id="part-a-1">Part a</h4>
 <p>Using R, make a variable that is a factor for Diet. Make sure to check what values the original variable for Diet can take. How many indicator functions do you need to represent the categorical variable Diet (protein-rich vs. protein-poor)?</p>
 </section>
 <section id="part-b" class="level4">
@@ -4623,8 +4703,8 @@ Tip
 <section id="question-2" class="level3">
 <h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
 <p>An experiment was conducted regarding a quantitative analysis of factors found in high-density lipoprotein (HDL) in a sample of human blood serum. Three variables thought to be predictive of, or associated with, HDL measurement (Y) were the total cholesterol (X1) and total triglyceride (X2) concentrations in the sample, plus the presence or absence of a certain sticky component of the serum called sinking pre-beta or SPB (X3), coded as 0 if absent and 1 if present. Using the dataset, <code>CH09Q05.xls</code>, answer the following questions.</p>
-<section id="part-a-1" class="level4">
-<h4 class="anchored" data-anchor-id="part-a-1">Part a</h4>
+<section id="part-a-2" class="level4">
+<h4 class="anchored" data-anchor-id="part-a-2">Part a</h4>
 <p>Use <span class="math inline">\(\alpha= 0.05\)</span>, test whether if there is a crude association between HDL measurement and total cholesterol. Note: testing for a crude association means we fit a simple linear regression model and see if the association is significant.</p>
 </section>
 <section id="part-b-1" class="level4">

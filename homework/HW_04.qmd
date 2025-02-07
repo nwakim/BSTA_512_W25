@@ -58,6 +58,57 @@ It is a good idea to try rendering your document from time to time as you go alo
 
 ### Question 1
 
+This question uses the same dataset as HW 2, question 1 and HW 3, question 4. 
+
+This question is based on data collected as part of an observational study of patients who suffered from stroke.
+
+Dataset: The main goal was to study various psychological factors: optimism, fatalism, depression, spirituality, and their relationship with stroke severity and other health outcomes among the study participants. Data were collected using questionnaires during a baseline interview and also medical chart review. More information about this study can be found in the article [Fatalism, optimism, spirituality, depressive symptoms and stroke outcome: a population based analysis](https://pubmed.ncbi.nlm.nih.gov/21940963/).
+
+The dataset that you will work with is called `completedata.sas7bdat`. The two variables we are interested in are:
+
+-   Covariate 1: `Fatalism` (larger values indicate that the individual feels less control of their life)
+
+    -   Potential scores range from 8 to 40
+
+-   Covariate 2: `Optimism` (larger values indicate that the individual feels higher levels of optimism)
+
+    -   Potential scores range from 6 to 24
+
+-   Covariate 3: `Spirituality` (larger values indicate that the individual has more belief in a higher power)
+
+    -   Potential scores range from 2 to 8
+
+-   Outcome: `Depression` (larger values imply increased depression)
+
+    -   Potential scores range from 0 to 27
+
+For our homework purposes we will assume each variable is continuous.
+
+```{r}
+dep_df = read_sas(here("./data/completedata.sas7bdat"))
+```
+
+#### Part a
+
+Fit the regression model with all the covariates (Fatalism, Optimism, Spirituality), display the regression table, and write out the fitted regression line.
+
+#### Part e
+
+Does at least one of the covariates contribute significantly to the prediction of Depression? (Note: this is an overall test. Please follow the hypothesis test steps. To complete step 4-6, simply output your ANOVA table.)
+
+
+#### Part f
+
+Does the addition of Spirituality add significantly to the prediction of Depression achieved by Fatalism and Optimism?
+
+
+#### Part g
+
+Does the addition of Spirituality and Optimism add significantly to the prediction of Depression achieved by Fatalism?
+
+
+### Question 1
+
 A team of nutrition experts investigated the influence of protein content in diet on the relationship between age (explanatory variable) and height (outcome, in centimeters) for children. Using the dataset, `CH12Q03.xls`, answer the following questions.
 
 This question was adapted from [this textbook](https://catalog.lib.uchicago.edu/vufind/Record/7546272).

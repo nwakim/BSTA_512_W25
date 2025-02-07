@@ -14,8 +14,6 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, fig.height = 2, fig.width = 4)
-
 library(tidyverse)
 library(rstatix)
 library(broom)
@@ -31,14 +29,14 @@ library(here)
 ```
 
 ::: callout-caution
-This homework is not ready to be worked on!! Nicky needs to update it.
+This homework is ready! 2/6/25
 :::
 
 ## Directions
 
 -   [Download the `.qmd` file here.](https://github.com/nwakim/BSTA_512_W25/blob/main/homework/HW_03.qmd)
 
--   You will need to download the datasets. Use [this link to download](https://ohsuitg-my.sharepoint.com/:f:/g/personal/wakim_ohsu_edu/EtimsrgruwZOvhVqgx31g0MBwLSTj2L53ilK_ZIw9-vucA?e=sBvCNu) the HW1 datasets needed in this assignment. If you do not want to make changes to the paths set in this document, then make sure the files are stored in a folder named "data" that is housed in the same location as your HW1 `.qmd` file.
+-   You will need to download the datasets. Use [this link to download](https://ohsuitg-my.sharepoint.com/:f:/g/personal/wakim_ohsu_edu/EtimsrgruwZOvhVqgx31g0MBwLSTj2L53ilK_ZIw9-vucA?e=sBvCNu) the HW3 datasets needed in this assignment. If you do not want to make changes to the paths set in this document, then make sure the files are stored in a folder named "data" that is housed in the same location as your HW3 `.qmd` file.
 
 -   Please upload your homework to Sakai. **Upload both your `.qmd` code file and the rendered `.html` file**
 
@@ -117,7 +115,7 @@ You do not need to go through the hypothesis test process again. A quick stateme
 If you prefer to write out the models by hand, remember that you can take a picture of your work and insert it into this document. HW0 can be a good reference for how we've done this before.
 :::
 
-### Question 3
+### Question 2
 
 We will continue to work with the study and dataset from Question 2 above.
 
@@ -134,7 +132,7 @@ Calculate the coefficient of determination using linear regression summary outpu
 Give an interpretation of the coefficient of determination in the context of the study.
 
 
-### Question 1
+### Question 3
 
 A high respiratory rate is a potential diagnostic indicator of respiratory infection in children. To judge whether a respiratory rate is “high” however, a physician must have a clear picture of the distribution of normal rates. To this end, Italian researchers measured the respiratory rates (in breaths/minute) of 618 children between the ages of 15 days and 3 years (measured in months).
 
@@ -222,7 +220,7 @@ Create a residual plot using ggplot and the residuals. Discuss what this means i
 
 Between the model with the untransformed outcome and the transformed outcome, which would you recommend using for analysis? (Hint: there are pros and cons to both models)
 
-### Question 2
+### Question 4
 
 This question uses the same dataset as HW 2, question 1.
 
@@ -275,18 +273,3 @@ Does the addition of Optimism and Spirituality change our coefficient estimate f
 #### Part d
 
 From the fitted regression model, calculate the regression line when Optimism score is 10 and Spirituality score is 6.
-
-
-#### Part e
-
-Does at least one of the covariates contribute significantly to the prediction of Depression? (Note: this is an overall test. Please follow the hypothesis test steps. To complete step 4-6, simply output your ANOVA table.)
-
-
-#### Part f
-
-Does the addition of Spirituality add significantly to the prediction of Depression achieved by Fatalism and Optimism?
-
-
-#### Part g
-
-Does the addition of Spirituality and Optimism add significantly to the prediction of Depression achieved by Fatalism?

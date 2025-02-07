@@ -1,0 +1,443 @@
+---
+title: "Homework 3 Answers"
+subtitle: "BSTA 512/612"
+author: "Your name here!!!"
+description: "Due: Friday February 14, 2025 at 11pm"
+date-modified: "today"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    embed-resources: true
+editor_options: 
+  chunk_output_type: console
+---
+
+Answers are not necessarily complete! This is just meant to serve as a check if you are stuck. 
+
+```{=html}
+<style>div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}</style>
+```
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(rstatix)
+library(broom)
+library(gt)
+library(janitor)
+library(readxl)
+library(gridExtra)
+library(ggfortify)  # autoplot(model)
+library(gtsummary)
+library(describedata) # gladder()
+library(haven)
+library(here)
+```
+
+## Questions
+
+### Question 1
+
+This question and data are adapted from [this textbook](https://catalog.lib.uchicago.edu/vufind/Record/7546272).
+
+In an experiment designed to describe the dose–response curve for vitamin K, individual rats were depleted of their vitamin K reserves and then fed dried liver for 4 days at different dosage levels. The response of each rat was measured as the concentration of a clotting agent needed to clot a sample of its blood in 3 minutes. The results of the experiment on 12 rats are given in the following table; values are expressed in common logarithms for both dose and response.
+
+```{r}
+clot = read_excel(here("data/CH05Q09.xls"))
+clot %>% gt() %>%
+  cols_label(RAT = md("**Rat**"),
+             LOGCONC = md("**Log10 Concentration (Y)**"),
+             LOGDOSE = md("**Log10 Dose (X)**"))
+```
+
+Use the log-transformed values as given in the dataset.
+
+Use the following scatterplot to build your answers off of:
+
+```{r}
+#| fig-height: 5
+#| fig-width: 6.5
+#| fig-align: center
+#| echo: false
+
+ggplot(clot, aes(x = LOGDOSE,
+                 y = LOGCONC)) +
+  geom_point(size = 2) +
+  labs(x = "Log10 dose (X)", 
+       y = "Log10 concentration (Y)",
+       title = "Concentration of clotting agent needed vs. dosage levels of liver") +
+    theme(axis.title = element_text(size = 12), 
+        axis.text = element_text(size = 12), 
+        title = element_text(size = 12))
+```
+
+#### Part a
+
+::: blue
+Here is the code for fitting the model:
+
+```{r}
+#| echo: false 
+clot_mod <- lm(LOGCONC ~ LOGDOSE, data = clot)
+```
+
+```{r}
+summary(clot_mod)
+```
+:::
+
+#### Part b
+
+::: blue
+```{r}
+#| echo: false
+anova(clot_mod) %>% tidy() %>% gt()
+```
+:::
+
+#### Part c
+
+::: blue
+$$ F = 1148.759 $$
+::: 
+
+#### Part d
+
+::: blue
+Not shown bc answer is complete solution
+:::
+
+### Question 2
+
+#### Part a
+
+::: blue
+```{r}
+#| echo: false
+(r <- cor(clot$LOGCONC, clot$LOGDOSE))
+```
+:::
+
+#### Part b
+
+::: blue
+```{r}
+#| echo: false
+anova(clot_mod) %>% tidy() %>% gt()
+
+clot_anova = anova(clot_mod) %>% tidy()
+
+SSY = sum(clot_anova$sumsq)
+SSR = clot_anova$sumsq[1]
+
+(R2 = SSR/SSY)
+```
+:::
+
+#### Part c
+
+::: blue
+Not given
+:::
+
+
+### Question 3
+
+```{r}
+#| message: false
+
+if(!require(Sleuth3)) { install.packages("Sleuth3"); library(Sleuth3) }
+q1_data = ex0824 
+```
+
+#### Part a
+
+::: blue
+```{r}
+#| fig-width: 6
+#| fig-height: 4.5
+#| fig-align: center
+#| echo: false
+#| warning: false
+
+ggplot(data = q1_data, aes(x = Age, y = Rate)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  geom_smooth(se = F, color = "#F14124") +
+  labs(title = "Scatterplot of Respiratory Rate vs. Age", 
+       x = "Age (months)", 
+       y = "Respiratory Rate (breaths/minute)")
+```
+:::
+
+#### Part b
+
+::: blue
+Not given
+:::
+
+#### Part c
+
+Fit the regression model, display the regression table, and write out the fitted regression line.
+
+::: blue
+```{r}
+#| echo: false
+q1_model = lm (Rate ~ Age, data = q1_data)
+q1_mod_t = tidy(q1_model)
+q1_mod_t %>% gt()
+```
+
+$$\begin{aligned}
+\widehat{\text{RR}} &= `r round(q1_mod_t$estimate[1], 2)` `r round(q1_mod_t$estimate[2], 2)` \cdot \text{Age}
+\end{aligned}$$
+:::
+
+#### Part d
+
+::: blue
+```{r}
+#| echo: false
+# augment is from the broom package
+q1_aug <- augment(q1_model)
+names(q1_aug) # Just me looking at the names to call in each plot
+```
+
+```{r fig.height=3, fig.width=8}
+#| echo: false
+hist1 <- ggplot(q1_aug, aes(x = .resid)) +
+  geom_histogram()
+
+density1 <- ggplot(q1_aug, aes(x = .resid)) +
+  geom_density()
+
+box1 <- ggplot(q1_aug, aes(x = .resid)) +
+  geom_boxplot()
+
+grid.arrange(hist1, density1, box1, nrow = 1)
+```
+:::
+
+#### Part e
+
+::: blue
+
+```{r fig.width=3, fig.height=3}
+#| echo: false
+ggplot(q1_aug, aes(sample = .resid)) + 
+  stat_qq() +     # points
+  stat_qq_line() +   # line
+  labs(y = "Fitted residuals", 
+       x = "Theoretical quantiles")
+```
+:::
+
+#### Part f
+
+::: blue
+```{r}
+#| echo: false
+shapiro.test(q1_aug$.resid) %>% tidy() %>% gt()
+```
+:::
+
+#### Part g
+
+::: blue
+```{r}
+#| echo: false
+ggplot(q1_aug, aes(x = Age, y = .resid)) + # may also use y = .std.resid
+  geom_point() +
+  geom_hline(yintercept = 0, color = "#FF8021") +
+  labs(title = "Residual plot")
+```
+:::
+
+#### Part h
+
+::: blue
+```{r}
+#| echo: false
+n = nobs(q1_model)
+q1_aug %>% filter(.hat > 6/n) %>%
+  arrange(desc(.hat))
+```
+:::
+
+#### Part i
+
+::: blue
+```{r}
+#| echo: false
+q1_aug %>% arrange(desc(.cooksd))
+```
+:::
+
+#### Part j
+
+::: blue
+```{r}
+#| echo: false
+ggplot(q1_data, aes(x = Rate)) + geom_histogram()
+```
+:::
+
+#### Part k
+
+::: blue
+
+```{r}
+#| echo: false
+gladder(q1_data$Rate)
+```
+:::
+
+#### Part l
+
+::: blue
+Not given
+
+```{r}
+#| echo: false
+q1_data2 = q1_data %>%
+  mutate(Rate_log = log(Rate), 
+         Rate_sr = sqrt(Rate), 
+         Rate_inv_sr = 1/sqrt(Rate))
+```
+:::
+
+#### Part m
+
+::: blue
+```{r}
+#| fig-width: 6
+#| fig-height: 4.5
+#| fig-align: center
+#| message: false
+#| echo: false
+
+ggplot(data = q1_data2, aes(x = Age, y = Rate_log)) +
+  geom_point() +
+  geom_smooth() +
+  geom_smooth(method = "lm", color = "darkgreen") +
+  labs(title = "Scatterplot of Log Respiratory Rate vs. Age", 
+       x = "Age (months)", 
+       y = "Log Respiratory Rate (log breaths/minute)")
+
+ggplot(data = q1_data2, aes(x = Age, y = Rate_sr)) +
+  geom_point() +
+  geom_smooth() +
+  geom_smooth(method = "lm", color = "darkgreen") +
+  labs(title = "Scatterplot of Square root Respiratory Rate vs. Age", 
+       x = "Age (months)", 
+       y = "SqRoot Respiratory Rate \n (square root breaths/minute)")
+
+ggplot(data = q1_data2, aes(x = Age, y = Rate_inv_sr)) +
+  geom_point() +
+  geom_smooth() +
+  geom_smooth(method = "lm", color = "darkgreen") +
+  labs(title = "Scatterplot of Inverse square root Respiratory Rate vs. Age", 
+       x = "Age (months)", 
+       y = "Inverse SqRoot Respiratory Rate \n (inverse square root breaths/minute)")
+```
+:::
+
+#### Part n
+
+::: blue
+
+**For the log-transformed Rate:**
+```{r}
+q1_model2 = lm (Rate_log ~ Age, data = q1_data2)
+q1_mod_t2 = tidy(q1_model2)
+q1_mod_t2 %>% gt()
+```
+:::
+
+#### Part o
+
+::: blue
+**For log-transformed Rate:**
+```{r fig.width=3, fig.height=3}
+#| echo: false
+q1_aug2 <- augment(q1_model2)
+ggplot(q1_aug2, aes(sample = .resid)) + 
+  stat_qq() +     # points
+  stat_qq_line() +   # line
+  labs(y = "Fitted residuals", 
+       x = "Theoretical quantiles")
+```
+:::
+
+
+#### Part p
+
+::: blue
+
+**For log-transformed Rate:**
+```{r fig.width=4, fig.height=3}
+#| echo: false
+ggplot(q1_aug2, aes(x = Age, y = .resid)) + # may also use y = .std.resid
+  geom_point() +
+  geom_hline(yintercept = 0, color = "#FF8021") +
+  labs(title = "Residual plot")
+```
+:::
+
+
+#### Part q
+
+::: blue
+Not given
+:::
+
+### Question 4
+
+```{r}
+dep_df = read_sas(here("data/completedata.sas7bdat"))
+```
+
+#### Part a
+
+::: blue
+
+```{r}
+#| echo: false
+q2_mod_f1 = lm(Depression ~ Fatalism + Optimism + Spirituality, 
+                data = dep_df)
+
+q2_mod_ft = tidy(q2_mod_f1, conf.int = T)
+
+q2_mod_ft %>% gt() %>%
+  tab_options(table.font.size = 15) %>% fmt_number(decimals = 4)
+```
+
+Another fun way to display: 
+```{r}
+tbl_regression(q2_mod_f1, intercept = T)
+```
+:::
+
+#### Part b
+
+::: blue
+-   $\beta_0$: The expected depression score is `r round(q2_mod_ft$estimate[1], 1)` when fatalism, depression, and spirituality scores are 0 (95% CI: `r round(q2_mod_ft$conf.low[1], 1)`, `r round(q2_mod_ft$conf.high[1], 1)`).
+
+    -   Same as homework 2: The intercept does not make sense. A score of 0 is outside the range of possible scores for fatalism, optimism, and spirituality.
+
+-   $\beta_1$: For every 1 point higher fatalism score, there is an expected difference of `r round(q2_mod_ft$estimate[2], 2)` points higher depression score, adjusting for optimism and spirituality score (95% CI: `r round(q2_mod_ft$conf.low[2], 2)`, `r round(q2_mod_ft$conf.high[2], 2)`).
+:::
+
+#### Part c
+
+::: blue
+Not given
+:::
+
+#### Part d
+
+::: blue
+$$\begin{aligned}
+\widehat{\text{Depression}} &= `r round(q2_mod_ft$estimate[1]  + q2_mod_ft$estimate[4] * 6 + q2_mod_ft$estimate[3] * 10, 2)` + `r round(q2_mod_ft$estimate[2], 2)` \cdot \text{Fatalism}
+\end{aligned}$$
+:::

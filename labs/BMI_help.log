@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2025.1.9)  9 JAN 2025 14:18
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2025.1.28)  7 FEB 2025 16:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1220,11 +1220,11 @@ l.524 \end{align}
                   
 Here is how much of TeX's memory you used:
  37531 strings out of 475791
- 782521 string characters out of 5772343
+ 782521 string characters out of 5772342
  1487801 words of memory out of 5000000
  59918 multiletter control sequences out of 15000+600000
  568174 words of font info for 106 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 108i,13n,123p,10903b,1052s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 108i,13n,123p,10903b,1050s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on BMI_help.pdf (4 pages).

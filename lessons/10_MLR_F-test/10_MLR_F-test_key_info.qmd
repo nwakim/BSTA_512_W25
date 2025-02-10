@@ -12,9 +12,12 @@ editor_options:
 
 - Will go over HW 2 next class
 - BREATHE reps, Vincenzo and Abe, will be coming to the last 15-20 minutes of class
+- I added midterm feedback to HW 3: PLEASE DO THIS BY 2/14 (turn in with HW 3)
+  - [Please complete the midterm feedback](https://forms.office.com/Pages/ResponsePage.aspx?id=V3lz4rj6fk2U9pvWr59xWFMopmPUjRtDiHLswhgacNhUQkdNUVRFQU41T0tRVDc0U1k2V0VFRVk4TS4u)
 
 ## Key Dates
 
 - HW 3 due this Friday
+- Midterm feedback due 2/14 with HW 3
 - Lab 3 due 2/21
 

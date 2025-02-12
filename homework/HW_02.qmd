@@ -14,7 +14,7 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, fig.height = 2, fig.width = 4)
+knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(rstatix)
@@ -143,7 +143,7 @@ Calculate the average flipper lengths stratified by each of the penguin species.
 
 #### Part b
 
-Make a scatterplot (with jigger) of flipper lengths by species, and include diamond-shape points for the averages of the flipper lengths for each of the species.
+Make a scatterplot (with jitter) of flipper lengths by species, and include diamond-shape points for the averages of the flipper lengths for each of the species.
 
 #### Part c
 

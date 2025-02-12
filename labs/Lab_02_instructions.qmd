@@ -161,7 +161,7 @@ From the following 8 attitudes and beliefs, please select 3 that you think will 
 
 We will start our data exploration with the following 4 demographic variables:
 
-1.  Age (we need to construct from `birthmonth`, `birthyear`, `testmonth`, and `testyear`)
+1.  Age (we need to construct from `birthmonth`, `birthyear`, `month`, and `year`)
 2.  Race (`raceomb_002` or `raceombmulti`)
 3.  Ethnicity (`ethnicityomb`)
 4.  Sex assigned at birth (`birthSex`)

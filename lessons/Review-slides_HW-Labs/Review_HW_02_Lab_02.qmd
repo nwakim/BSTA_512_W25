@@ -1,0 +1,336 @@
+---
+title: "HW 2 and Lab 2"
+author: "Nicky Wakim"
+title-slide-attributes:
+    data-background-color: "#213c96"
+date: "02/12/2025"
+format: 
+  revealjs:
+    theme: "../simple_NW.scss"
+    chalkboard: true
+    slide-number: true
+    show-slide-number: all
+    width: 1955
+    height: 1100
+    footer: "HW 2 and Lab 2"
+    highlight-style: ayu
+    html-math-method: mathjax
+execute:
+  freeze: auto  # re-render only when source changes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(rstatix)
+library(broom)
+library(gt)
+library(janitor)
+library(readxl)
+library(haven)
+library(here)
+library(gtsummary) ## Added this package!!
+
+```
+
+# Homework 2
+
+## A small word on the homework
+
+-   Mostly good work! 
+- Main note: Please look at the solutions to make sure you have the correct beta's and interpretations when we work with categorical variables!!
+
+```{css, echo=FALSE}
+.reveal code {
+  max-height: 100% !important;
+}
+```
+
+# Lab 2
+
+## A note from me
+
+- I know the lab instructions are wordy
+- This class is really about the technical ("objective") skills of regression
+  - But in order to responsibly practice statistics, you need to critically think about the **subjective** choices you make
+- And I'm really trying to lay out my thought process in the labs so that you have some idea of the subjective choices that I'm kinda restricting us to
+  - And that's really just bc you're learning A LOT in this class
+  - So taking on extra learning objectives would be overwhelming
+
+## Other overall issues
+
+- No need to load the codebook into R!!!
+  - Codebooks are typically opened in excel and will give you extra information on the variables
+  
+- You gotta show all your code!
+  - If you got points off for not showing any code, resubmit with the code showing and I'll give you credit back
+  
+- Be careful when making assumptions about the data
+  - Example: someone created a cisgender variable by seeing if SAB was the same as gender identity
+    - I would be wary of that - definitions of cis and trans are highly personal - only use and refer to participants as they self-identify
+  
+- Do **not** immediately make age categories!! It is important to look at age (numeric) vs. IAT
+  - Why pixelate your data?? We only do it if we need to (aka age as numeric is NOT linear with IAT score)
+  
+
+## 3.1: What is our target population?
+
+- This is an important thing to flag as you analyze your results and interpret them for an audience
+
+ 
+
+- We restricted our population to the US
+- Harvard says the test is only for individuals 18+ years old
+- Test takers need access to the internet and a computer (or phone?)
+  
+ 
+
+- Another thought
+  - Sometimes your target population defines your sample
+  - Other times your sample defines your target population
+- Here we have a convenience sample, with specific restrictions and accessibility
+  - That means the population that we can generalize to is limited to those restrictions and accessibility!!
+- **We need to discuss these limitations when we present these results to the world!**
+
+
+## 3.2 Restrict your analysis to 1 outcome and 9 possible covariates/predictors
+
+::: columns
+::: column
+Needed to pick the variable from your research question + 2 others (or 3 if you chose a different variable in your research question)
+
+1.  Explicit anti-fat bias (`att7`)
+2.  Self-perception of weight (`iam_001`)
+3.  Fat group identity (`identfat_001` )
+4.  Thin group identity (`identthen_001` )
+5.  Controllability of weight of others (`controlother_001`)
+6.  Controllability of weight of yourself (`controlyou_001`)
+7.  Awareness of societal standards (`mostpref_001` )
+8.  Internalization of societal standards (`important_001`)
+:::
+
+::: column
+Needed to include all 4 demographic variables:
+
+1.  Age (we need to construct from `birthmonth`, `birthyear`, `testmonth`, and `testyear`)
+2.  Race (`raceomb_002` **or** `raceombmulti`) 
+3.  Ethnicity (`ethnicityomb`)
+4.  Sex assigned at birth (`birthSex`)
+
+Please pick only 2 additional variables:
+
+1.  Education (`edu_14`)
+2.  Gender (`genderIdentity`)
+3.  Self-reported BMI (through self-reported height and weight)
+4.  Political identity
+5.  Religion
+:::
+:::
+
+## 3.2 Restrict your analysis to 1 outcome and 9 possible covariates/predictors
+
+- Start by loading the data
+
+```{r}
+load(file = here("../Project/data/iat_data.rda"))
+iat_2021 = iat_2021 %>% 
+  select(IAT_score = D_biep.Thin_Good_all, 
+         att7, iam_001, identfat_001, 
+         myweight_002, myheight_002,
+         identthin_001, controlother_001, 
+         controlyou_001, mostpref_001,
+         important_001, 
+         birthmonth, birthyear, month, year, 
+         raceomb_002, raceombmulti, ethnicityomb, 
+         edu, edu_14, 
+         genderIdentity, 
+         birthSex) %>%
+  drop_na()
+```
+
+## 3.3: Manipulating variables that are coded as numeric variables
+
+- No need to make plots here (that was just part of my example)
+  - Plots and tables are a good way to check that you accomplished the correct translation
+- Giving the levels order:
+
+```{r}
+iat_2021 = iat_2021 %>% mutate(iam_001_f = case_match(iam_001,
+                                  7 ~ "Very overweight",
+                                  6 ~ "Moderately overweight",
+                                  5 ~ "Slightly overweight",
+                                  4 ~ "Neither underweight nor underweight",
+                                  3 ~ "Slightly underweight",
+                                  2 ~ "Moderately underweight",
+                                  1 ~ "Very underweight",
+                                  .default = NA) %>% 
+             factor(levels = c("Very underweight", # Assigns the level order!
+                               "Moderately underweight", 
+                               "Slightly underweight", 
+                               "Neither underweight nor underweight", 
+                               "Slightly overweight", 
+                               "Moderately overweight", 
+                               "Very overweight")))
+```
+
+## 3.3: Manipulating variables that are coded as numeric variables
+
+- Now when we print a table, we can see them in order
+
+```{r}
+iat_2021 %>%
+  dplyr::select(iam_001_f) %>%
+  tbl_summary()
+```
+
+## 3.5 If you chose BMI, create the variable
+
+- If you worked with BMI, please make sure [you followed the help page!](https://nwakim.github.io/BSTA_512_W25/labs/BMI_help.html)
+- Please come double check with me that you are creating it correctly!
+
+## 4.3 Bivariate exploratory data analysis
+
+- You only needed to create one plot!!
+- My research question: Is self-perception of weight associated with IAT score?
+
+```{r}
+#| code-fold: true
+#| code-summary: How I made the plot
+
+
+ggplot(iat_2021, aes(x = iam_001_f, y = IAT_score))+
+  geom_boxplot()+
+   labs(x = "Self-perception of weight", 
+       y = "IAT Score", 
+       title = "IAT Score by self-perception of weight") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5), 
+        axis.text.x = element_text(angle = 30, vjust = 1, hjust=1))
+```
+
+## 4.3 Bivariate exploratory data analysis
+
+- You only needed to create one plot!!
+- My research question: Is self-perception of weight associated with IAT score?
+
+```{r}
+#| code-fold: true
+#| code-summary: How I made the plot
+
+
+ggplot(iat_2021, aes(x = IAT_score, y = iam_001_f))+
+  geom_boxplot()+
+   labs(y = "Self-perception of weight", 
+       x = "IAT Score", 
+       title = "IAT Score by self-perception of weight") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+## 4.3 Bivariate exploratory data analysis
+
+- You only needed to create one plot!!
+- My research question: Is self-perception of weight associated with IAT score?
+
+```{r}
+#| code-fold: true
+#| code-summary: How I made the plot
+
+
+ggplot(iat_2021, aes(x = IAT_score, color = iam_001_f))+
+  geom_density() +
+   labs(x = "IAT Score", 
+       title = "IAT Score by self-perception of weight") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+## 4.3 Bivariate exploratory data analysis
+
+- You only needed to create one plot!!
+- My research question: Is self-perception of weight associated with IAT score?
+
+```{r}
+#| code-fold: true
+#| code-summary: How I made the plot
+
+library(ggridges)
+ggplot(iat_2021, aes(x = IAT_score, y = iam_001_f))+
+  geom_density_ridges(alpha = 0.3, 
+          show.legend = FALSE) +  
+   labs(y = "Self-perception of weight", 
+       x = "IAT Score", 
+       title = "IAT Score by self-perception of weight") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+# Multi-selection/multi-response variables
+
+## Multi-response/multi-selection variables: `raceombmulti` and `genderIdentity`
+
+-   There is extra data management skills that we need to address these
+
+- [Let's walk through categorical variables that have multiple selections](https://weallcount.com/2022/10/27/4-approaches-to-multiple-race-questions/)
+
+- Another note: I find that the race variable is still lacking (where is my MENA representation??)
+    - MENA = Middle Eastern and North African
+
+## 4 Approaches to Multiple-Race Questions from We All Count
+
+-   This method works for any multi-level variable
+
+![](../img_slides/WAC_01)
+
+## 
+
+![](../img_slides/WAC_02.png)
+
+## 
+
+![](../img_slides/WAC_03.png)
+
+## 
+
+![](../img_slides/WAC_04.png)
+
+## 
+
+![](../img_slides/WAC_05.png)
+
+## 
+
+![](../img_slides/WAC_06.png)
+
+## 
+
+![](../img_slides/WAC_07.png)
+
+## 
+
+![](../img_slides/WAC_08.png)
+
+## 
+
+![](../img_slides/WAC_09.png)
+
+## 
+
+![](../img_slides/WAC_10.png)
+
+## 
+
+![](../img_slides/WAC_11.png)
+
+## 
+
+![](../img_slides/WAC_12.png)
+
+## Final notes
+
+- For now, I suggest the binary approach!
+  - This is the perfect level of pushing ourselves coding wise and thinking critically about these multi-response variables
+- Take a look at this article: <https://doi.org/10.1016/j.socscimed.2017.12.026>
+  - It gets into some of the considerations and uses of intersectionality in analyses
+

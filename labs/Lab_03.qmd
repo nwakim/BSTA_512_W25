@@ -2,9 +2,8 @@
 title: "Lab 3"
 author: "Your name here!!"
 subtitle: "BSTA 512/612"
-description: "Due: March 3, 2024 at 11pm"
+description: "Due: February 21, 2025 at 11pm"
 date-modified: "today"
-date: "3/3/2024"
 categories: [""]
 format: 
   html:
@@ -25,26 +24,6 @@ library(tidyverse)
 library(gtsummary)
 library(here)
 ```
-
-## Directions
-
-[You can download the `.qmd` file for this lab here.](https://github.com/nwakim/W2024_BSTA_512/blob/main/labs/Lab_03.qmd)
-
-This is your **editing** file. **Please do not remove anything from this editing file!!** You will only add your code and work to this file. 
-
-### Grading
-
-**This lab is graded out of 12 points.** Nicky will use the following rubric to assign grades.
-
-#### Rubric
-
-|             | 4 points                                                                                                                                                                                                        | 3 points                                                                                                                                                                                       | 2 points                                                                                                                                                                                                   | 1 point                                                                                                                                                                                  | 0 points                                                                                                               |
-|------------|------------|------------|------------|------------|------------|
-| Formatting  | Lab submitted on Sakai with `.html` file. Answers are written in complete sentences with no major grammatical nor spelling errors. With little editing, the answer can be incorporated into the project report. | Lab submitted on Sakai with `.html` file. Answers are written in complete sentences with grammatical or spelling errors. With editing, the answer can be incorporated into the project report. | Lab submitted on Sakai with `.html` file. Answers are written in complete sentences with major grammatical or spelling errors. With major editing, the answer can be incorporated into the project report. | Lab submitted on Sakai with `.html` file. Answers are bulletted or do not use complete sentences.                                                                                        | Lab *not* submitted on Sakai with `.html` file.                                                                        |
-| Code/Work   | All tasks are directly followed or answered. This includes all the needed code, in code chunks, with the requested output.                                                                                      | All tasks are directly followed or answered. This includes all the needed code, in code chunks, with the requested output. In a few tasks, the code syntax or output is not quite right.       | Most tasks are directly followed or answered. This includes all the needed code, in code chunks, with the requested output.                                                                                | Some tasks are directly followed or answered.This includes all the needed code, in code chunks, with the requested output. In a few tasks, the code syntax or output is not quite right. | More than a quarter of the tasks are not completed properly.                                                           |
-| Reasoning\* | Answers demonstrate understanding of research context and investigation of the data. Answers are thoughtful and can be easily integrated into the final report.                                                 | Answers demonstrate understanding of research context and investigation of the data. Answers are thoughtful, but lack the clarity needed to easily integrate into the final report.            | Answers demonstrate some understanding of research context and investigation of the data. Answers are fairly thoughtful, but lack connection to the research.                                              | Answers demonstrate some understanding of research context and investigation of the data. Answers seem rushed and with minimal thought.                                                  | Answers lack understanding of research context and investigation of the data. Answers seem rushed and without thought. |
-
-\*Applies to questions with reasoning (like Section 2.4 and explanations in Section 2.5)
 
 ## Lab activities
 

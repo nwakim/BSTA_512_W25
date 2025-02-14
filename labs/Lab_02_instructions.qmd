@@ -1,5 +1,5 @@
 ---
-title: "Lab 2"
+title: "Lab 2 Instructions"
 subtitle: "BSTA 512/612"
 author: "Your Name Here"
 description: "Due: Friday February 7, at 11pm"

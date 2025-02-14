@@ -224,9 +224,9 @@
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, borderline west={3pt}{0pt}{shadecolor}, frame hidden, interior hidden, breakable, boxrule=0pt, enhanced]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, borderline west={3pt}{0pt}{shadecolor}, enhanced, boxrule=0pt, breakable, frame hidden, sharp corners]}{\end{tcolorbox}}\fi
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-caution-color-frame, arc=.35mm, colbacktitle=quarto-callout-caution-color!10!white, bottomrule=.15mm, left=2mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Caution}, toprule=.15mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, arc=.35mm, colback=white, colframe=quarto-callout-caution-color-frame, bottomrule=.15mm, opacityback=0, toptitle=1mm, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-caution-color!10!white, rightrule=.15mm, leftrule=.75mm, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Caution}, breakable, bottomtitle=1mm, coltitle=black]
 
 This lab is ready to go! Nicky (1/28/2025)
 
@@ -307,7 +307,7 @@ Move the data to a folder that you can easily access as you work from
 this document. I like to have a folder named \texttt{data} to house my
 data.
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, left=2mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task Summary}, toprule=.15mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, arc=.35mm, colback=white, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, opacityback=0, toptitle=1mm, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task Summary}, breakable, bottomtitle=1mm, coltitle=black]
 
 Download the 2021 data and codebook from the archives and store in
 accessible folder.
@@ -373,7 +373,7 @@ correctly.
 How many rows and columns are in the dataset? Do you think we will need
 all these variables for our analysis?
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, left=2mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task Summary}, toprule=.15mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, arc=.35mm, colback=white, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, opacityback=0, toptitle=1mm, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task Summary}, breakable, bottomtitle=1mm, coltitle=black]
 
 Read csv, save as rda, load rda, glimpse at data.
 
@@ -408,7 +408,7 @@ country that we have some social experience in. \textbf{Thus, let's
 restrict our data to the US only by filtering the variable
 \texttt{countryres} to category 1 (corresponding to the US).}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, left=2mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, toprule=.15mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, arc=.35mm, colback=white, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, opacityback=0, toptitle=1mm, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, breakable, bottomtitle=1mm, coltitle=black]
 
 Describe our target population. Keep your description to 3-5
 characteristics, not including our restriction on the US population.
@@ -426,7 +426,7 @@ variable.
 We will also restrict our analysis to the following 9 potential
 variables so our work is a little more manageable.
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, left=2mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, toprule=.15mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, arc=.35mm, colback=white, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, opacityback=0, toptitle=1mm, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, breakable, bottomtitle=1mm, coltitle=black]
 
 From the following 8 attitudes and beliefs, please select 3 that you
 think will be the most important variables related to your research
@@ -502,7 +502,7 @@ chose race and ethnicity because of the intertwined history of racism
 and anti-fat bias in Western countries (including the U.S. where most
 participants reside).
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, arc=.35mm, colbacktitle=quarto-callout-note-color!10!white, bottomrule=.15mm, left=2mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{A note of the available variables on race}, toprule=.15mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, arc=.35mm, colback=white, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, opacityback=0, toptitle=1mm, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{A note of the available variables on race}, breakable, bottomtitle=1mm, coltitle=black]
 
 The dataset has two separate race variables. One has mutually exclusive
 categories (\texttt{raceomb\_002}) and the other allows participants to
@@ -535,7 +535,7 @@ certainly a limitation in our analysis that we should address in our
 discussion. I do encourage you to look into gender if the binary sex
 assigned at birth does not feel right for you. I am happy to help!
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, arc=.35mm, colbacktitle=quarto-callout-note-color!10!white, bottomrule=.15mm, left=2mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{A word on self-reported BMI}, toprule=.15mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, arc=.35mm, colback=white, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, opacityback=0, toptitle=1mm, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{A word on self-reported BMI}, breakable, bottomtitle=1mm, coltitle=black]
 
 This variable is rooted in racism and anti-fat bias. The
 \href{https://www.ama-assn.org/press-center/press-releases/ama-adopts-new-policy-clarifying-role-bmi-measure-medicine}{American
@@ -562,7 +562,7 @@ you do plan to use it, please come to me for help as early as possible!
 If you would like to investigate a variable outside the list, please let
 me know by emailing or chatting with me.
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, left=2mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, toprule=.15mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, arc=.35mm, colback=white, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, opacityback=0, toptitle=1mm, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, breakable, bottomtitle=1mm, coltitle=black]
 
 Using R, select your identified variables from your dataset.
 
@@ -581,8 +581,8 @@ some of these variables are ordered categories, we will investigate if
 it's appropriate to use the numeric or categorical version of the
 variable.
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, arc=.35mm, colbacktitle=quarto-callout-tip-color!10!white, bottomrule=.15mm, left=2mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Example of how I would create new variable for self-perception of weight
-(\texttt{iam\_001}):}, toprule=.15mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, arc=.35mm, colback=white, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, opacityback=0, toptitle=1mm, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, rightrule=.15mm, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Example of how I would create new variable for self-perception of weight
+(\texttt{iam\_001}):}, breakable, bottomtitle=1mm, coltitle=black]
 
 By looking at the codebook, I see that respondents answer the following
 question: ``Currently, I am:''
@@ -707,7 +707,7 @@ variable is not in factor form. You can also call it something like
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, left=2mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, toprule=.15mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, arc=.35mm, colback=white, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, opacityback=0, toptitle=1mm, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, breakable, bottomtitle=1mm, coltitle=black]
 
 Identify and list the variables that are coded numerically and
 correspond to categories. Create a new variable for the
@@ -729,7 +729,7 @@ date and their self-reported birth date. We can use the
 \texttt{make\_date()} to construct the birth date and test date. Below,
 I have implemented \texttt{make\_date()} to make the birth date.
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, left=2mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, toprule=.15mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, arc=.35mm, colback=white, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, opacityback=0, toptitle=1mm, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, breakable, bottomtitle=1mm, coltitle=black]
 
 From the codebook, find the variables that we can use to construct the
 test date. Then use \texttt{make\_date()} to create the test date.
@@ -765,7 +765,7 @@ into \texttt{mutate()}. Within \texttt{mutate()}, I assigned
 need to convert the interval to a period of time (\texttt{as.period()}),
 then to a measurement of years (\texttt{year()}).
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, left=2mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, toprule=.15mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, arc=.35mm, colback=white, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, opacityback=0, toptitle=1mm, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, breakable, bottomtitle=1mm, coltitle=black]
 
 Following the above example, create an age variable that measures the
 years between individuals' birth and test date. Then remove the
@@ -843,7 +843,7 @@ You can use something like:
 
 Make sure this dataset saves into your project folder!
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, left=2mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, toprule=.15mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, arc=.35mm, colback=white, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, opacityback=0, toptitle=1mm, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, breakable, bottomtitle=1mm, coltitle=black]
 
 Make a new dataset with only complete cases. Save this dataset in your
 project folder.
@@ -860,7 +860,7 @@ analysis}\label{some-exploratory-data-analysis}}
 This serves as a check to make sure we are all looking at the correct
 outcome: IAT score.
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, left=2mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, toprule=.15mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, arc=.35mm, colback=white, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, opacityback=0, toptitle=1mm, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, breakable, bottomtitle=1mm, coltitle=black]
 
 Please plot a histogram of the IAT scores. What do you notice about the
 outcome?
@@ -871,7 +871,7 @@ outcome?
 \paragraph{4.2 Univariate exploratory data
 analysis}\label{univariate-exploratory-data-analysis}}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, left=2mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, toprule=.15mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, arc=.35mm, colback=white, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, opacityback=0, toptitle=1mm, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, breakable, bottomtitle=1mm, coltitle=black]
 
 Using \texttt{ggplot} or tables, visualize your variables. Get a sense
 of each variable's distribution. Do you notice anything out of the
@@ -883,7 +883,7 @@ ordinary?
 \paragraph{4.3 Bivariate exploratory data
 analysis}\label{bivariate-exploratory-data-analysis}}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, left=2mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, toprule=.15mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, arc=.35mm, colback=white, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, opacityback=0, toptitle=1mm, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, breakable, bottomtitle=1mm, coltitle=black]
 
 Take a look at the scatterplot, violin, or box plot of IAT score and
 your variable of interest. Use R and \texttt{ggplot} to make this plot.
@@ -896,7 +896,7 @@ violin or boxplot.
 \subsubsection{5. Revisit your research
 question}\label{revisit-your-research-question}}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, left=2mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, toprule=.15mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, arc=.35mm, colback=white, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, opacityback=0, toptitle=1mm, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Task}, breakable, bottomtitle=1mm, coltitle=black]
 
 Please restate the research question that you proposed in Lab 1. Please
 make sure it is only one question, one sentence long. What are your
@@ -906,7 +906,7 @@ question, make sure 4.2 reflects the new research question.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, arc=.35mm, colbacktitle=quarto-callout-note-color!10!white, bottomrule=.15mm, left=2mm, breakable, opacitybacktitle=0.6, rightrule=.15mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, toprule=.15mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, arc=.35mm, colback=white, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, opacityback=0, toptitle=1mm, toprule=.15mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, breakable, bottomtitle=1mm, coltitle=black]
 
 In research, we typically do NOT change our research question after
 looking at the data! Researchers typically form their questions from

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Nicky Wakim">
-<meta name="description" content="Due: February 28, 2025 at 11pm">
+<meta name="description" content="Due: February 21, 2025 at 11pm">
 
 <title>Linear Models - Lab 3 Instructions</title>
 <style>
@@ -4550,7 +4550,7 @@ vertical-align: -.125em;
   </ul></li>
   <li><a href="#bibliography" id="toc-bibliography" class="nav-link" data-scroll-target="#bibliography"><span class="header-section-number">3</span> Bibliography</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Lab_03_work.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Lab_03_instructions.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -4563,7 +4563,7 @@ vertical-align: -.125em;
 
 <div>
   <div class="description">
-    Due: February 28, 2025 at 11pm
+    Due: February 21, 2025 at 11pm
   </div>
 </div>
 
@@ -4590,6 +4590,19 @@ vertical-align: -.125em;
 
 </header>
 
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This lab is ready to go! Nicky (2/14/2025)</p>
+</div>
+</div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -4601,85 +4614,22 @@ IMPORTANT TO READ
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><p>Please do not delete the rubric from your <code>.qmd</code> file. I will use it to circle the grades!</p></li>
-<li><p>There is an intructions file and a file for you to edit and turn in. Please only work in the latter file!!</p></li>
+<li>There is an instructions file and a file for you to edit and turn in. Please only work in the latter file!!</li>
 </ul>
 </div>
 </div>
 <section id="directions" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="directions"><span class="header-section-number">1</span> Directions</h2>
-<p>Please turn in your <code>.html</code> file <a href="https://sakai.ohsu.edu/portal/site/BSTA-512-1-AB-W24/tool/961ec5ef-d7f9-4518-be16-25f7af3d6be4?panel=Main">on Sakai.</a> Please let me know if you greatly prefer to submit a physical copy.</p>
-<p><a href="https://github.com/nwakim/W2024_BSTA_512/blob/main/labs/Lab_03.qmd">You can download the <code>.qmd</code> file for this lab here.</a></p>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Caution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This is the <strong>instructions</strong> file. The link above will take you to the <strong>editing</strong> file where you can add your work and turn it in!! Please do not remove anything from the editing file!!</p>
-</div>
-</div>
+<p>Please turn in your <code>.html</code> file <a href="https://sakai.ohsu.edu/portal/site/BSTA-512-1-AC-W25/tool/af1e1389-d708-4fe2-94b3-caa1b503592b?panel=Main">on Sakai.</a> Please let me know if you greatly prefer to submit a physical copy.</p>
+<p><a href="https://github.com/nwakim/BSTA_512_W25/blob/main/labs/Lab_03.qmd">You can download the <code>.qmd</code> file for this lab here.</a> Please use the linked qmd file and not this one! (This is specifically the instructions.)</p>
+<p>The rest of this lab’s instructions are embedded into the lab activities.</p>
 <section id="purpose" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">1.1</span> Purpose</h3>
 <p>The main purpose of this lab is to perform some quality control on our data, recode some of the multi-selection categorical variables, continue data exploration, and start analyzing the main relationship of our research question.</p>
 </section>
 <section id="grading" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="grading"><span class="header-section-number">1.2</span> Grading</h3>
-<p><strong>This lab is graded out of 12 points.</strong> Nicky will use the following rubric to assign grades.</p>
-<section id="rubric" class="level4" data-number="1.2.1">
-<h4 data-number="1.2.1" class="anchored" data-anchor-id="rubric"><span class="header-section-number">1.2.1</span> Rubric</h4>
-<table class="table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th>4 points</th>
-<th>3 points</th>
-<th>2 points</th>
-<th>1 point</th>
-<th>0 points</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Formatting</td>
-<td>Lab submitted on Sakai with <code>.html</code> file. Answers are written in complete sentences with no major grammatical nor spelling errors. With little editing, the answer can be incorporated into the project report.</td>
-<td>Lab submitted on Sakai with <code>.html</code> file. Answers are written in complete sentences with grammatical or spelling errors. With editing, the answer can be incorporated into the project report.</td>
-<td>Lab submitted on Sakai with <code>.html</code> file. Answers are written in complete sentences with major grammatical or spelling errors. With major editing, the answer can be incorporated into the project report.</td>
-<td>Lab submitted on Sakai with <code>.html</code> file. Answers are bulletted or do not use complete sentences.</td>
-<td>Lab <em>not</em> submitted on Sakai with <code>.html</code> file.</td>
-</tr>
-<tr class="even">
-<td>Code/Work</td>
-<td>All tasks are directly followed or answered. This includes all the needed code, in code chunks, with the requested output.</td>
-<td>All tasks are directly followed or answered. This includes all the needed code, in code chunks, with the requested output. In a few tasks, the code syntax or output is not quite right.</td>
-<td>Most tasks are directly followed or answered. This includes all the needed code, in code chunks, with the requested output.</td>
-<td>Some tasks are directly followed or answered.This includes all the needed code, in code chunks, with the requested output. In a few tasks, the code syntax or output is not quite right.</td>
-<td>More than a quarter of the tasks are not completed properly.</td>
-</tr>
-<tr class="odd">
-<td>Reasoning*</td>
-<td>Answers demonstrate understanding of research context and investigation of the data. Answers are thoughtful and can be easily integrated into the final report.</td>
-<td>Answers demonstrate understanding of research context and investigation of the data. Answers are thoughtful, but lack the clarity needed to easily integrate into the final report.</td>
-<td>Answers demonstrate some understanding of research context and investigation of the data. Answers are fairly thoughtful, but lack connection to the research.</td>
-<td>Answers demonstrate some understanding of research context and investigation of the data. Answers seem rushed and with minimal thought.</td>
-<td>Answers lack understanding of research context and investigation of the data. Answers seem rushed and without thought.</td>
-</tr>
-</tbody>
-</table>
-<p>*Applies to questions with reasoning (like Section 2.4 and explanations in Section 2.5)</p>
-</section>
+<p><strong>This lab is graded out of 12 points.</strong> Nicky will use the following rubric displayed on the <a href="../project.html">Project</a> page.</p>
 </section>
 </section>
 <section id="lab-activities" class="level2" data-number="2">
@@ -4810,7 +4760,7 @@ Task
 <section id="multivariate-exploration" class="level4" data-number="2.5.2">
 <h4 data-number="2.5.2" class="anchored" data-anchor-id="multivariate-exploration"><span class="header-section-number">2.5.2</span> Multivariate exploration</h4>
 <p>Now we want to extend our plots for Lab 2 where we looked at the outcome (IAT score) and our main variable of interest (as identified by our research question). Here, we will run the same plot, but include another variable. This will help us visualize potential confounders or effect modifiers. Note that if you made indicator variables (for race, gender identity or any other variable), then you should have a plot for each indicator variable.</p>
-<p>You will need to really think about what kind of plot will best displays these relationships! IAT score is continuous, and many of your variable of interest is categorical. You may consider side-by-side boxplots where the color is the additional variable. You might also consider a jitter plot or only plotting the means. Remember you’re goal for plotting is to get a sense of the relationship only from the plot! Your audience should not have to work hard to understand what the plot is communicating. For example, I wanted to look at IAT score, internalization of societal standards, and race. I might make my plot like such:</p>
+<p>You will need to really think about what kind of plot will best display these relationships! IAT score is continuous, and many of your variable of interest is categorical. You may consider side-by-side boxplots where the color is the additional variable. You might also consider a jitter plot or only plotting the means. Remember you’re goal for plotting is to get a sense of the relationship only from the plot! Your audience should not have to work hard to understand what the plot is communicating. For example, I wanted to look at IAT score, internalization of societal standards, and race. I might make my plot like such:</p>
 <div class="cell">
 <details>
 <summary>Code to contruct multivariate plot</summary>

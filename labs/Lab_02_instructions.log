@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2025.2.7)  12 FEB 2025 10:01
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2025.2.7)  14 FEB 2025 09:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -278,7 +278,7 @@ Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
 )) (/Users/wakim/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2024/12/12 v3.2 Micro-typographical refinements (RS)
 (/Users/wakim/Library/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count296
 )
 \MT@toks=\toks23
@@ -1215,6 +1215,6 @@ Here is how much of TeX's memory you used:
  61492 multiletter control sequences out of 15000+600000
  562449 words of font info for 71 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 108i,8n,114p,10914b,1344s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 108i,8n,114p,10914b,1346s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on Lab_02_instructions.pdf (10 pages).

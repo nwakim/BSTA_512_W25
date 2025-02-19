@@ -2,7 +2,7 @@
 title: "Homework 4"
 subtitle: "BSTA 512/612"
 author: "Your name here!!!"
-description: "Due: Friday February 21, 2025 at 11pm"
+description: "Due: Friday February 28, 2025 at 11pm"
 date-modified: "today"
 format: 
   html:
@@ -12,7 +12,7 @@ format:
 ---
 
 ::: callout-caution
-This homework is not ready to be worked on!! Nicky needs to update it.
+Homework 4 is updated (Nicky 2/19/25)
 :::
 
 ```{=html}
@@ -40,7 +40,7 @@ library(here)
 
 -   [Download the `.qmd` file here.](https://github.com/nwakim/BSTA_512_W25/blob/main/homework/HW_04.qmd)
 
--   You will need to download the datasets. Use [this link to download](https://ohsuitg-my.sharepoint.com/:f:/g/personal/wakim_ohsu_edu/EtimsrgruwZOvhVqgx31g0MBwLSTj2L53ilK_ZIw9-vucA?e=sBvCNu) the HW1 datasets needed in this assignment. If you do not want to make changes to the paths set in this document, then make sure the files are stored in a folder named "data" that is housed in the same location as your HW1 `.qmd` file.
+-   You will need to download the datasets. Use [this link to download](https://ohsuitg-my.sharepoint.com/:f:/g/personal/wakim_ohsu_edu/EtimsrgruwZOvhVqgx31g0MBwLSTj2L53ilK_ZIw9-vucA?e=sBvCNu) the HW3 datasets needed in this assignment. If you do not want to make changes to the paths set in this document, then make sure the files are stored in a folder named "data" that is housed in the same location as your HW3 `.qmd` file.
 
 -   Please upload your homework to Sakai. **Upload both your `.qmd` code file and the rendered `.html` file**
 
@@ -56,7 +56,7 @@ It is a good idea to try rendering your document from time to time as you go alo
 
 ## Questions
 
-### Question 1
+### Question 1 {#sec-L10-F-test}
 
 This question uses the same dataset as HW 2, question 1 and HW 3, question 4. 
 
@@ -107,7 +107,7 @@ Does the addition of Spirituality add significantly to the prediction of Depress
 Does the addition of Spirituality and Optimism add significantly to the prediction of Depression achieved by Fatalism?
 
 
-### Question 1
+### Question 2 {#sec-L11-L12-Interactions-01}
 
 A team of nutrition experts investigated the influence of protein content in diet on the relationship between age (explanatory variable) and height (outcome, in centimeters) for children. Using the dataset, `CH12Q03.xls`, answer the following questions.
 
@@ -127,7 +127,7 @@ Using R, make a variable that is a factor for Diet. Make sure to check what valu
 
 At a level of significance $\alpha = 0.10$, test whether protein diet modifies the effect of age on height. Justify your answer (e.g., perform a hypothesis test for the interaction between diet and age).
 
-*Note: recall that an effect modifier is an interaction.*
+*Note: recall that we model an effect modifier with an interaction.*
 
 #### Part c
 
@@ -135,9 +135,9 @@ Is it possible that diet is a confounder? Note: this will depend on your results
 
 #### Part d
 
-Write the fitted regression equation for our model in Part b. Write the respective regression lines for each specific diet group: protein rich and protein poor. Interpret the slope of each regression line (no need for a 95% CI here).
+Write the fitted regression equation for our model in Part b. Write the respective regression lines for each specific diet group: protein rich and protein poor. Interpret the slope of each regression line (include the 95% CI here).
 
-### Question 2
+### Question 3 {#sec-L11-L12-Interactions-02}
 
 An experiment was conducted regarding a quantitative analysis of factors found in high-density lipoprotein (HDL) in a sample of human blood serum. Three variables thought to be predictive of, or associated with, HDL measurement (Y) were the total cholesterol (X1) and total triglyceride (X2) concentrations in the sample, plus the presence or absence of a certain sticky component of the serum called sinking pre-beta or SPB (X3), coded as 0 if absent and 1 if present. Using the dataset, `CH09Q05.xls`, answer the following questions.
 
@@ -147,22 +147,18 @@ An experiment was conducted regarding a quantitative analysis of factors found i
 HDL_factors <- read_excel(here("./data/CH09Q05.xls")) # change this to the appropriate file location
 ```
 
-#### Part a
+#### Part a {#sec-Q3-Part-a}
 
 Use $\alpha= 0.05$, test whether if there is a crude association between HDL measurement and total cholesterol. Note: testing for a crude association means we fit a simple linear regression model and see if the association is significant. 
 
 #### Part b
 
-Sometimes simple linear regression leads us to believe that there is no association between two variables, but missing interaction might be obscuring the association. Use $\alpha= 0.1$ to test whether total triglyceride is an effect modifier of the association between HDL and total cholesterol. 
+Sometimes simple linear regression leads us to believe that there is no association between two variables, but missing interaction might be obscuring the association. Use $\alpha= 0.1$ to test whether total triglyceride is an effect modifier of the association between HDL and total cholesterol. Make sure to include a concluding statement.
 
 Note: Since the data frame has the variables named as $Y$, $X1$, and $X2$, you may use those in the regression equations, but when you are making a conclusion, please use the specific names of the variables to identify each. For example, $Y$ is actually HDL. 
 
-Note: The plan is to cover interactions between two continuous covariates on Wednesday 2/21. We will not interpret the interaction coefficient for this, but we can test the interaction coefficient. Similar to the interaction for a binary covariate and a continuous covariate, we only need to test one coefficient, $\beta_3$.
-
 #### Part c
 
-Is it possible that total triglyceride is a confounder? No need to test this explicity.
-
-Note: this will depend on your results from Part b. 
+Test whether total triglyceride is a confounder by comparing the model in Part a to a model that includes total triglyceride. Make sure to include a concluding statement and interpret your coefficients. 
 
 

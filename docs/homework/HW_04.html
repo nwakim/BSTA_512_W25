@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Your name here!!!">
-<meta name="description" content="Due: Friday February 21, 2025 at 11pm">
+<meta name="description" content="Due: Friday February 28, 2025 at 11pm">
 
 <title>Linear Models - Homework 4</title>
 <style>
@@ -4548,9 +4548,9 @@ vertical-align: -.125em;
   <li><a href="#directions" id="toc-directions" class="nav-link active" data-scroll-target="#directions">Directions</a></li>
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a>
   <ul class="collapse">
-  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
-  <li><a href="#question-1-1" id="toc-question-1-1" class="nav-link" data-scroll-target="#question-1-1">Question 1</a></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#sec-L10-F-test" id="toc-sec-L10-F-test" class="nav-link" data-scroll-target="#sec-L10-F-test">Question 1</a></li>
+  <li><a href="#sec-L11-L12-Interactions-01" id="toc-sec-L11-L12-Interactions-01" class="nav-link" data-scroll-target="#sec-L11-L12-Interactions-01">Question 2</a></li>
+  <li><a href="#sec-L11-L12-Interactions-02" id="toc-sec-L11-L12-Interactions-02" class="nav-link" data-scroll-target="#sec-L11-L12-Interactions-02">Question 3</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -4566,7 +4566,7 @@ vertical-align: -.125em;
 
 <div>
   <div class="description">
-    Due: Friday February 21, 2025 at 11pm
+    Due: Friday February 28, 2025 at 11pm
   </div>
 </div>
 
@@ -4584,7 +4584,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 6, 2025</p>
+      <p class="date-modified">February 19, 2025</p>
     </div>
   </div>
     
@@ -4603,7 +4603,7 @@ Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This homework is not ready to be worked on!! Nicky needs to update it.</p>
+<p>Homework 4 is updated (Nicky 2/19/25)</p>
 </div>
 </div>
 <style>div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}</style>
@@ -4611,7 +4611,7 @@ Caution
 <h2 class="anchored" data-anchor-id="directions">Directions</h2>
 <ul>
 <li><p><a href="https://github.com/nwakim/BSTA_512_W25/blob/main/homework/HW_04.qmd">Download the <code>.qmd</code> file here.</a></p></li>
-<li><p>You will need to download the datasets. Use <a href="https://ohsuitg-my.sharepoint.com/:f:/g/personal/wakim_ohsu_edu/EtimsrgruwZOvhVqgx31g0MBwLSTj2L53ilK_ZIw9-vucA?e=sBvCNu">this link to download</a> the HW1 datasets needed in this assignment. If you do not want to make changes to the paths set in this document, then make sure the files are stored in a folder named “data” that is housed in the same location as your HW1 <code>.qmd</code> file.</p></li>
+<li><p>You will need to download the datasets. Use <a href="https://ohsuitg-my.sharepoint.com/:f:/g/personal/wakim_ohsu_edu/EtimsrgruwZOvhVqgx31g0MBwLSTj2L53ilK_ZIw9-vucA?e=sBvCNu">this link to download</a> the HW3 datasets needed in this assignment. If you do not want to make changes to the paths set in this document, then make sure the files are stored in a folder named “data” that is housed in the same location as your HW3 <code>.qmd</code> file.</p></li>
 <li><p>Please upload your homework to Sakai. <strong>Upload both your <code>.qmd</code> code file and the rendered <code>.html</code> file</strong></p></li>
 <li><p>For each question, make sure to include all code and resulting output in the html file to support your answers</p></li>
 <li><p>Show the work of your calculations using R code within a code chunk. Make sure that both your code and output are visible in the rendered html file. This is the default setting.</p></li>
@@ -4633,8 +4633,8 @@ Tip
 </section>
 <section id="questions" class="level2">
 <h2 class="anchored" data-anchor-id="questions">Questions</h2>
-<section id="question-1" class="level3">
-<h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
+<section id="sec-L10-F-test" class="level3">
+<h3 class="anchored" data-anchor-id="sec-L10-F-test">Question 1</h3>
 <p>This question uses the same dataset as HW 2, question 1 and HW 3, question 4.</p>
 <p>This question is based on data collected as part of an observational study of patients who suffered from stroke.</p>
 <p>Dataset: The main goal was to study various psychological factors: optimism, fatalism, depression, spirituality, and their relationship with stroke severity and other health outcomes among the study participants. Data were collected using questionnaires during a baseline interview and also medical chart review. More information about this study can be found in the article <a href="https://pubmed.ncbi.nlm.nih.gov/21940963/">Fatalism, optimism, spirituality, depressive symptoms and stroke outcome: a population based analysis</a>.</p>
@@ -4678,8 +4678,8 @@ Tip
 <p>Does the addition of Spirituality and Optimism add significantly to the prediction of Depression achieved by Fatalism?</p>
 </section>
 </section>
-<section id="question-1-1" class="level3">
-<h3 class="anchored" data-anchor-id="question-1-1">Question 1</h3>
+<section id="sec-L11-L12-Interactions-01" class="level3">
+<h3 class="anchored" data-anchor-id="sec-L11-L12-Interactions-01">Question 2</h3>
 <p>A team of nutrition experts investigated the influence of protein content in diet on the relationship between age (explanatory variable) and height (outcome, in centimeters) for children. Using the dataset, <code>CH12Q03.xls</code>, answer the following questions.</p>
 <p>This question was adapted from <a href="https://catalog.lib.uchicago.edu/vufind/Record/7546272">this textbook</a>.</p>
 <section id="part-a-1" class="level4">
@@ -4689,7 +4689,7 @@ Tip
 <section id="part-b" class="level4">
 <h4 class="anchored" data-anchor-id="part-b">Part b</h4>
 <p>At a level of significance <span class="math inline">\(\alpha = 0.10\)</span>, test whether protein diet modifies the effect of age on height. Justify your answer (e.g., perform a hypothesis test for the interaction between diet and age).</p>
-<p><em>Note: recall that an effect modifier is an interaction.</em></p>
+<p><em>Note: recall that we model an effect modifier with an interaction.</em></p>
 </section>
 <section id="part-c" class="level4">
 <h4 class="anchored" data-anchor-id="part-c">Part c</h4>
@@ -4697,26 +4697,24 @@ Tip
 </section>
 <section id="part-d" class="level4">
 <h4 class="anchored" data-anchor-id="part-d">Part d</h4>
-<p>Write the fitted regression equation for our model in Part b. Write the respective regression lines for each specific diet group: protein rich and protein poor. Interpret the slope of each regression line (no need for a 95% CI here).</p>
+<p>Write the fitted regression equation for our model in Part b. Write the respective regression lines for each specific diet group: protein rich and protein poor. Interpret the slope of each regression line (include the 95% CI here).</p>
 </section>
 </section>
-<section id="question-2" class="level3">
-<h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
+<section id="sec-L11-L12-Interactions-02" class="level3">
+<h3 class="anchored" data-anchor-id="sec-L11-L12-Interactions-02">Question 3</h3>
 <p>An experiment was conducted regarding a quantitative analysis of factors found in high-density lipoprotein (HDL) in a sample of human blood serum. Three variables thought to be predictive of, or associated with, HDL measurement (Y) were the total cholesterol (X1) and total triglyceride (X2) concentrations in the sample, plus the presence or absence of a certain sticky component of the serum called sinking pre-beta or SPB (X3), coded as 0 if absent and 1 if present. Using the dataset, <code>CH09Q05.xls</code>, answer the following questions.</p>
-<section id="part-a-2" class="level4">
-<h4 class="anchored" data-anchor-id="part-a-2">Part a</h4>
+<section id="sec-Q3-Part-a" class="level4">
+<h4 class="anchored" data-anchor-id="sec-Q3-Part-a">Part a</h4>
 <p>Use <span class="math inline">\(\alpha= 0.05\)</span>, test whether if there is a crude association between HDL measurement and total cholesterol. Note: testing for a crude association means we fit a simple linear regression model and see if the association is significant.</p>
 </section>
 <section id="part-b-1" class="level4">
 <h4 class="anchored" data-anchor-id="part-b-1">Part b</h4>
-<p>Sometimes simple linear regression leads us to believe that there is no association between two variables, but missing interaction might be obscuring the association. Use <span class="math inline">\(\alpha= 0.1\)</span> to test whether total triglyceride is an effect modifier of the association between HDL and total cholesterol.</p>
+<p>Sometimes simple linear regression leads us to believe that there is no association between two variables, but missing interaction might be obscuring the association. Use <span class="math inline">\(\alpha= 0.1\)</span> to test whether total triglyceride is an effect modifier of the association between HDL and total cholesterol. Make sure to include a concluding statement.</p>
 <p>Note: Since the data frame has the variables named as <span class="math inline">\(Y\)</span>, <span class="math inline">\(X1\)</span>, and <span class="math inline">\(X2\)</span>, you may use those in the regression equations, but when you are making a conclusion, please use the specific names of the variables to identify each. For example, <span class="math inline">\(Y\)</span> is actually HDL.</p>
-<p>Note: The plan is to cover interactions between two continuous covariates on Wednesday 2/21. We will not interpret the interaction coefficient for this, but we can test the interaction coefficient. Similar to the interaction for a binary covariate and a continuous covariate, we only need to test one coefficient, <span class="math inline">\(\beta_3\)</span>.</p>
 </section>
 <section id="part-c-1" class="level4">
 <h4 class="anchored" data-anchor-id="part-c-1">Part c</h4>
-<p>Is it possible that total triglyceride is a confounder? No need to test this explicity.</p>
-<p>Note: this will depend on your results from Part b.</p>
+<p>Test whether total triglyceride is a confounder by comparing the model in Part a to a model that includes total triglyceride. Make sure to include a concluding statement and interpret your coefficients.</p>
 
 
 </section>

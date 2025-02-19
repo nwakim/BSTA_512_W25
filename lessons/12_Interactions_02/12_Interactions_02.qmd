@@ -86,12 +86,25 @@ gapm_sub <- gapm %>% # called it gapm2_sub3 to be consistent with Day 7 notes
 
 **This time:**
 
+4.  Interpret the interaction component of a model with **two categorical covariates**, and how the main variable's effect changes.
+5.  Interpret the interaction component of a model with **two continuous covariates**, and how the main variable's effect changes.
+6. Report results for a best-fit line (with confidence intervals) at different levels of an effect measure modifier
+
+# Learning Objectives
+
+**Last time:**
+
+1.  Define confounders and effect modifiers, and how they interact with the main relationship we model.
+2.  Interpret the interaction component of a model with **a binary categorical covariate and continuous covariate**, and how the main variable's effect changes.
+3.  Interpret the interaction component of a model with **a multi-level categorical covariate and continuous covariate**, and how the main variable's effect changes.
+
+**This time:**
+
 ::: lob
 4.  Interpret the interaction component of a model with **two categorical covariates**, and how the main variable's effect changes.
 :::
 
 5.  Interpret the interaction component of a model with **two continuous covariates**, and how the main variable's effect changes.
-6.  When there are only two covariates in the model, test whether one is a confounder or effect modifier.
 
 ## Do we think income level can be an effect modifier for world region?
 
@@ -128,7 +141,7 @@ ggplot(gapm_sub, aes(x = four_regions, y = LifeExpectancyYrs,
 :::
 :::
 
-## Model with interaction between a *multi-level categorical and continuous variables*
+## Model with interaction between a *multi-level categorical and binary variables*
 
 Model we are fitting:
 
@@ -298,6 +311,8 @@ $$ \begin{aligned}
 :::
 :::
 
+- Example interpretation: The America's effect on mean life expectancy increases $\widehat{\beta}_5$ comparing high income to low income countries.
+
 ## Let's take a look back at the plot
 
 ::: columns
@@ -360,7 +375,7 @@ $$ \begin{aligned}
     -   $\beta_6$ = mean change in Asia's effect, comparing high income to low income countries
     -   $\beta_7$ = mean change in Europe's effect, comparing high income to low income countries
 
-## Test interaction between two categorical variables {.smaller}
+## Test interaction between two categorical variables (1/2) {.smaller}
 
 -   We run an F-test for a group of coefficients ($\beta_5$, $\beta_6$, $\beta_7$) in the below model (see lesson 9)
 
@@ -418,7 +433,7 @@ $$\begin{aligned}LE = &\beta_0 + \beta_1 I(\text{high income}) + \beta_2 I(\text
 :::
 :::
 
-## Test interaction between multi-level categorical & continuous variables
+## Test interaction between two categorical variables (2/2)
 
 -   Fit the reduced and full model
 
@@ -442,7 +457,7 @@ anova(m_int_wr_inc_red, m_int_wr_inc_full) %>% tidy() %>% gt() %>% tab_options(t
 #                 interval="confidence"))
 ```
 
--   Conclusion: There is not a significant interaction between female literacy rate and income level (p = 0.928).
+-   Conclusion: There is not a significant interaction between world region and income level (p = 0.928).
 
 # Learning Objectives
 
@@ -459,8 +474,6 @@ anova(m_int_wr_inc_red, m_int_wr_inc_full) %>% tidy() %>% gt() %>% tab_options(t
 ::: lob
 5.  Interpret the interaction component of a model with **two continuous covariates**, and how the main variable's effect changes.
 :::
-
-6.  When there are only two covariates in the model, test whether one is a confounder or effect modifier.
 
 ## Do we think food supply is an effect modifier for female literacy rate?
 
@@ -700,467 +713,204 @@ anova(m_int_fs_red, m_int_fs_full) %>% tidy() %>%
 
 -   Conclusion: There is not a significant interaction between female literacy rate and food supply (p = 0.945). Food supply is not an effect modifier of the association between female literacy rate and life expectancy.
 
-# Learning Objectives
+# Learning Objective
 
-**Last time:**
+**Bonus learning objective that's not really bonus but just a last minute addition**
 
-1.  Define confounders and effect modifiers, and how they interact with the main relationship we model.
-2.  Interpret the interaction component of a model with **a binary categorical covariate and continuous covariate**, and how the main variable's effect changes.
-3.  Interpret the interaction component of a model with **a multi-level categorical covariate and continuous covariate**, and how the main variable's effect changes.
+6. Report results for a best-fit line (with confidence intervals) at different levels of an effect measure modifier
 
-**This time:**
+## How to find the confidence interval for each slope?
 
-4.  Interpret the interaction component of a model with **two categorical covariates**, and how the main variable's effect changes.
-5.  Interpret the interaction component of a model with **two continuous covariates**, and how the main variable's effect changes.
+- In the example with FS and FLR, we showed:
 
-::: lob
-6.  When there are only two covariates in the model, test whether one is a confounder or effect modifier.
+::: FS3
+::: FS3-title
+Best-fit line for Food Supply of `r mean_FS + 1000` kcal PPD
+:::
+::: FS3-cont
+$$\begin{aligned} 
+\widehat{LE} = & \big(\widehat\beta_0 + 1000 \widehat\beta_2 \big)+  \big(\widehat\beta_1 + 1000 \widehat\beta_3  \big) FLR^c
+\end{aligned}$$
+:::
 :::
 
-## Deciding between confounder and effect modifier
+- Often, we want to report the estimate of the combined coefficients: $\widehat\beta_1 + 1000 \widehat\beta_3$
 
--   This is more of a model selection question (in coming lectures)
+  - This allows us to make a statement like: "At a food supply of 3812 kcal PPD, mean life expectancy increases ($\widehat\beta_1 + 1000 \widehat\beta_3$) years for every one percent increase in female literacy rate (95% CI: \_\_, \_\_)."
 
--   But if we had a model with **only TWO covariates**, we could step through the following process:
+ 
 
-    1.  Test the interaction (of potential effect modifier): use a partial F-test to test if interaction term(s) explain enough variation compared to model without interaction
+- We can calculate $\widehat\beta_1 + 1000 \widehat\beta_3$ by using the values of the estimated coefficients
 
-        -   Recall that for two continuous covariates, we will **test a single coefficient**
-        -   For a binary and continuous covariate, we will **test a single coefficient**
-        -   For two binary categorical covariates, we will **test a single coefficient**
-        -   **For a multi-level categorical covariate (with any other type of covariate), we must test a group of coefficients!!**
+- BUT we always want to have a **95% confidence interval** when we report this combined estimate!!
 
-    2.  Then look at the main effect (or potential confounder)
+## Getting a 95% confidence interval requires linear combinations!
 
-        -   If interaction already included, then automatically included as main effect (and thus not checked for confounding)
+- If we want a confidence interval for $\widehat\beta_1 + 1000 \widehat\beta_3$, then we would use the formula:
 
-        -   For variables that are not included in any interactions:
+$$\bigg(\widehat\beta_1 + 1000 \widehat\beta_3 \bigg) \pm t^* \times SE_{(\beta_1 + 1000 \beta_3)}$$
 
-            -   Check to see if they are confounders by seeing whether exclusion of the variable changes any of the main effect of the primary explanatory variable by more than 10%
-            
-## Steps in decision tree form
+- The hard part is figuring out what $SE_{(\beta_1 + 1000 \beta_3)}$ (or $\text{Var}(\beta_1 + 1000 \beta_3)$) equals
 
-## Reminder from Lesson 9: General steps for F-test
+- We need to go back to variance of linear combinations (BSTA 512/612, EPI 525):
+$$\text{Var}(aX + bY) = a^2\text{Var}(X) + b^2\text{Var}(Y) + 2ab\text{Cov}(X, Y)$$
+or
+$$\text{Var}(aX - bY) = a^2\text{Var}(X) + b^2\text{Var}(Y) - 2ab\text{Cov}(X, Y)$$
+
+## Reference: calculating $SE_{(\beta_1 + 1000 \beta_3)}$ by hand
+
+- A helpful function that returns the variance-covariance matric of all the coefficients in model `m_int_fs`:
 
 ::: columns
-::: {.column width="48%"}
-::: highlight-container
-::: highlight
-1.  Met underlying LINE assumptions
-:::
-:::
-
-::: highlight-container
-::: highlight
-2.  State the null hypothesis
-:::
-:::
-
-```{=tex}
-\begin{align}
-H_0 &: \beta_1=\beta_2= \ldots=\beta_k=0\\
-\text{vs. } H_A&: \text{At least one } \beta_j\neq0, \text{for }j=1, 2, \ldots, k
-\end{align}
+::: {.column width="70%"}
+```{r}
+#| echo: true
+vcov(m_int_fs)
 ```
-::: highlight-container
-::: highlight
-3.  Specify the significance level.
+:::
+::: {.column width="30%"}
+$$ \begin{aligned}
+\text{Var}(\beta_1) & = `r round(vcov(m_int_fs)[2,2], 9)` \\
+\text{Var}(\beta_3) & = `r round(vcov(m_int_fs)[4,4], 9)` \\
+\text{Cov}(\beta_1, \beta_3) & = `r round(vcov(m_int_fs)[2,4], 9)` \\
+\end{aligned}$$
 :::
 :::
 
-Often we use $\alpha = 0.05$
+$$ \begin{aligned}
+\text{Var}(\beta_1 + 1000 \beta_3) & = \text{Var}(\beta_1) + 1000^2\text{Var}(\beta_3) + 2000\text{Cov}(\beta_1, \beta_3) \\ 
+\text{Var}(\beta_1 + 1000 \beta_3) & = `r round(vcov(m_int_fs)[2,2], 9)` + 1000^2 \times `r round(vcov(m_int_fs)[4,4], 9)` + 2000 \times `r round(vcov(m_int_fs)[2,4], 9)` \\ 
+\text{Var}(\beta_1 + 1000 \beta_3) & = `r round(vcov(m_int_fs)[2,2] + 1000^2 * vcov(m_int_fs)[4,4] + 2000 * vcov(m_int_fs)[2,4], 9)` \\
+SE_{(\beta_1 + 1000 \beta_3)} & = \sqrt{`r round(vcov(m_int_fs)[2,2] + 1000^2 * vcov(m_int_fs)[4,4] + 2000 * vcov(m_int_fs)[2,4], 9)`} \\ 
+SE_{(\beta_1 + 1000 \beta_3)} & = `r round(sqrt(vcov(m_int_fs)[2,2] + 1000^2 * vcov(m_int_fs)[4,4] + 2000 * vcov(m_int_fs)[2,4]), 9)`
+\end{aligned}$$
 
-::: highlight-container
-::: highlight
-4.  Specify the test statistic and its distribution under the null
-:::
-:::
 
-The test statistic is $F$, and follows an F-distribution with numerator $df=k$ and denominator $df=n-k-1$. ($n$ = \# obversation, $k$ = \# covariates)
-:::
+## We can use R and `estimable()` to find the estimate and CI
 
-::: {.column width="4%"}
-:::
+For $\widehat\beta_1 + 1000 \widehat\beta_3$:
 
-::: {.column width="48%"}
-::: highlight-container
-::: highlight
-5.  Compute the value of the test statistic
-:::
-:::
+```{r}
+#| echo: true
 
-The calculated **test statistic** is
+library(gmodels)
+m_int_fs %>% estimable(
+                   c("(Intercept)" = 0,      # beta0
+                     "FLR_c"       = 1,      # beta1
+                     "FS_c"        = 0,      # beta2
+                     "FLR_c:FS_c"  = 1000),  # beta3
+                   conf.int = 0.95)
+```
 
-$$F^ = \dfrac{\frac{SSE(R) - SSE(F)}{df_R - df_F}}{\frac{SSE(F)}{df_F}} = \frac{MSR_{full}}{MSE_{full}}$$
+```{r}
+m_int_fs_3812 = m_int_fs %>% estimable(
+                   c("(Intercept)" = 0,      # beta0
+                     "FLR_c"       = 1,      # beta1
+                     "FS_c"        = 0,      # beta2
+                     "FLR_c:FS_c"  = 1000),  # beta3
+                   conf.int = 0.95)
+```
 
-::: highlight-container
-::: highlight
-6.  Calculate the p-value
-:::
-:::
+ 
 
-We are generally calculating: $P(F_{k, n-k-1} > F)$
+**Our conclusion:** At a food supply of 3812 kcal PPD, mean life expectancy increases `r round(m_int_fs_3812$Estimate, 5)` years for every one percent increase in female literacy rate (95% CI: `r round(m_int_fs_3812$Lower.CI, 5)`, `r round(m_int_fs_3812$Upper.CI, 5)`).
 
-::: highlight-container
-::: highlight
-7.  Write conclusion for hypothesis test
-:::
-:::
+## Another example: income (binary) and FLR (1/2)
 
-We (reject/fail to reject) the null hypothesis at the $100\alpha\%$ significance level. <Include specific context for the test>
-:::
-:::
+```{r}
+#| echo: true
 
-## Step 1: Testing the interaction
+m_int_inc2 = gapm_sub %>% 
+  lm(formula = LifeExpectancyYrs ~ FLR_c*income_levels2)
+```
 
--   We test with $\alpha = 0.10$
-
--   Follow the F-test procedure in [Lesson 9 (MLR: Inference/F-test)](.\slides\09_MLR_Inference.qmd)
-
-    -   This means we need to follow the 7 steps of the general F-test in previous slide (taken from Lesson 9)
-
--   Use the hypothesis tests for the specific variable combo:
-
-::: columns
-::: column
-::: fact
-::: fact-title
-Binary & continuous variable (Lesson 11, LOB 2)
-:::
-
-::: fact-cont
-Testing a single coefficient for the interaction term using F-test comparing full model to reduced model
-:::
-:::
-:::
-
-::: column
-::: definition
-::: def-title
-Multi-level & continuous variables (Lesson 11, LOB 3)
-:::
-
-::: def-cont
-Testing group of coefficients for the interaction terms using F-test comparing full to reduced model
-:::
-:::
-:::
-:::
+$$ \begin{aligned}
+\widehat{LE} = & \widehat\beta_0 + \widehat\beta_1 FLR + \widehat\beta_2 I(\text{high income}) + \widehat\beta_3 FLR \cdot I(\text{high income}) \\
+\widehat{LE} = & 54.85 + 0.156 \cdot FLR - 16.65 \cdot I(\text{high income}) + 0.228 \cdot FLR \cdot I(\text{high income})
+\end{aligned}$$
 
 ::: columns
-::: column
-::: proposition
-::: prop-title
-Binary & multi-level variable (Lesson 11, LOB 4)
-:::
-
-::: prop-cont
-Testing group of coefficients for the interaction terms using F-test comparing full to reduced model
-:::
-:::
-:::
-
 ::: column
 ::: proof1
 ::: proof-title
-Two continuous variables (Lesson 11, LOB 5)
+For lower income countries: $I(\text{high income}) =0$
 :::
 
 ::: proof-cont
-Testing a single coefficient for the interaction term using F-test comparing full to reduced model
+$$ \begin{aligned}
+\widehat{LE} = & \widehat\beta_0 + \widehat\beta_1 FLR + \widehat\beta_2 \cdot 0 + \widehat\beta_3 FLR \cdot 0 \\
+\widehat{LE} = & 54.85 + 0.156 \cdot FLR - 16.65 \cdot 0 + \\
+& 0.228 \cdot FLR \cdot 0 \\ 
+\widehat{LE} = & 54.85 + 0.156 \cdot FLR\\ 
+\end{aligned}$$
 :::
 :::
 :::
-:::
 
-## Poll Everywhere Questions 2-4
-
-## Step 2: Testing a confounder
-
--   If interaction already included:
-
-    -   Meaning: F-test showed evidence for alternative/full model
-    -   Then the variable is an effect modifier and we don't need to consider it as a confounder
-    -   Then automatically included as main effect (and thus not checked for confounding)
-
--   For variables that are not included in any interactions:
-
-    -   Check to see if they are confounders
-    -   One way to do this is by seeing whether exclusion of the variable changes any of the main effect of the primary explanatory variable by more than 10%
-
--   If the main effect of the primary explanatory variable changes by less than 10%, then the additional variable is neither an effect modifier nor a confounder
-
-    -   We leave the variable out of the model
-
-## Testing for percent change ( $\Delta\%$) in a coefficient
-
--   Let's say we have $X_1$ and $X_2$, and we specifically want to see if $X_2$ is a confounder for $X_1$ (the explanatory variable or variable of interest)
-
--   If we are only considering $X_1$ and $X_2$, then we need to run the following two models:
-
-    -   Fitted model 1 / reduced model (`mod1`): $\widehat{Y} = \widehat\beta_0 + \widehat\beta_1X_1$
-
-        -   We call the above $\widehat\beta_1$ the reduced model coefficient: $\widehat\beta_{1, \text{mod1}}$ or $\widehat\beta_{1, \text{red}}$
-
-    -   Fitted model 2 / Full model (`mod2`): $\widehat{Y} = \widehat\beta_0 + \widehat\beta_1X_1 +\widehat\beta_2X_2$
-
-        -   We call this $\widehat\beta_1$ the full model coefficient: $\widehat\beta_{1, \text{mod2}}$ or $\widehat\beta_{1, \text{full}}$
-
-::: columns
-::: {.column width="15%"}
-:::
-
-::: {.column width="70%"}
+::: column
 ::: fact
 ::: fact-title
-Calculation for % change in coefficient
+For higher income countries: $I(\text{high income}) =1$
 :::
 
 ::: fact-cont
-$$
-\Delta\% = 100\% \cdot\frac{\widehat\beta_{1, \text{mod1}} - \widehat\beta_{1, \text{mod2}}}{\widehat\beta_{1, \text{mod2}}} = 100\% \cdot \frac{\widehat\beta_{1, \text{red}} - \widehat\beta_{1, \text{full}}}{\widehat\beta_{1, \text{full}}}
-$$
+$$ \begin{aligned}
+\widehat{LE} = & \widehat\beta_0 + \widehat\beta_1 FLR + \widehat\beta_2 \cdot 1 + \widehat\beta_3 FLR \cdot 1 \\
+\widehat{LE} = & 54.85 + 0.156 \cdot FLR - 16.65 \cdot 1 + \\ & 0.228 \cdot FLR \cdot 1 \\ 
+\widehat{LE} = & `r 54.85 - 16.65` + `r 0.156 + 0.228` \cdot FLR\\ 
+\end{aligned}$$
 :::
 :::
 :::
-
-::: {.column width="15%"}
-:::
 :::
 
-## Is food supply a confounder for female literacy rate? (1/3)
+## Another example: income (binary) and FLR (2/2)
 
-1.  Run models with and without food supply:
-
-     
-
-    -   Model 1 (reduced): $LE = \beta_0 + \beta_1 FLR^c + \epsilon$
-
-    ```{r}
-    #| echo: true
-    mod1_red = lm(LifeExpectancyYrs ~ FLR_c, data = gapm_sub)
-    ```
-
-     
-
-    -   Model 2 (full): $LE = \beta_0 + \beta_1 FLR^c + \beta_2 FS^c + \epsilon$
-
-    ```{r}
-    #| echo: true
-    mod2_full = lm(LifeExpectancyYrs ~ FLR_c + FS_c, data = gapm_sub)
-    ```
-
- 
-
--   Note that the full model when testing for confounding was the reduced model for testing an interaction
-
--   Full and reduced are always relative qualifiers of the models that we are testing
-
-## Is food supply a confounder for female literacy rate? (2/3)
-
-2.  Record the coefficient estimate for centered female literacy rate in both models:
-
--   Model 1 (reduced):
-
-```{r}
-tidy(mod1_red, conf.int=T) %>% gt() %>% tab_options(table.font.size = 35) %>% fmt_number(decimals = 5)
-```
-
--   Model 2 (full):
-
-```{r}
-tidy(mod2_full, conf.int=T) %>% gt() %>% tab_options(table.font.size = 35) %>% fmt_number(decimals = 5)
-```
-
-3.  Calculate the percent change:
-
-$$
-\Delta\% = 100\% \cdot \frac{\widehat\beta_{1, \text{mod1}} - \widehat\beta_{1, \text{mod2}}}{\widehat\beta_{1, \text{mod2}}} = 100\% \cdot \frac{0.22990 - 0.15670}{0.15670} = `r round(100*(0.22990 - 0.15670)/0.15670, 2)`\%
-$$
-
-## Is food supply a confounder for female literacy rate? (3/3)
-
-The percent change in female literacy rate's coefficient estimate was 46.71%.
-
-Thus, food supply is a confounder of female literacy rate in the association between life expectancy and female literacy rate.
-
-## Let's try this out on one of our potential effect modifiers or confounders
-
-::: columns
-::: column
--   Look back at income level and world region: is income level an **effect modifier, confounder, or has no effect** on the association between life expectancy and world region?
-
--   We can start by visualizing the relationship between life expectancy and world region *by income level*
-
--   So we'll need to revisit the work we did in previous slides on the interaction, then check fo condounding
-:::
-
-::: column
-```{r fig.height=7, fig.width=9, warning=F, fig.align='center'}
-#| echo: false
-ggplot(gapm_sub, aes(x = four_regions, y = LifeExpectancyYrs, 
-                  color = income_levels2)) +
-  geom_jitter(size = 2, alpha = .6, width = 0.2) +
-  stat_summary(fun = mean, geom = "point", size = 8, shape = 18) +
-  labs(x = "World Regions", 
-       y = "Life expectancy (years)",
-       title = "Life expectancy vs. World Region", 
-       color = "Income level") +
-  theme(axis.title = element_text(size = 20), 
-        axis.text = element_text(size = 20), 
-        title = element_text(size = 20), 
-        legend.text=element_text(size= 18)) +
-  scale_color_manual(values=c("#FF8021", "#34AC8B"))
-```
-:::
-:::
-
-## Determining if income level is an **effect modifier, confounder, or neither**
-
--   Step 1: Testing the interaction/effect modifier
-
-    -   Compare model with and without interaction using F-test to see if interaction is significant
-
-    -   Models
-
-        -   Model 1 (red): $\begin{aligned}LE = &\beta_0 + \beta_1 I(\text{Americas}) + \beta_2 I(\text{Asia}) + \beta_3 I(\text{Europe}) + \beta_4 I(\text{high income})+ \epsilon \end{aligned}$
-        
-         
-        
-        -   Model 2 (full): $\begin{aligned}LE = &\beta_0 + \beta_1 I(\text{Americas}) + \beta_2 I(\text{Asia}) + \beta_3 I(\text{Europe}) + \beta_4 I(\text{high income})+ \\ & \beta_5 \cdot I(\text{high income}) \cdot I(\text{Americas}) + \beta_6\cdot I(\text{high income}) \cdot I(\text{Asia})+ \\ &  \beta_7 \cdot I(\text{high income})\cdot I(\text{Europe})+ \epsilon \end{aligned}$
-
--   Step 2: Testing a confounder (only if not an effect modifier)
-
-    -   Compare model with and without main effect for additional variable (income level) using F-test to see if additional variable (income level) is a confounder
-
-    -   Models
-
-        -   Model 1 (reduced): $\begin{aligned}LE = &\beta_0 + \beta_1 I(\text{Americas}) + \beta_2 I(\text{Asia}) + \beta_3 I(\text{Europe}) + \epsilon \end{aligned}$
-        -   Model 2 (full): $\begin{aligned}LE = &\beta_0 + \beta_1 I(\text{Americas}) + \beta_2 I(\text{Asia}) + \beta_3 I(\text{Europe}) + \beta_4 I(\text{high income})+ \epsilon \end{aligned}$
-
-## Step 1: Results from Lesson 11 LOB 4
-
--   Fit the reduced and full model
 
 ```{r}
 #| echo: true
-m_int_wr_inc_red = lm(LifeExpectancyYrs ~ income_levels2 + four_regions, 
-                   data = gapm_sub)
-m_int_wr_inc_full = lm(LifeExpectancyYrs ~ income_levels2 + four_regions +
-                          income_levels2*four_regions, data = gapm_sub)
+
+m_int_inc2$coefficients # I just need to see the exact names
+m_int_inc2 %>% estimable(
+                   c("(Intercept)" = 0,      # beta0
+                     "FLR_c"       = 1,      # beta1
+                     "income_levels2Higher income" = 0,      # beta2
+                     "FLR_c:income_levels2Higher income"  = 1),  # beta3
+                   conf.int = 0.95)
 ```
 
--   Display the ANOVA table with F-statistic and p-value
-
 ```{r}
-anova(m_int_wr_inc_red, m_int_wr_inc_full) %>% tidy() %>% gt() %>% tab_options(table.font.size = 35) %>% fmt_number(decimals = 3)
-
-# newdata <- data.frame(four_regions = c("Africa", "Americas", "Asia", "Europe"), 
-#                       FLR_c = c()) 
-# (pred = predict(m_int_wr_full, 
-#                 newdata=newdata, 
-#                 interval="confidence"))
-```
-
--   Conclusion: There is not a significant interaction between world region and income level (p = 0.928).
-
--   Thus, income level is not an effect modifier of world region. However, we can continue to test if income level is a confounder.
-
-## Step 2: See if income is a confounder
-
--   Fit the reduced and full model for testing the confounder
-
- 
-
--   Model 1 (reduced): $\begin{aligned}LE = &\beta_0 + \beta_1 I(\text{Americas}) + \beta_2 I(\text{Asia}) + \beta_3 I(\text{Europe}) + \epsilon \end{aligned}$
-
-```{r}
-#| echo: true
-mod1_wr_inc_red = lm(LifeExpectancyYrs ~ four_regions, 
-                   data = gapm_sub)
+m_int_high_inc = m_int_inc2 %>% estimable(
+                   c("(Intercept)" = 0,      # beta0
+                     "FLR_c"       = 1,      # beta1
+                     "income_levels2Higher income" = 0,      # beta2
+                     "FLR_c:income_levels2Higher income"  = 1),  # beta3
+                   conf.int = 0.95)
 ```
 
  
 
--   Model 2 (full): $\begin{aligned}LE = &\beta_0 + \beta_1 I(\text{Americas}) + \beta_2 I(\text{Asia}) + \beta_3 I(\text{Europe}) + \beta_4 I(\text{high income})+ \epsilon \end{aligned}$
+**Our conclusion:** For countries with high income, mean life expectancy increases `r round(m_int_high_inc$Estimate, 3)` years for every one percent increase in female literacy rate (95% CI: `r round(m_int_high_inc$Lower.CI, 3)`, `r round(m_int_high_inc$Upper.CI, 3)`).
+
+## If our example had an effect measure modifier
 
 ```{r}
-#| echo: true
-mod1_wr_inc_full = lm(LifeExpectancyYrs ~ four_regions + income_levels2, 
-                   data = gapm_sub)
+m_int_low_inc = m_int_inc2 %>% estimable(
+                   c("(Intercept)" = 0,      # beta0
+                     "FLR_c"       = 0,      # beta1
+                     "income_levels2Higher income" = 1,      # beta2
+                     "FLR_c:income_levels2Higher income"  = 0),  # beta3
+                   conf.int = 0.95)
 ```
 
+- None of our examples had a significant interaction, so it's hard to demonstrate exactly how we would report this
 
-## Step 2: See if income is a confounder
+- Let's say, **just for example**, that income had a significant interaction with FLR
+  - How would we report this to an audience??
+  
+- Here's how to report on an interaction/EMM:
 
--   Record the coefficient estimate for centered female literacy rate in both models:
-
--   Model 1 (reduced):$\begin{aligned}\widehat{LE} = &\widehat\beta_0 + \widehat\beta_1 I(\text{Americas}) + \widehat\beta_2 I(\text{Asia}) + \widehat\beta_3 I(\text{Europe}) \end{aligned}$
-
-```{r}
-tidy(mod1_wr_inc_red, conf.int=T) %>% gt() %>% tab_options(table.font.size = 35) %>% fmt_number(decimals = 5)
-```
-
--   Model 2 (full): $\begin{aligned}\widehat{LE} = &\widehat\beta_0 + \widehat\beta_1 I(\text{Americas}) + \widehat\beta_2 I(\text{Asia}) + \widehat\beta_3 I(\text{Europe}) + \widehat\beta_4 I(\text{high income})\end{aligned}$
-
-```{r}
-tidy(mod1_wr_inc_full, conf.int=T) %>% gt() %>% tab_options(table.font.size = 35) %>% fmt_number(decimals = 5)
-```
-
-## Step 2: See if income is a confounder
-
--   Calculate the percent change for $\widehat\beta_1$: $$
-    \Delta\%  = 100\% \cdot \frac{\widehat\beta_{1, \text{mod1}} - \widehat\beta_{1, \text{mod2}}}{\widehat\beta_{1, \text{mod2}}} = 100\% \cdot \frac{14.33000 - 12.04102}{12.04102} = `r round(100*(14.33000 - 12.04102)/12.04102, 2)`
-    $$
-
--   Calculate the percent change for $\widehat\beta_2$: $$
-    \Delta\%  = 100\% \cdot \frac{\widehat\beta_{2, \text{mod1}} - \widehat\beta_{2, \text{mod2}}}{\widehat\beta_{2, \text{mod2}}} = 100\% \cdot \frac{8.11824 - 7.77808}{7.77808} = `r round(100*(8.11824 - 7.77808)/7.77808, 2)`
-    $$
-
--   Calculate the percent change for $\widehat\beta_3$: $$
-    \Delta\%  = 100\% \cdot \frac{\widehat\beta_{3, \text{mod1}} - \widehat\beta_{3, \text{mod2}}}{\widehat\beta_{3, \text{mod2}}} = 100\% \cdot \frac{14.78217 - 12.51938}{12.51938} = `r round(100*(14.78217 - 12.51938)/12.51938, 2)`
-    $$
-
--   Note that two of these % changes are greater than 10%, and one is less than 10%...
-
-## Step 2: See if income is a confounder
-
-::: columns
-::: column
--   There is no set rule when we have more than one estimated coefficient that we examine for confoundeing
-
--   In this, I would consider
-
-    -   The majority of coefficients (2/3 coefficients) changes more than 10%
-    -   The change in coefficients for all three are in the same direction
-    -   The plot of life expectancy vs world region by income level have a shift in mean life expectancy from lower to higher income level
-    
--   Thus, I would conclude that income level is a confounder, so we would leave income level's main effect in the model
-:::
-
-::: column
-```{r fig.height=7, fig.width=9, warning=F, fig.align='center'}
-#| echo: false
-ggplot(gapm_sub, aes(x = four_regions, y = LifeExpectancyYrs, 
-                  color = income_levels2)) +
-  geom_jitter(size = 2, alpha = .6, width = 0.2) +
-  stat_summary(fun = mean, geom = "point", size = 8, shape = 18) +
-  labs(x = "World Regions", 
-       y = "Life expectancy (years)",
-       title = "Life expectancy vs. World Region", 
-       color = "Income level") +
-  theme(axis.title = element_text(size = 20), 
-        axis.text = element_text(size = 20), 
-        title = element_text(size = 20), 
-        legend.text=element_text(size= 18)) +
-  scale_color_manual(values=c("#FF8021", "#34AC8B"))
-```
-:::
-:::
-
-## If you want extra practice
-
--   Try out this procedure to determine if a variable is an effect modifier or confounder or nothing on the other interactions we tested out in Lesson 11
+  - We found that a country's income status (high or low) is a significant effect measure modifier on female literacy rate (*include p-value for interaction test here*). For countries with high income, mean life expectancy increases `r round(m_int_high_inc$Estimate, 3)` years for every one percent increase in female literacy rate (95% CI: `r round(m_int_high_inc$Lower.CI, 3)`, `r round(m_int_high_inc$Upper.CI, 3)`). For countries with low income, mean life expectancy increases `r round(m_int_low_inc$Estimate, 3)` years for every one percent increase in female literacy rate (95% CI: `r round(m_int_low_inc$Lower.CI, 3)`, `r round(m_int_low_inc$Upper.CI, 3)`)."
 
 # Extra Reference Material
 

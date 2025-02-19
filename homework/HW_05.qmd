@@ -38,7 +38,7 @@ library(here)
 
 -   [Download the `.qmd` file here.](https://github.com/nwakim/BSTA_512_W25/blob/main/homework/HW_05.qmd)
 
--   You will need to download the datasets. Use [this link to download](https://ohsuitg-my.sharepoint.com/:f:/g/personal/wakim_ohsu_edu/EtimsrgruwZOvhVqgx31g0MBwLSTj2L53ilK_ZIw9-vucA?e=sBvCNu) the HW1 datasets needed in this assignment. If you do not want to make changes to the paths set in this document, then make sure the files are stored in a folder named "data" that is housed in the same location as your HW1 `.qmd` file.
+-   You will need to download the datasets. Use [this link to download](https://ohsuitg-my.sharepoint.com/:f:/g/personal/wakim_ohsu_edu/EtimsrgruwZOvhVqgx31g0MBwLSTj2L53ilK_ZIw9-vucA?e=sBvCNu) the HW3 datasets needed in this assignment. If you do not want to make changes to the paths set in this document, then make sure the files are stored in a folder named "data" that is housed in the same location as your HW3 `.qmd` file.
 
 -   Please upload your homework to Sakai. **Upload both your `.qmd` code file and the rendered `.html` file**
 
@@ -113,10 +113,10 @@ Make a plot of flipper length (outcome) and body mass (explanatory variable) by 
 
 ### Part h
 
-Using only body mass and bill depth as covariates, write out the model that we would fit including the main effects of body mass and bill depth and their interaction. How many coefficients are tested when we test for a significant interaction?
+Using only body mass and bill depth as covariates, write out the model that we would fit including the main effects of body mass and bill depth and their interaction (this is a mathematical equation). How many coefficients are tested when we test for a significant interaction?
 
 ::: callout-note
-Both covariates should be centered. For the rest of the homework, we will use the centered body mass and bill depth.
+Both covariates should be represented as centered. For the rest of the homework, we will use the centered body mass and bill depth.
 :::
 
 ### Part i 
@@ -125,7 +125,7 @@ Center bill depth.
 
 ### Part j
 
-Using only body mass and bill depth as covariates, test if bill depth is an effect modifier or confounder of body mass, or if it is not in the model at all.
+Using only body mass and bill depth as covariates, test if bill depth is an effect modifier.
 
 ### Part k
 
@@ -135,7 +135,7 @@ Hint: Homework 4 can help guide us with the species' categories.
 
 ### Part l
 
-Using only body mass and species as covariates, test if species is an effect modifier or confounder of body mass, or if it is not in the model at all. Note that 
+Using only body mass and species as covariates, test if species is an effect modifier. 
 
 ### Part m
 

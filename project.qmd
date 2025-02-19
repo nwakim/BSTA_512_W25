@@ -23,7 +23,7 @@ editor_options:
 ## Labs
 
 | Lab | Due Date | Topics |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | [Lab 1](/labs/Lab_01_instructions.qmd) | 1/16 | Exploring the question |
 | [Lab 2](/labs/Lab_02_instructions.qmd) | 2/7 | Exploring the data |
 | [Lab 3](/labs/Lab_03_instructions.qmd) | 2/21 | A little more data exploration + Fitting and interpreting a model |
@@ -65,7 +65,7 @@ If you have additional sources that you would like to share, please send them to
 ## Lab rubric
 
 |   | 4 points | 3 points | 2 points | 1 point | 0 points |
-|------------|------------|------------|------------|------------|------------|
+|----|----|----|----|----|----|
 | Formatting | Lab submitted on Sakai with `.html` file. Answers are written as asked (bullets or complete sentences) with no major grammatical nor spelling errors. With little editing, the answer can be incorporated into the project poster. | Lab submitted on Sakai with `.html` file. Answers are written as asked (bullets or complete sentences) with grammatical or spelling errors. With editing, the answer can be incorporated into the project report. | Lab submitted on Sakai with `.html` file. Answers are written as asked (bullets or complete sentences) with major grammatical or spelling errors. With major editing, the answer can be incorporated into the project report. | Lab submitted on Sakai with `.html` file. Answers are not written as asked. | Lab *not* submitted on Sakai with `.html` file. |
 | Code/Work\* | All tasks are directly followed or answered. This includes all the needed code, in code chunks, with the requested output. | All tasks are directly followed or answered. This includes all the needed code, in code chunks, with the requested output. In a few tasks, the code syntax or output is not quite right. | Some tasks are directly followed or answered. This includes all the needed code, in code chunks, with the requested output. | Some tasks are directly followed or answered.This includes all the needed code, in code chunks, with the requested output. In a few tasks, the code syntax or output is not quite right. | More than a quarter of the tasks are not completed properly. |
 | Reasoning\*\* | Answers demonstrate understanding of research context and investigation of the data. Answers are thoughtful and can be easily integrated into the final report. | Answers demonstrate understanding of research context and investigation of the data. Answers are thoughtful, but lack the clarity needed to easily integrate into the final report. | Answers demonstrate some understanding of research context and investigation of the data. Answers are fairly thoughtful, but lack connection to the research. | Answers demonstrate some understanding of research context and investigation of the data. Answers seem rushed and with minimal thought. | Answers lack understanding of research context and investigation of the data. Answers seem rushed and without thought. |

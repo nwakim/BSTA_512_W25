@@ -89,7 +89,7 @@ gapm2 = gapm %>% select(-Longitude, -Latitude, -eight_regions, -six_regions, -ge
 
 4.  Interpret the interaction component of a model with **two categorical covariates**, and how the main variable's effect changes.
 5.  Interpret the interaction component of a model with **two continuous covariates**, and how the main variable's effect changes.
-6.  When there are only two covariates in the model, test whether one is a confounder or effect modifier.
+
 
 ## Regression analysis process
 
@@ -216,7 +216,7 @@ ggplot(gapm_sub, aes(x = FemaleLiteracyRate,
 
 4.  Interpret the interaction component of a model with **two categorical covariates**, and how the main variable's effect changes.
 5.  Interpret the interaction component of a model with **two continuous covariates**, and how the main variable's effect changes.
-6.  When there are only two covariates in the model, test whether one is a confounder or effect modifier.
+
 
 ## What is a confounder?
 
@@ -399,7 +399,7 @@ mr1 <- lm(LifeExpectancyYrs ~ FemaleLiteracyRate + FoodSupplykcPPD,
 
 4.  Interpret the interaction component of a model with **two categorical covariates**, and how the main variable's effect changes.
 5.  Interpret the interaction component of a model with **two continuous covariates**, and how the main variable's effect changes.
-6.  When there are only two covariates in the model, test whether one is a confounder or effect modifier.
+
 
 ## Do we think income level is an effect modifier for female literacy rate?
 
@@ -804,7 +804,7 @@ anova(m_int_inc_red, m_int_inc_full) %>% tidy() %>% gt() %>% tab_options(table.f
 
 4.  Interpret the interaction component of a model with **two categorical covariates**, and how the main variable's effect changes.
 5.  Interpret the interaction component of a model with **two continuous covariates**, and how the main variable's effect changes.
-6.  When there are only two covariates in the model, test whether one is a confounder or effect modifier.
+
 
 ## Do we think world region is an effect modifier for female literacy rate?
 
@@ -1053,3 +1053,5 @@ anova(m_int_wr_red, m_int_wr_full) %>% tidy() %>% gt() %>% tab_options(table.fon
 ```
 
 -   Conclusion: There is not a significant interaction between female literacy rate and world region (p = 0.478).
+
+  - World region is NOT an effect measure modifier of FLR on LE

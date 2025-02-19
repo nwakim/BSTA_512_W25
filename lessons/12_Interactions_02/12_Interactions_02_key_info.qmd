@@ -10,4 +10,18 @@ editor_options:
 
 ## Announcements
 
+- Please make sure you are looking at the lab instructions! 
+  - The instructions are on the site
+  - The `qmd` you download does NOT have the instructions on them
+
+### Careers in Public Health: Insights from Industry Employers
+Thursday, Feb. 20th Noon-1pm via Zoom. Please register for Zoom Link: <https://portlandstate.joinhandshake.com/events/1668028/share_preview>
+ 
+Join us for a virtual panel featuring professionals from public service, healthcare, nonprofit organizations, and education!
+What You’ll Experience:
+
+- Career Journeys: Hear firsthand how each panelist entered and advanced in their field, and learn what inspired their paths in public health.
+- Insider Tips: Discover the strategies panelists recommend for job searching and landing roles in their organizations and industries.
+- Job Search Guidance: Get expert advice on how to stand out in applications, interviews, and networking to secure the job you want.
+
 ## Key Dates

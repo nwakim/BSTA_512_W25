@@ -742,6 +742,43 @@ tidy(init_model) %>% gt() %>% tab_options(table.font.size = 33) %>%
 
     -   p-value \> 0.05 for the F-test of its own coefficients
     -   AND change in coefficient ($\Delta\%$) of our explanatory variable is \< 10%
+    
+## Testing for percent change ( $\Delta\%$) in a coefficient
+
+-   Let's say we have $X_1$ and $X_2$, and we specifically want to see if $X_2$ is a confounder for $X_1$ (the explanatory variable or variable of interest)
+
+-   If we are only considering $X_1$ and $X_2$, then we need to run the following two models:
+
+    -   Fitted model 1 / reduced model (`mod1`): $\widehat{Y} = \widehat\beta_0 + \widehat\beta_1X_1$
+
+        -   We call the above $\widehat\beta_1$ the reduced model coefficient: $\widehat\beta_{1, \text{mod1}}$ or $\widehat\beta_{1, \text{red}}$
+
+    -   Fitted model 2 / Full model (`mod2`): $\widehat{Y} = \widehat\beta_0 + \widehat\beta_1X_1 +\widehat\beta_2X_2$
+
+        -   We call this $\widehat\beta_1$ the full model coefficient: $\widehat\beta_{1, \text{mod2}}$ or $\widehat\beta_{1, \text{full}}$
+
+::: columns
+::: {.column width="15%"}
+:::
+
+::: {.column width="70%"}
+::: fact
+::: fact-title
+Calculation for % change in coefficient
+:::
+
+::: fact-cont
+$$
+\Delta\% = 100\% \cdot\frac{\widehat\beta_{1, \text{mod1}} - \widehat\beta_{1, \text{mod2}}}{\widehat\beta_{1, \text{mod2}}} = 100\% \cdot \frac{\widehat\beta_{1, \text{red}} - \widehat\beta_{1, \text{full}}}{\widehat\beta_{1, \text{full}}}
+$$
+:::
+:::
+:::
+
+::: {.column width="15%"}
+:::
+:::
+
 
 ## Step 3: Assess change in coefficient
 
@@ -1364,6 +1401,70 @@ tidy(main_eff_model) %>% gt() %>% tab_options(table.font.size = 33) %>%
  
 
 -   The model by the end of Step 5 is called the **preliminary final model**
+
+## Step 5: Check for interactions
+
+-   We test with $\alpha = 0.10$
+
+-   Follow the F-test procedure in [Lesson 10 (MLR: Using the F-test)](.\lessons\10_MLR_F-test\10_MLR_F-test.qmd)
+
+    -   This means we need to follow the 7 steps of the general F-test in previous slide (taken from Lesson 10)
+
+-   Use the hypothesis tests for the specific variable combo:
+
+::: columns
+::: column
+::: fact
+::: fact-title
+Binary & continuous variable (Lesson 11, LOB 2)
+:::
+
+::: fact-cont
+Testing a single coefficient for the interaction term using F-test comparing full model to reduced model
+:::
+:::
+:::
+
+::: column
+::: definition
+::: def-title
+Multi-level & continuous variables (Lesson 11, LOB 3)
+:::
+
+::: def-cont
+Testing group of coefficients for the interaction terms using F-test comparing full to reduced model
+:::
+:::
+:::
+:::
+
+::: columns
+::: column
+::: proposition
+::: prop-title
+Binary & multi-level variable (Lesson 12, LOB 4)
+:::
+
+::: prop-cont
+Testing group of coefficients for the interaction terms using F-test comparing full to reduced model
+:::
+:::
+:::
+
+::: column
+::: proof1
+::: proof-title
+Two continuous variables (Lesson 12, LOB 5)
+:::
+
+::: proof-cont
+Testing a single coefficient for the interaction term using F-test comparing full to reduced model
+:::
+:::
+:::
+:::
+
+## Poll Everywhere Questions 6-8
 
 ## Step 5: Check for interactions
 

@@ -13,6 +13,11 @@ editor_options:
 - Please make sure you are looking at the lab instructions! 
   - The instructions are on the site
   - The `qmd` you download does NOT have the instructions on them
+- Today + 3 more lessons!!
+  - If we stay on track, 3/3 will be our last day of new material
+  - Then the rest of classes will be dedicated to Project or HW help!
+- I will be posting the poster instructions by the end of this week!
+- Anything else?
 
 ### Careers in Public Health: Insights from Industry Employers
 Thursday, Feb. 20th Noon-1pm via Zoom. Please register for Zoom Link: <https://portlandstate.joinhandshake.com/events/1668028/share_preview>
@@ -25,3 +30,6 @@ What You’ll Experience:
 - Job Search Guidance: Get expert advice on how to stand out in applications, interviews, and networking to secure the job you want.
 
 ## Key Dates
+
+- Lab 3 due this Friday (2/21)
+- HW 4 due next Friday (2/28)

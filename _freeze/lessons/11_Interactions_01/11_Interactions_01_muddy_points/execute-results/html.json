@@ -1,0 +1,14 @@
+{
+  "hash": "bcec091a4470ce10e88b227cfd82dbbf",
+  "result": {
+    "markdown": "---\ntitle: \"Muddy Points\"\nsubtitle: \"Lesson 11: Interactions, Part 1\"\ndate-modified: \"today\"\nformat: \n  html:\n    link-external-newwindow: true\neditor_options: \n  chunk_output_type: console\n---\n\n\n## Muddy Points from Winter 2025\n\n## Muddy Points from Winter 2024\n\n### 1. Can we use continuous covariates in an interaction model?\n\nYes! Here are the four types of interactions we'll discuss:\n\n1.  binary categorical and continuous\n\n2.  multi-level categorical and continuous\n\n3.  binary categorical and multi-level categorical\n\n4.  continuous and continuous\n\n### 2. Synergerism vs. antagonism: how does $\\beta_3$ relate to each?\n\n-   Synergerism means the sign of interaction's coefficient ($\\beta_3$) matches that of main effect of $X_1$, so the effect of $X_1$ is strengthened as $X_2$ increases\n\n    -   In the case that we're looking at $X_2$ as an effect modifier of $X_1$\n\n    -   It's a little hard to think about this when we've only discussed $X_2$ as a binary covariate, but our \"increase\" for an indicator is going from 0 to 1.\n\n-   Antagonism means the sign of interaction's coefficient ($\\beta_3$) is flipped from that of main effect of $X_1$, so the effect of $X_1$ is weakened as $X_2$ increases\n\n    -   In the case that we're looking at $X_2$ as an effect modifier of $X_1$\n\n    -   It's a little hard to think about this when we've only discussed $X_2$ as a binary covariate, but our \"increase\" for an indicator is going from 0 to 1\n\n### 3. The red and green lines example. I'm not totally sure why the lines would be parallel if an interaction affects the slope of a line?\n\nThe lines should not be parallel if there is an interaction. Let me show the equation for each of those examples:\n\n-   Here is the plot and equation when $X_2$ is a confounder:\n\n    ![](../img_muddy_points/confounder.png)\n\n-   Here is the plot and equation when $X_2$ is an effect modifier:\n\n    ![](../img_muddy_points/interaction_ant.png)\n\n-   Here is the plot and equation when $X_2$ is a effect modifier:\n\n    ![](../img_muddy_points/interaction_syn.png)\n\n-   Here is the plot and equation when $X_2$ should not be in the model:\n\n    ![](../img_muddy_points/no_x2.png)\n\n\n::: {.cell}\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

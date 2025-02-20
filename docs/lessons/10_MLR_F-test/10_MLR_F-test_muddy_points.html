@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -60,6 +94,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -115,7 +151,23 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#muddy-points-from-winter-2025" id="toc-muddy-points-from-winter-2025" class="nav-link active" data-scroll-target="#muddy-points-from-winter-2025">Muddy Points from Winter 2025</a></li>
+  <li><a href="#muddy-points-from-winter-2024" id="toc-muddy-points-from-winter-2024" class="nav-link" data-scroll-target="#muddy-points-from-winter-2024">Muddy Points from Winter 2024</a>
+  <ul class="collapse">
+  <li><a href="#we-keep-getting-back-to-widehaty-y_i-and-overliney-and-their-relationship-to-the-population-parameter-estimates.-can-you-clarify-this" id="toc-we-keep-getting-back-to-widehaty-y_i-and-overliney-and-their-relationship-to-the-population-parameter-estimates.-can-you-clarify-this" class="nav-link" data-scroll-target="#we-keep-getting-back-to-widehaty-y_i-and-overliney-and-their-relationship-to-the-population-parameter-estimates.-can-you-clarify-this">1. We keep getting back to <span class="math inline">\(\widehat{Y}\)</span>, <span class="math inline">\(Y_i\)</span>, and <span class="math inline">\(\overline{Y}\)</span> and their relationship to the population parameter estimates. Can you clarify this?</a></li>
+  <li><a href="#i-feel-that-i-am-understanding-and-beginning-to-memorize-the-processes-but-failing-to-understand-the-howwhenwhy-we-apply-certain-models.-like-if-you-let-me-loose-into-the-world-tomorrow-i-feel-i-would-not-be-able-to-implement-anything-that-i-have-learned-thus-far-out-in-the-wild." id="toc-i-feel-that-i-am-understanding-and-beginning-to-memorize-the-processes-but-failing-to-understand-the-howwhenwhy-we-apply-certain-models.-like-if-you-let-me-loose-into-the-world-tomorrow-i-feel-i-would-not-be-able-to-implement-anything-that-i-have-learned-thus-far-out-in-the-wild." class="nav-link" data-scroll-target="#i-feel-that-i-am-understanding-and-beginning-to-memorize-the-processes-but-failing-to-understand-the-howwhenwhy-we-apply-certain-models.-like-if-you-let-me-loose-into-the-world-tomorrow-i-feel-i-would-not-be-able-to-implement-anything-that-i-have-learned-thus-far-out-in-the-wild.">2. I feel that I am understanding and beginning to memorize the “processes” but failing to understand the “how/when/why” we apply certain models. Like, if you let me loose into the world tomorrow, I feel I would not be able to implement anything that I have learned thus far out in the wild.</a></li>
+  <li><a href="#im-struggling-with-how-to-use-the-sse-ssr-and-ssy-graphs-but-i-think-i-just-need-to-spend-more-time-with-them." id="toc-im-struggling-with-how-to-use-the-sse-ssr-and-ssy-graphs-but-i-think-i-just-need-to-spend-more-time-with-them." class="nav-link" data-scroll-target="#im-struggling-with-how-to-use-the-sse-ssr-and-ssy-graphs-but-i-think-i-just-need-to-spend-more-time-with-them.">3. I’m struggling with how to use the SSE, SSR, and SSY graphs but I think I just need to spend more time with them.</a></li>
+  <li><a href="#using-r-to-conduct-each-f-test" id="toc-using-r-to-conduct-each-f-test" class="nav-link" data-scroll-target="#using-r-to-conduct-each-f-test">4. Using R to conduct each F-test</a></li>
+  <li><a href="#calculating-the-f-statistic" id="toc-calculating-the-f-statistic" class="nav-link" data-scroll-target="#calculating-the-f-statistic">5. Calculating the F-statistic</a></li>
+  <li><a href="#why-is-sse-of-the-reduced-model-always-greater-than-or-equal-to-sse-of-the-full-model" id="toc-why-is-sse-of-the-reduced-model-always-greater-than-or-equal-to-sse-of-the-full-model" class="nav-link" data-scroll-target="#why-is-sse-of-the-reduced-model-always-greater-than-or-equal-to-sse-of-the-full-model">6. Why is SSE of the reduced model always greater than or equal to SSE of the full model?</a></li>
+  <li><a href="#how-many-variables-would-be-too-many-to-include-in-mlr-what-if-they-all-help-explain-the-regression" id="toc-how-many-variables-would-be-too-many-to-include-in-mlr-what-if-they-all-help-explain-the-regression" class="nav-link" data-scroll-target="#how-many-variables-would-be-too-many-to-include-in-mlr-what-if-they-all-help-explain-the-regression">7. How many variables would be too many to include in MLR? What if they all help explain the regression?</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -123,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Muddy Points</h1>
-<p class="subtitle lead">Lesson</p>
+<p class="subtitle lead">Lesson 10: MLR: Using the F-test</p>
 </div>
 
 
@@ -135,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 7, 2025</p>
+      <p class="date-modified">February 19, 2025</p>
     </div>
   </div>
     
@@ -144,8 +196,666 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="muddy-points-from-winter-2025" class="level2">
+<h2 class="anchored" data-anchor-id="muddy-points-from-winter-2025">Muddy Points from Winter 2025</h2>
+</section>
+<section id="muddy-points-from-winter-2024" class="level2">
+<h2 class="anchored" data-anchor-id="muddy-points-from-winter-2024">Muddy Points from Winter 2024</h2>
+<section id="we-keep-getting-back-to-widehaty-y_i-and-overliney-and-their-relationship-to-the-population-parameter-estimates.-can-you-clarify-this" class="level3">
+<h3 class="anchored" data-anchor-id="we-keep-getting-back-to-widehaty-y_i-and-overliney-and-their-relationship-to-the-population-parameter-estimates.-can-you-clarify-this">1. We keep getting back to <span class="math inline">\(\widehat{Y}\)</span>, <span class="math inline">\(Y_i\)</span>, and <span class="math inline">\(\overline{Y}\)</span> and their relationship to the population parameter estimates. Can you clarify this?</h3>
+<p>I think it’ll be helpful to use the dataset I created from our quiz. I still think this relationship is best communicated with simple linear regression. What you didn’t see on the quiz was that I simulated the data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">444</span>) <span class="co"># Set the seed so that every time I run this I get the same results</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">runif</span>(<span class="at">n=</span><span class="dv">200</span>, <span class="at">min =</span> <span class="dv">40</span>, <span class="at">max =</span> <span class="dv">85</span>) <span class="co"># I am sampling 200 points from a uniform distribution with minimum value 40 and maximum value 85</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">200</span>, <span class="dv">215</span> <span class="sc">-</span> <span class="fl">0.85</span><span class="sc">*</span>x, <span class="dv">13</span>) <span class="co"># Then I can construct my y-observations based on x. Notice that 215 is the true, underlying intercept and -0.85 is the true underlying slope</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Age =</span> x, <span class="at">HR =</span> y) <span class="co"># Then I combine these into a dataframe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then we can look at the scatterplot:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">colour=</span><span class="st">"#F14124"</span>) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Age (years)"</span>, </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Peak exercise heart rate (bpm)"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Peak exercise heart rate vs. Age"</span>) <span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>), </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>), </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>Each point represents an observation <span class="math inline">\((X_i, Y_i)\)</span>. That is where we get <span class="math inline">\(Y_i\)</span> from</p></li>
+<li><p>The red line represents <span class="math inline">\(\widehat{Y}\)</span>. We can look at each <span class="math inline">\(\widehat{Y}|X\)</span>, so we look at the expected <span class="math inline">\(Y\)</span> at a specific age like 70 years old.</p></li>
+<li><p>Now we need to find <span class="math inline">\(\overline{Y}\)</span>. This does not take <span class="math inline">\(X\)</span> into account. So we can look at the observed <span class="math inline">\(Y\)</span>’s and find the mean</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(HR)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df<span class="sc">$</span>HR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 162.8725</code></pre>
+</div>
+</div></li>
+</ul>
+<p>Then we can draw a line on the scatterplot for <span class="math inline">\(\overline{Y}\)</span>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">colour=</span><span class="st">"#F14124"</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Age (years)"</span>, </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Peak exercise heart rate (bpm)"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Peak exercise heart rate vs. Age"</span>) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>), </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>), </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>)) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(df<span class="sc">$</span>HR), <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">colour=</span><span class="st">"green"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>When we talk about SSY (total variation), we can think of the histogram of the Y’s</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(HR)) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="sc">+</span> <span class="fu">xlim</span>(<span class="dv">100</span>, <span class="dv">225</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Then the total variation of these observed values is related to the <span class="math inline">\(\sum_{i=1}^n (Y_i - \overline{Y})^2\)</span>. Let’s plot <span class="math inline">\(Y_i - \overline{Y}\)</span>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">y_center =</span> HR <span class="sc">-</span> <span class="fu">mean</span>(HR))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(y_center)) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="sc">+</span> <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">60</span>, <span class="dv">50</span>)<span class="sc">+</span><span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">35</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>However, we can fit a regression line to show the relationship between Y and X. For every observation <span class="math inline">\(X_i\)</span> there is a specific <span class="math inline">\(\widehat{Y}\)</span> from the regression line. So if we take the difference between the mean Y and the fitted Y, then we get the variation that is explained by the regression.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">=</span> <span class="fu">lm</span>(HR <span class="sc">~</span> Age, <span class="at">data =</span> df)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>aug1 <span class="ot">=</span> <span class="fu">augment</span>(mod1)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">fitted_y =</span> aug1<span class="sc">$</span>.fitted, </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">diff_mean_fit =</span> fitted_y <span class="sc">-</span> <span class="fu">mean</span>(HR))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(diff_mean_fit)) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="sc">+</span> <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">60</span>, <span class="dv">50</span>)<span class="sc">+</span><span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">35</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In the plot above, there is variation! And it means that some of the variation in the plot of Y alone is actually coming from this variation explained by the regression model!!</p>
+<p>But there is left over variation that is not explained by the model… What is that? It’s related to our residuals: <span class="math inline">\(\widehat\epsilon_i = Y_i - \widehat{Y}_i\)</span></p>
+<p>So we’ll calculate the residuals (or more appropriately, use the calculation of the residuals that R gave us)</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">=</span> <span class="fu">lm</span>(HR <span class="sc">~</span> Age, <span class="at">data =</span> df)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>aug1 <span class="ot">=</span> <span class="fu">augment</span>(mod1)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">diff_y_fitted =</span> aug1<span class="sc">$</span>.resid)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(diff_y_fitted)) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="sc">+</span> <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">60</span>, <span class="dv">50</span>) <span class="sc">+</span><span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">35</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Our aim in regression (through ordinary least squares) is to minimize the variance in the above plot. The more variance our model can explain, the less variance in the residuals. In SLR, we can only explain so much variance with a single predictor. As we include more predictors in our model, the model has the opportunity to explain even MORE variance.</p>
+</section>
+<section id="i-feel-that-i-am-understanding-and-beginning-to-memorize-the-processes-but-failing-to-understand-the-howwhenwhy-we-apply-certain-models.-like-if-you-let-me-loose-into-the-world-tomorrow-i-feel-i-would-not-be-able-to-implement-anything-that-i-have-learned-thus-far-out-in-the-wild." class="level3">
+<h3 class="anchored" data-anchor-id="i-feel-that-i-am-understanding-and-beginning-to-memorize-the-processes-but-failing-to-understand-the-howwhenwhy-we-apply-certain-models.-like-if-you-let-me-loose-into-the-world-tomorrow-i-feel-i-would-not-be-able-to-implement-anything-that-i-have-learned-thus-far-out-in-the-wild.">2. I feel that I am understanding and beginning to memorize the “processes” but failing to understand the “how/when/why” we apply certain models. Like, if you let me loose into the world tomorrow, I feel I would not be able to implement anything that I have learned thus far out in the wild.</h3>
+<p>I feel you. Today was meant to establish the tools and the process for the hypothesis tests. In the next few classes we are going to shape the how/when/why. There’s so many that we can’t cover them in one class. So I thought it would be best to introduce the tools on their own, and then discuss how we use each one.</p>
+</section>
+<section id="im-struggling-with-how-to-use-the-sse-ssr-and-ssy-graphs-but-i-think-i-just-need-to-spend-more-time-with-them." class="level3">
+<h3 class="anchored" data-anchor-id="im-struggling-with-how-to-use-the-sse-ssr-and-ssy-graphs-but-i-think-i-just-need-to-spend-more-time-with-them.">3. I’m struggling with how to use the SSE, SSR, and SSY graphs but I think I just need to spend more time with them.</h3>
+<p>We’re going to keep talking about this! I think I have a good visual explanation that will help us connect some ideas!</p>
+</section>
+<section id="using-r-to-conduct-each-f-test" class="level3">
+<h3 class="anchored" data-anchor-id="using-r-to-conduct-each-f-test">4. Using R to conduct each F-test</h3>
+<p>I show this a little bit for the overall test, but let’s explicitly write it out for the example with the group of covariates.</p>
+<p>Let’s say our proposed model is:</p>
+<p><span class="math display">\[\text{LE} = \beta_0 + \beta_1 \text{FLR} + \beta_2 \text{FS} + \beta_3 WS + \epsilon\]</span></p>
+<p>And we want to see if it fits the data significantly better than:</p>
+<p><span class="math display">\[LE = \beta_0 + \beta_1 FLR + \epsilon\]</span></p>
+<p>We need to fit both models first:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reduced model</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mod_red3 <span class="ot">=</span> <span class="fu">lm</span>(LifeExpectancyYrs <span class="sc">~</span> FemaleLiteracyRate, <span class="at">data =</span> gapm_sub2)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Full model</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>mod_full3 <span class="ot">=</span> <span class="fu">lm</span>(LifeExpectancyYrs <span class="sc">~</span> FemaleLiteracyRate <span class="sc">+</span> FoodSupplykcPPD <span class="sc">+</span> WaterSourcePrct,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> gapm_sub2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And then all we need to do is call each model into the <code>anova()</code> function! The order of the models in the function will not matter for the F-test.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mod_red3, mod_full3) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="lhnbhcbqtm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lhnbhcbqtm table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#lhnbhcbqtm thead, #lhnbhcbqtm tbody, #lhnbhcbqtm tfoot, #lhnbhcbqtm tr, #lhnbhcbqtm td, #lhnbhcbqtm th {
+  border-style: none;
+}
+
+#lhnbhcbqtm p {
+  margin: 0;
+  padding: 0;
+}
+
+#lhnbhcbqtm .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#lhnbhcbqtm .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#lhnbhcbqtm .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#lhnbhcbqtm .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#lhnbhcbqtm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lhnbhcbqtm .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lhnbhcbqtm .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lhnbhcbqtm .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#lhnbhcbqtm .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#lhnbhcbqtm .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#lhnbhcbqtm .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#lhnbhcbqtm .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#lhnbhcbqtm .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#lhnbhcbqtm .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#lhnbhcbqtm .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#lhnbhcbqtm .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#lhnbhcbqtm .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#lhnbhcbqtm .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#lhnbhcbqtm .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lhnbhcbqtm .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#lhnbhcbqtm .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#lhnbhcbqtm .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#lhnbhcbqtm .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lhnbhcbqtm .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#lhnbhcbqtm .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#lhnbhcbqtm .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lhnbhcbqtm .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lhnbhcbqtm .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#lhnbhcbqtm .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lhnbhcbqtm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#lhnbhcbqtm .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lhnbhcbqtm .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lhnbhcbqtm .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lhnbhcbqtm .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lhnbhcbqtm .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lhnbhcbqtm .gt_left {
+  text-align: left;
+}
+
+#lhnbhcbqtm .gt_center {
+  text-align: center;
+}
+
+#lhnbhcbqtm .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#lhnbhcbqtm .gt_font_normal {
+  font-weight: normal;
+}
+
+#lhnbhcbqtm .gt_font_bold {
+  font-weight: bold;
+}
+
+#lhnbhcbqtm .gt_font_italic {
+  font-style: italic;
+}
+
+#lhnbhcbqtm .gt_super {
+  font-size: 65%;
+}
+
+#lhnbhcbqtm .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#lhnbhcbqtm .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#lhnbhcbqtm .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#lhnbhcbqtm .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#lhnbhcbqtm .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#lhnbhcbqtm .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#lhnbhcbqtm .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#lhnbhcbqtm .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#lhnbhcbqtm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df.residual">df.residual</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="rss">rss</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sumsq">sumsq</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="term" class="gt_row gt_left">LifeExpectancyYrs ~ FemaleLiteracyRate</td>
+<td headers="df.residual" class="gt_row gt_right">70.00</td>
+<td headers="rss" class="gt_row gt_right">2,654.87</td>
+<td headers="df" class="gt_row gt_right">NA</td>
+<td headers="sumsq" class="gt_row gt_right">NA</td>
+<td headers="statistic" class="gt_row gt_right">NA</td>
+<td headers="p.value" class="gt_row gt_right">NA</td></tr>
+    <tr><td headers="term" class="gt_row gt_left">LifeExpectancyYrs ~ FemaleLiteracyRate + FoodSupplykcPPD + WaterSourcePrct</td>
+<td headers="df.residual" class="gt_row gt_right">68.00</td>
+<td headers="rss" class="gt_row gt_right">1,517.92</td>
+<td headers="df" class="gt_row gt_right">2.00</td>
+<td headers="sumsq" class="gt_row gt_right">1,136.96</td>
+<td headers="statistic" class="gt_row gt_right">25.47</td>
+<td headers="p.value" class="gt_row gt_right">0.00</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>And then we have all the information we need for our conclusion! Because the statistic is 25.47 and its corresponding p-value &lt; 0.001, we reject the null!</p>
+</section>
+<section id="calculating-the-f-statistic" class="level3">
+<h3 class="anchored" data-anchor-id="calculating-the-f-statistic">5. Calculating the F-statistic</h3>
+<p>We will not need to know exactly how to calculate the F-statistic! We just need to understand the context of the calculation. With that poll everywhere question, I just wanted you to have a moment to interact with the fact the the F-test is measuring the difference in the sum of squares of the error.</p>
+</section>
+<section id="why-is-sse-of-the-reduced-model-always-greater-than-or-equal-to-sse-of-the-full-model" class="level3">
+<h3 class="anchored" data-anchor-id="why-is-sse-of-the-reduced-model-always-greater-than-or-equal-to-sse-of-the-full-model">6. Why is SSE of the reduced model always greater than or equal to SSE of the full model?</h3>
+<p>The more variables that we have in the model, the more variation in our outcome we can explain. The worst case scenario is that the added variable does not help explain variation, then we are left with the same SSE as a model without the variable. If the variable add any information about our outcome, then we decrease the SSE.</p>
+</section>
+<section id="how-many-variables-would-be-too-many-to-include-in-mlr-what-if-they-all-help-explain-the-regression" class="level3">
+<h3 class="anchored" data-anchor-id="how-many-variables-would-be-too-many-to-include-in-mlr-what-if-they-all-help-explain-the-regression">7. How many variables would be too many to include in MLR? What if they all help explain the regression?</h3>
+<p>What a fun question! The maximum number of variables that you can have in a model is the number of observations that you have. At that point, you can have a variable that is an indicator of each observation. Basically, a singular mapping from each individual observation to its respective outcome.</p>
+<p>And this will explain the variation in Y perfectly!! But it won’t illuminate useful information. We cannot generalize it to the population. So with the number of variables that we include in the model, we need to balance generalizability and reduction of error.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

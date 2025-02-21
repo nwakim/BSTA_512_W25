@@ -1,0 +1,229 @@
+---
+title: "Homework 4 Answers"
+subtitle: "BSTA 512/612"
+author: "Your name here!!!"
+description: "Due: Friday February 28, 2025 at 11pm"
+date-modified: "today"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    embed-resources: true
+editor_options: 
+  chunk_output_type: console
+---
+
+Answers are not necessarily complete! This is just meant to serve as a check if you are stuck. 
+
+```{=html}
+<style>div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}</style>
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.height = 4, fig.width = 6, fig.align = "center")
+
+library(tidyverse)
+library(rstatix)
+library(broom)
+library(gt)
+library(janitor)
+library(readxl)
+library(gridExtra)
+library(ggfortify)  # autoplot(model)
+library(gtsummary)
+library(describedata) # gladder()
+library(haven)
+library(here)
+```
+
+## Questions
+
+### Question 1
+
+```{r}
+#| echo: false
+dep_df = read_sas(here("data/completedata.sas7bdat"))
+```
+
+#### Part a
+
+Fit the regression model with all the covariates (Fatalism, Optimism, Spirituality), display the regression table, and write out the fitted regression line.
+
+::: blue
+```{r}
+#| echo: false
+
+
+q2_mod_f1 = lm(Depression ~ Fatalism + Optimism + Spirituality, 
+                data = dep_df)
+
+q2_mod_ft = tidy(q2_mod_f1, conf.int = T)
+
+tbl_regression(q2_mod_f1, intercept = T)
+```
+$$\begin{aligned}
+\widehat{\text{Depression}} &= `r round(q2_mod_ft$estimate[1], 1)` + `r round(q2_mod_ft$estimate[2], 2)` \cdot \text{Fatalism} `r round(q2_mod_ft$estimate[3], 2)` \cdot \text{Optimism} + `r round(q2_mod_ft$estimate[4], 2)` \cdot \text{Spirituality}
+\end{aligned}$$
+:::
+
+#### Part b
+
+Does at least one of the covariates contribute significantly to the prediction of Depression? (Note: this is an overall test. Please follow the hypothesis test steps. To complete step 4-6, simply output your ANOVA table.)
+
+::: blue
+```{r}
+#| echo: false
+
+q2_mod_f1 = lm(Depression ~ Fatalism + Optimism + Spirituality, 
+            data = dep_df) # already ran in earlier part
+q2_mod_r1 = lm(Depression ~ 1, 
+            data = dep_df) 
+anova(q2_mod_r1, q2_mod_f1) %>% tidy() %>% gt() %>% fmt_number(decimals = 4)
+```
+:::
+
+#### Part c
+
+Does the addition of Spirituality add significantly to the prediction of Depression achieved by Fatalism and Optimism?
+
+::: blue
+```{r}
+#| echo: false
+q2_mod_f2 = lm(Depression ~ Fatalism + Optimism + Spirituality, 
+            data = dep_df) # already ran in earlier part
+q2_mod_r2 = lm(Depression ~ Fatalism + Optimism, 
+            data = dep_df) 
+anova(q2_mod_r2, q2_mod_f2) %>% tidy() %>% gt() %>% fmt_number(decimals = 2)
+```
+:::
+
+#### Part d
+
+::: blue
+```{r}
+#| echo: false
+q2_mod_f3 = lm(Depression ~ Fatalism + Optimism + Spirituality, 
+            data = dep_df) # already ran in earlier part
+q2_mod_r3 = lm(Depression ~ Fatalism, 
+            data = dep_df) 
+anova(q2_mod_r3, q2_mod_f3) %>% tidy() %>% gt() %>% fmt_number(decimals = 2)
+```
+:::
+
+
+### Question 2
+
+```{r}
+#| echo: false
+protein <- read_excel(here("data/CH12Q03.xls")) # change this to the appropriate file location
+```
+
+#### Part a
+
+Using R, make a variable that is a factor for Diet. Make sure to check what values the original variable for Diet can take. How many indicator functions do you need to represent the categorical variable Diet (protein-rich vs. protein-poor)?
+
+::: blue
+```{r}
+#| include: false
+protein = protein %>%
+  mutate(DIET = factor(DIET, levels = c("POOR", "RICH")))
+```
+
+2 levels, 1 indicator
+:::
+
+#### Part b
+
+At a level of significance $\alpha = 0.10$, test whether protein diet modifies the effect of age on height. Justify your answer (e.g., perform a hypothesis test for the interaction between diet and age).
+
+::: blue
+
+```{r}
+#| echo: false
+mod_diet_red = lm(HT ~ AGE + DIET, data = protein)
+mod_diet_full = lm(HT ~ AGE + DIET + AGE * DIET, data = protein)
+```
+
+```{r}
+#| echo: false
+anova(mod_diet_red, mod_diet_full) %>% tidy() %>% gt() %>% fmt_number(decimals = 4)
+```
+:::
+
+#### Part c
+
+Is it possible that diet is a confounder? Note: this will depend on your results from Part b. 
+
+::: blue
+:::
+
+#### Part d
+
+Write the fitted regression equation for our model in Part b. Write the respective regression lines for each specific diet group: protein rich and protein poor. Interpret the slope of each regression line (no need for a 95% CI here).
+
+::: blue
+**Fitted regression equation:**
+
+$$\widehat{\text{Height}}|\text{Age}, \text{Diet} = 51.23+8.69\cdot \text{Age}-0.90\cdot I(\text{Protein-rich})+7.32\cdot \text{Age}\cdot I(\text{Protein-rich})$$
+**Protein rich group $I(\text{Protein-rich})=1$:**
+
+$$\widehat{\text{Height}}|\text{Age}, \text{Diet} = ??$$
+
+**Protein poor group $I(\text{Protein-rich})=0$:**
+
+$$\widehat{\text{Height}}|\text{Age}, \text{Diet} = ??$$
+
+ 
+
+**Interpretation** You need to work through this!
+:::
+
+### Question 3
+
+```{r}
+#| echo: false
+
+HDL_factors <- read_excel(here("data/CH09Q05.xls")) # change this to the appropriate file location
+```
+
+#### Part a
+
+Use $\alpha= 0.05$, test whether if there is a crude association between HDL measurement and total cholesterol. Note: testing for a crude association means we fit a simple linear regression model and see if the association is significant. 
+
+::: blue
+```{r}
+#| echo: false
+model_X1 = lm(Y ~ X1, data = HDL_factors)
+```
+
+```{r}
+#| echo: false
+anova(model_X1) %>% tidy() %>% gt() %>% fmt_number(decimals = 3)
+```
+
+:::
+
+#### Part b
+
+Sometimes simple linear regression leads us to believe that there is no association between two variables, but missing interaction might be obscuring the association. Use $\alpha= 0.1$ to test whether total triglyceride is an effect modifier of the association between HDL and total cholesterol. 
+
+::: blue
+```{r}
+#| echo: false
+mod_X1_X2_full = lm(Y ~ X1 + X2 + X1*X2, data = HDL_factors)
+mod_X1_X2_red = lm(Y ~ X1 + X2, data = HDL_factors)
+
+anova(mod_X1_X2_red, mod_X1_X2_full) %>% tidy() %>% 
+  gt() %>% fmt_number(decimals = 3)
+```
+:::
+
+
+#### Part c
+
+Is it possible that total triglyceride is a confounder? No need to test this explicity.
+
+::: blue
+:::
+
+

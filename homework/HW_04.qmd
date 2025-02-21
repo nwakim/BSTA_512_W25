@@ -92,17 +92,17 @@ dep_df = read_sas(here("./data/completedata.sas7bdat"))
 
 Fit the regression model with all the covariates (Fatalism, Optimism, Spirituality), display the regression table, and write out the fitted regression line.
 
-#### Part e
+#### Part b
 
 Does at least one of the covariates contribute significantly to the prediction of Depression? (Note: this is an overall test. Please follow the hypothesis test steps. To complete step 4-6, simply output your ANOVA table.)
 
 
-#### Part f
+#### Part c
 
 Does the addition of Spirituality add significantly to the prediction of Depression achieved by Fatalism and Optimism?
 
 
-#### Part g
+#### Part d
 
 Does the addition of Spirituality and Optimism add significantly to the prediction of Depression achieved by Fatalism?
 

@@ -18,12 +18,12 @@ bibliography: references.bib
 ---
 
 ::: callout-important
-**Instructions and rubric are still in progress!**
+**Instructions and rubric are still in progress!** I updated them on 2/21, but still working on it!
 :::
 
 ------------------------------------------------------------------------
 
-These instructions were partially developed using ChatGPT by feeding in my previous project report instructions and asking ChatGPT to edit for a poster.
+The purpose section was partially developed using ChatGPT by feeding in my previous project report instructions and asking ChatGPT to edit for a poster.
 
 ## Directions
 
@@ -58,7 +58,7 @@ A scientific poster serves as a visual and concise way to communicate research f
         -   I will not take off points if there are a few sprinkled in
         -   If *every or close to every* sentence has mistakes, then I will take off
 -   Sectioning of the report
-    -   Main sections that were required: Introduction, Statistical Methods, Results, Discussion, Conclusion, and References
+    -   Main sections that were required: Introduction, Methods, Results, Discussion, Conclusion, and References
     -   Other sections that might help group specific methods or results
 -   Title information at the top of the `html`
     -   This includes the title itself, your name, and the date
@@ -136,96 +136,104 @@ The project report is out of 36 points. Note that the Statistical Methods and Re
 
 ### Introduction
 
--   **Length: 1-2 paragraphs**
+-   **Length: 5-8 bullets**
 -   **Purpose:** Introduce the research question and why it is important to study
 -   This section is non-technical.
     -   By reading just the introduction and conclusion, someone without a technical background should have an idea of what they study was about, why it is important, and what the main results are
--   You may start with the introduction written in Lab 1, but you should edit it and make sure it flows into your report well!
+-   You may start with your bullets from Lab 1, but you should edit it and make sure it flows into your report well!
 -   Should contain some references
 
-### Statistical Methods
+### Methods
 
--   **Length: 3-5 paragraphs**
+-   **Length: 8-10 bullets**
 -   **Purpose:** Describe the analyses that were conducted and methods used to select variables and check diagnostics
--   **Important to keep in mind:** methods typically describe your approach and process, not the results of that process
-    -   For example: I might say "We investigated the linearity of each continuous covariate visually. If continuous variables were not linear, then we divided the variable into categories using existing guidelines from \<insert reference here\> or creating quartiles."
-        -   In the methods section, I would NOT say: "We investigated the linearity of each continuous covariate visually. We found that age was not linearly related to IAT scores. Thus, we categorized age into the following groups: \_\_\_, \_\_\_\_, \_\_\_\_, \_\_\_\_, and \_\_\_\_."
-            -   The last two sentences about age would be more appropriate in the Results section
 -   **Some important methods to discuss** (You may divide these into your sections, not necessarily with these names)
     -   General approach to the dataset
-        -   3-5 sentences
+        -   2-3 bullets
+        -   Where did the data come from?
         -   Did you need to do any quality control?
         -   Missing data: we performed complete case analysis
-            -   1 sentence
+            -   1 bullet
             -   Can be included in the Exploratory data analysis section
+        - What program did you use to analyze the data?
     -   Variables and variable creation
         -   This includes a description of analyses for Table 1 and what statistics were used to summarize the variables
             -   More on creation of Table 1, not discussing the results of Table 1
-        -   Includes (not required)
+        -   Includes (only include if you did one of the following)
             -   Indicators for gender identity or race
             -   Creating BMI
             -   Categorizing a continuous variable (even if performed in model selection)
             -   Using scoring for an ordered categorical variable (that is not your explanatory variable)
-        -   1-2 sentences per variable
+        -   1 bullet for all variables
     -   Model building: we performed purposeful selection
-        -   3-5 sentences
+        -   1-3 bullets
         -   Includes
             -   Describe purposeful selection: combining existing literature, clinical significance, and analysis
-            -   How did you build the model? Describe the process
+            -   How did you build the model? Describe the process 
             -   Did you consider confounders and effect modifiers?
+        - Example: We considered the following potential confounders: list fo them. Based on our research question, existing literature, and clinical significance, we used purposeful selection to identify confounders and effect modifiers. 
+    -   Final model
+        - 1 bullet
+        - Write out your final model equation
+        - I would include the main exploratory variable then a placeholder for all the other covariates
     -   Model diagnostics
-        -   2-5 sentences
+        -   1-3 sentences
         -   Includes
             -   Process of investigating model diagnostics
             -   By the time you build the model, LINE assumptions should be met
             -   If assumptions were not met, what process did you use to fix it?
 
+::: callout-caution 
+### Important to keep in mind
+
+Methods typically describe your approach and process, not the results of that process
+
+-   For example: I might say "We investigated the linearity of each continuous covariate visually. If continuous variables were not linear, then we divided the variable into categories using existing guidelines from \<insert reference here\> or creating quartiles."
+-   In the methods section, I would NOT say: "We investigated the linearity of each continuous covariate visually. We found that age was not linearly related to IAT scores. Thus, we categorized age into the following groups: \_\_\_, \_\_\_\_, \_\_\_\_, \_\_\_\_, and \_\_\_\_."
+-   The last two sentences about age would be more appropriate in the Results section
+:::
+
 ### Results
 
--   **Length: \~3 paragraphs**
+-   **Length: mostly figures with 2-3 bullet points**
 -   **Purpose:** Relay the results from our sample's analysis typically focusing on the numbers and interpretations
--   Some important results to discuss (also could be sections)
-    -   Sample data set statistics (Table 1)
-        -   3-5 sentences
-        -   Include a brief description of the sample’s characteristics
-        -   Table 1 should be referenced and appear here!
-    -   Final model
-        -   1-2 sentences
-        -   Describe final model (or models if comparing a few)
-            -   What variables were included in your final model?
-            -   What interactions with your explanatory variable did you include?
-    -   Interpret the model coefficients in the context of the research question
-        -   1-2 paragraphs
-        -   Interpreting the explanatory variable's relationship with IAT score is the most important thing to report!!
-            -   When doing this, make sure you account for ALL interactions: If your explanatory variable has multiple interactions and you are trying to interpret one, then what does that mean about the other variables involved in the other interactions? If this is confusing, please make an appointment with me!!
-    -   Results of model diagnostics if there is anything worth noting
--   Tables & figures
+-   Tables & figures (2-3 tables or figures)
     -   The following are required tables or figures
         -   Table 1 summarizing participant characteristics both **overall** and **stratified by your primary independent variable**
         -   Table or figure with regression results
             -   Can be a forest plot
             -   If you have A LOT of coefficient estimates, the forest plot may not work well!
-    -   **1-3 figures that you think are helpful in understanding the results, for example**
+    -   **1-2 figures that you think are helpful in understanding the results, for example**
         -   DAG explaining connection between variables (if you did this)
         -   Table or figure to compare model fit statistics (if you did this)
         -   Table or figure for unadjusted relationship between outcome and explanatory variables
+        
+-   Interpret the **important** model coefficients in the context of the research question
+    -   2-3 bullets
+    -   Interpreting the explanatory variable's relationship with IAT score is the most important thing to report!!
+        -   When doing this, make sure you account for ALL interactions: If your explanatory variable has multiple interactions and you are trying to interpret one, then what does that mean about the other variables involved in the other interactions? If this is confusing, please make an appointment with me!!
+        
+        
+### Conclusion
+
+-   **Length: 3-6 bullets**
+-   **Purpose:** Describe the main conclusions to a non-technical audience
+-   What was the answer to your research question?
+    -   Mention the direction of the association if there was one
+- Any other interesting results?
 
 ### Discussion
 
--   **Length: 2-3 paragraphs**
+-   **Length: 3-5 bullets**
 -   **Purpose:** Discuss the results and give them context outside of the sample and its analysis
 -   Some important things to include
-    -   Include a paragraph on the limitations of the results
+    -   Include limitations of the results
         -   You don't need to hit all the limitations, but think about the big ones (generalizability? independence of samples? large sample size vs. clinical significance? the way we handled variables?)
     -   After limitations, discuss the positive parts of the results
         -   What can we do with these results? What impact can it have?
     -   Any overarching trends that are worth noting? [@Giebel2024]
 -   Should contain some references
 
-### Conclusion
-
--   **Length: 1 short paragraph (more like \~3 sentences)**
--   **Purpose:** Describe the main conclusions to a non-technical audience
 
 ### References
 

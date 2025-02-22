@@ -1,0 +1,38 @@
+---
+title: "Anti-fat bias: Is there an association between implicit anti-fat bias and a selected exploratory variable?"
+format:
+  poster-typst: 
+    size: "36x24"
+    poster-authors: "N. Wakim"
+    departments: "School of Public Health"
+    institution-logo: "../images/OHSU-PSU-SPH.png"
+    footer-url: "Final Project Poster"
+    footer-text: "Linear Models"
+    footer-emails: "wakim@ohsu.com"
+    footer-color: "b1c3d9"
+    keywords: ["Linear models", "Linear regression", "Anti-fat bias"]
+---
+
+# Background
+
+- A few bullets here from your introduction
+- Lorem ipsum dolor sit amet, consectetur adipiscing elit
+- Lorem ipsum dolor sit amet, consectetur adipiscing elit
+- Lorem ipsum dolor sit amet, consectetur adipiscing elit
+- Need to include your research question here
+
+# Methods
+
+- A few bullets here for your methods
+- Bullet describing model selection
+- Bullet describing the variables in your final model
+
+# Results
+
+- Include a regression table here using `tbl_regression()`
+
+# Conclusion
+
+# Discussion
+
+# References

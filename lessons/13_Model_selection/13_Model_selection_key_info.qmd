@@ -20,5 +20,43 @@ editor_options:
       - Free food!
       - Learn from other faculty and students!
       - Get conference experience at a low stake and FREE event
+
+### Homeworks
+
+  - In your interpretations, please make it as easy as possible for your audience
+    - For example: "-0.3 lower" Is that 0.3 lower? or 0.3 higher?
+      - Stick to the magnitude and use lower or higher to indicate the sign!
+  - If the question asks for a population model, there should be NO hats!
+  - HW3, question 3
+    - Part b
+      - Asked for population (not estimated) model
+    - Part g
+      - Age OR fitted values can be on the x-axis
+      - Residuals must be on the y-axis
+    - Part q
+      - I would use the log-transformation
+      - The qq-plot looks much better! The residual plot looks better! The linearity looks better
+        - All three of these are closer to the ideal look 
+
+### Labs
+
+  - Look at your html before turning it in!!
+    - Do not print an entire dataset! You shouldn't need to scroll through 100,000's of rows of data!
+  - If you are working with gender identity, multi-selection race, or BMI
+    - Please make sure you are using these variables correctly. 
+      - Ideally, come to office hours and make sure you have the variables correct
+      - Points will be taken off your final project if these variables are incorrect
+  - Make sure your factored variables are correct! 
+    - We should NOT see numbers on plots if the variable is categorical
+  - Make sure you selected variables before using `drop_NA()`
+- Reminder on late work policy
+  - Late labs are NOT the same as late homework
+  - You have one no-questions-asked extensions for labs
+  - If your lab is late without an approved extension, then 2 points will be taken off
       
 ## Key Dates
+
+- HW 4 due 2/28
+- Lab 4 due 3/7
+- HW 5 due 3/14
+- Project poster due 3/17

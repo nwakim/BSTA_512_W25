@@ -1,0 +1,90 @@
+---
+title: "HW 3 and Lab 3"
+author: "Nicky Wakim"
+title-slide-attributes:
+    data-background-color: "#213c96"
+date: "02/24/2025"
+format: 
+  revealjs:
+    theme: "../simple_NW.scss"
+    chalkboard: true
+    slide-number: true
+    show-slide-number: all
+    width: 1955
+    height: 1100
+    footer: "HW 3 and Lab 3"
+    highlight-style: ayu
+    html-math-method: mathjax
+execute:
+  freeze: auto  # re-render only when source changes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(rstatix)
+library(broom)
+library(gt)
+library(janitor)
+library(readxl)
+library(haven)
+library(here)
+library(gtsummary) ## Added this package!!
+
+```
+
+```{r setup2, include=FALSE}
+load(file = here("../Project/data/iat_data.rda"))
+iat_2021 = iat_2021 %>% 
+  select(IAT_score = D_biep.Thin_Good_all, 
+         att7, iam_001, identfat_001, 
+         myweight_002, myheight_002,
+         identthin_001, controlother_001, 
+         controlyou_001, mostpref_001,
+         important_001, 
+         birthmonth, birthyear, month, year, 
+         raceomb_002, raceombmulti, ethnicityomb, 
+         edu, edu_14, 
+         genderIdentity, 
+         birthSex) %>%
+  drop_na()
+
+iat_2021 = iat_2021 %>% mutate(iam_001_f = case_match(iam_001,
+                                  7 ~ "Very overweight",
+                                  6 ~ "Moderately overweight",
+                                  5 ~ "Slightly overweight",
+                                  4 ~ "Neither underweight nor underweight",
+                                  3 ~ "Slightly underweight",
+                                  2 ~ "Moderately underweight",
+                                  1 ~ "Very underweight",
+                                  .default = NA) %>% 
+             factor(levels = c("Very underweight", # Assigns the level order!
+                               "Moderately underweight", 
+                               "Slightly underweight", 
+                               "Neither underweight nor underweight", 
+                               "Slightly overweight", 
+                               "Moderately overweight", 
+                               "Very overweight")))
+```
+
+# Homework 3
+
+## 
+
+```{css, echo=FALSE}
+.reveal code {
+  max-height: 100% !important;
+}
+```
+
+# Lab 3
+
+## Other overall issues
+  
+
+## Making a regression table
+
+## Making a Table 1
+
+

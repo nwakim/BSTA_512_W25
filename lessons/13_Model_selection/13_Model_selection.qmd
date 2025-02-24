@@ -3,7 +3,7 @@ title: "Lesson 13: Model/Variable Selection"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
-date: "02/26/2025"
+date: "02/24/2025"
 format: 
   revealjs:
     theme: "../simple_NW.scss"
@@ -82,6 +82,109 @@ gapm_ind = gapm_sub %>% select(LifeExpectancyYrs, country)
 2.  Explain the general process or idea behind different model selection techniques
 3.  Recognize common model fit statistics and understand what they measure
 
+```{css, echo=FALSE}
+.reveal code {
+  max-height: 100% !important;
+}
+```
+
+```{css, echo=FALSE}
+.sourceCode code {
+  font-size: 1.3em;
+}
+```
+
+## Regression analysis process
+
+::: box
+![](../img_slides/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"} ![](../img_slides/arrow2.png){.absolute top="13.5%" right="28.4%" width="155"}![](../img_slides/arrow_back4.png){.absolute top="7.5%" right="30.5%" width="820"} ![](../img_slides/arrow_down.png){.absolute top="60.5%" right="48%" width="85"}
+
+::: columns
+::: {.column width="30%"}
+::: RAP1
+::: RAP1-title
+Model Selection
+:::
+
+::: RAP1-cont
+-   Building a model
+
+-   Selecting variables
+
+-   Prediction vs interpretation
+
+-   Comparing potential models
+:::
+:::
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="30%"}
+::: RAP2
+::: RAP2-title
+Model Fitting
+:::
+
+::: RAP2-cont
+-   Find best fit line
+
+-   Using OLS in this class
+
+-   Parameter estimation
+
+-   Categorical covariates
+
+-   Interactions
+:::
+:::
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="30%"}
+::: RAP3
+::: RAP3-title
+Model Evaluation
+:::
+
+::: RAP3-cont
+-   Evaluation of model fit
+-   Testing model assumptions
+-   Residuals
+-   Transformations
+-   Influential points
+-   Multicollinearity
+:::
+:::
+:::
+:::
+:::
+
+::: RAP4
+::: RAP4-title
+Model Use (Inference)
+:::
+
+::: RAP4-cont
+::: columns
+::: {.column width="50%"}
+-   Inference for coefficients
+-   Hypothesis testing for coefficients
+:::
+
+::: {.column width="50%"}
+-   Inference for expected $Y$ given $X$
+-   Prediction of new $Y$ given $X$
+:::
+:::
+:::
+:::
+
+
+
 # Learning Objectives
 
 ::: lob
@@ -90,71 +193,6 @@ gapm_ind = gapm_sub %>% select(LifeExpectancyYrs, country)
 
 2.  Explain the general process or idea behind different model selection techniques
 3.  Recognize common model fit statistics and understand what they measure
-
-## Why can't I just throw in all the variables into my model?
-
--   First, let's think about the number of observations in our dataset
-
--   For example: In the Gapminder dataset, I can use an indicator for each country
-
-    -   Remember that each country is an observation
-
-    -   So we have a perfectly fit model - a covariate for each observation
-
-    -   But we cannot generalize this to any other countries
-
-    -   And we haven't identified any meaningful relationships between life expectancy and other measured characteristics
-
--   More covariates in the model is not always better
-
-    -   Overfitting the data limits our generalizability and prevents us from answering research questions
-
-## Model Complexity vs. Parsimony
-
-::: columns
-::: {.column width="50%"}
-Suppose we have $p = 30$ covariates (in the true model) and n = 50 observations. We could consider the following two alternatives:
-
-1.  We could fit a model using all of the covariates.
-    -   In this case, $\widehat\beta$ is unbiased for $\beta$ (in a linear model fit using OLS). But $\widehat\beta$ has very high variance.
-2.  We could fit a model using only the five strongest covariates.
-    -   In this case, $\widehat\beta$ will be biased for $\beta$, but it will have lower variance (compared to the estimate including all covariates)
-:::
-
-::: {.column width="50%"}
-[![Source: http://scott.fortmann-roe.com/docs/BiasVariance.html](../img_slides/bullseye.png){fig-align="center"}](http://scott.fortmann-roe.com/docs/BiasVariance.html)
-:::
-:::
-
-## Bias-variance trade off
-
-::: columns
-::: {.column width="50%"}
--   Recall mean square error is a function of SSE (sum of squared residuals)
-
-    $$
-    MSE = \dfrac{1}{n} \sum_{i=1}^{n} \big(Y_i - \widehat{Y}_i \big)^2
-    $$
-
--   MSE can also be written as a function of the bias and variance
-
-    $$
-    MSE = \text{bias}\big(\widehat\beta\big)^2 + \text{variance}\big(\widehat\beta\big)
-    $$
-
--   For the same data:
-
-    -   More covariates in model: less bias, more variance
-
-    -   Less covariates in model: more bias, less variance
-
--   Out goal: find a model with just the right amount of covariates to balance bias and vairance
-:::
-
-::: {.column width="50%"}
-[![Source: http://scott.fortmann-roe.com/docs/BiasVariance.html](../img_slides/biasvariance_tradeoff.png){width="1000"}](http://scott.fortmann-roe.com/docs/BiasVariance.html)
-:::
-:::
 
 ## Some important definitions
 
@@ -171,6 +209,103 @@ Suppose we have $p = 30$ covariates (in the true model) and n = 50 observations.
  
 
 -   **Overfitting**: result of fitting a model so closely to our *particular* sample data that it cannot be generalized to other samples (or the population)
+
+ 
+
+
+- **Model parsimony**: model that uses the fewest possible parameters to explain the relationship 
+
+## Why can't I just throw in all the variables into my model?
+
+-   First, let's think about the number of observations in our dataset
+
+    - In our Gapminder dataset, we have ~80 countries 
+    - The closer the number of variables is to the number of observations: the model overfit the data and lose precision on coefficient estimates
+
+-   Extreme example: In the Gapminder dataset, I can use an indicator for each country
+
+    -   Remember that each country is an observation
+
+    -   So we have a perfectly fit model - a covariate for each observation
+
+    -   But we cannot generalize this to any other countries
+
+    -   And we haven't identified any meaningful relationships between life expectancy and other measured characteristics
+
+-   More covariates in the model is not always better
+
+    -   Overfitting the data limits our generalizability and prevents us from answering research questions
+
+## Think back to population model vs. estimated models
+
+- Population model = true, underlying relationship
+  - We've discussed this with a set group of covariates
+  - But we also do NOT know exactly what variables are at play in the true, underlying model
+  
+ 
+  
+- Estimated model = model estimated with subset of the variables at play and a subset of the population (aka sample)
+
+ 
+
+- Example: anti-fat bias
+  - Will do our best to estimate the association in our research question
+  - But we have two things working against us:
+    - We do NOT know the exact social complexities involved in this bias
+    - We cannot include all the variables that we have access to 
+
+## Model Complexity vs. Parsimony
+
+::: columns
+::: {.column width="50%"}
+Suppose we have $p = 30$ covariates (in the true model) and n = 50 observations. We could consider the following two alternatives:
+
+1.  We could fit a model using all of the covariates.
+    -   In this case, $\widehat\beta$ is unbiased for $\beta$ (in a linear model fit using OLS). But $\widehat\beta$ has very high variance.
+2.  We could fit a model using only the five strongest covariates.
+    -   In this case, $\widehat\beta$ will more likely be biased for $\beta$, but it will have lower variance (compared to the estimate including all covariates)
+    
+- Increasing the number of observations sometimes, but not always, helps with the first approach
+:::
+
+::: {.column width="50%"}
+[![Source: http://scott.fortmann-roe.com/docs/BiasVariance.html](../img_slides/bullseye.png){fig-align="center"}](http://scott.fortmann-roe.com/docs/BiasVariance.html)
+:::
+:::
+
+## Bias-variance trade off
+
+::: columns
+::: {.column width="50%"}
+-   Recall mean square error is a function of SSE (sum of squared residuals)
+
+    $$
+    MSE = \dfrac{1}{n} \sum_{i=1}^{n} \big(Y_i - \widehat{Y}_i \big)^2 = \dfrac{1}{n} SSE
+    $$
+
+-   MSE can also be written as a function of the bias and variance
+
+    $$
+    MSE = \text{bias}\big(\widehat\beta\big)^2 + \text{variance}\big(\widehat\beta\big)
+    $$
+
+-   For the same data:
+
+    -   More covariates in model: less bias, more variance
+
+    -   Less covariates in model: more bias, less variance
+
+-   Our goal: find a model with just the right amount of covariates to balance bias and vairance
+:::
+
+::: {.column width="50%"}
+[![Source: http://scott.fortmann-roe.com/docs/BiasVariance.html](../img_slides/biasvariance_tradeoff.png){width="1000"}](http://scott.fortmann-roe.com/docs/BiasVariance.html)
+:::
+:::
+
+## 
+
+![](../img_slides/all_mod_wrong.jpg)
 
 ## Model Selection basics (slide adjusted from Jodi Lapidus)
 
@@ -301,21 +436,53 @@ Prediction
 
 3.  Recognize common model fit statistics and understand what they measure
 
-## Pre-specification of multivariable model (slide adjusted from Jodi Lapidus)
+## SOME model selection strategies
+
+- Pre-specification of multivariable model
+
+ 
+
+- Purposeful model selection
+
+ 
+
+- Change in estimate (CIE) approach
+
+ 
+
+- Stepwise selection
+
+ 
+
+- Best subset
+
+ 
+
+- Regularization techniques
+
+## Pre-specification of multivariable model (slide adapted from Jodi Lapidus)
 
 -   In a clinical trial, we often have to write and finalize a statistical analysis plan (SAP) before the trial starts
+
+    - Basically: we completely define the model that we will fit (based on previous work and literature)
+  
+ 
 
 -   If we wish to compare treatment effects adjusted for covariates, all covariates typically specified in advance
 
     -   Example: Comparing effectiveness of 3-drug vs. 2-drug regimen for delaying AIDS onset or death. Covariates such as severity of HIV infection at baseline would have been specified in advance.
 
     -   Variables such as study site, as well as any randomization stratification variables are common covariates.
+    
+    -   Partly to make sure that we are not adding in variables that make our regimen significant
+
+ 
 
 -   In these cases, only a limited number of multivariable models are fit and reported
 
     -   Do not perform all the model building steps outlined in Hosmer and Lemeshow texts
 
-## Purposeful model selection (slide adjusted from Jodi Lapidus)
+## Purposeful model selection (slide adapted from Jodi Lapidus)
 
 -   Can use this type of model selection for any type of regression
 
@@ -331,8 +498,9 @@ Prediction
  
 
 -   **This is the selection process that we will focus on in this class!**
+    - Next lecture
 
-## Change in estimate (CIE) approach (slide adjusted from Jodi Lapidus)
+## Change in estimate (CIE) approach (slide adapted from Jodi Lapidus)
 
 -   CIE strategies select covariates on the basis of how much their control changes exposure effect estimates
 
@@ -340,7 +508,7 @@ Prediction
 
 -   What estimate?
 
-    -   H/L text suggest using coefficients from the model
+    -   Hosmer/Lemeshow (H/L) text suggest using coefficients from the model
     -   We typically use the coefficient estimate from the explanatory variable that we are most interested in
 
 -   What magnitude change is ”important”?
@@ -354,7 +522,7 @@ Prediction
     -   Add in or eliminate candidate confounders one at time?
     -   Add in or eliminate candidate confounders in sets?
 
-## Stepwise selection (slide adjusted from Adrianna Westbrook)
+## Stepwise selection (slide adapted from Adrianna Westbrook)
 
 -   This is an incredibly common approach that statisticians use, often because it is an older and more recognized method
 
@@ -374,7 +542,7 @@ Prediction
 
 -   Forward selection:
 
-    -   For $p$ cvariates potential covariates, run all simple linear regressions:
+    -   For $p$ covariates potential covariates, run all simple linear regressions:
 
         -   $Y= \beta_0 + \beta_1 X_1 + \epsilon$ through $Y= \beta_0 + \beta_1 X_{p} + \epsilon$
         -   Include the $X_i$ with the lowest p-value (assuming it is below the threshold)
@@ -388,7 +556,7 @@ Prediction
     -   Start with a full model ($Y= \beta_0 + \beta_1 X_1 + ... + \beta_p X_p + \epsilon$) and remove predictor with the highest p-value (assuming it is above the threshold)
     -   Repeatedly remove the variable with the highest p-value until all remaining variables meet the stopping criteria (are below the threshold)
 
-## Best subset (slide adjusted from Adrianna Westbrook)
+## Best subset (slide adapted from Adrianna Westbrook)
 
 -   I don't see this approach very often
 
@@ -410,6 +578,7 @@ Prediction
 ## Regularization techniques
 
 -   Regularization techniques (LASSO, ridge, elastic net) adds a penalization that shrinks (or regularizes) coefficients down to reduce overfitting
+- Maximize likelihood of a model, but includes a penalty for additional covariates
 
 |              |                                                           |                                                              |                                                                                       |
 |------------------|------------------|------------------|------------------|
@@ -482,3 +651,28 @@ Prediction
     -   Each weigh SSE, number of parameters, and number of observations differently
 
 ![https://www.researchgate.net/figure/Model-Fit-Statistics_tbl1_308844501](../img_slides/Model-Fit-Statistics.png)
+
+## Example of a table for model fit statistics
+
+```{r}
+#| echo: true
+
+library(olsrr)
+model1 = gapm_sub %>% lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate)
+model2 = gapm_sub %>% lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate + FoodSupplykcPPD)
+model3 = gapm_sub %>% lm(formula = LifeExpectancyYrs ~ FemaleLiteracyRate + FoodSupplykcPPD + 
+                           income_levels + four_regions)
+
+fit_stats = data.frame(Model = c("Model 1: FLR only", "Model 2: FLR + FS", "Model 3: FLR + FS + Income + WR"), 
+                       adj_R_2 = c(summary(model1)$adj.r.squared, summary(model2)$adj.r.squared, 
+                                   summary(model3)$adj.r.squared), 
+                       Cp = c(ols_mallows_cp(model1, model3), ols_mallows_cp(model2, model3), 
+                              ols_mallows_cp(model3, model3)), 
+                       AIC = c(AIC(model1), AIC(model2), AIC(model3)), 
+                       BIC = c(BIC(model1), BIC(model2), BIC(model3)))
+
+colnames(fit_stats) = c("Model", "Adj. R-squared", "Mallow's Cp", "AIC", "BIC")
+
+fit_stats %>% gt() %>% tab_options(table.font.size = 40) %>% fmt_number(decimals = 3)
+```
+

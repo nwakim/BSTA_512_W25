@@ -31,11 +31,9 @@ editor_options:
 
 -   [Help with BMI variable](/labs/BMI_help.qmd)
 
-## Poster and presentation
+## Final Poster
 
-[Last Year's Report Instructions](/labs/Project_report_instructions.qmd)
-
--   I am currently updating the Poster instructions
+[Poster Instructions](/labs/Project_poster_instructions.qmd)
 
 Poster due 3/17
 

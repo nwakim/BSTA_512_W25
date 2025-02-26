@@ -8,6 +8,36 @@ editor_options:
   chunk_output_type: console
 ---
 
+## Last class: Lesson 13: Model selection
+
+- We discussed why model selection is important 
+  - We cannot maximize the number of variables in the model 
+  - We need to balance the bias-variance trade off
+- We discussed how motivation for our research will guide our model selection technique
+  - Association vs. prediction
+    - Association: want to limit the number of covariates so we can get a more precise estimate (less variamce)
+    - Prediction: want to create a model that will help us with an accurate prediction of our outcome (less bias)
+- We discussed several model selection techniques
+  - Focus on purposeful selection today
+
 ## Announcements
 
+- SPH Annual conference!
+  - <https://pdxscholar.library.pdx.edu/publichealthpdx/>
+  - Submit a poster abstract! 
+- I'm really behind on the muddy points!
+  - I have an hour today to work on them
+- Reviewed the midterm feedback
+  - Thanks for your kinda words and constructive criticism
+  - I know this was really delayed - won't see changes this quarter
+  - Makes me happy that many of you are benefitting from the flexible design of course
+  - Asking questions over Echo360
+    - I am sorry about this - running the class through Echo360 is really helpful to minimize the administrative work I need to do with Webex
+    - Also helps prevent my own human mistakes - no more forgetting to record
+
 ## Key Dates
+
+- HW 4 due 2/28
+- Lab 4 due 3/7
+- HW 5 due 3/14
+- Project poster due 3/17

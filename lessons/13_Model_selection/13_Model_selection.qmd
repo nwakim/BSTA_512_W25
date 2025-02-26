@@ -436,30 +436,6 @@ Prediction
 
 3.  Recognize common model fit statistics and understand what they measure
 
-## SOME model selection strategies
-
-- Pre-specification of multivariable model
-
- 
-
-- Purposeful model selection
-
- 
-
-- Change in estimate (CIE) approach
-
- 
-
-- Stepwise selection
-
- 
-
-- Best subset
-
- 
-
-- Regularization techniques
-
 ## Pre-specification of multivariable model (slide adapted from Jodi Lapidus)
 
 -   In a clinical trial, we often have to write and finalize a statistical analysis plan (SAP) before the trial starts

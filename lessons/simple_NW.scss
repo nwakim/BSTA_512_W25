@@ -25,7 +25,10 @@ $presentation-heading-color: #213c96 !default;
 // code blocks
 // $code-block-border-color: lighten($link-color, 30%) !default;
 // $code-block-bg: transparent !default;
-$code-font-size: 1.2em;
+
+div.cell-output-stdout {
+  font-size: 1.5em;
+}
 
 
 // My added divs
@@ -336,16 +339,6 @@ $code-font-size: 1.2em;
   background-repeat: no-repeat;
   background-position: 15px center;
   border-radius: 15px;
-}
-
-code.sourceCode {
-  font-size: 1.7em;
-  // or try font-size: xx-large; 
-}
-
-
-div.cell-output-stdout {
-  font-size: 1.5em;
 }
 
 

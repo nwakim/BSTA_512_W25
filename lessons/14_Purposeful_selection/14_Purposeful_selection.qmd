@@ -3,7 +3,7 @@ title: "Lesson 14: Purposeful model selection"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
-date: "03/03/2025"
+date: "02/26/2025"
 format: 
   revealjs:
     theme: "../simple_NW.scss"
@@ -112,7 +112,14 @@ gapm2 = gapm %>% select(-Longitude, -Latitude, -eight_regions, -six_regions, -ge
 
 3.  Use different approaches to assess the linear scale of continuous variables in logistic regression
 
+
 ## Regression analysis process
+
+```{css, echo=FALSE}
+.reveal code {
+  max-height: 100% !important;
+}
+```
 
 ::: box
 ![](../img_slides/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"} ![](../img_slides/arrow2.png){.absolute top="13.5%" right="28.4%" width="155"}![](../img_slides/arrow_back4.png){.absolute top="7.5%" right="30.5%" width="820"} ![](../img_slides/arrow_down.png){.absolute top="60.5%" right="48%" width="85"}
@@ -330,6 +337,11 @@ Assess model fit
 
 ## Pre-step: Exploratory data analysis
 
+- The following slides are all reference until we get to Step 1
+- We have covered exploratory data analysis in other classes and have completed it in our previous labs
+
+## Pre-step: Exploratory data analysis
+
 -   Things we have been doing over the quarter in class and in our project
 
 -   I will not discuss some of the methods mentioned in our lab and data management class
@@ -362,7 +374,7 @@ A few things we can do:
 :::
 
 ::: {.column width="50%"}
-[![https://www.gapminder.org/data/documentation/](13_Purposeful_selection/Gapminder_doc.png){fig-align="center"}](https://www.gapminder.org/data/documentation/)
+[![https://www.gapminder.org/data/documentation/](../img_slides/Gapminder_doc.png){fig-align="center"}](https://www.gapminder.org/data/documentation/)
 :::
 :::
 
@@ -435,6 +447,8 @@ skim(gapm_sub1) %>% yank("numeric")
 
 ## Poll Everywhere Question 1
 
+![](../img_slides/14_poll_ev_01.png)
+
 ## Pre-step: Exploratory data analysis: Study your variables
 
 -   Started this a little bit in previous slide (`skim()`), but you may want to look at things like:
@@ -462,6 +476,8 @@ hist.data.frame(gapm %>% select(-Longitude, -Latitude, -eight_regions, -six_regi
 
 ## Poll Everywhere Question 2
 
+Question: What function might you use to visualize or summarize the frequencies of categorical variables?
+
 ## Pre-step: Exploratory data analysis: Missing data
 
 -   Why are there missing data?
@@ -487,6 +503,8 @@ gapm2 %>% ggpairs() # gapm2 is a new dataset with some variables selected
 ```
 
 ## Poll Everywhere Question 3
+
+![](../img_slides/14_poll_ev_03.png)
 
 ## Step 1: Simple linear regressions / analysis
 
@@ -594,6 +612,7 @@ ggplot(gapm_sub, aes(x = four_regions, y = LifeExpectancyYrs)) +
 anova(model_WR) %>% tidy() %>% gt() %>%
    tab_options(table.font.size = 40) %>%
    fmt_number(decimals = 3)
+
 ```
 
  
@@ -604,54 +623,27 @@ anova(model_WR) %>% tidy() %>% gt() %>%
 :::
 :::
 
-## Step 1: Simple linear regressions / analysis
-
--   If we do a good job visualizing the relationship between our outcome and each covariate, then we can proceed to a streamlined version of the F-test for each relationship
-
--   First, I will select the variables that we are considering for model selection:
-
 ```{r}
-#| echo: true
 
 gapm2 = gapm_sub %>% select(LifeExpectancyYrs, CO2emissions, FoodSupplykcPPD, 
                             IncomePP, FemaleLiteracyRate, WaterSourcePrct, 
                             four_regions, members_oecd_g77)
 ```
 
--   We need to make sure our dataset only contains the variables we are considering for the model:
-
-```{r}
-#| echo: true
-gapm3 = gapm2 %>% select(-LifeExpectancyYrs)
-```
-
-## Step 1: Simple linear regressions / analysis {.smaller}
-
--   Now I can run the `lapply()` function, which allows me to run the same function multiple times over all the columns in `gapm3`
-
--   For each covariate I am running: `lm(gapm2$LifeExpectancyYrs ~ x) %>% anova()`
-
-    -   So I am fitting the simple linear regression and printing the ANOVA table with F-test (comparing model with a without the covariate)
-
-```{r}
-#| echo: true
-lapply( gapm3, function(x) lm(gapm2$LifeExpectancyYrs ~ x) %>% anova() )
-```
-
--   We can scroll through the output to see the ANOVA table for each covariate
 
 ## Step 1: Simple linear regressions / analysis
 
--   We can also filter the ANOVA table to just show the p-value for each F-test
+-   If we do a good job visualizing the relationship between our outcome and each covariate, then we can proceed to a streamlined version of the F-test for each relationship
+-   Run `add1()` to add each variable one at a time and separately
+- Output will include hypothesis test (using F-test) if coefficient(s) is 0 or not
 
 ```{r}
 #| echo: true
-sapply( gapm3, function(x) anova( lm(gapm2$LifeExpectancyYrs ~ x) )$`Pr(>F)` )
+
+intercept_model = gapm2 %>% lm(formula = LifeExpectancyYrs ~ 1)
+add1(intercept_model, scope = ~ FemaleLiteracyRate + CO2emissions + IncomePP + four_regions +
+       WaterSourcePrct + FoodSupplykcPPD + members_oecd_g77, test = "F")
 ```
-
--   Row 1 is the p-value for the F-test
-
-    -   This will help us in Step 2
 
 ## Step 2: Preliminary variable selection
 
@@ -679,22 +671,45 @@ sapply( gapm3, function(x) anova( lm(gapm2$LifeExpectancyYrs ~ x) )$`Pr(>F)` )
 
 ```{r}
 #| echo: true
-sapply( gapm3, function(x) anova( lm(gapm2$LifeExpectancyYrs ~ x) )$`Pr(>F)` )
+
+add1(intercept_model, scope = ~ FemaleLiteracyRate + CO2emissions + IncomePP + four_regions +
+       WaterSourcePrct + FoodSupplykcPPD + members_oecd_g77, test = "F")
 ```
 
 ## Step 2: Preliminary variable selection
 
 -   Fit an **initial model** including any independent variable with p-value \< 0.25 and clinically important variables
 
+
 ```{r}
 #| echo: true
+#| output-location: column
 
-init_model = lm(LifeExpectancyYrs ~ FemaleLiteracyRate + CO2emissions + IncomePP +
-               four_regions + WaterSourcePrct + FoodSupplykcPPD + members_oecd_g77, 
-                 data = gapm2)
-tidy(init_model, conf.int = T) %>% gt() %>% tab_options(table.font.size = 30) %>% 
-  fmt_number(decimals = 4)
+init_model = lm(LifeExpectancyYrs ~
+                  FemaleLiteracyRate + 
+                  CO2emissions + 
+                  IncomePP +
+                  four_regions + 
+                  WaterSourcePrct + 
+                  FoodSupplykcPPD + 
+                  members_oecd_g77, 
+                data = gapm2)
+
+tbl_regression(
+  init_model, 
+  label = list(
+    FemaleLiteracyRate ~ "Female literacy rate (%)", 
+    CO2emissions ~ "CO2 emissions", 
+    IncomePP ~ "Income  (GDP per capita)", 
+    four_regions ~ "World region",
+    WaterSourcePrct ~ "Access to omproved water (%)",
+    FoodSupplykcPPD ~ "Food supply (kcal PPD)",
+    members_oecd_g77 ~ "Intergovernmental group"
+    )) %>% 
+  as_gt() %>% 
+  tab_options(table.font.size = 26) 
 ```
+
 
 ## Step 3: Assess change in coefficient
 
@@ -707,7 +722,7 @@ tidy(init_model, conf.int = T) %>% gt() %>% tab_options(table.font.size = 30) %>
 -   I would start by using the p-value to guide me towards specific variables
 
     -   Female literacy rate, but that's our main covariate
-    -   `members_oecd_g77`
+    -   Intergovernmental group?
     -   Maybe water source percent?
 
  
@@ -719,8 +734,19 @@ tidy(init_model, conf.int = T) %>% gt() %>% tab_options(table.font.size = 30) %>
 
 ::: {.column width="52%"}
 ```{r}
-tidy(init_model) %>% gt() %>% tab_options(table.font.size = 33) %>%  
-  fmt_number(decimals = 4)
+tbl_regression(
+  init_model, 
+  label = list(
+    FemaleLiteracyRate ~ "Female literacy rate (%)", 
+    CO2emissions ~ "CO2 emissions", 
+    IncomePP ~ "Income  (GDP per capita)", 
+    four_regions ~ "World region",
+    WaterSourcePrct ~ "Access to omproved water (%)",
+    FoodSupplykcPPD ~ "Food supply (kcal PPD)",
+    members_oecd_g77 ~ "Intergovernmental group"
+    )) %>% 
+  as_gt() %>% 
+  tab_options(table.font.size = 26) 
 ```
 :::
 :::
@@ -731,10 +757,10 @@ tidy(init_model) %>% gt() %>% tab_options(table.font.size = 33) %>%
 
  
 
--   One variable at a time, we run the multivariable model with and without the variable
+-   One variable at a time, we run the multivariable model with and without a variable
 
     -   We look at the p-value of the F-test for the coefficients of said variable
-    -   We look at the percent change for the coefficient ($\Delta\%$) of our explanatory variable
+    -   We look at the percent change for the coefficient ($\Delta\%$) of our **explanatory variable** (FLR in our example)
 
  
 
@@ -742,7 +768,16 @@ tidy(init_model) %>% gt() %>% tab_options(table.font.size = 33) %>%
 
     -   p-value \> 0.05 for the F-test of its own coefficients
     -   AND change in coefficient ($\Delta\%$) of our explanatory variable is \< 10%
-    
+
+## F-test on dropping each covariate
+
+- Function `drop1()`: If we put in our initial model, the function will remove each covariate and perform the respective F-test to test if the coefficients are 0 (null) or not (alternative).
+```{r}
+#| echo: true
+
+drop1(init_model, test="F")
+```
+
 ## Testing for percent change ( $\Delta\%$) in a coefficient
 
 -   Let's say we have $X_1$ and $X_2$, and we specifically want to see if $X_2$ is a confounder for $X_1$ (the explanatory variable or variable of interest)
@@ -817,7 +852,7 @@ $$
 
 -   Based off the percent change, I would keep this in the model
 
-## Step 3: Assess change in coefficient
+## Step 3: Assess change in coefficient (Reference only)
 
 -   Let's try this out on water source percent (even though the p-value was \< 0.05)
 
@@ -856,7 +891,7 @@ $$
 
 ## Poll Everywhere Question 5
 
-## Step 3: Assess change in coefficient
+## Step 3: Assess change in coefficient: Summary
 
 -   At the end of this step, we have a **preliminary main effects model**
 
@@ -869,13 +904,13 @@ $$
 
 -   Preliminary main effects model includes:
 
-    -   FemaleLiteracyRate
-    -   CO2emissions
-    -   IncomePP
-    -   four_regions
-    -   members_oecd_g77
-    -   FoodSupplykcPPD
-    -   WaterSupplePct
+    -   `FemaleLiteracyRate`
+    -   `CO2emissions`
+    -   `IncomePP`
+    -   `four_regions`
+    -   `members_oecd_g77`
+    -   `FoodSupplykcPPD`
+    -   `WaterSupplePct`
     
     
 ## Recap of Steps 1-3
@@ -1318,11 +1353,11 @@ fp_model_CO2$fptable %>% gt(rownames_to_stub = T) %>% tab_options(table.font.siz
 
 ::: columns
 ::: column 
-![](13_Purposeful_selection/spline1.png){fig-align="center"}
+![](../img_slides/spline1.png){fig-align="center"}
 :::
 
 ::: column 
-![](13_Purposeful_selection/spline2.png){fig-align="center"}
+![](../img_slides/spline2.png){fig-align="center"}
 :::
 :::
 
@@ -1354,17 +1389,39 @@ fp_model_CO2$fptable %>% gt(rownames_to_stub = T) %>% tab_options(table.font.siz
 ## Step 4 Conclusion: main effects model
 
 ::: columns
-::: {.column width="40%"}
+::: {.column width="50%"}
 -   We concluded that we will use:
 
     -   Income levels (categorical) that Gapminder created
     -   Quartiles for CO2 Emissions
+
+::: definition
+::: def-title
+Note
+:::
+::: def-cont
+This is also a good step to decide if you would like to score a categorical variable (Lesson 5)
+:::
+:::
 :::
 
-::: {.column width="60%"}
+- Question: Do you see any visual issues with my regression table?
+
+::: {.column width="50%"}
 ```{r}
-tidy(main_eff_model) %>% gt() %>% tab_options(table.font.size = 33) %>%  
-  fmt_number(decimals = 3)
+tbl_regression(
+  main_eff_model, 
+  label = list(
+    FemaleLiteracyRate ~ "Female literacy rate (%)", 
+    CO2_q ~ "CO2 emissions quartiles", 
+    income_levels1 ~ "Income levels", 
+    four_regions ~ "World region",
+    WaterSourcePrct ~ "Access to omproved water (%)",
+    FoodSupplykcPPD ~ "Food supply (kcal PPD)",
+    members_oecd_g77 ~ "Intergovernmental group"
+    )) %>% 
+  as_gt() %>% 
+  tab_options(table.font.size = 22) 
 ```
 :::
 :::
@@ -1386,7 +1443,7 @@ tidy(main_eff_model) %>% gt() %>% tab_options(table.font.size = 33) %>%
 
  
 
--   Add the interaction variables, one at a time, to the main effects model, and assess the significance using a likelihood ratio test or Wald test
+-   Add the interaction variables, one at a time, to the main effects model, and assess the significance using a F-test
 
     -   May keep interaction terms with p-value \< 0.10 (or 0.05)
 
@@ -1468,86 +1525,33 @@ Testing a single coefficient for the interaction term using F-test comparing ful
 
 ## Step 5: Check for interactions
 
-```{r}
-#| echo: true
-vars = names(model.frame(main_eff_model))[-1] 
-
-interactions = combn(vars, 2, function(x) paste(x, collapse=" * ")) %>% 
-    grep(., pattern = "FemaleLiteracyRate", value = T) 
-```
+- Use `add1()` function to compare a full model (interactions with FLR) and reduced model (main effects model)
 
 ```{r}
 #| echo: true
 
-MLRs = lapply(interactions, function(int)
-  lm(reformulate(c(vars, int), "LifeExpectancyYrs"), data = gapm2))
+add1(main_eff_model, scope = ~ FemaleLiteracyRate * . ,  test = "F")
 ```
-
-## Step 5: Check for interactions {.smaller}
-
-::: columns
-::: {.column width="40%"}
-```{r}
-#| echo: true
-#| eval: false
-
-MLRs[[1]] %>% tidy() %>% gt() %>%
-  tab_options(table.font.size = 33) %>%
-  fmt_number(decimals = 3)
-```
-:::
-
-::: {.column width="60%"}
-
-```{r}
-#| echo: false
-MLRs[[1]] %>% tidy() %>%  gt() %>% tab_options(table.font.size = 33) %>% fmt_number(decimals = 3)
-```
-:::
-:::
-
-## Step 5: Check for interactions
-
-You can alse go straight to using the `anova()` function to compare the preliminary model.
-
-```{r}
-#| echo: true
-anova_res = lapply(interactions,
-            function(int) anova(lm(reformulate(c(vars, int), "LifeExpectancyYrs"),
-                                    data = gapm2), main_eff_model)) 
-anova_res[[1]] %>% tidy() %>% 
-  gt() %>% tab_options(table.font.size = 35) %>% fmt_number(decimals = 3)
-```
-
-## Step 5: Check for interactions
 
 -   I went through all the ANOVA tables, and found the following significant interactions:
 
     -   None!
-
-
-```{r}
-#| echo: true
-anova_res
-```
-
- 
-
+    
 -   **Think about it:** does that track with what we saw in our interactions lecture?
 
 ## Step 6: Assess model fit
 
--   Assess the adequacy of the model and check its fit
+-   Assess the adequacy of the model (diagnostics) and check its fit
 
  
 
--   Methods will be discussed next class
+-   Methods for diagnostics will be discussed next class
 
     -   Combination of diagnostics and model fit statistics!
     
-    -   Look at model fit statistics in this lesson
+    -   Looked at model fit statistics in last lesson
     
-    -   Look at diagnostics in Lesson 14: MLR Diagnostics
+    -   Look at diagnostics in Lesson 15: MLR Diagnostics
 
  
 
@@ -1558,7 +1562,8 @@ anova_res
 ```{r}
 final_model = main_eff_model
 prelim_me_model = model_full
-save(final_model, prelim_me_model, gapm2, file = here("./lessons/15_MLR_Diagnostics/final_mod.rda"))
+save(final_model, prelim_me_model, gapm2, 
+     file = here("./lessons/15_MLR_Diagnostics/final_mod.rda"))
 ```
 
 -   Our **final model** contains
@@ -1578,7 +1583,7 @@ save(final_model, prelim_me_model, gapm2, file = here("./lessons/15_MLR_Diagnost
     
 ## Step 6: Assess model fit: Model fit statistics
 
--   Way I did it in the lab instructions
+-   Way I did it in the lab instructions (and last class)
 ```{r}
 #| echo: true
 

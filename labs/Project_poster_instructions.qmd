@@ -18,7 +18,7 @@ bibliography: references.bib
 ---
 
 ::: callout-important
-**Instructions and rubric are still in progress!** I updated them on 2/21, but still working on it!
+Poster instructions are ready to go!! (2/26)
 :::
 
 ------------------------------------------------------------------------
@@ -33,35 +33,56 @@ A scientific poster serves as a visual and concise way to communicate research f
 
 ### Formatting guide
 
+#### Poster specifications
+
 -   This poster can be done in any program you would like
-    - Powerpoint is a common way to make a poster
-      - [Some help creating it](https://www.slidesai.io/blog/how-to-make-a-poster-powerpoint)
-    - There are poster templates in Quarto
-      - [Quarto template](https://github.com/quarto-ext/typst-templates/tree/main/poster)
-- Poster dimensions: 36" by 24"
-  - Mostly important to keep the ratio as 6:4
-  - Use a landscape layout
+    -   Powerpoint is a common way to make a poster
+        -   This option is easier to start but more annoying when you have to edit visuals and fix the poster
+        -   [Some help creating it](https://www.slidesai.io/blog/how-to-make-a-poster-powerpoint)
+    -   There are poster templates in Quarto
+        -   This will be a little harder to start, but easier to edit visuals
+        -   [Quarto template](https://github.com/quarto-ext/typst-templates/tree/main/poster)
+-   **Please submit a PDF of your poster**
+-   Poster dimensions: 36" by 24"
+    -   Mostly important to keep the ratio as 6:4
+    -   Use a landscape layout
+-   Font size should be no less than 36pt
+-   Sectioning of the report
+    -   Main sections that were required: Introduction, Methods, Results, Conclusion, and References
+    -   Other sections that might help group specific methods or results
+-   Title information at the top of the poster
+    -   This includes the title itself, your name, and the date
+-   Poster printing for class on 3/17
+    -   Print in color!!
+    -   Using your PDF, and opening in Adobe Reader, then use the print function
+    -   You should see something like this: ![](/labs/images/poster_printing.png)
+    -   Choose the poster print option then choose the appropriate Tile Scale to make the poster span 4 pages
+    - Note: not all printers accomodate this
+    - You should be able to print in Vanport
+      - I do not want you to pay for printing - please let me know if you are unable to print for free
+    - **Posters presented on 3/17 in class do NOT need to be what you turn in at 11pm in Sakai**
+
+#### Tables and figures
+
 -   Tables and figures should NOT have variable names as they appear in the data frame
     -   Variable names should be understood by a reader
     -   Variable names should be written in full words
     -   Include a title or caption for all figures
     -   Figure and tables appear on same page or close to same page where they are first referenced
-    -   Tables and figures are an appropriate size in the html 
-    - Nicky is able to read all words in figures and tables
-- Figures and tables should be clear and crisp
-  - Make sure they are not blurred
-  - Screenshots are okay, but will likely make them blurry if you're not careful
-  - Best option is to use the `save()` to save a jpg or png
--   Writing, spelling, and grammar should be admissable
+    -   Tables and figures are an appropriate size in the html
+    -   Nicky is able to read all words in figures and tables
+-   Figures and tables should be clear and crisp
+    -   Make sure they are not blurred
+    -   Screenshots are okay, but will likely make them blurry if you're not careful
+    -   Best option is to use the `save()` to save a jpg or png
+
+#### Writing
+
+-   Writing, spelling, and grammar should be admissible
     -   This means I can generally follow your thought/what you are trying to communicate
     -   Some spelling and grammar mistakes are allowed
         -   I will not take off points if there are a few sprinkled in
         -   If *every or close to every* sentence has mistakes, then I will take off
--   Sectioning of the report
-    -   Main sections that were required: Introduction, Methods, Results, Discussion, Conclusion, and References
-    -   Other sections that might help group specific methods or results
--   Title information at the top of the `html`
-    -   This includes the title itself, your name, and the date
 
 ::: callout-note
 #### The project report is a separate file from the labs
@@ -74,29 +95,45 @@ You can save tables and figures from labs or separate files, then load them in t
 -   Load R objects in report file: `load(file = "table1.Rdata")`
 :::
 
-### Examples of reports
+### Poster template
+
+-   [Powerpoint Template](https://ohsuitg-my.sharepoint.com/:p:/r/personal/wakim_ohsu_edu/Documents/Teaching/Classes/W25_BSTA_512_612/Student_files/Project/Resources/poster_template.pptx?d=w171b4f2e4f1d4ee1a72f499f15d736af&csf=1&web=1&e=Nsqqqs)
+    -   Feel free to adjust this poster visually
+-   [Quarto Template](/labs/Poster-example.qmd)
+    -   Only works if you followed the steps in the Quarto template in the Formatting Guide
+    -   Feel free to adjust this poster visually
+
+### Poster examples
 
 -   [Poster 1](https://ohsuitg-my.sharepoint.com/:b:/r/personal/wakim_ohsu_edu/Documents/Teaching/Classes/W25_BSTA_512_612/Student_files/Project/Sample_poster/McVeety_Trans_Single_Payer_Poster.pdf?csf=1&web=1&e=PsN3TI)
-  - Good example of layouts and well-executed visuals
-
--   [Poster 2]() coming soon
-
+    -   Good example of layouts and well-executed visuals
+-   [Poster 2](https://ohsuitg-my.sharepoint.com/:b:/r/personal/wakim_ohsu_edu/Documents/Teaching/Classes/W25_BSTA_512_612/Student_files/Project/Sample_poster/Analysis%20of%20Veterans%27%20Non-disclosure%20of%20Suicidal%20Thoughts.pdf?csf=1&web=1&e=z7V8cv)
+    -   Good example of a forest plot to display coefficient estimates of many covariates
+    -   Good example of patient information displayed
+    -   Good highlight of the study goals in the background
+-   [Poster 3](https://ohsuitg-my.sharepoint.com/:b:/r/personal/wakim_ohsu_edu/Documents/Teaching/Classes/W25_BSTA_512_612/Student_files/Project/Sample_poster/nwakim_prop_score.pdf?csf=1&web=1&e=xefr7T)
+    -   Done by Nicky (a long time ago) so please excuse a lot of the poor language around race/ethnicity
+        -   I have learned a lot since then! My statistics education did not do a great job of incorporating responsible practice around participant's identities
+    -   Showing this poster because it is a good example of the level of detail expected in our poster's background, methods, and conclusions
 
 ### Grading
+
+::: panel-tabset
+#### Grading
 
 The project report is out of 36 points. Note that the Statistical Methods and Results sections are graded on an 8-point scale, while all other components are graded on a 4-point scale.
 
 #### Rubric
 
-|                           | 4 points                                                                                                                                                                                                                                   | 3 points                                                                                                                                                                                                                                                                                       | 2 points                                                                                                                                                                                                                                                                                                          | 1 point                                                                                                                                                                                                                                                                                  | 0 points                                                                                                                                                              |
-|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Formatting                | Lab submitted on Sakai (or by email if late) with `.html` file. Report is written in complete sentences with very few grammatical or spelling errors. With little editing, the report can be distributed.                                  | Lab submitted on Sakai (or by email if late) with `.html` file. Report is written in complete sentences with some (around 2 per section) grammatical or spelling errors. With some editing, the report can be distributed.                                                                     | Lab submitted on Sakai (or by email if late) with `.html` file. Report is written in complete sentences, but have many grammatical or spelling errors. With major editing, the report can be distributed.                                                                                                         | Lab submitted on Sakai (or by email if late) with `.html` file. Report is written in complete sentences, but are very hard to follow due to grammar mistakes.                                                                                                                            | Lab not submitted on Sakai (or by email if late) with `.html` file. Report is not written with complete sentences. With major editing, the report can be distributed. |
-| Figures and work          | All requested output is displayed, including 2 required figures and tables, and at least one additional figure. Figures and tables look professional, are easily interpreted by the reader, and easily convey the intended message.        | All requested output is displayed, including 2 required figures and tables, and at least one additional figure. For the most part, figures and tables look professional, are easily interpreted by the reader, and easily convey the intended message. A few mistakes in the figures are made. | All requested output is displayed, including 2 required figures and tables, and at least one additional figure. Figures and tables look semi-professional, are not so easily interpreted by the reader, and convey the intended message but after some work by the reader. Some mistakes in the figures are made. | All requested output is displayed, including 2 required figures and tables, and at least one additional figure. Figures and tables do not look professional, are not easily interpreted by the reader, and/or do not convey the intended message. Many mistakes in the figures are made. | Requested output is not displayed, Missing one or more figures.                                                                                                       |
-| Introduction              | Provides a good background for the research question, includes motivation for the question, and references previous research that justifies this analysis.                                                                                 | Provides a decent background for the research question and includes motivation for the question. Previous research is mentioned, but feels disconnected to the current analysis.                                                                                                               | Provides a decent background for the research question and includes motivation for the question. Previous research is mentioned, but feels disconnected to the current analysis.                                                                                                                                  | Does not provide a background that connects to the research question. Motivation and previous research are not mentioned.                                                                                                                                                                | No introduction included.                                                                                                                                             |
-| Methods (8 points)        | Describes statistical methods concisely and highlights pertinent information to the reader (listed Sections below). Demonstrates proper analyses were performed.                                                                           | Describes statistical methods and highlights pertinent information to the reader (listed Sections below). Details were omitted or added that were not needed to explain the overarching methods. Demonstrates proper analyses were performed.                                                  | Describes statistical methods and highlights pertinent information to the reader (listed Sections below). Details were omitted or added that were not needed to explain the overarching methods. Some incorrect analyses included in the description.                                                             | Describes statistical methods, but lacks clarity. Demonstrates a lack of understanding about the overall process of regression analysis. Incorrect analyses included in the description.                                                                                                 | No methods included.                                                                                                                                                  |
-| Results (8 points)        | Correctly interprets coefficients for the explanatory variable and identifies any other interesting trends. Highlights pertinent results to the reader (listed Sections below).                                                            | Correctly interprets coefficients, but does correctly incorporate the interaction (if in the model). Highlights pertinent results to the reader (listed Sections below).                                                                                                                       | Incorrectly interprets coefficients. Highlights pertinent results to the reader (listed Sections below).                                                                                                                                                                                                          | Incorrectly interprets coefficients.Omits pertinent results to the reader (listed Sections below).                                                                                                                                                                                       | No results included.                                                                                                                                                  |
-| Discussion                | Thoroughly and concisely discusses limitations and considerations of the results, and their consequences.                                                                                                                                  | Discusses limitations and considerations of the results and their consequences, but misses some big considerations.                                                                                                                                                                            | Discusses limitations and considerations of the results, but does not discuss the consequences.                                                                                                                                                                                                                   | Discusses limitations and considerations of the results, but misses many considerations and does not discuss consequences.                                                                                                                                                               | No discussion included.                                                                                                                                               |
-| Conclusion and References | For the conclusion, main research question is answered and statistical caveats described to non-technical person. References are mostly cited consistently within the report, and in the Reference section. This includes the data source! | For the conclusion, main research question is answered and statistical caveats described to non-technical person. References are sometimes cited consistently within the report, and in the Reference section. This includes the data source!                                                  | For the conclusion, main research question is somewhat answered (but focus is not on the research question) and statistical caveats described to non-technical person. References are sometimes cited consistently within the report, and in the Reference section. This includes the data source!                | For the conclusion, main research question is somewhat answered (but not the focus at all) and statistical caveats are not described. References are not cited consistently within the report, and in the Reference section. This includes the data source!                              | For the conclusion, main research question is not answered. Or references are not included at all.                                                                    |
+|   | 4 points | 3 points | 2 points | 1 point | 0 points |
+|------------|------------|------------|------------|------------|------------|
+| Formatting | Poster submitted on Sakai (or by email if late) with PDF file. Report is written in well-constructed bullets with very few grammatical or spelling errors. With little editing, the poster can be presented at a conference. | Poster submitted on Sakai (or by email if late) with PDF file. Report is written in well-constructed bullets with some (around 2 per section) grammatical or spelling errors. With some editing, the report can be distributed. | Poster submitted on Sakai (or by email if late) with PDF file. Report is written in well-constructed bullets, but have many grammatical or spelling errors. With major editing, the report can be distributed. | Poster submitted on Sakai (or by email if late) with PDF file. Report is written in well-constructed bullets, but are very hard to follow due to grammar mistakes. | Poster not submitted on Sakai (or by email if late). Poster not in PDF file type. Report language cannot be followed. With major editing, the report can be distributed. |
+| Figures and work | All requested output is displayed, including 2 required figures and tables, and at least one additional figure. Figures and tables look professional, are easily interpreted by the reader, and easily convey the intended message. | All requested output is displayed, including 2 required figures and tables, and at least one additional figure. For the most part, figures and tables look professional, are easily interpreted by the reader, and easily convey the intended message. A few mistakes in the figures are made. | All requested output is displayed, including 2 required figures and tables, and at least one additional figure. Figures and tables look semi-professional, are not so easily interpreted by the reader, and convey the intended message but after some work by the reader. Some mistakes in the figures are made. | All requested output is displayed, including 2 required figures and tables, and at least one additional figure. Figures and tables do not look professional, are not easily interpreted by the reader, and/or do not convey the intended message. Many mistakes in the figures are made. | Requested output is not displayed, Missing one or more figures. |
+| Introduction | Provides a good background for the research question, includes motivation for the question, and references previous research that justifies this analysis. | Provides a decent background for the research question and includes motivation for the question. Previous research is mentioned, but feels disconnected to the current analysis. | Provides a decent background for the research question and includes motivation for the question. Previous research is mentioned, but feels disconnected to the current analysis. | Does not provide a background that connects to the research question. Motivation and previous research are not mentioned. | No introduction included. |
+| Methods (8 points) | Describes statistical methods concisely and highlights pertinent information to the reader (listed Sections below). Demonstrates proper analyses were performed. | Describes statistical methods and highlights pertinent information to the reader (listed Sections below). Details were omitted or added that were not needed to explain the overarching methods. Demonstrates proper analyses were performed. | Describes statistical methods and highlights pertinent information to the reader (listed Sections below). Details were omitted or added that were not needed to explain the overarching methods. Some incorrect analyses included in the description. | Describes statistical methods, but lacks clarity. Demonstrates a lack of understanding about the overall process of regression analysis. Incorrect analyses included in the description. | No methods included. |
+| Results (8 points) | Correctly interprets coefficients for the explanatory variable and identifies any other interesting trends. Highlights pertinent results to the reader (listed Sections below). | Correctly interprets coefficients, but does correctly incorporate the interaction (if in the model). Highlights pertinent results to the reader (listed Sections below). | Incorrectly interprets coefficients. Highlights pertinent results to the reader (listed Sections below). | Incorrectly interprets coefficients.Omits pertinent results to the reader (listed Sections below). | No results included. |
+| Conclusion | Main research question is answered and statistical caveats described to non-technical person. Thoroughly and concisely discusses limitations and considerations of the results, and their consequences. | Main research question is answered and statistical caveats described to non-technical person. Discusses limitations and considerations of the results and their consequences, but misses some big considerations. | Main research question is somewhat answered (but focus is not on the research question) and statistical caveats described to non-technical person. Discusses limitations and considerations of the results, but does not discuss the consequences. | Main research question is somewhat answered (but not the focus at all) and statistical caveats are not described.Discusses limitations and considerations of the results, but misses many considerations and does not discuss consequences. | No conclusion included. |
+| References | References are mostly cited consistently within the report, and in the Reference section. This includes the data source! | References are sometimes cited consistently within the report, and in the Reference section. This includes the data source! | References are sometimes cited consistently within the report, and in the Reference section. This includes the data source! | References are not cited consistently within the report, and in the Reference section. This includes the data source! | References are not included at all. |
 
 -   In formatting, an example of a report with little editing needed is one that has zero to some grammar or spelling mistakes, no code chunks showing, and no output warnings nor messages showing.
 
@@ -121,6 +158,7 @@ The project report is out of 36 points. Note that the Statistical Methods and Re
     -   By consistency, I mean that you if you are citing things like (Last Name, Year) it doesn't suddenly change to number citations.
 
     -   If you would like to use Quarto's citation tool, you can! I actually pair it with Zotero and it works beautifully! (But I would not embark on this if you haven't used Zotero before)
+:::
 
 ## Sections
 
@@ -149,7 +187,7 @@ The project report is out of 36 points. Note that the Statistical Methods and Re
         -   Missing data: we performed complete case analysis
             -   1 bullet
             -   Can be included in the Exploratory data analysis section
-        - What program did you use to analyze the data?
+        -   What program did you use to analyze the data?
     -   Variables and variable creation
         -   This includes a description of analyses for Table 1 and what statistics were used to summarize the variables
             -   More on creation of Table 1, not discussing the results of Table 1
@@ -163,13 +201,13 @@ The project report is out of 36 points. Note that the Statistical Methods and Re
         -   1-3 bullets
         -   Includes
             -   Describe purposeful selection: combining existing literature, clinical significance, and analysis
-            -   How did you build the model? Describe the process 
+            -   How did you build the model? Describe the process
             -   Did you consider confounders and effect modifiers?
-        - Example: We considered the following potential confounders: list fo them. Based on our research question, existing literature, and clinical significance, we used purposeful selection to identify confounders and effect modifiers. 
+        -   Example: We considered the following potential confounders: list fo them. Based on our research question, existing literature, and clinical significance, we used purposeful selection to identify confounders and effect modifiers.
     -   Final model
-        - 1 bullet
-        - Write out your final model equation
-        - I would include the main exploratory variable then a placeholder for all the other covariates
+        -   1 bullet
+        -   Write out your final model equation
+        -   I would include the main exploratory variable then a placeholder for all the other covariates
     -   Model diagnostics
         -   1-3 sentences
         -   Includes
@@ -177,7 +215,7 @@ The project report is out of 36 points. Note that the Statistical Methods and Re
             -   By the time you build the model, LINE assumptions should be met
             -   If assumptions were not met, what process did you use to fix it?
 
-::: callout-caution 
+::: callout-caution
 ### Important to keep in mind
 
 Methods typically describe your approach and process, not the results of that process
@@ -201,20 +239,18 @@ Methods typically describe your approach and process, not the results of that pr
         -   DAG explaining connection between variables (if you did this)
         -   Table or figure to compare model fit statistics (if you did this)
         -   Table or figure for unadjusted relationship between outcome and explanatory variables
-        
 -   Interpret the **important** model coefficients in the context of the research question
     -   2-3 bullets
     -   Interpreting the explanatory variable's relationship with IAT score is the most important thing to report!!
         -   When doing this, make sure you account for ALL interactions: If your explanatory variable has multiple interactions and you are trying to interpret one, then what does that mean about the other variables involved in the other interactions? If this is confusing, please make an appointment with me!!
-        
-        
+
 ### Conclusion
 
 -   **Length: 3-6 bullets**
 -   **Purpose:** Describe the main conclusions to a non-technical audience
 -   What was the answer to your research question?
     -   Mention the direction of the association if there was one
-- Any other interesting results?
+-   Any other interesting results?
 
 ### Discussion
 
@@ -228,10 +264,8 @@ Methods typically describe your approach and process, not the results of that pr
     -   Any overarching trends that are worth noting? [@Giebel2024]
 -   Should contain some references
 
-
 ### References
 
 -   Include your references here!
 -   You introduction should have references, especially when discussing the social science behind the analysis
 -   You must reference the IAT data source!!
-

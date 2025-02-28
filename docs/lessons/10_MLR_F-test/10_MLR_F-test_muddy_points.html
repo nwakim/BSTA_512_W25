@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.6.41">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Linear Models - Muddy Points</title>
+<title>Muddy Points – Linear Models</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -69,17 +69,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-48ffa3e5b9d089919c6712c39e5b00f2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-eb70e65f0607eaac1d7301aad5573cda.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,14 +94,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -103,9 +137,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-sm navbar-dark ">
+    <nav class="navbar navbar-expand-sm " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../../images/bsta_512_hex.png" alt="" class="navbar-logo">
     </a>
@@ -114,35 +148,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../schedule.html" rel="" target="">
- <span class="menu-text">Schedule</span></a>
+    <a class="nav-link" href="../../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../syllabus.html" rel="" target="">
- <span class="menu-text">Syllabus</span></a>
+    <a class="nav-link" href="../../syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../instructors.html" rel="" target="">
- <span class="menu-text">Instructors</span></a>
+    <a class="nav-link" href="../../instructors.html"> 
+<span class="menu-text">Instructors</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../homework.html" rel="" target="">
- <span class="menu-text">Homework</span></a>
+    <a class="nav-link" href="../../homework.html"> 
+<span class="menu-text">Homework</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../project.html" rel="" target="">
- <span class="menu-text">Project</span></a>
+    <a class="nav-link" href="../../project.html"> 
+<span class="menu-text">Project</span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -155,7 +189,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#muddy-points-from-winter-2025" id="toc-muddy-points-from-winter-2025" class="nav-link active" data-scroll-target="#muddy-points-from-winter-2025">Muddy Points from Winter 2025</a></li>
+  <li><a href="#muddy-points-from-winter-2025" id="toc-muddy-points-from-winter-2025" class="nav-link active" data-scroll-target="#muddy-points-from-winter-2025">Muddy Points from Winter 2025</a>
+  <ul class="collapse">
+  <li><a href="#the-muddiest-point-i-had-was-what-is-the-point-or-purpose-of-trying-to-the-explain-the-unexplained.-what-does-it-mean-to-greatly-reduce-the-unexplained-variation-or-increase-the-explained-variation" id="toc-the-muddiest-point-i-had-was-what-is-the-point-or-purpose-of-trying-to-the-explain-the-unexplained.-what-does-it-mean-to-greatly-reduce-the-unexplained-variation-or-increase-the-explained-variation" class="nav-link" data-scroll-target="#the-muddiest-point-i-had-was-what-is-the-point-or-purpose-of-trying-to-the-explain-the-unexplained.-what-does-it-mean-to-greatly-reduce-the-unexplained-variation-or-increase-the-explained-variation">1. The muddiest point I had was what is the point or purpose of trying to the “explain the unexplained.” What does it mean to greatly reduce the unexplained variation or increase the explained variation?</a></li>
+  <li><a href="#i-was-wondering-why-the-ssr-is-always-smaller-than-the-ssy." id="toc-i-was-wondering-why-the-ssr-is-always-smaller-than-the-ssy." class="nav-link" data-scroll-target="#i-was-wondering-why-the-ssr-is-always-smaller-than-the-ssy.">2. I was wondering why the SSR is always smaller than the SSY.</a></li>
+  <li><a href="#someday-i-want-to-understand-the-theory-behind-degrees-of-freedom" id="toc-someday-i-want-to-understand-the-theory-behind-degrees-of-freedom" class="nav-link" data-scroll-target="#someday-i-want-to-understand-the-theory-behind-degrees-of-freedom">3. Someday I want to understand the theory behind degrees of freedom :(</a></li>
+  <li><a href="#the-purpose-of-using-a-reduced-model-vs-a-larger-full-model." id="toc-the-purpose-of-using-a-reduced-model-vs-a-larger-full-model." class="nav-link" data-scroll-target="#the-purpose-of-using-a-reduced-model-vs-a-larger-full-model.">4. The purpose of using a reduced model vs a larger (full) model.</a></li>
+  </ul></li>
   <li><a href="#muddy-points-from-winter-2024" id="toc-muddy-points-from-winter-2024" class="nav-link" data-scroll-target="#muddy-points-from-winter-2024">Muddy Points from Winter 2024</a>
   <ul class="collapse">
   <li><a href="#we-keep-getting-back-to-widehaty-y_i-and-overliney-and-their-relationship-to-the-population-parameter-estimates.-can-you-clarify-this" id="toc-we-keep-getting-back-to-widehaty-y_i-and-overliney-and-their-relationship-to-the-population-parameter-estimates.-can-you-clarify-this" class="nav-link" data-scroll-target="#we-keep-getting-back-to-widehaty-y_i-and-overliney-and-their-relationship-to-the-population-parameter-estimates.-can-you-clarify-this">1. We keep getting back to <span class="math inline">\(\widehat{Y}\)</span>, <span class="math inline">\(Y_i\)</span>, and <span class="math inline">\(\overline{Y}\)</span> and their relationship to the population parameter estimates. Can you clarify this?</a></li>
@@ -187,17 +227,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 19, 2025</p>
+      <p class="date-modified">February 28, 2025</p>
     </div>
   </div>
     
   </div>
   
 
+
 </header>
+
 
 <section id="muddy-points-from-winter-2025" class="level2">
 <h2 class="anchored" data-anchor-id="muddy-points-from-winter-2025">Muddy Points from Winter 2025</h2>
+<section id="the-muddiest-point-i-had-was-what-is-the-point-or-purpose-of-trying-to-the-explain-the-unexplained.-what-does-it-mean-to-greatly-reduce-the-unexplained-variation-or-increase-the-explained-variation" class="level3">
+<h3 class="anchored" data-anchor-id="the-muddiest-point-i-had-was-what-is-the-point-or-purpose-of-trying-to-the-explain-the-unexplained.-what-does-it-mean-to-greatly-reduce-the-unexplained-variation-or-increase-the-explained-variation">1. The muddiest point I had was what is the point or purpose of trying to the “explain the unexplained.” What does it mean to greatly reduce the unexplained variation or increase the explained variation?</h3>
+<p>When we measure an outcome, there is variance in the measurement. Is that variance just because there’s measurement error? Of is that variance coming from some underlying characteristics that might change the value for different observations.</p>
+<p>In reference to our lab with IAT score, we saw a large spread of IAT scores among participants. What causes the variance across people? Is it there attitudes or beliefs? Is it their other characteristics? If there is a set pattern connecting something like age to IAT score, then age explains some of the variance in IAT score. Maybe a higher IAT score is more likely to map to a lower age. Maybe a lower IAT score is morely to map to an older age. Some of the variance of IAT score is explained by age. Thus, age will reduce the unexplained variation in IAT score. If age reduces a decent amount of the IAT score’s unexplained variation then they will have a significant association.</p>
+</section>
+<section id="i-was-wondering-why-the-ssr-is-always-smaller-than-the-ssy." class="level3">
+<h3 class="anchored" data-anchor-id="i-was-wondering-why-the-ssr-is-always-smaller-than-the-ssy.">2. I was wondering why the SSR is always smaller than the SSY.</h3>
+<p>We can start with the equation: <span class="math display">\[SSY = SSR + SSE\]</span>.</p>
+<p>We can also subtract <span class="math inline">\(SSE\)</span> from each side to get: <span class="math display">\[SSR = SSY - SSE\]</span></p>
+<p>If <span class="math inline">\(SSE \geq 0\)</span>, then <span class="math display">\[SSR \leq SSY\]</span></p>
+</section>
+<section id="someday-i-want-to-understand-the-theory-behind-degrees-of-freedom" class="level3">
+<h3 class="anchored" data-anchor-id="someday-i-want-to-understand-the-theory-behind-degrees-of-freedom">3. Someday I want to understand the theory behind degrees of freedom :(</h3>
+<p><a href="https://en.wikipedia.org/wiki/Degrees_of_freedom_(statistics)">From Wikipedia:</a> The number of independent pieces of information that go into the estimate of a parameter is called the degrees of freedom.</p>
+<p>Independent pieces of information will be the observations with outcomes! So we can start with the sample size!</p>
+<p>Any given estimate, like a coefficient or the F-statistic, will be calculated using the independent information (observations) and constructed from the dependent parameters in a model.</p>
+<p>Thus, degrees of freedom will be the total number of independent observations subtracting the number of parameters you are estimating (# coefficients in the model - 1)</p>
+<section id="why-coefficients-in-the-model---1" class="level4">
+<h4 class="anchored" data-anchor-id="why-coefficients-in-the-model---1">Why “# coefficients in the model - 1”?</h4>
+<p>Let’s say we have 6 coefficients in a model. All these coefficients are estimated. However, they are work together in one model, so if we know 5 out of 6 coefficient estimates, then we know the 6th. Thus, we only have 5 parameter estimates that limit our degreeds of freedom.</p>
+</section>
+</section>
+<section id="the-purpose-of-using-a-reduced-model-vs-a-larger-full-model." class="level3">
+<h3 class="anchored" data-anchor-id="the-purpose-of-using-a-reduced-model-vs-a-larger-full-model.">4. The purpose of using a reduced model vs a larger (full) model.</h3>
+<p>We want to compare different models to see if the larger model is a “better fit” for our outcome. By “better fit” I mean that it explains significantly more variation than the reduced model.</p>
+<p>Using reduced and full models helps us remember that we are comparing models, not just testing ceofficients.</p>
+</section>
 </section>
 <section id="muddy-points-from-winter-2024" class="level2">
 <h2 class="anchored" data-anchor-id="muddy-points-from-winter-2024">Muddy Points from Winter 2024</h2>
@@ -226,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -240,7 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -265,7 +334,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -276,7 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -288,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -303,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -319,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="10_MLR_F-test_muddy_points_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -354,7 +423,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mod_red3, mod_full3) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
 <div id="lhnbhcbqtm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#lhnbhcbqtm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -804,37 +872,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df.residual">df.residual</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="rss">rss</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sumsq">sumsq</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="term" class="gt_row gt_left">LifeExpectancyYrs ~ FemaleLiteracyRate</td>
-<td headers="df.residual" class="gt_row gt_right">70.00</td>
-<td headers="rss" class="gt_row gt_right">2,654.87</td>
-<td headers="df" class="gt_row gt_right">NA</td>
-<td headers="sumsq" class="gt_row gt_right">NA</td>
-<td headers="statistic" class="gt_row gt_right">NA</td>
-<td headers="p.value" class="gt_row gt_right">NA</td></tr>
-    <tr><td headers="term" class="gt_row gt_left">LifeExpectancyYrs ~ FemaleLiteracyRate + FoodSupplykcPPD + WaterSourcePrct</td>
-<td headers="df.residual" class="gt_row gt_right">68.00</td>
-<td headers="rss" class="gt_row gt_right">1,517.92</td>
-<td headers="df" class="gt_row gt_right">2.00</td>
-<td headers="sumsq" class="gt_row gt_right">1,136.96</td>
-<td headers="statistic" class="gt_row gt_right">25.47</td>
-<td headers="p.value" class="gt_row gt_right">0.00</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
+<th id="df.residual" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">df.residual</th>
+<th id="rss" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">rss</th>
+<th id="df" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">df</th>
+<th id="sumsq" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">sumsq</th>
+<th id="statistic" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">statistic</th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">p.value</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="term">LifeExpectancyYrs ~ FemaleLiteracyRate</td>
+<td class="gt_row gt_right" headers="df.residual">70.00</td>
+<td class="gt_row gt_right" headers="rss">2,654.87</td>
+<td class="gt_row gt_right" headers="df">NA</td>
+<td class="gt_row gt_right" headers="sumsq">NA</td>
+<td class="gt_row gt_right" headers="statistic">NA</td>
+<td class="gt_row gt_right" headers="p.value">NA</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="term">LifeExpectancyYrs ~ FemaleLiteracyRate + FoodSupplykcPPD + WaterSourcePrct</td>
+<td class="gt_row gt_right" headers="df.residual">68.00</td>
+<td class="gt_row gt_right" headers="rss">1,517.92</td>
+<td class="gt_row gt_right" headers="df">2.00</td>
+<td class="gt_row gt_right" headers="sumsq">1,136.96</td>
+<td class="gt_row gt_right" headers="statistic">25.47</td>
+<td class="gt_row gt_right" headers="p.value">0.00</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -893,18 +965,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -936,11 +997,53 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -950,8 +1053,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -963,7 +1075,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1007,6 +1241,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1032,6 +1267,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1089,23 +1350,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-      }
-    }
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

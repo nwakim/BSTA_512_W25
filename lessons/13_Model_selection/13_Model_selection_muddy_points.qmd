@@ -9,13 +9,23 @@ editor_options:
   chunk_output_type: console
 ---
 
-## Muddy Points 2025
+## Muddy Points from n2025
 
-### I am a little stuck model selection strategies. I just want clarification on which one is the "best one", and why? Also, for fit statistic, what is the best range or number that is "accurate?"
+### 1. I am a little stuck model selection strategies. I just want clarification on which one is the "best one", and why? 
 
-### Just checking straight that with association usually some common issues is the too few variables, higher bias and lower variance compared to prediction.
+There is no "best one." It really just depends on your research goals and preferences. Different situations may lead you to follow different model selection strategies. Each model selection strategy will guide you towards a "best model," but that depends on what the model selection strategy prioritizes.
 
-### How do I actually choose which model to go with from the common model fit statistics?
+### 2. For fit statistic, what is the best range or number that is "accurate?"
+
+There is no best range. The ranges depend on the sample you have. Therefore, we only compare relative numbers between models that use the same data.
+
+### 3. Just checking straight that with association usually some common issues is the too few variables, higher bias and lower variance compared to prediction.
+
+Yes! In association, we do not want to overcomplicate the model because that will mess with interpretability of the model. Therefore, we lean towards less variables, which leads to higher bias *potential* and less variance of our coefficient estimates. 
+
+### 4. How do I actually choose which model to go with from the common model fit statistics?
+
+I mostly go with the model with the best values (lowers AIC and BIC and higher $R^2$). A lot of the times, I use it if my model selection technique landed me on a really complicated model. Maybe I did not expect a bunch of interactions in the model, but that was the final model. I might quickly compare the model fit statistics of the model without interactions (or with different interactions) to compared the model fits. 
 
 ## Muddy Points 2024
 

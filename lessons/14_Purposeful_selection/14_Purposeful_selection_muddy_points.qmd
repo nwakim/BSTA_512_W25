@@ -11,9 +11,51 @@ editor_options:
 
 ## Muddy Points 2025
 
-### For the three methods/approaches to address the violation of linearity assumption: Approach 1: Categorize continuous variable Approach 2: Fractional Polynomials Approach 3: Spline functions Which one is the most used approach? I am a bit confused on what we should be looking for in each. What should be the values that we should analyze first?
+### 1. For the three methods/approaches to address the violation of linearity assumption: Approach 1: Categorize continuous variable Approach 2: Fractional Polynomials Approach 3: Spline functions Which one is the most used approach? I am a bit confused on what we should be looking for in each. What should be the values that we should analyze first?
 
-### Going over interactions in the poll everywhere.
+You don't really need to be looking for anything. If you find that a numeric variable is not linear with the outcome, you have a few options:
+
+1. Categorize the numeric variable so linearity is no longer an issue
+2. Model the variable with a transformation, then you need to check if the transformation is linear
+3. Use splines to create different sections of the variable that are linear with the outcome.
+
+I would say categorizing is the most used approach to maintain interpretability. 
+
+### 2. Poll Everywhere questions about interactions 
+
+We want to see if a model *with interactions* explains more variance than a model *without interactions*. We can use the F-test to determine this! We end up testing if the coefficients for the interactions terms are zero (null hypothesis) or one or more is not zero (alternative hypothesis). 
+
+It is helpful to understand how many coefficients you are testing when determining if an interaction should be in the model or not. Let's look at some examples for this.
+
+#### 1. Interaction between two binary variables
+
+Let's sat we have $X_1$ and $X_2$. Both variables can take two values: Yes or No. I can model the following main effects model: $$Y = \beta_0 + \beta_1 I(X_1 = \text{Yes}) + \beta_2 I(X_2=\text{Yes})+ \epsilon$$
+
+I can also include interactions in the model: $$Y = \beta_0 + \beta_1 I(X_1 = \text{Yes}) + \beta_2 I(X_2=\text{Yes})+ \beta_3 I(X_1 = \text{Yes}) \cdot I(X_2 = \text{Yes})+ \epsilon$$
+
+If I want to compare these two models, I need to test if $\beta_3=0$ or not. **Therefore, I am only testing one coefficient**.
+
+#### 2. Interaction between two multi-level categorical variables.
+
+Let's sat we have $X_1$ and $X_2$. $X_1$ can take 4 values: group 1, group 2, group 3, and group 4. $X_2$ can take 3 values: category 1, category 2, and category 3.
+
+I can model the following main effects model: 
+
+$$\begin{aligned}
+Y = & \beta_0 + \beta_1 I(X_1 = \text{Group 2}) + \beta_2 I(X_1 = \text{Group 3}) + \beta_3 I(X_1 = \text{Group 4}) + \\ & \beta_4 I(X_2 = \text{Category 2}) + \beta_5 I(X_2 = \text{Category 3}) + \epsilon
+\end{aligned}$$
+
+I can also include interactions in the model: 
+
+$$\begin{aligned}
+Y = & \beta_0 + \beta_1 I(X_1 = \text{Group 2}) + \beta_2 I(X_1 = \text{Group 3}) + \beta_3 I(X_1 = \text{Group 4}) + \\ & \beta_4 I(X_2 = \text{Category 2}) + \beta_5 I(X_2 = \text{Category 3}) + 
+\\ & \beta_6 I(X_1 = \text{Group 2}) \cdot I(X_2 = \text{Category 2}) + \beta_7 I(X_1 = \text{Group 2}) \cdot I(X_2 = \text{Category 3}) + 
+\\ & \beta_8 I(X_1 = \text{Group 3}) \cdot I(X_2 = \text{Category 2}) + \beta_9 I(X_1 = \text{Group 3}) \cdot I(X_2 = \text{Category 3}) + 
+\\ & \beta_{10} I(X_1 = \text{Group 4}) \cdot I(X_2 = \text{Category 2}) + \beta_{11} I(X_1 = \text{Group 4}) \cdot I(X_2 = \text{Category 3}) + 
++ \epsilon
+\end{aligned}$$
+
+If I want to compare these two models, I need to test all coefficients of the interactions. **Therefore, I am testing 6 coefficients**.
 
 ## Muddy Points 2024
 

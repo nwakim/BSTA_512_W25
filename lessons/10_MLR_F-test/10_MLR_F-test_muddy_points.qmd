@@ -11,6 +11,40 @@ editor_options:
 
 ## Muddy Points from Winter 2025
 
+### 1. The muddiest point I had was what is the point or purpose of trying to the "explain the unexplained." What does it mean to greatly reduce the unexplained variation or increase the explained variation?
+
+When we measure an outcome, there is variance in the measurement. Is that variance just because there's measurement error? Of is that variance coming from some underlying characteristics that might change the value for different observations. 
+
+In reference to our lab with IAT score, we saw a large spread of IAT scores among participants. What causes the variance across people? Is it there attitudes or beliefs? Is it their other characteristics? If there is a set pattern connecting something like age to IAT score, then age explains some of the variance in IAT score. Maybe a higher IAT score is more likely to map to a lower age. Maybe a lower IAT score is morely to map to an older age. Some of the variance of IAT score is explained by age. Thus, age will reduce the unexplained variation in IAT score. If age reduces a decent amount of the IAT score's unexplained variation then they will have a significant association.
+
+### 2. I was wondering why the SSR is always smaller than the SSY.
+
+We can start with the equation: $$SSY = SSR + SSE$$.
+
+We can also subtract $SSE$ from each side to get: $$SSR = SSY - SSE$$
+
+If $SSE \geq 0$, then $$SSR \leq SSY$$ 
+
+### 3. Someday I want to understand the theory behind degrees of freedom :(
+
+[From Wikipedia:](https://en.wikipedia.org/wiki/Degrees_of_freedom_(statistics)) The number of independent pieces of information that go into the estimate of a parameter is called the degrees of freedom.
+
+Independent pieces of information will be the observations with outcomes! So we can start with the sample size!
+
+Any given estimate, like a coefficient or the F-statistic, will be calculated using the independent information (observations) and constructed from the dependent parameters in a model. 
+
+Thus, degrees of freedom will be the total number of independent observations subtracting the number of parameters you are estimating (# coefficients in the model - 1)
+
+#### Why "# coefficients in the model - 1"?
+
+Let's say we have 6 coefficients in a model. All these coefficients are estimated. However, they are work together in one model, so if we know 5 out of 6 coefficient estimates, then we know the 6th. Thus, we only have 5 parameter estimates that limit our degreeds of freedom. 
+
+### 4. The purpose of using a reduced model vs a larger (full) model.
+
+We want to compare different models to see if the larger model is a "better fit" for our outcome. By "better fit" I mean that it explains significantly more variation than the reduced model. 
+
+Using reduced and full models helps us remember that we are comparing models, not just testing ceofficients. 
+
 ## Muddy Points from Winter 2024
 
 ### 1. We keep getting back to $\widehat{Y}$, $Y_i$, and $\overline{Y}$ and their relationship to the population parameter estimates. Can you clarify this?

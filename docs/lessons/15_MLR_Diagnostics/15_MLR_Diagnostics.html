@@ -6,13 +6,12 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.450">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-a1d6f3123917047a395080194fc9e911.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.41">
 
   <meta name="author" content="Nicky Wakim">
   <meta name="dcterms.date" content="2025-03-05">
-  <title>Linear Models - Lesson 15: MLR Model Diagnostics</title>
+  <title>Linear Models – Lesson 15: MLR Model Diagnostics</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -32,7 +31,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -43,7 +42,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -96,210 +95,13 @@
     code span.vs { color: #86b300; } /* VerbatimString */
     code span.wa { color: #f07171; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-71a7df7d44e1eba382ea89a98a3e922d.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
-
-  .callout {
-    margin-top: 1em;
-    margin-bottom: 1em;  
-    border-radius: .25rem;
-  }
-
-  .callout.callout-style-simple { 
-    padding: 0em 0.5em;
-    border-left: solid #acacac .3rem;
-    border-right: solid 1px silver;
-    border-top: solid 1px silver;
-    border-bottom: solid 1px silver;
-    display: flex;
-  }
-
-  .callout.callout-style-default {
-    border-left: solid #acacac .3rem;
-    border-right: solid 1px silver;
-    border-top: solid 1px silver;
-    border-bottom: solid 1px silver;
-  }
-
-  .callout .callout-body-container {
-    flex-grow: 1;
-  }
-
-  .callout.callout-style-simple .callout-body {
-    font-size: 1rem;
-    font-weight: 400;
-  }
-
-  .callout.callout-style-default .callout-body {
-    font-size: 0.9rem;
-    font-weight: 400;
-  }
-
-  .callout.callout-titled.callout-style-simple .callout-body {
-    margin-top: 0.2em;
-  }
-
-  .callout:not(.callout-titled) .callout-body {
-      display: flex;
-  }
-
-  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
-    padding-left: 1.6em;
-  }
-
-  .callout.callout-titled .callout-header {
-    padding-top: 0.2em;
-    margin-bottom: -0.2em;
-  }
-
-  .callout.callout-titled .callout-title  p {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-  }
-    
-  .callout.callout-titled.callout-style-simple .callout-content  p {
-    margin-top: 0;
-  }
-
-  .callout.callout-titled.callout-style-default .callout-content  p {
-    margin-top: 0.7em;
-  }
-
-  .callout.callout-style-simple div.callout-title {
-    border-bottom: none;
-    font-size: .9rem;
-    font-weight: 600;
-    opacity: 75%;
-  }
-
-  .callout.callout-style-default  div.callout-title {
-    border-bottom: none;
-    font-weight: 600;
-    opacity: 85%;
-    font-size: 0.9rem;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-
-  .callout.callout-style-default div.callout-content {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-
-  .callout.callout-style-simple .callout-icon::before {
-    height: 1rem;
-    width: 1rem;
-    display: inline-block;
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 1rem 1rem;
-  }
-
-  .callout.callout-style-default .callout-icon::before {
-    height: 0.9rem;
-    width: 0.9rem;
-    display: inline-block;
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 0.9rem 0.9rem;
-  }
-
-  .callout-title {
-    display: flex
-  }
-    
-  .callout-icon::before {
-    margin-top: 1rem;
-    padding-right: .5rem;
-  }
-
-  .callout.no-icon::before {
-    display: none !important;
-  }
-
-  .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
-  }
-
-  .callout.callout-titled .callout-icon::before {
-    margin-top: .5rem;
-    padding-right: .5rem;
-  }
-
-  .callout:not(.callout-titled) .callout-icon::before {
-    margin-top: 1rem;
-    padding-right: .5rem;
-  }
-
-  /* Callout Types */
-
-  div.callout-note {
-    border-left-color: #4582ec !important;
-  }
-
-  div.callout-note .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
-  }
-
-  div.callout-note.callout-style-default .callout-title {
-    background-color: #dae6fb
-  }
-
-  div.callout-important {
-    border-left-color: #d9534f !important;
-  }
-
-  div.callout-important .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-important.callout-style-default .callout-title {
-    background-color: #f7dddc
-  }
-
-  div.callout-warning {
-    border-left-color: #f0ad4e !important;
-  }
-
-  div.callout-warning .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-warning.callout-style-default .callout-title {
-    background-color: #fcefdc
-  }
-
-  div.callout-tip {
-    border-left-color: #02b875 !important;
-  }
-
-  div.callout-tip .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-tip.callout-style-default .callout-title {
-    background-color: #ccf1e3
-  }
-
-  div.callout-caution {
-    border-left-color: #fd7e14 !important;
-  }
-
-  div.callout-caution .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
-  }
-
-  div.callout-caution.callout-style-default .callout-title {
-    background-color: #ffe5d0
-  }
-
-  </style>
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -468,8 +270,7 @@ Nicky Wakim
 </ul>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </div>
 <div class="RAP4">
 <div class="RAP4-title">
@@ -487,8 +288,7 @@ Nicky Wakim
 <li>Inference for expected <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span></li>
 <li>Prediction of new <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span></li>
 </ul>
-</div>
-</div>
+</div></div>
 </div>
 </div>
 </section>
@@ -506,41 +306,52 @@ Nicky Wakim
 <li>Membership of global and economic groups <code>members_oecd_g77</code></li>
 <li>Food Supply <code>FoodSupplykcPPD</code></li>
 <li>Clean Water Supply <code>WaterSupplePct</code></li>
+<li>No interactions</li>
 </ul></li>
 </ul>
 </div><div class="column" style="width:60%;">
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Display regression table for final model</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">tidy</span>(final_model) <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">32</span>) <span class="sc">%&gt;%</span>  </span>
-<span id="cb1-2"><a href="#cb1-2"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">tbl_regression</span>(</span>
+<span id="cb1-2"><a></a>  final_model, </span>
+<span id="cb1-3"><a></a>  <span class="at">label =</span> <span class="fu">list</span>(</span>
+<span id="cb1-4"><a></a>    FemaleLiteracyRate <span class="sc">~</span> <span class="st">"Female literacy rate (%)"</span>, </span>
+<span id="cb1-5"><a></a>    CO2_q <span class="sc">~</span> <span class="st">"CO2 emissions quartiles"</span>, </span>
+<span id="cb1-6"><a></a>    income_levels1 <span class="sc">~</span> <span class="st">"Income levels"</span>, </span>
+<span id="cb1-7"><a></a>    four_regions <span class="sc">~</span> <span class="st">"World region"</span>,</span>
+<span id="cb1-8"><a></a>    WaterSourcePrct <span class="sc">~</span> <span class="st">"Access to omproved water (%)"</span>,</span>
+<span id="cb1-9"><a></a>    FoodSupplykcPPD <span class="sc">~</span> <span class="st">"Food supply (kcal PPD)"</span>,</span>
+<span id="cb1-10"><a></a>    members_oecd_g77 <span class="sc">~</span> <span class="st">"Intergovernmental group"</span></span>
+<span id="cb1-11"><a></a>    )) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-12"><a></a>  <span class="fu">as_gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-13"><a></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">18</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
-<div id="cvnstelfnr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cvnstelfnr table {
+<div id="bcoxgdable" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bcoxgdable table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cvnstelfnr thead, #cvnstelfnr tbody, #cvnstelfnr tfoot, #cvnstelfnr tr, #cvnstelfnr td, #cvnstelfnr th {
+#bcoxgdable thead, #bcoxgdable tbody, #bcoxgdable tfoot, #bcoxgdable tr, #bcoxgdable td, #bcoxgdable th {
   border-style: none;
 }
 
-#cvnstelfnr p {
+#bcoxgdable p {
   margin: 0;
   padding: 0;
 }
 
-#cvnstelfnr .gt_table {
+#bcoxgdable .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
-  font-size: 32px;
+  font-size: 18px;
   font-weight: normal;
   font-style: normal;
   background-color: #FFFFFF;
@@ -559,12 +370,12 @@ Nicky Wakim
   border-left-color: #D3D3D3;
 }
 
-#cvnstelfnr .gt_caption {
+#bcoxgdable .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cvnstelfnr .gt_title {
+#bcoxgdable .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -576,7 +387,7 @@ Nicky Wakim
   border-bottom-width: 0;
 }
 
-#cvnstelfnr .gt_subtitle {
+#bcoxgdable .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -588,7 +399,7 @@ Nicky Wakim
   border-top-width: 0;
 }
 
-#cvnstelfnr .gt_heading {
+#bcoxgdable .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -600,13 +411,13 @@ Nicky Wakim
   border-right-color: #D3D3D3;
 }
 
-#cvnstelfnr .gt_bottom_border {
+#bcoxgdable .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cvnstelfnr .gt_col_headings {
+#bcoxgdable .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -621,7 +432,7 @@ Nicky Wakim
   border-right-color: #D3D3D3;
 }
 
-#cvnstelfnr .gt_col_heading {
+#bcoxgdable .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -641,7 +452,7 @@ Nicky Wakim
   overflow-x: hidden;
 }
 
-#cvnstelfnr .gt_column_spanner_outer {
+#bcoxgdable .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -653,15 +464,15 @@ Nicky Wakim
   padding-right: 4px;
 }
 
-#cvnstelfnr .gt_column_spanner_outer:first-child {
+#bcoxgdable .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cvnstelfnr .gt_column_spanner_outer:last-child {
+#bcoxgdable .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cvnstelfnr .gt_column_spanner {
+#bcoxgdable .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -673,11 +484,11 @@ Nicky Wakim
   width: 100%;
 }
 
-#cvnstelfnr .gt_spanner_row {
+#bcoxgdable .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cvnstelfnr .gt_group_heading {
+#bcoxgdable .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -703,7 +514,7 @@ Nicky Wakim
   text-align: left;
 }
 
-#cvnstelfnr .gt_empty_group_heading {
+#bcoxgdable .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -718,15 +529,15 @@ Nicky Wakim
   vertical-align: middle;
 }
 
-#cvnstelfnr .gt_from_md > :first-child {
+#bcoxgdable .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cvnstelfnr .gt_from_md > :last-child {
+#bcoxgdable .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cvnstelfnr .gt_row {
+#bcoxgdable .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -745,7 +556,7 @@ Nicky Wakim
   overflow-x: hidden;
 }
 
-#cvnstelfnr .gt_stub {
+#bcoxgdable .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -758,7 +569,7 @@ Nicky Wakim
   padding-right: 5px;
 }
 
-#cvnstelfnr .gt_stub_row_group {
+#bcoxgdable .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -772,15 +583,15 @@ Nicky Wakim
   vertical-align: top;
 }
 
-#cvnstelfnr .gt_row_group_first td {
+#bcoxgdable .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cvnstelfnr .gt_row_group_first th {
+#bcoxgdable .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cvnstelfnr .gt_summary_row {
+#bcoxgdable .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -790,16 +601,16 @@ Nicky Wakim
   padding-right: 5px;
 }
 
-#cvnstelfnr .gt_first_summary_row {
+#bcoxgdable .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cvnstelfnr .gt_first_summary_row.thick {
+#bcoxgdable .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cvnstelfnr .gt_last_summary_row {
+#bcoxgdable .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -809,7 +620,7 @@ Nicky Wakim
   border-bottom-color: #D3D3D3;
 }
 
-#cvnstelfnr .gt_grand_summary_row {
+#bcoxgdable .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -819,7 +630,7 @@ Nicky Wakim
   padding-right: 5px;
 }
 
-#cvnstelfnr .gt_first_grand_summary_row {
+#bcoxgdable .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -829,7 +640,7 @@ Nicky Wakim
   border-top-color: #D3D3D3;
 }
 
-#cvnstelfnr .gt_last_grand_summary_row_top {
+#bcoxgdable .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -839,11 +650,11 @@ Nicky Wakim
   border-bottom-color: #D3D3D3;
 }
 
-#cvnstelfnr .gt_striped {
+#bcoxgdable .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cvnstelfnr .gt_table_body {
+#bcoxgdable .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -852,7 +663,7 @@ Nicky Wakim
   border-bottom-color: #D3D3D3;
 }
 
-#cvnstelfnr .gt_footnotes {
+#bcoxgdable .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -866,7 +677,7 @@ Nicky Wakim
   border-right-color: #D3D3D3;
 }
 
-#cvnstelfnr .gt_footnote {
+#bcoxgdable .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -875,7 +686,7 @@ Nicky Wakim
   padding-right: 5px;
 }
 
-#cvnstelfnr .gt_sourcenotes {
+#bcoxgdable .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -889,7 +700,7 @@ Nicky Wakim
   border-right-color: #D3D3D3;
 }
 
-#cvnstelfnr .gt_sourcenote {
+#bcoxgdable .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -897,170 +708,252 @@ Nicky Wakim
   padding-right: 5px;
 }
 
-#cvnstelfnr .gt_left {
+#bcoxgdable .gt_left {
   text-align: left;
 }
 
-#cvnstelfnr .gt_center {
+#bcoxgdable .gt_center {
   text-align: center;
 }
 
-#cvnstelfnr .gt_right {
+#bcoxgdable .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cvnstelfnr .gt_font_normal {
+#bcoxgdable .gt_font_normal {
   font-weight: normal;
 }
 
-#cvnstelfnr .gt_font_bold {
+#bcoxgdable .gt_font_bold {
   font-weight: bold;
 }
 
-#cvnstelfnr .gt_font_italic {
+#bcoxgdable .gt_font_italic {
   font-style: italic;
 }
 
-#cvnstelfnr .gt_super {
+#bcoxgdable .gt_super {
   font-size: 65%;
 }
 
-#cvnstelfnr .gt_footnote_marks {
+#bcoxgdable .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cvnstelfnr .gt_asterisk {
+#bcoxgdable .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cvnstelfnr .gt_indent_1 {
+#bcoxgdable .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cvnstelfnr .gt_indent_2 {
+#bcoxgdable .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cvnstelfnr .gt_indent_3 {
+#bcoxgdable .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cvnstelfnr .gt_indent_4 {
+#bcoxgdable .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cvnstelfnr .gt_indent_5 {
+#bcoxgdable .gt_indent_5 {
   text-indent: 25px;
 }
 
-#cvnstelfnr .katex-display {
+#bcoxgdable .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#cvnstelfnr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#bcoxgdable div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="std.error">std.error</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="term" class="gt_row gt_left">(Intercept)</td>
-<td headers="estimate" class="gt_row gt_right">39.877</td>
-<td headers="std.error" class="gt_row gt_right">4.889</td>
-<td headers="statistic" class="gt_row gt_right">8.157</td>
-<td headers="p.value" class="gt_row gt_right">0.000</td></tr>
-    <tr><td headers="term" class="gt_row gt_left">FemaleLiteracyRate</td>
-<td headers="estimate" class="gt_row gt_right">−0.073</td>
-<td headers="std.error" class="gt_row gt_right">0.047</td>
-<td headers="statistic" class="gt_row gt_right">−1.555</td>
-<td headers="p.value" class="gt_row gt_right">0.125</td></tr>
-    <tr><td headers="term" class="gt_row gt_left">CO2_q(0.806,2.54]</td>
-<td headers="estimate" class="gt_row gt_right">1.099</td>
-<td headers="std.error" class="gt_row gt_right">1.914</td>
-<td headers="statistic" class="gt_row gt_right">0.574</td>
-<td headers="p.value" class="gt_row gt_right">0.568</td></tr>
-    <tr><td headers="term" class="gt_row gt_left">CO2_q(2.54,4.66]</td>
-<td headers="estimate" class="gt_row gt_right">−0.292</td>
-<td headers="std.error" class="gt_row gt_right">2.419</td>
-<td headers="statistic" class="gt_row gt_right">−0.121</td>
-<td headers="p.value" class="gt_row gt_right">0.904</td></tr>
-    <tr><td headers="term" class="gt_row gt_left">CO2_q(4.66,35.2]</td>
-<td headers="estimate" class="gt_row gt_right">−0.595</td>
-<td headers="std.error" class="gt_row gt_right">2.524</td>
-<td headers="statistic" class="gt_row gt_right">−0.236</td>
-<td headers="p.value" class="gt_row gt_right">0.814</td></tr>
-    <tr><td headers="term" class="gt_row gt_left">income_levels1Lower middle income</td>
-<td headers="estimate" class="gt_row gt_right">5.441</td>
-<td headers="std.error" class="gt_row gt_right">2.343</td>
-<td headers="statistic" class="gt_row gt_right">2.322</td>
-<td headers="p.value" class="gt_row gt_right">0.024</td></tr>
-    <tr><td headers="term" class="gt_row gt_left">income_levels1Upper middle income</td>
-<td headers="estimate" class="gt_row gt_right">6.111</td>
-<td headers="std.error" class="gt_row gt_right">2.954</td>
-<td headers="statistic" class="gt_row gt_right">2.069</td>
-<td headers="p.value" class="gt_row gt_right">0.043</td></tr>
-    <tr><td headers="term" class="gt_row gt_left">income_levels1High income</td>
-<td headers="estimate" class="gt_row gt_right">7.959</td>
-<td headers="std.error" class="gt_row gt_right">3.277</td>
-<td headers="statistic" class="gt_row gt_right">2.429</td>
-<td headers="p.value" class="gt_row gt_right">0.018</td></tr>
-    <tr><td headers="term" class="gt_row gt_left">four_regionsAmericas</td>
-<td headers="estimate" class="gt_row gt_right">9.003</td>
-<td headers="std.error" class="gt_row gt_right">2.050</td>
-<td headers="statistic" class="gt_row gt_right">4.391</td>
-<td headers="p.value" class="gt_row gt_right">0.000</td></tr>
-    <tr><td headers="term" class="gt_row gt_left">four_regionsAsia</td>
-<td headers="estimate" class="gt_row gt_right">5.260</td>
-<td headers="std.error" class="gt_row gt_right">1.637</td>
-<td headers="statistic" class="gt_row gt_right">3.213</td>
-<td headers="p.value" class="gt_row gt_right">0.002</td></tr>
-    <tr><td headers="term" class="gt_row gt_left">four_regionsEurope</td>
-<td headers="estimate" class="gt_row gt_right">6.855</td>
-<td headers="std.error" class="gt_row gt_right">2.871</td>
-<td headers="statistic" class="gt_row gt_right">2.387</td>
-<td headers="p.value" class="gt_row gt_right">0.020</td></tr>
-    <tr><td headers="term" class="gt_row gt_left">WaterSourcePrct</td>
-<td headers="estimate" class="gt_row gt_right">0.166</td>
-<td headers="std.error" class="gt_row gt_right">0.066</td>
-<td headers="statistic" class="gt_row gt_right">2.496</td>
-<td headers="p.value" class="gt_row gt_right">0.015</td></tr>
-    <tr><td headers="term" class="gt_row gt_left">FoodSupplykcPPD</td>
-<td headers="estimate" class="gt_row gt_right">0.004</td>
-<td headers="std.error" class="gt_row gt_right">0.002</td>
-<td headers="statistic" class="gt_row gt_right">1.825</td>
-<td headers="p.value" class="gt_row gt_right">0.073</td></tr>
-    <tr><td headers="term" class="gt_row gt_left">members_oecd_g77oecd</td>
-<td headers="estimate" class="gt_row gt_right">1.119</td>
-<td headers="std.error" class="gt_row gt_right">2.674</td>
-<td headers="statistic" class="gt_row gt_right">0.418</td>
-<td headers="p.value" class="gt_row gt_right">0.677</td></tr>
-    <tr><td headers="term" class="gt_row gt_left">members_oecd_g77others</td>
-<td headers="estimate" class="gt_row gt_right">1.047</td>
-<td headers="std.error" class="gt_row gt_right">2.511</td>
-<td headers="statistic" class="gt_row gt_right">0.417</td>
-<td headers="p.value" class="gt_row gt_right">0.678</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings header">
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Beta</strong></th>
+<th id="conf.low" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>p-value</strong></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Female literacy rate (%)</td>
+<td class="gt_row gt_center" headers="estimate">-0.07</td>
+<td class="gt_row gt_center" headers="conf.low">-0.17, 0.02</td>
+<td class="gt_row gt_center" headers="p.value">0.13</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">CO2 emissions quartiles</td>
+<td class="gt_row gt_center" headers="estimate"><br>
+</td>
+<td class="gt_row gt_center" headers="conf.low"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;[0.0439,0.806]</td>
+<td class="gt_row gt_center" headers="estimate">—</td>
+<td class="gt_row gt_center" headers="conf.low">—</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;(0.806,2.54]</td>
+<td class="gt_row gt_center" headers="estimate">1.1</td>
+<td class="gt_row gt_center" headers="conf.low">-2.7, 4.9</td>
+<td class="gt_row gt_center" headers="p.value">0.6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;(2.54,4.66]</td>
+<td class="gt_row gt_center" headers="estimate">-0.29</td>
+<td class="gt_row gt_center" headers="conf.low">-5.1, 4.6</td>
+<td class="gt_row gt_center" headers="p.value">&gt;0.9</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;(4.66,35.2]</td>
+<td class="gt_row gt_center" headers="estimate">-0.60</td>
+<td class="gt_row gt_center" headers="conf.low">-5.6, 4.5</td>
+<td class="gt_row gt_center" headers="p.value">0.8</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Income levels</td>
+<td class="gt_row gt_center" headers="estimate"><br>
+</td>
+<td class="gt_row gt_center" headers="conf.low"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Low income</td>
+<td class="gt_row gt_center" headers="estimate">—</td>
+<td class="gt_row gt_center" headers="conf.low">—</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Lower middle income</td>
+<td class="gt_row gt_center" headers="estimate">5.4</td>
+<td class="gt_row gt_center" headers="conf.low">0.75, 10</td>
+<td class="gt_row gt_center" headers="p.value">0.024</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Upper middle income</td>
+<td class="gt_row gt_center" headers="estimate">6.1</td>
+<td class="gt_row gt_center" headers="conf.low">0.20, 12</td>
+<td class="gt_row gt_center" headers="p.value">0.043</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;High income</td>
+<td class="gt_row gt_center" headers="estimate">8.0</td>
+<td class="gt_row gt_center" headers="conf.low">1.4, 15</td>
+<td class="gt_row gt_center" headers="p.value">0.018</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">World region</td>
+<td class="gt_row gt_center" headers="estimate"><br>
+</td>
+<td class="gt_row gt_center" headers="conf.low"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Africa</td>
+<td class="gt_row gt_center" headers="estimate">—</td>
+<td class="gt_row gt_center" headers="conf.low">—</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Americas</td>
+<td class="gt_row gt_center" headers="estimate">9.0</td>
+<td class="gt_row gt_center" headers="conf.low">4.9, 13</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Asia</td>
+<td class="gt_row gt_center" headers="estimate">5.3</td>
+<td class="gt_row gt_center" headers="conf.low">2.0, 8.5</td>
+<td class="gt_row gt_center" headers="p.value">0.002</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Europe</td>
+<td class="gt_row gt_center" headers="estimate">6.9</td>
+<td class="gt_row gt_center" headers="conf.low">1.1, 13</td>
+<td class="gt_row gt_center" headers="p.value">0.020</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Access to omproved water (%)</td>
+<td class="gt_row gt_center" headers="estimate">0.17</td>
+<td class="gt_row gt_center" headers="conf.low">0.03, 0.30</td>
+<td class="gt_row gt_center" headers="p.value">0.015</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Food supply (kcal PPD)</td>
+<td class="gt_row gt_center" headers="estimate">0.00</td>
+<td class="gt_row gt_center" headers="conf.low">0.00, 0.01</td>
+<td class="gt_row gt_center" headers="p.value">0.073</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Intergovernmental group</td>
+<td class="gt_row gt_center" headers="estimate"><br>
+</td>
+<td class="gt_row gt_center" headers="conf.low"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;g77</td>
+<td class="gt_row gt_center" headers="estimate">—</td>
+<td class="gt_row gt_center" headers="conf.low">—</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;oecd</td>
+<td class="gt_row gt_center" headers="estimate">1.1</td>
+<td class="gt_row gt_center" headers="conf.low">-4.2, 6.5</td>
+<td class="gt_row gt_center" headers="p.value">0.7</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;others</td>
+<td class="gt_row gt_center" headers="estimate">1.0</td>
+<td class="gt_row gt_center" headers="conf.low">-4.0, 6.1</td>
+<td class="gt_row gt_center" headers="p.value">0.7</td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="odd">
+<td colspan="4" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> CI = Confidence Interval</td>
+</tr>
+</tfoot>
+
 </table>
+
 </div>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="its-a-lot-to-visualize" class="slide level2">
 <h2>It’s a lot to visualize</h2>
@@ -1069,11 +962,11 @@ Nicky Wakim
 </ul>
 <p>&nbsp;</p>
 <ul>
-<li>With 7 variables in out final model, it is hard to visualize outliers and influential points</li>
+<li>With 7 variables in our final model, it is hard to visualize outliers and influential points</li>
 </ul>
 <p>&nbsp;</p>
 <ul>
-<li>I highly encourage you revisit Lesson 6 and 7 (SLR Diagnostics) to help understand these notes</li>
+<li>I highly encourage you revisit the SLR lessons (<a href="../../lessons/07_SLR_Assumptions/07_SLR_Assumptions.html">SLR: Checking model assumptions</a> and <a href="../08_SLR_Diagnostics/08_SLR_Diagnostics.qmd">SLR: Diagnostics</a> to help understand these notes</li>
 </ul>
 </section>
 <section id="remember-our-friend-augment" class="slide level2">
@@ -1085,12 +978,12 @@ Nicky Wakim
 </ul></li>
 <li><p>Will give us values about each observation in the context of the fitted regression model</p>
 <ul>
-<li>cook’s distance (<code>.cooksd</code>), fitted value (<code>.fitted</code>, <span class="math inline">\(\widehat{Y}_i\)</span>), leverage (<code>.hat</code>), residual (<code>.resid</code>), standardized residuals (<code>.std.resid</code>)</li>
+<li>cook’s distance (<code>.cooksd</code>), <span class="math inline">\(\widehat{Y}_i\)</span> (<code>.fitted</code>), leverage (<code>.hat</code>), residuals (<code>.resid</code>), std residuals (<code>.std.resid</code>)</li>
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>aug <span class="ot">=</span> <span class="fu">augment</span>(final_model)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">head</span>(aug) <span class="sc">%&gt;%</span> <span class="fu">relocate</span>(.fitted, .resid, .std.resid, .hat, .cooksd, <span class="at">.after =</span> LifeExpectancyYrs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>aug <span class="ot">=</span> <span class="fu">augment</span>(final_model)</span>
+<span id="cb2-2"><a></a><span class="fu">head</span>(aug) <span class="sc">%&gt;%</span> <span class="fu">relocate</span>(.fitted, .resid, .std.resid, .hat, .cooksd, <span class="at">.after =</span> LifeExpectancyYrs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 14
   LifeExpectancyYrs .fitted .resid .std.resid  .hat  .cooksd FemaleLiteracyRate
@@ -1123,11 +1016,11 @@ Nicky Wakim
 </section>
 <section id="summary-of-the-assumptions-and-their-diagnostic-tool" class="slide level2">
 <h2>Summary of the assumptions and their diagnostic tool</h2>
-<table style="width:99%;">
+<table class="caption-top">
 <colgroup>
-<col style="width: 19%">
-<col style="width: 52%">
-<col style="width: 27%">
+<col style="width: 21%">
+<col style="width: 43%">
+<col style="width: 36%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1162,8 +1055,7 @@ Nicky Wakim
 <tr class="odd">
 <td style="text-align: left;">Normality</td>
 <td style="text-align: left;"><ul>
-<li><p>Residuals (and thus <span class="math inline">\(Y|X_1, X_2, ..., X_p\)</span>)</p>
-<p>are normally distributed</p></li>
+<li>Residuals (and thus <span class="math inline">\(Y|X_1, X_2, ..., X_p\)</span>) are normally distributed</li>
 </ul></td>
 <td style="text-align: left;"><ul>
 <li><p>QQ plot of residuals</p></li>
@@ -1173,8 +1065,7 @@ Nicky Wakim
 <tr class="even">
 <td style="text-align: left;">Equality of variance</td>
 <td style="text-align: left;"><ul>
-<li><p>Variance of residuals (and thus <span class="math inline">\(Y|X_1, X_2, ..., X_p\)</span>)</p>
-<p>is same across fitted values (homoscedasticity)</p></li>
+<li>Variance of residuals (and thus <span class="math inline">\(Y|X_1, X_2, ..., X_p\)</span>) is same across fitted values (homoscedasticity)</li>
 </ul></td>
 <td style="text-align: left;"><ul>
 <li>Residual plot</li>
@@ -1186,35 +1077,23 @@ Nicky Wakim
 </section>
 <section id="autoplot-to-examine-equality-of-variance-and-normality" class="slide level2">
 <h2><code>autoplot()</code> to examine equality of variance and Normality</h2>
-<div class="columns">
-<div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(ggfortify)</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">autoplot</span>(final_model) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="15_MLR_Diagnostics_files/figure-revealjs/unnamed-chunk-4-1.png" width="1152"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:40%;">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(ggfortify)</span>
+<span id="cb4-2"><a></a><span class="fu">autoplot</span>(final_model) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-</div>
-</section>
+<img data-src="15_MLR_Diagnostics_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1152"></section>
 <section id="autoplot-to-examine-equality-of-variance-and-normality-1" class="slide level2">
 <h2><code>autoplot()</code> to examine equality of variance and Normality</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(ggfortify)</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">autoplot</span>(final_model) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">library</span>(ggfortify)</span>
+<span id="cb5-2"><a></a><span class="fu">autoplot</span>(final_model) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="15_MLR_Diagnostics_files/figure-revealjs/unnamed-chunk-5-1.png" width="1152"></p>
+<p><img data-src="15_MLR_Diagnostics_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -1235,8 +1114,7 @@ Nicky Wakim
 <ul>
 <li>Instead, discuss what may be missing in our regression model that is not capturing the characteristics of these countries</li>
 </ul>
-</div>
-</div>
+</div></div>
 </section>
 <section id="poll-everywhere-question-1" class="slide level2">
 <h2>Poll Everywhere Question 1</h2>
@@ -1280,25 +1158,41 @@ r_i = \frac{\widehat\epsilon_i}{\sqrt{\widehat\sigma^2(1-h_{ii})}}
 <li><p>Other sources use <span class="math inline">\(|r_i| &gt; 2\)</span>, which is a little more conservative</p></li>
 </ul></li>
 </ul>
-</div>
-</div>
+</div></div>
 <div class="columns">
 <div class="column" style="width:55%;">
 <p>&nbsp;</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> aug) <span class="sc">+</span> </span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> .std.resid))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> aug) <span class="sc">+</span> </span>
+<span id="cb6-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> .std.resid))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:45%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="15_MLR_Diagnostics_files/figure-revealjs/unnamed-chunk-7-1.png" width="720"></p>
+<p><img data-src="15_MLR_Diagnostics_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center" width="720"></p>
 </figure>
 </div>
 </div>
 </div>
+</div></div>
+</section>
+<section id="countries-that-are-outliers-r_i-3" class="slide level2">
+<h2>Countries that are outliers (<span class="math inline">\(|r_i| &gt; 3\)</span>)</h2>
+<ul>
+<li>We can identify the countries that are outliers</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>aug <span class="sc">%&gt;%</span> <span class="fu">relocate</span>(.std.resid, <span class="at">.after =</span> country) <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a></a>  <span class="fu">filter</span>(<span class="fu">abs</span>(.std.resid) <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(.std.resid)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 15
+# ℹ 15 variables: country &lt;chr&gt;, .std.resid &lt;dbl&gt;, LifeExpectancyYrs &lt;dbl&gt;,
+#   FemaleLiteracyRate &lt;dbl&gt;, CO2_q &lt;fct&gt;, income_levels1 &lt;fct&gt;,
+#   four_regions &lt;fct&gt;, WaterSourcePrct &lt;dbl&gt;, FoodSupplykcPPD &lt;dbl&gt;,
+#   members_oecd_g77 &lt;chr&gt;, .fitted &lt;dbl&gt;, .resid &lt;dbl&gt;, .hat &lt;dbl&gt;,
+#   .sigma &lt;dbl&gt;, .cooksd &lt;dbl&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -1308,8 +1202,8 @@ r_i = \frac{\widehat\epsilon_i}{\sqrt{\widehat\sigma^2(1-h_{ii})}}
 <li>We can identify the countries that are outliers</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>aug <span class="sc">%&gt;%</span> <span class="fu">relocate</span>(.std.resid, <span class="at">.after =</span> country) <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">filter</span>(<span class="fu">abs</span>(.std.resid) <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(.std.resid)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>aug <span class="sc">%&gt;%</span> <span class="fu">relocate</span>(.std.resid, <span class="at">.after =</span> country) <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">filter</span>(<span class="fu">abs</span>(.std.resid) <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(.std.resid)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 15
   country   .std.resid LifeExpectancyYrs FemaleLiteracyRate CO2_q income_levels1
@@ -1338,23 +1232,17 @@ r_i = \frac{\widehat\epsilon_i}{\sqrt{\widehat\sigma^2(1-h_{ii})}}
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>aug <span class="ot">=</span> aug <span class="sc">%&gt;%</span> <span class="fu">relocate</span>(.hat, <span class="at">.after =</span> FemaleLiteracyRate)</span>
-<span id="cb9-2"><a href="#cb9-2"></a>aug <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(.hat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>aug <span class="ot">=</span> aug <span class="sc">%&gt;%</span> <span class="fu">relocate</span>(.hat, <span class="at">.after =</span> FemaleLiteracyRate)</span>
+<span id="cb11-2"><a></a>aug <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(.hat)) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 72 × 15
-   country       LifeExpectancyYrs FemaleLiteracyRate  .hat CO2_q income_levels1
-   &lt;chr&gt;                     &lt;dbl&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;         
- 1 Mexico                     75.8               92.3 0.445 (2.5… Upper middle …
- 2 Tajikistan                 69.9               99.6 0.425 [0.0… Lower middle …
- 3 Bosnia and H…              76.9               96.7 0.367 (4.6… Upper middle …
- 4 Uzbekistan                 69                 99.2 0.363 (2.5… Lower middle …
- 5 Bangladesh                 71                 53.4 0.347 [0.0… Lower middle …
- 6 Afghanistan                56.7               13   0.327 [0.0… Low income    
- 7 Zimbabwe                   51.9               80.1 0.321 [0.0… Low income    
- 8 Angola                     60.9               58.6 0.320 (0.8… Lower middle …
- 9 Myanmar                    67.4               90.4 0.304 [0.0… Lower middle …
-10 Yemen                      67.7               48.5 0.296 (0.8… Lower middle …
-# ℹ 62 more rows
+<pre><code># A tibble: 5 × 15
+  country        LifeExpectancyYrs FemaleLiteracyRate  .hat CO2_q income_levels1
+  &lt;chr&gt;                      &lt;dbl&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;         
+1 Mexico                      75.8               92.3 0.445 (2.5… Upper middle …
+2 Tajikistan                  69.9               99.6 0.425 [0.0… Lower middle …
+3 Bosnia and He…              76.9               96.7 0.367 (4.6… Upper middle …
+4 Uzbekistan                  69                 99.2 0.363 (2.5… Lower middle …
+5 Bangladesh                  71                 53.4 0.347 [0.0… Lower middle …
 # ℹ 9 more variables: four_regions &lt;fct&gt;, WaterSourcePrct &lt;dbl&gt;,
 #   FoodSupplykcPPD &lt;dbl&gt;, members_oecd_g77 &lt;chr&gt;, .fitted &lt;dbl&gt;, .resid &lt;dbl&gt;,
 #   .sigma &lt;dbl&gt;, .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;</code></pre>
@@ -1367,10 +1255,10 @@ r_i = \frac{\widehat\epsilon_i}{\sqrt{\widehat\sigma^2(1-h_{ii})}}
 <li>We can look at the countries that have high leverage: there are NONE</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>n <span class="ot">=</span> <span class="fu">nrow</span>(gapm2); p <span class="ot">=</span> <span class="fu">length</span>(final_model<span class="sc">$</span>coefficients) <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>aug <span class="sc">%&gt;%</span> </span>
-<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">filter</span>(.hat <span class="sc">&gt;</span> <span class="dv">3</span><span class="sc">*</span>p<span class="sc">/</span>n) <span class="sc">%&gt;%</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(.hat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>n <span class="ot">=</span> <span class="fu">nrow</span>(gapm2); p <span class="ot">=</span> <span class="fu">length</span>(final_model<span class="sc">$</span>coefficients) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb13-2"><a></a>aug <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a></a>  <span class="fu">filter</span>(.hat <span class="sc">&gt;</span> <span class="dv">3</span><span class="sc">*</span>p<span class="sc">/</span>n) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(.hat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 0 × 15
 # ℹ 15 variables: country &lt;chr&gt;, LifeExpectancyYrs &lt;dbl&gt;,
@@ -1395,14 +1283,13 @@ r_i = \frac{\widehat\epsilon_i}{\sqrt{\widehat\sigma^2(1-h_{ii})}}
 </ul></li>
 <li>Cook’s distance values are already in the augment tibble: <code>.cooksd</code></li>
 </ul>
-</div>
-</div>
+</div></div>
 <ul>
 <li>No countries with high Cook’s distance</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>aug <span class="ot">=</span> aug <span class="sc">%&gt;%</span> <span class="fu">relocate</span>(.cooksd, <span class="at">.after =</span> country)</span>
-<span id="cb13-2"><a href="#cb13-2"></a>aug <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(.cooksd)) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(.cooksd <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>aug <span class="ot">=</span> aug <span class="sc">%&gt;%</span> <span class="fu">relocate</span>(.cooksd, <span class="at">.after =</span> country)</span>
+<span id="cb15-2"><a></a>aug <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(.cooksd)) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(.cooksd <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 0 × 15
 # ℹ 15 variables: country &lt;chr&gt;, .cooksd &lt;dbl&gt;, LifeExpectancyYrs &lt;dbl&gt;,
@@ -1416,12 +1303,14 @@ r_i = \frac{\widehat\epsilon_i}{\sqrt{\widehat\sigma^2(1-h_{ii})}}
 <section id="plotting-cooks-distance" class="slide level2">
 <h2>Plotting Cook’s Distance</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># plot(model) shows figures similar to autoplot()</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="co"># adds on Cook's distance though</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="fu">plot</span>(final_model, <span class="at">which =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="co"># plot(model) shows figures similar to autoplot() but adds Cook's distance</span></span>
+<span id="cb17-2"><a></a><span class="fu">plot</span>(final_model, <span class="at">which =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="15_MLR_Diagnostics_files/figure-revealjs/unnamed-chunk-14-1.png" width="672" class="r-stretch quarto-figure-center"></section>
+<img data-src="15_MLR_Diagnostics_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"><ul>
+<li>Identify 3 highest Cook’s distance: 59, 61, 62 (South Africa, Kingdom of Eswatini, Tajikistan)</li>
+</ul>
+</section>
 <section id="how-do-we-deal-with-influential-points" class="slide level2">
 <h2>How do we deal with influential points?</h2>
 <ul>
@@ -1460,7 +1349,7 @@ r_i = \frac{\widehat\epsilon_i}{\sqrt{\widehat\sigma^2(1-h_{ii})}}
 <p>What are our options once we have identified issues in our linear regression model?</p>
 <ul>
 <li><p>Are we missing a crucial measure in our dataset?</p></li>
-<li><p>Try a transformation if there is an issue with linearity or normality</p>
+<li><p>Try categorization or transformation (or numeric variables) if there is an issue with linearity or normality</p>
 <ul>
 <li>Addressed in model selection</li>
 </ul></li>
@@ -1498,8 +1387,7 @@ r_i = \frac{\widehat\epsilon_i}{\sqrt{\widehat\sigma^2(1-h_{ii})}}
 </div>
 </div><div class="column" style="width:10%;">
 
-</div>
-</div>
+</div></div>
 <ul>
 <li><p>Types of multicollinearity</p>
 <ul>
@@ -1513,7 +1401,8 @@ r_i = \frac{\widehat\epsilon_i}{\sqrt{\widehat\sigma^2(1-h_{ii})}}
 </ul></li>
 <li><p><strong>Data-based multicollinearity</strong></p>
 <ul>
-<li>Result of a poorly designed experiment, reliance on purely observational data, or the inability to manipulate the system on which the data are collected.</li>
+<li>Result of a poorly designed experiment, reliance on purely observational data, or the inability to manipulate the system on which the data are collected</li>
+<li>Or we are using two variables that are practically measuring the same thing</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1523,14 +1412,14 @@ r_i = \frac{\widehat\epsilon_i}{\sqrt{\widehat\sigma^2(1-h_{ii})}}
 </section>
 <section id="why-is-multicollinearity-a-problem" class="slide level2">
 <h2>Why is multicollinearity a problem?</h2>
-<p>In linear regression…</p>
+<p>In linear regression, <strong>depending on the other predictors in the model</strong>, the following will change:</p>
 <ul>
-<li><p>Estimated regression coefficient of any one variable <strong>depends on other predictors included in the model</strong></p>
+<li><p>Estimated regression coefficient of any one variable</p>
 <ul>
 <li>Not necessarily bad, but a big change might be an issue</li>
 </ul></li>
-<li><p>Hypothesis tests for any coefficient may yield different conclusions <strong>depending on other predictors included in the model</strong></p></li>
-<li><p>Marginal contribution of any one predictor variable in reducing the error sum of squares <strong>depends on other predictors included in the model</strong></p></li>
+<li><p>Hypothesis tests for any coefficient may yield different conclusions</p></li>
+<li><p>Contribution of any one predictor variable in reducing sum of squared errors</p></li>
 </ul>
 <p>&nbsp;</p>
 <p>When there is multicollinearity in our model:</p>
@@ -1548,7 +1437,7 @@ r_i = \frac{\widehat\epsilon_i}{\sqrt{\widehat\sigma^2(1-h_{ii})}}
 <li><p>All consequences relate to estimating a regression coefficient <strong>precisely</strong></p>
 <ul>
 <li>Recall that precision is linked to analysis <strong>goals of association and interpretability</strong></li>
-<li>See Lesson 12: Model Selection</li>
+<li>See lesson on <a href="../../lessons/13_Model_selection/13_Model_selection.html">Model Selection</a></li>
 </ul></li>
 </ul>
 <p>&nbsp;</p>
@@ -1571,8 +1460,9 @@ r_i = \frac{\widehat\epsilon_i}{\sqrt{\widehat\sigma^2(1-h_{ii})}}
 </ul>
 <p>&nbsp;</p>
 <ul>
-<li><p>General rule of thumb</p>
+<li>General rule of thumb
 <ul>
+<li><p><span class="math inline">\(VIF &lt; 4\)</span>: Good!</p></li>
 <li><p><span class="math inline">\(4 &lt; VIF &lt; 10\)</span>: Warrent investigation (but most people aren’t investigating this…)</p></li>
 <li><p><span class="math inline">\(VIF &gt; 10\)</span>: Requires correction</p>
 <ul>
@@ -1594,17 +1484,16 @@ VIF = \dfrac{1}{1-R_k^2}
 <p><span class="math inline">\(R_k^2\)</span> is the <span class="math inline">\(R^2\)</span>-value obtained by regressing the <span class="math inline">\(k^{th}\)</span> covariate/predictor on the remaining predictors</p>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
 <section id="lets-apply-it-to-our-final-model" class="slide level2">
 <h2>Let’s apply it to our final model</h2>
 <ul>
-<li>Naive way to calculate this:</li>
+<li>Naive way to calculate this in R:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">library</span>(rms)</span>
-<span id="cb16-2"><a href="#cb16-2"></a>rms<span class="sc">::</span><span class="fu">vif</span>(final_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">library</span>(rms)</span>
+<span id="cb18-2"><a></a>rms<span class="sc">::</span><span class="fu">vif</span>(final_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               FemaleLiteracyRate                 CO2_q(0.806,2.54] 
                          4.863139                          2.979224 
@@ -1642,8 +1531,8 @@ income_levels1Lower middle income income_levels1Upper middle income
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb18-2"><a href="#cb18-2"></a>car<span class="sc">::</span><span class="fu">vif</span>(final_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">library</span>(car)</span>
+<span id="cb20-2"><a></a>car<span class="sc">::</span><span class="fu">vif</span>(final_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                        GVIF Df GVIF^(1/(2*Df))
 FemaleLiteracyRate  4.863139  1        2.205253
@@ -1664,7 +1553,7 @@ members_oecd_g77    7.430919  2        1.651052</code></pre>
 <li><p>OR: we can correct any <span class="math inline">\(GVIF^{1/(2\cdot df)} &gt; \sqrt{10} = 3.162\)</span></p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>car<span class="sc">::</span><span class="fu">vif</span>(final_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>car<span class="sc">::</span><span class="fu">vif</span>(final_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                        GVIF Df GVIF^(1/(2*Df))
 FemaleLiteracyRate  4.863139  1        2.205253
@@ -1805,8 +1694,7 @@ members_oecd_g77    7.430919  2        1.651052</code></pre>
 </ul>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </div>
 <div class="RAP4">
 <div class="RAP4-title">
@@ -1824,17 +1712,18 @@ members_oecd_g77    7.430919  2        1.651052</code></pre>
 <li>Inference for expected <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span></li>
 <li>Prediction of new <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span></li>
 </ul>
-</div>
-</div>
+</div></div>
 </div>
 </div>
 
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
 <p>Lesson 15: MLR Diagnostics</p>
 </div>
-</section></section>
-    </div>
-  </div>
+</div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="../../site_libs/revealjs/dist/reveal.js"></script>
@@ -1860,12 +1749,12 @@ members_oecd_g77    7.430919  2        1.651052</code></pre>
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
 'smaller': false,
  
@@ -2116,18 +2005,7 @@ members_oecd_g77    7.430919  2        1.651052</code></pre>
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -2159,11 +2037,48 @@ members_oecd_g77    7.430919  2        1.651052</code></pre>
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
-      function tippyHover(el, contentFn) {
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -2173,8 +2088,17 @@ members_oecd_g77    7.430919  2        1.651052</code></pre>
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -2188,7 +2112,11 @@ members_oecd_g77    7.430919  2        1.651052</code></pre>
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {

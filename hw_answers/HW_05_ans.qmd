@@ -1,0 +1,331 @@
+---
+title: "Homework 5 Answers"
+subtitle: "BSTA 512/612"
+author: "Your name here!!!"
+date-modified: "today"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    embed-resources: true
+editor_options: 
+  chunk_output_type: console
+---
+
+Answers are not necessarily complete! This is just meant to serve as a check if you are stuck. 
+
+```{=html}
+<style>div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}</style>
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.height = 4, fig.width = 6, fig.align = "center")
+
+library(tidyverse)
+library(rstatix)
+library(broom)
+library(gt)
+library(janitor)
+library(readxl)
+library(gridExtra)
+library(ggfortify)  # autoplot(model)
+library(gtsummary)
+library(describedata) # gladder()
+library(haven)
+library(here)
+```
+
+
+# Questions
+
+The purpose of the below problem is to integrate what we have learned so far into a simple process that might be embedded into our analysis. This will help you see how many of our learning objectives connect as a single work flow. Some of the things we have learned that will be covered:
+
+-   Choosing what to test
+-   Interpretations of coefficients (with and without other covariates in the model)
+-   F-test procedures and conclusions
+-   Testing if a covariate is an effect modifier, confounder, or nothing
+
+## Question 1
+
+We are going to revisit the Palmer Penguins dataset from Homework 4. Choosing what to test, interpretations of coefficients, F-test conclusions, and interactions
+
+For this problem we will be using the `penguins` dataset from the `palmerpenguins` R package. We will look at the association between flipper length of penguins (measured in mm) and specific species of penguins.
+
+Description from help file:
+
+> Includes measurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.
+
+[More info about the data.](https://allisonhorst.github.io/palmerpenguins/)
+
+```{r}
+# first install the palmerpenguins package
+# install.packages("palmerpenguins")
+library(palmerpenguins)
+data(penguins)
+
+# run the command below to learn more about the variables in the penguins dataset
+# ?penguins
+```
+
+### Part a
+
+Make a plot of flipper length (outcome) and body mass (explanatory variable). Discuss what you see in the plot.
+
+::: blue
+```{r}
+#| echo: false
+#| warning: false
+ggplot(data = penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+  geom_point() +
+  labs(x = "Body Mass (g)", y = "Flipper Length (mm)")
+```
+:::
+
+### Part b
+
+Write the simple linear regression model that we will fit for the association between body mass and flipper length. If you use any short hand, please write it out. For example: Let $BD$ represent bill depth.
+
+::: blue
+$$
+FL = \beta_0 + \beta_1 BM + \epsilon
+$$
+:::
+
+### Part c
+
+Run the simple linear regression model for the association between body mass and flipper length. Display the regression table output.
+
+::: blue
+```{r}
+#| echo: false
+model_bm = lm(flipper_length_mm ~ body_mass_g, data = penguins)
+reg_tbl_bm = tidy(model_bm, conf.int=T) 
+tbl_regression(model_bm)
+```
+:::
+
+### Part d
+
+Interpret the coefficient for body mass. Note that as we move forward with a multivariate model, we will refer to this is estimate at the the crude or unadjusted coefficient estimate.
+
+::: blue
+Not given
+:::
+
+### Part e
+
+Discuss how centering body mass might help with interpretability. Then, center body mass around the mean, run the model again, and display the regression table. Does the intercept and/or slope change from Part c?
+
+::: blue
+```{r}
+#| echo: false
+mean_bm = mean(penguins$body_mass_g, na.rm = T)
+```
+
+
+```{r}
+#| echo: false
+penguins2 = penguins %>%
+  mutate(bm_g_c = body_mass_g - mean_bm)
+```
+
+
+```{r}
+#| echo: false
+model_bm_c = lm(flipper_length_mm ~ bm_g_c, data = penguins2)
+reg_tbl_bm_c = tidy(model_bm_c, conf.int=T) 
+reg_tbl_bm_c %>% gt() %>% fmt_number(decimals = 3)
+```
+:::
+
+### Part f
+
+Make a plot of flipper length (outcome) and body mass (explanatory variable) by bill depth. Discuss what you see in the plot. (Hint: bill depth will be the color in the plot.)
+
+::: blue
+```{r}
+#| echo: false
+#| warning: false
+
+ggplot(data = penguins, 
+       aes(x = body_mass_g, y = flipper_length_mm, color = bill_depth_mm)) +
+  geom_point() +
+  labs(x = "Body Mass (g)", y = "Flipper Length (mm)", color = "Bill Depth (mm)")
+```
+
+:::
+
+### Part g
+
+Make a plot of flipper length (outcome) and body mass (explanatory variable) by penguin species. Discuss what you see in the plot and relate it back to the plot in Part f.
+
+::: blue
+```{r}
+#| echo: false
+#| warning: false
+
+ggplot(data = penguins, 
+       aes(x = body_mass_g, y = flipper_length_mm, color = species)) +
+  geom_point() +
+  labs(x = "Body Mass (g)", y = "Flipper Length (mm)", color = "Species")
+```
+:::
+
+### Part h
+
+Using only body mass and bill depth as covariates, write out the model that we would fit including the main effects of body mass and bill depth and their interaction. How many coefficients are tested when we test for a significant interaction?
+
+::: callout-note
+Both covariates should be centered. For the rest of the homework, we will use the centered body mass and bill depth.
+:::
+
+::: blue
+1
+:::
+
+### Part i 
+
+Center bill depth.
+
+::: blue
+Not given 
+
+```{r}
+#| echo: false
+#| warning: false
+
+mean_bd = mean(penguins$bill_depth_mm, na.rm = T)
+```
+
+```{r}
+#| echo: false
+#| warning: false
+
+
+penguins3 = penguins2 %>%
+  mutate(bd_c = bill_depth_mm - mean_bd)
+```
+:::
+
+### Part j
+
+Using only body mass and bill depth as covariates, test if bill depth is an effect modifier.
+
+::: blue
+```{r}
+#| echo: false
+
+model_bm_bd_main = lm(flipper_length_mm ~ bm_g_c + bd_c,
+                              data = penguins3)
+model_bm_bd_int = lm(flipper_length_mm ~ bm_g_c*bd_c,
+                             data = penguins3)
+bd_anova = anova(model_bm_bd_main, model_bm_bd_int) 
+bd_anova %>% tidy() %>% gt() %>% fmt_number(decimals = 3)
+```
+:::
+
+### Part k
+
+Using only body mass and species as covariates, write out the model that we would fit including the main effects of body mass and species and their interaction. How many coefficients are tested when we test for a significant interaction?
+
+Hint: Homework 4 can help guide us with the species' categories.
+
+::: blue
+2
+:::
+
+### Part l
+
+Using only body mass and species as covariates, test if species is an effect modifier. 
+
+::: blue
+```{r}
+#| echo: false
+
+model_bm_sp_main = lm(flipper_length_mm ~ bm_g_c + species,
+                              data = penguins3)
+model_bm_sp_int = lm(flipper_length_mm ~ bm_g_c*species,
+                             data = penguins3)
+
+sp_anova = anova(model_bm_sp_main, model_bm_sp_int) 
+sp_anova %>% tidy() %>% gt() %>% fmt_number(decimals = 3)
+```
+:::
+
+### Part m
+
+Using the results in the above parts, we will move forward with the following model:
+
+$$\begin{aligned}
+FL = & \beta_0 + \beta_1 BM^c + \beta_2 BD^c +  \beta_3 I(\textrm{Chinstrap}) + \beta_4 I(\textrm{Gentoo}) +  \\ & \beta_5 BM^c \cdot I(\textrm{Chinstrap}) + \beta_6 BM^c \cdot I(\textrm{Gentoo}) + \epsilon
+\end{aligned}$$ 
+
+Run the above model and display the regression table output.
+
+*Please note that this is not exactly the best method for selecting a model. I just wanted to step us through a similar thought process.*
+
+::: blue
+```{r}
+#| echo: false
+model = lm(flipper_length_mm ~ bm_g_c + bd_c + species +
+             bm_g_c*species,
+                      data = penguins3) # Model 2, with bill depth
+model_t = tidy(model, conf.int = T) 
+```
+
+
+```{r}
+#| echo: false
+
+tbl_regression(model, 
+               label = list(
+                 bm_g_c ~ "Centered body mass (g)", 
+                 bd_c ~ "Centered bill depth (mm)", 
+                 species ~ "Species"
+               ), 
+               estimate_fun = purrr::partial(style_ratio, digits = 3))
+```
+:::
+
+### Part n
+
+Interpret each coefficient in the model above. There should be 7 total interpretations. 
+
+::: blue
+A few examples:
+
+-   $\widehat\beta_1$: For Adelie penguins, the expected flipper length increases by `r round(model_t$estimate[2], 4)` mm for every 1 g increase in body mass, adjusting for bill depth (95% CI: `r round(model_t$conf.low[2], 4)`, `r round(model_t$conf.high[2], 4)`).
+
+    -   Note: Since bill depth is not in an interaction with body mass, we only need to adjust for bill depth. While this relationship holds for the mean bill depth, it is important to say we are adjusting for bill depth.
+    
+-   $\widehat\beta_3$: For penguins with a body mass of `r round(mean_bm, 2)` g, the expected flipper length is `r round(model_t$estimate[4], 2)` mm greater comparing Chinstrap penguins to Adelie penguins, adjusting for bill depth (95% CI: `r round(model_t$conf.low[4], 2)`, `r round(model_t$conf.high[4], 2)`).
+  
+-   $\widehat\beta_6$: The mean difference in the effect of body mass on flipper length, comparing Gentoo penguins to Adelie penguins, is `r round(model_t$estimate[7], 4)` mm, adjusting for bill depth (95% CI: `r round(model_t$conf.low[7], 4)`, `r round(model_t$conf.high[7], 4)`).
+
+:::
+
+### Part o
+
+For Chinstrap penguins, what is the effect of centered body mass? Use `estimable()` to find the 95% confidence interval for the effect. Interpret the effect.
+
+::: blue
+```{r}
+#| echo: false
+library(gmodels)
+Chin_BM_effect = 
+  model %>% estimable(
+  c(
+    "(Intercept)" = 0, 
+    "bm_g_c" = 1, 
+    "bd_c" = 0, 
+    "speciesChinstrap" = 0, 
+    "speciesGentoo" = 0, 
+    "bm_g_c:speciesChinstrap" = 1, 
+    "bm_g_c:speciesGentoo" = 0
+  ), 
+  conf.int = 0.95
+)
+```
+
+`r round(Chin_BM_effect$Estimate, 4)` mm
+:::

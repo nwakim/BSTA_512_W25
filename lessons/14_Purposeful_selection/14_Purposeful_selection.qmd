@@ -1271,8 +1271,19 @@ main_eff_model = lm(LifeExpectancyYrs ~ FemaleLiteracyRate + CO2_q + income_leve
 
 ::: {.column width="55%"}
 ```{r}
-tidy(main_eff_model) %>% gt() %>% tab_options(table.font.size = 33) %>%  
-  fmt_number(decimals = 3)
+tbl_regression(
+  main_eff_model, 
+  label = list(
+    FemaleLiteracyRate ~ "Female literacy rate (%)", 
+    CO2_q ~ "CO2 emissions quartiles", 
+    income_levels1 ~ "Income levels", 
+    four_regions ~ "World region",
+    WaterSourcePrct ~ "Access to omproved water (%)",
+    FoodSupplykcPPD ~ "Food supply (kcal PPD)",
+    members_oecd_g77 ~ "Intergovernmental group"
+    )) %>% 
+  as_gt() %>% 
+  tab_options(table.font.size = 22) 
 ```
 :::
 :::

@@ -2,7 +2,7 @@
 title: "Lab 4 Instructions"
 author: "Nicky Wakim"
 subtitle: "BSTA 512/612"
-description: "Due: March 14, 2025 at 11pm"
+description: "Due: March 7, 2025 at 11pm"
 date-modified: "today"
 categories: [""]
 format: 
@@ -23,16 +23,8 @@ execute:
 
 ::: callout-caution
 
-Needs to be worked on!
+Read to go! Nicky 3/3/2025
 
-:::
-
-::: callout-warning
-## IMPORTANT TO READ
-
--   Please do not delete the rubric from your `.qmd` file. I will use it to circle the grades!
-
--   There is an instructions file and a file for you to edit and turn in. Please only work in the latter file!!
 :::
 
 ```{r}
@@ -57,11 +49,14 @@ load("~/Library/CloudStorage/OneDrive-OregonHealth&ScienceUniversity/Teaching/Cl
 iat = iat_3
 ```
 
+
 ## Directions
 
-Please turn in your `.html` file [on Sakai.](https://sakai.ohsu.edu/portal/site/BSTA-512-1-AB-W24/tool/961ec5ef-d7f9-4518-be16-25f7af3d6be4?panel=Main) Please let me know if you greatly prefer to submit a physical copy.
+Please turn in your `.html` file [on Sakai.](https://sakai.ohsu.edu/portal/site/BSTA-512-1-AC-W25/tool/af1e1389-d708-4fe2-94b3-caa1b503592b?panel=Main) Please let me know if you greatly prefer to submit a physical copy.
 
-[You can download the `.qmd` file for this lab here.](https://github.com/nwakim/W2024_BSTA_512/blob/main/labs/Lab_04.qmd)
+[You can download the `.qmd` file for this lab here.](https://github.com/nwakim/BSTA_512_W25/blob/main/labs/Lab_04.qmd) Please use the linked qmd file and not this one! (This is specifically the instructions.)
+
+The rest of this lab's instructions are embedded into the lab activities.
 
 ::: callout-caution
 This is the **instructions** file. The link above will take you to the **editing** file where you can add your work and turn it in!! Please do not remove anything from the editing file!!
@@ -73,7 +68,7 @@ The main purpose of this lab is to perform model selection, identify one or more
 
 ### Grading
 
-**This lab is graded out of 12 points.** Nicky will use the following rubric to assign grades.
+**This lab is graded out of 12 points.** Nicky will use the following rubric displayed on the [Project](../project.qmd) page.
 
 ## Lab activities
 
@@ -339,7 +334,10 @@ If you are completely happy with your model, then you don't have to do this step
 You might create a table like such:
 ```{r}
 sum = summary(prelim_model)
-model_fit_stats = data.frame(Model = "Preliminary main effects model", Adjusted_R_sq = sum$adj.r.squared, AIC = AIC(prelim_model), BIC = BIC(prelim_model))
+model_fit_stats = data.frame(Model = "Preliminary main effects model",
+                             Adjusted_R_sq = sum$adj.r.squared, 
+                             AIC = AIC(prelim_model), 
+                             BIC = BIC(prelim_model))
 
 model_fit_stats
 ```

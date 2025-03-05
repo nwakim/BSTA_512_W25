@@ -1,0 +1,15 @@
+{
+  "hash": "fabb36348768f5a0f38a13534734a070",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"World Data: Is there an association between life expectancy and female literacy rate?\"\nformat:\n  poster-typst: \n    size: \"36x24\"\n    poster-authors: \"N. Wakim\"\n    departments: \"School of Public Health\"\n    institution-logo: \"../../images/OHSU-PSU-SPH.png\"\n    footer-url: \"Final Project Poster\"\n    footer-text: \"Linear Models\"\n    footer-emails: \"wakim@ohsu.com\"\n    footer-color: \"b1c3d9\"\n    keywords: [\"Linear models\", \"Linear regression\", \"Anti-fat bias\"]\n---\n\n\n\n\n\n\n# Background\n\n- A few bullets here from your introduction\n- Lorem ipsum dolor sit amet, consectetur adipiscing elit\n- Lorem ipsum dolor sit amet, consectetur adipiscing elit\n- Lorem ipsum dolor sit amet, consectetur adipiscing elit\n- Need to include your research question here\n\n\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n2+2\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 4\n```\n\n\n:::\n:::\n\n\n\n\n\n\n# Methods\n\n- A few bullets here for your methods\n- Bullet describing model selection\n- Bullet describing the variables in your final model\n\n# Results\n\n- Include a regression table here using `tbl_regression()`\n\n# Conclusion\n\n# Discussion\n\n# References",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,311 @@
+---
+title: "Poster Results Help Session"
+author: "Nicky Wakim"
+title-slide-attributes:
+    data-background-color: "#213c96"
+date: "03/05/2025"
+format: 
+  revealjs:
+    theme: "../simple_NW.scss"
+    chalkboard: true
+    slide-number: true
+    show-slide-number: all
+    width: 1955
+    height: 1100
+    footer: "Poster info"
+    highlight-style: ayu
+    html-math-method: mathjax
+execute:
+  freeze: auto  # re-render only when source changes
+---
+
+```{r}
+#| echo: false
+
+library(tidyverse)
+library(here)
+library(janitor)
+library(knitr)
+library(broom)
+library(rstatix)
+library(gt)
+library(readxl)
+library(describedata) # gladder()
+library(gridExtra)   # grid.arrange()
+library(ggfortify)  # autoplot(model)
+library(gtsummary)
+library(plotly) # for plot_ly() command
+library(GGally) # for ggpairs() command 
+library(ggiraphExtra)   # for ggPredict() command
+library(dvmisc)
+library(expss)
+
+# Load the data - update code if the csv file is not in the same location on your computer
+# If you need to download the file, please go to ur shared folder under Data > Slides
+load(here("./lessons/15_MLR_Diagnostics/final_mod.rda"))
+gapm2 = gapm2 %>%
+  mutate(members_oecd_g77 = factor(members_oecd_g77, levels = c("g77", "oecd", "others"), 
+                                   labels = c("Group of 77", "OECD", "Others")), 
+         CO2_q = factor(
+           CO2_q,
+           levels = c("[0.0439,0.806]","(0.806,2.54]", "(2.54,4.66]", "(4.66,35.2]"),
+           labels = c("Quartile 1", "Quartile 2", "Quartile 3", "Quartile 4"))) %>%
+  apply_labels(FemaleLiteracyRate = "Female literacy rate (%)", 
+    CO2emissions = "CO2 emissions quartiles", 
+    income_levels1 = "Income levels", 
+    four_regions = "World region",
+    WaterSourcePrct = "Access to improved water (%)",
+    FoodSupplykcPPD = "Food supply (kcal PPD)",
+    members_oecd_g77 = "Intergovernmental group", 
+    CO2_q = "CO2 emissions quartiles")
+```
+
+```{r}
+final_model = gapm2 %>%
+  lm(
+    formula = LifeExpectancyYrs ~ FemaleLiteracyRate + CO2_q + 
+      income_levels1 + four_regions + WaterSourcePrct + 
+      FoodSupplykcPPD + members_oecd_g77
+    )
+```
+
+## Some notes
+
+-   I will NOT be counting exact bullet points
+    -   If it says 2-3, anything less than 4 is okay
+    -   If it says 5-6, it shouldn't be 1 and it shouldn't be \>10
+-   Do NOT make bullet points really long!
+-   I tried the QMD poster, and it is REALLY hard to troubleshoot
+    -   I highly suggest making your poster in powerpoint!
+
+```{css}
+.reveal .sourceCode {
+  font-size: 0.9em !important;
+}
+
+```
+
+## Background
+
+-   **Length: 5-8 bullets**
+-   **Purpose:** Introduce the research question and why it is important to study
+-   This section is non-technical.
+    -   By reading just the introduction and conclusion, someone without a technical background should have an idea of what they study was about, why it is important, and what the main results are
+-   You may start with your bullets from Lab 1, but you should edit it and make sure it flows into your report well!
+-   Should contain some references
+
+## Methods
+
+-   **Length: 8-10 bullets**
+-   **Purpose:** Describe the analyses that were conducted and methods used to select variables and check diagnostics
+-   **Some important methods to discuss** (You may divide these into your sections, not necessarily with these names)
+    -   General approach to the dataset
+    -   Variables and variable creation
+    -   Model building: we performed purposeful selection
+    -   Final model
+    -   Model diagnostics
+    
+## Methods for life expectancy {.smaller}
+
+- Data were collected from Gapminder and World Bank with 197 countries in 2011
+- We performed a complete case analysis on 72 countries
+- We generated categorized variables for CO2 emissions and income levels
+  - CO2 emissions used quartiles
+  - Income levels used the specified groupings by Gapminder
+- We used purposeful model selection, a combination of field expertise and statistical methods, to determine the final model
+- We performed linear regression on our outcome, life expectancy, with a main effect for female literacy rate while adjusting for confounders $$\widehat{\text{LE}} = \widehat{\beta}_0 + \widehat{\beta}_1 \text{FLR} + \text{other confounders}$$
+  - We adjusted for: CO2 emissions, income levels, world region, access to improved water, food supply, and intergovernmental groups
+- We investigated model assumptions and diagnostics using standardized residuals, leverage, Cook's distance, and variance inflation factors (VIFs)
+- We used R version 4.4.1 to analyze data
+  
+
+## Results: What should be in your results?
+
+1.  Table 1 (table summary in Lesson 2)
+
+2.  Regression table or Forest plot
+
+3.  One additional figure or table to help understand your question
+
+4.  Interpretations of important coefficient estimates
+
+## 1. Table 1 (table summary in Lesson 2)
+
+::::: columns
+::: {.column width="60%"}
+```{r}
+#| echo: true
+#| eval: false
+
+library(gtsummary)
+
+gapm2_vars = gapm2 %>% 
+  select(
+    CO2emissions, 
+    FoodSupplykcPPD, 
+    FemaleLiteracyRate, 
+    WaterSourcePrct, 
+    four_regions, 
+    members_oecd_g77, 
+    income_levels1
+  )
+
+tbl_summary(
+  gapm2_vars, 
+  label = list(
+    FemaleLiteracyRate = "Female literacy rate (%)", 
+    CO2emissions = "CO2 emissions quartiles", 
+    income_levels1 = "Income levels", 
+    four_regions = "World region",
+    WaterSourcePrct = "Access to improved water (%)",
+    FoodSupplykcPPD = "Food supply (kcal PPD)",
+    members_oecd_g77 = "Intergovernmental group"
+    ),
+  statistic = list(all_continuous() ~ "{mean} ({sd})")
+  )
+```
+:::
+
+::: {.column width="40%"}
+```{r}
+library(gtsummary)
+
+gapm2_vars = gapm2 %>% 
+  select(
+    CO2emissions, 
+    FoodSupplykcPPD, 
+    FemaleLiteracyRate, 
+    WaterSourcePrct, 
+    four_regions, 
+    members_oecd_g77, 
+    income_levels1
+  )
+
+tbl_summary(
+  gapm2_vars, 
+  label = list(
+    FemaleLiteracyRate = "Female literacy rate (%)", 
+    CO2emissions = "CO2 emissions quartiles", 
+    income_levels1 = "Income levels", 
+    four_regions = "World region",
+    WaterSourcePrct = "Access to improved water (%)",
+    FoodSupplykcPPD = "Food supply (kcal PPD)",
+    members_oecd_g77 = "Intergovernmental group"
+    ),
+  statistic = list(all_continuous() ~ "{mean} ({sd})") 
+  ) %>% 
+  as_gt() %>% 
+  tab_options(table.font.size = 26)
+```
+:::
+:::::
+
+## 2. Regression table or Forest plot
+
+::::: columns
+::: {.column width="52%"}
+```{r}
+#| echo: true
+#| eval: false
+
+tbl_regression(
+  final_model, 
+  label = list(
+    FemaleLiteracyRate ~ "Female literacy rate (%)", 
+    CO2_q ~ "CO2 emissions quartiles", 
+    income_levels1 ~ "Income levels", 
+    four_regions ~ "World region",
+    WaterSourcePrct ~ "Access to improved water (%)",
+    FoodSupplykcPPD ~ "Food supply (kcal PPD)",
+    members_oecd_g77 ~ "Intergovernmental group"
+    )) %>%   
+  as_gt() %>% 
+  tab_options(table.font.size = 20) %>%
+  cols_width(label ~ px(250))
+```
+:::
+
+::: {.column width="48%"}
+```{r}
+tbl_regression(
+  final_model, 
+  label = list(
+    FemaleLiteracyRate ~ "Female literacy rate (%)", 
+    CO2_q ~ "CO2 emissions quartiles", 
+    income_levels1 ~ "Income levels", 
+    four_regions ~ "World region",
+    WaterSourcePrct ~ "Access to improved water (%)",
+    FoodSupplykcPPD ~ "Food supply (kcal PPD)",
+    members_oecd_g77 ~ "Intergovernmental group"
+    )) %>%   
+  as_gt() %>% 
+  tab_options(table.font.size = 20) %>%
+  cols_width(label ~ px(250))
+```
+:::
+:::::
+
+## 2. Regression table or Forest plot (needs work!)
+
+::::: columns
+::: {.column width="50%"}
+
+- This is a fun one to investigate!
+- Stick to the regression table if you are having trouble with this!
+```{r}
+#| echo: true
+#| eval: false
+
+library(broom.helpers)
+
+model_tidy = tidy_and_attach(final_model, conf.int=T) %>%
+  tidy_remove_intercept() %>%
+  tidy_add_reference_rows() %>% tidy_add_estimate_to_reference_rows() %>%
+  tidy_add_term_labels()
+
+ggplot(data=model_tidy, aes(y=label, x=estimate, xmin=conf.low, xmax=conf.high)) + 
+  facet_grid(rows = vars(var_label), scales = "free",
+             space='free_y', switch = "y") + 
+  geom_point(size = 3) +  geom_errorbarh(height=.2) + 
+  geom_vline(xintercept=0, color='#C2352F', linetype='dashed', alpha=1) +
+  theme_classic() +
+  labs(x = "Beta", y = "Variables") +
+  theme(axis.title = element_text(size = 20), axis.text = element_text(size = 20), 
+        title = element_text(size = 20), strip.placement = "outside", 
+        strip.text = element_text(size = 20), strip.background = element_blank())
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-height: 10
+#| fig-width: 9
+#| fig-align: center
+
+library(broom.helpers)
+
+model_tidy = tidy_and_attach(final_model, conf.int=T) %>%
+  tidy_remove_intercept() %>%
+  tidy_add_reference_rows() %>% tidy_add_estimate_to_reference_rows() %>%
+  tidy_add_term_labels()
+
+ggplot(data=model_tidy, aes(y=label, x=estimate, xmin=conf.low, xmax=conf.high)) + 
+  facet_grid(rows = vars(var_label), scales = "free",
+             space='free_y', switch = "y") + 
+  geom_point(size = 3) +  geom_errorbarh(height=.2) + 
+  geom_vline(xintercept=0, color='#C2352F', linetype='dashed', alpha=1) +
+  theme_classic() +
+  labs(x = "Beta", y = "Variables") +
+  theme(axis.title = element_text(size = 20), axis.text = element_text(size = 20), 
+        title = element_text(size = 20), strip.placement = "outside", 
+        strip.text = element_text(size = 20), strip.background = element_blank())
+```
+:::
+:::::
+
+## Important note if you have interactions
+
+-   There is extra care to reporting results from interactions
+
+-   Please make sure you use `estimable()` to get the correct effects!
+    - If you have an interaction with a categorical variable, then your main variable's "effect" should be reported for each category

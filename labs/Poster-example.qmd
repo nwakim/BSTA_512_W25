@@ -15,21 +15,25 @@ format:
 
 # Background
 
-- A few bullets here from your introduction
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit
-- Need to include your research question here
+-   A few bullets here from your introduction
+-   Lorem ipsum dolor sit amet, consectetur adipiscing elit
+-   Lorem ipsum dolor sit amet, consectetur adipiscing elit
+-   Lorem ipsum dolor sit amet, consectetur adipiscing elit
+-   Need to include your research question here
+
+```{r}
+
+```
 
 # Methods
 
-- A few bullets here for your methods
-- Bullet describing model selection
-- Bullet describing the variables in your final model
+-   A few bullets here for your methods
+-   Bullet describing model selection
+-   Bullet describing the variables in your final model
 
 # Results
 
-- Include a regression table here using `tbl_regression()`
+-   Include a regression table here using `tbl_regression()`
 
 # Conclusion
 

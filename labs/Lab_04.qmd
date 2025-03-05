@@ -105,7 +105,7 @@ Using your discussion in Lab 3 and the results from the F-test on interactions:
 ::: callout-important
 #### Tasks
 
-Create a forest plot to visualize the coefficient estimates. 
+Create a forest plot **or regression table using `tbl_regression()`** to visualize the coefficient estimates. 
 :::
 
 

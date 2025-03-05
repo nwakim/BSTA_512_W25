@@ -372,5 +372,5 @@ Here are some other packages for forest plots:
 ::: callout-important
 #### Tasks
 
-Create a forest plot to visualize the coefficient estimates. 
+Create a forest plot **or regression table using `tbl_regression()`** to visualize the coefficient estimates. 
 :::

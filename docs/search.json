@@ -9147,5 +9147,12 @@
     "title": "Poster Results Help Session",
     "section": "2. Regression table or Forest plot (needs work!)",
     "text": "2. Regression table or Forest plot (needs work!)\n\n\n\nThis is a fun one to investigate!\nStick to the regression table if you are having trouble with this!\n\n\nlibrary(broom.helpers)\n\nmodel_tidy = tidy_and_attach(final_model, conf.int=T) %&gt;%\n  tidy_remove_intercept() %&gt;%\n  tidy_add_reference_rows() %&gt;% tidy_add_estimate_to_reference_rows() %&gt;%\n  tidy_add_term_labels()\n\nggplot(data=model_tidy, aes(y=label, x=estimate, xmin=conf.low, xmax=conf.high)) + \n  facet_grid(rows = vars(var_label), scales = \"free\",\n             space='free_y', switch = \"y\") + \n  geom_point(size = 3) +  geom_errorbarh(height=.2) + \n  geom_vline(xintercept=0, color='#C2352F', linetype='dashed', alpha=1) +\n  theme_classic() +\n  labs(x = \"Beta\", y = \"Variables\") +\n  theme(axis.title = element_text(size = 20), axis.text = element_text(size = 20), \n        title = element_text(size = 20), strip.placement = \"outside\", \n        strip.text = element_text(size = 20), strip.background = element_blank())"
+  },
+  {
+    "objectID": "lessons/16_Poster_help/16_Poster_help.html#some-lab-3-notes",
+    "href": "lessons/16_Poster_help/16_Poster_help.html#some-lab-3-notes",
+    "title": "Poster Results Help Session",
+    "section": "Some lab 3 notes",
+    "text": "Some lab 3 notes\n\nInternalization variable only has 5 groups!\n\n1 “Not at all” 2 “Slightly” 3 “Moderately” 4 “Very” 5 “Extremely”\n\nDo NOT combine gender indicators back into one variable\n\nNeed to keep them as separate variables\nThis is bc the indicators are not mutually exclusive - someone can identify as multiple genders\n\nLimit your decimal places on regression table outputs!!\nPlease remove unnecessary color in your plots\n\nIf the information can be easily conveyed with text, use text!\nIf color gives redundant info, do not use!"
   }
 ]

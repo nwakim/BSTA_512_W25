@@ -69,6 +69,20 @@ final_model = gapm2 %>%
     )
 ```
 
+## Some lab 3 notes
+
+- Internalization variable only has 5 groups!
+  - 1 "Not at all" 2 "Slightly" 3 "Moderately" 4 "Very" 5 "Extremely"
+- Do NOT combine gender indicators back into one variable 
+  - Need to keep them as separate variables
+  - This is bc the indicators are not mutually exclusive - someone can identify as multiple genders
+- Limit your decimal places on regression table outputs!!
+- Please remove unnecessary color in your plots
+  - If the information can be easily conveyed with text, use text!
+  - If color gives redundant info, do not use!
+
+
+
 ## Some notes
 
 -   I will NOT be counting exact bullet points

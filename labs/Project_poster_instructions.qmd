@@ -227,11 +227,15 @@ Methods typically describe your approach and process, not the results of that pr
 
 ### Results
 
+::: callout-caution
+Note: I took out "and **stratified by your primary independent variable**" for Table 1. 
+:::
+
 -   **Length: mostly figures with 2-3 bullet points**
 -   **Purpose:** Relay the results from our sample's analysis typically focusing on the numbers and interpretations
 -   Tables & figures (2-3 tables or figures)
     -   The following are required tables or figures
-        -   Table 1 summarizing participant characteristics both **overall** and **stratified by your primary independent variable**
+        -   Table 1 summarizing participant characteristics both **overall**
         -   Table or figure with regression results
             -   Can be a forest plot
             -   If you have A LOT of coefficient estimates, the forest plot may not work well!

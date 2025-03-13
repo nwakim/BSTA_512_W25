@@ -57,9 +57,12 @@ A scientific poster serves as a visual and concise way to communicate research f
     -   Using your PDF, and opening in Adobe Reader, then use the print function
     -   You should see something like this: ![](/labs/images/poster_printing.png)
     -   Choose the poster print option then choose the appropriate Tile Scale to make the poster span 4 pages
-    -   Note: not all printers accomodate this
+    -   Note: not all printers accommodate this
     -   You should be able to print in Vanport
         -   I do not want you to pay for printing - please let me know if you are unable to print for free
+        -   Here are two documents in the Student files to help with printing
+            -   [Printer info](https://ohsuitg-my.sharepoint.com/:b:/r/personal/wakim_ohsu_edu/Documents/Teaching/Classes/W25_BSTA_512_612/Student_files/Project/Resources/Printers.pdf?csf=1&web=1&e=2CD9k5)
+            -   [Printer guidance](https://ohsuitg-my.sharepoint.com/:b:/r/personal/wakim_ohsu_edu/Documents/Teaching/Classes/W25_BSTA_512_612/Student_files/Project/Resources/Printing,%20Copying,%20Scanning%20Overview%20(OHSU%20and%20PSU).pdf?csf=1&web=1&e=K93grX)
     -   **Posters presented on 3/17 in class do NOT need to be what you turn in at 11pm in Sakai**
 
 #### Tables and figures
